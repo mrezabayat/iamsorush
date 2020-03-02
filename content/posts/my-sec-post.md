@@ -31,8 +31,8 @@ int main(){
    a2.Say(); // I am A   why???
 }
 ```
-
-B (object `b`) is derived from A (object `a1` and `a2`). `b` and `a1`, as we expect, call their member function. But from polymorphism viewpoint I don't expect `a2`, which is assigned by `b`, to not be overridden. Basically, `a2` only saves `A`-class part of `b` and that is object slicing in C++.<br/>
+ 
+B (object `b`) is derived from A (object `a1` and `a2`). `b` and `a1`, as we expect, call their member function. But from polymorphism viewpoint I don't expect `a2`, which is assigned by `b`, to  not be overridden. Basically, `a2` only saves `A`-class part of `b` and that is object slicing in C++.<br/>
 
 
 Another common situation is when you pass an object to a function:<br/>
