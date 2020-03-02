@@ -7,19 +7,12 @@
 	<title>{{ .Title }}</title>
 	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
-	
-	
-	<link rel="stylesheet" href="{{ "css/grids-core-min.css" | relURL }}">
-	<link rel="stylesheet" href="{{ "css/grids-units-min.css" | relURL }}">
-	<link rel="stylesheet" href="{{ "css/grids-responsive-min.css" | relURL }}">
 	<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-
 	{{ with .OutputFormats.Get "RSS" -}}
 		{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
 	{{- end }}
 </head>
 <body>
-
 	{{ block "main" . }}{{ end }}
 	{{ partial "footer" . }}
 </body>
