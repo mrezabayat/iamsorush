@@ -1,0 +1,23 @@
+{{ define "main" }}
+    <main aria-role="main">
+		{{ partial "headerhome" . }}
+		<div class="banner flex-column justify-start text-center">
+			<div class="container">
+				<h2 class="text-white m-0">{{.Title}}</h2>
+				<h3 class="text-white m-0">{{.Params.greeting}}</h3>
+			</div>
+		</div>
+		<img src="/me.webp" class="mypic shadow" />
+
+      <div class="homepage-content">
+        {{.Content}}
+	  </div>
+	  <div class="container">
+      <div class="pure-g">
+        {{ range first 10 .Site.RegularPages }}
+            {{ .Render "summary"}}
+        {{ end }}
+	  </div>
+	</div>
+    </main>
+{{ end }}

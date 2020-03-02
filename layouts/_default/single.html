@@ -1,0 +1,45 @@
+
+{{ define "main" }}
+	<div class="read-progress-container">
+	  <div class="progress-bar" id="myBar"></div>
+	</div>
+	{{ partial "headersingle" . }}
+    <main>
+		<article>
+		<h1>{{ .Title }}</h1>
+		<time>{{ .Date.Format "02 Jan 2006" }}</time>
+		</article>
+		<div class="single-image" style="background-image: url('{{ .Params.image }}');">
+		</div>
+		<article class="overlay-top">			
+			{{ .Content }}
+
+			{{ with .Params.tags }}
+			<div>
+				<ul id="tags">
+					{{ range . }}
+					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+					{{ end }}
+				</ul>
+			</div>
+			{{ end }}
+			{{ with .Site.DisqusShortname }}
+			<div>
+				{{ template "_internal/disqus.html" . }}
+			</div>
+			{{ end }}
+			<script>
+				// When the user scrolls the page, execute myFunction 
+				window.onscroll = function() {myFunction()};
+				
+				function myFunction() {
+				  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+				  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+				  var scrolled = (winScroll / height) * 100;
+				  document.getElementById("myBar").style.width = scrolled + "%";
+				}
+			</script>		
+		</article>
+	</main>
+{{ partial "sidebar.html" . }}
+{{ end }}
