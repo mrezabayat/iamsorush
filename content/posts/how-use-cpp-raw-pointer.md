@@ -28,8 +28,8 @@ A pointer is an 8-byte type on a 64-bit machine that holds the memory address of
 int  x = 20;   //  variable declaration 
 int* p; // pointer declaration
 p = &x;  // pointer stores address of x
-cout<< p &lt;&lt;endl; //0x7ffc52a21a84
-cout<< *p &lt;&lt;endl; // 20
+cout<< p <<endl; //0x7ffc52a21a84
+cout<< *p <<endl; // 20
 ```
 
 
@@ -204,16 +204,14 @@ CourseB* B= new CourseB(Jack);
 }
 ```
 
-
-
 In the above example, three pointers target the same memory location, thus we cannot run delete on all of them we face double-delete problems explained in the Delete section. Here, we have to decide which one is the owner or which one needs to outlive others, so we run delete command on that one, so the rest are observers. Because of these complexities, smart pointers are introduced in C++11. <br/>
-
 
 
 There is another situation that memory leaks:<br/>
 
 
-```cpp int* p = new int;
+```cpp 
+int* p = new int;
 ... an exception is thrown here..
 delete p; // this is not reached.
 ```
@@ -227,9 +225,7 @@ A raw pointer cannot handle this, you need to use smart pointers (see this <a hr
 <h2> Dereference class members </h2>
 
 
-
 A class member, method or variable, can be accessed via -&gt; operator:<br/>
-
 
 
 ```cpp 
@@ -238,7 +234,7 @@ public:
     string name = "Jack";
 }
 Person* p = new Person();
-std::cout &lt;&lt; p->name &lt;&lt; endl;  // Jack
+std::cout << p->name << endl;  // Jack
 ```
 
 
@@ -252,11 +248,11 @@ It is a good practice to pass objects especially the huge ones by a pointer. Ins
 
 
 ```cpp 
-void DoSomething(vector&lt;int>* v){
+void DoSomething(vector<int>* v){
  /* do something with v */
 }
 ...
-auto a = new vector&lt;int>(10000);
+auto a = new vector<int>(10000);
 DoSomething(a);
 ```
 
@@ -278,10 +274,10 @@ void f(int* p)
 }
 ...
 int* q = new int(0);
-cout&lt;&lt; q &lt;&lt; endl;
+cout<< q << endl;
 f(q);
-cout&lt;&lt; *q &lt;&lt; endl;  // 100
-cout&lt;&lt; q &lt;&lt; endl;  // q is not changed
+cout<< *q << endl;  // 100
+cout<< q << endl;  // q is not changed
 ...
 ```
 
@@ -344,7 +340,7 @@ In C language, it is common to define an array using a pointer<br/>
 int (*p)[5]; // array of 5 integer using pointer  
 int arr[5];  // array of 5 integer 
 int* q = arr;  // pointer points to first element of array
-cout&lt;&lt; *(q+2) &lt;&lt; endl; // shows third element of array
+cout<< *(q+2) << endl; // shows third element of array
 ```
 
 
@@ -354,12 +350,12 @@ In C++, we have the vector class which has many features and in terms of read-an
 
 
 ```cpp 
-vector&lt;int> *v = new vector&lt;int>(10);
+vector<int> *v = new vector<int>(10);
 
 v->operator[](2); // using operator
 (*v)[2]; // dereferencing whole vector first
 v->at(2); // using At
 v->size(); //Get size
-vector&lt;int> &amp;r = *v; // create alias using a reference
+vector<int> &r = *v; // create alias using a reference
 r[2]; // index reference
 ```
