@@ -1,6 +1,6 @@
 ---
 title: 'What is "object slicing" trap in C++?'
-date: 2020-02-28T20:05:39Z
+date: 2020-02-26T20:05:39Z
 draft: false
 image: /jash.jpg
 thumbnail: /jash.jpg
