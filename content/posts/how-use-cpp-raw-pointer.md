@@ -2,8 +2,8 @@
 title: 'How to use C/C++ raw pointers properly?'
 date: 2020-02-22T20:05:39Z
 draft: false
-image: /images/jash.jpg
-thumbnail: /images/jash.jpg
+image: /images/pointer.webp
+thumbnail: /images/pointer_tn.webp
 ---
 ## Introduction
 

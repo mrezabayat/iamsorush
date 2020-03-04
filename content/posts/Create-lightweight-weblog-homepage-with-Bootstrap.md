@@ -2,13 +2,11 @@
 title: 'Create a lightweight weblog homepage with Bootstrap and Html'
 date: 2020-02-15T20:05:39Z
 draft: false
-image: /images/jash.jpg
-thumbnail: /images/jash.jpg
+image: /images/bird.webp
+thumbnail: /images/bird_tn.webp
 ---
 
 ## Introduction
-
-
 
 Website elements like headings, paragraphs, tables are defined by Html document and they are styled by CSS. By "style", I mean color, width, height, margin, padding, border, font, animations, and many more details. Basically, you can design anything comes to your mind but it is usually time-consuming and might not be beautiful.  Luckily we have CSS frameworks like Bootstrap, Base, Pure which are designed by experts to be stylish and responsive on different size monitors. Bootstrap is well self-contained that you can design a website with only a little bit of CSS coding.   
 
