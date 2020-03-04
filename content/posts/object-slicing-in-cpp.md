@@ -2,8 +2,8 @@
 title: 'What is "object slicing" trap in C++?'
 date: 2020-02-26T20:05:39Z
 draft: false
-image: /jash.jpg
-thumbnail: /jash.jpg
+image: /images/jash.jpg
+thumbnail: /images/jash.jpg
 ---
 Every now and then, I switch programming language from C# to C++, I fall in the trap of object slicing. It happens when a derived object is assigned by value to a base object where the extra information in the derived object is scrapped for worst. This is not happening in C#. Let see an example<br/>
 

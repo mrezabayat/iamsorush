@@ -2,8 +2,8 @@
 title: 'How to create a simple component, using Blazor, HTML, and CSS: Word Block'
 date: 2020-02-02T22:24:39Z
 draft: false
-image: /jash.jpg
-thumbnail: /jash.jpg
+image: /images/jash.jpg
+thumbnail: /images/jash.jpg
 ---
 
 ## Introduction 
@@ -26,7 +26,7 @@ In this post, I want to create a simple word-block which is a rectangle that con
 
 
 
-![wordblock](/wordblock-300x108.webp)
+![wordblock](/images/wordblock-300x108.webp)
 
 
 They can be used as keywords or tags that users can add or delete. Here, I want the word-block to have the specifications below:   
@@ -45,7 +45,7 @@ They can be used as keywords or tags that users can add or delete. Here, I want 
 
 
 
-See the full code on [GitHub](https://github.com/sorush-khajepor/IamSorush) and the demo app on [Heroku](https://iamsorush.herokuapp.com/wordblocksample"). The app can take several seconds to boot up.   
+See the full code on [GitHub](https://github.com/sorush-khajepor/BlazorHostedLive) and the demo app on [Heroku](https://iamsorush.herokuapp.com/wordblocksample). The app can take several seconds to boot up.   
 
 
 

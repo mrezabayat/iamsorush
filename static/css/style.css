@@ -173,7 +173,7 @@ article {
   .banner{
     width: 100%;
     min-height: 180px;
-    background-image: url("/banner.webp");
+    background-image: url("/images/banner.webp");
     padding: 1em 0em 2em 0;
   }
 
@@ -266,6 +266,9 @@ article {
   }
   .my-1{
     margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .mb-1{
     margin-bottom: 0.5em;
   }
   .icon{

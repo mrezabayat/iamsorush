@@ -2,8 +2,8 @@
 title: 'Create a lightweight weblog homepage with Bootstrap and Html'
 date: 2020-02-15T20:05:39Z
 draft: false
-image: /jash.jpg
-thumbnail: /jash.jpg
+image: /images/jash.jpg
+thumbnail: /images/jash.jpg
 ---
 
 ## Introduction
@@ -21,7 +21,7 @@ Website elements like headings, paragraphs, tables are defined by Html document 
 
 I want to create a lightweight homepage of a weblog with HTML, Bootstrap and a bit of custom CSS. No javascript, no database, no WordPress is used. It should be a lightweight and fast static website.  The sketch is shown below and some animations will be added:
 
-![sketch](/weblog_drawing_homepage.webp) 
+![sketch](/images/weblog_drawing_homepage.webp) 
 
 
 ## Tools
@@ -274,7 +274,7 @@ My custom CSS, site.css, are:
 
 Ok, let's see if it is worth it. I loaded the index.html in Chrome and got below results   
 
-![download list](/weblog_homepage_downloadfiles.webp)
+![download list](/images/weblog_homepage_downloadfiles.webp)
 
 
 208 KB is downloaded of which 152 KB is Bootstrap. The average webpage size currently is about 4MB (see [this](href="https://www.seoptimer.com/blog/webpage-size/) article). So we are way lower than that. On average each new card adds 16KB = 15 KB image (300px width) + 1KB content which means 10 more cards only adds 160 KB to this homepage. Of course, after that, a second page can be filled with cards via pagination.    
