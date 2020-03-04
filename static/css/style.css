@@ -274,3 +274,7 @@ article {
   .icon{
     width:32px;
   }
+  code {
+   white-space : pre-wrap !important; 
+   /*overflow: scroll !important;*/
+  }
