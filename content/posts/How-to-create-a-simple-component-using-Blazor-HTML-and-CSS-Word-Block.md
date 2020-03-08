@@ -2,8 +2,8 @@
 title: 'How to create a simple component, using Blazor, HTML, and CSS: Word Block'
 date: 2020-02-02T22:24:39Z
 draft: false
-image: /images/jash.jpg
-thumbnail: /images/jash.jpg
+image: /images/cactus.webp
+thumbnail: /images/cactus_tn.webp
 ---
 
 ## Introduction 
