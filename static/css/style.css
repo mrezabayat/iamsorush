@@ -274,7 +274,9 @@ article {
   .icon{
     width:32px;
   }
-  code {
-   white-space : pre-wrap !important; 
-   /*overflow: scroll !important;*/
+  pre {
+    overflow-x: auto; 
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.3em;
   }
