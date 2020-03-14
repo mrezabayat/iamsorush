@@ -1,45 +1,59 @@
-
 {{ define "main" }}
-	<div class="read-progress-container">
-	  <div class="progress-bar" id="myBar"></div>
-	</div>
-	{{ partial "headersingle" . }}
-    <main>
-		<article>
+<button onclick="topFunction()" id="goUpButton" title="Go to top">⬆</button>
+<div class="read-progress-container">
+	<div class="progress-bar" id="myBar"></div>
+</div>
+{{ partial "headersingle" . }}
+<main>
+	<article>
 		<h1>{{ .Title }}</h1>
 		<time>{{ .Date.Format "02 Jan 2006" }}</time>
-		</article>
-		<div class="single-image" style="background-image: url('{{ .Params.image }}');">
-		</div>
-		<article class="overlay-top">			
-			{{ .Content }}
+	</article>
+	<div class="single-image" style="background-image: url('{{ .Params.image }}');">
+	</div>
+	<article class="overlay-top">
+		{{ .Content }}
 
-			{{ with .Params.tags }}
-			<div>
-				<ul id="tags">
-					{{ range . }}
-					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-					{{ end }}
-				</ul>
-			</div>
-			{{ end }}
-			{{ with .Site.DisqusShortname }}
-			<div>
-				{{ template "_internal/disqus.html" . }}
-			</div>
-			{{ end }}
-			<script>
-				// When the user scrolls the page, execute myFunction 
-				window.onscroll = function() {myFunction()};
-				
-				function myFunction() {
-				  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-				  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-				  var scrolled = (winScroll / height) * 100;
-				  document.getElementById("myBar").style.width = scrolled + "%";
+		{{ with .Params.tags }}
+
+		<div>
+			<ul id="tags">
+				{{ range . }}
+				<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+				{{ end }}
+			</ul>
+		</div>
+		{{ end }}
+		{{ with .Site.DisqusShortname }}
+		<div>
+			{{ template "_internal/disqus.html" . }}
+		</div>
+		{{ end }}
+		<script>
+			window.onscroll = function () {
+				myFunction();
+				scrollFunction();
+			};
+			function myFunction() {
+				var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+				var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+				var scrolled = (winScroll / height) * 100;
+				document.getElementById("myBar").style.width = scrolled + "%";
+			}
+			goUpButton = document.getElementById("goUpButton");
+			function scrollFunction() {
+				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+					goUpButton.style.display = "block";
+				} else {
+					goUpButton.style.display = "none";
 				}
-			</script>		
-		</article>
-	</main>
+			}
+			function topFunction() {
+				document.body.scrollTop = 0; // For Safari
+				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+			}
+		</script>
+	</article>
+</main>
 {{ partial "sidebar.html" . }}
 {{ end }}
