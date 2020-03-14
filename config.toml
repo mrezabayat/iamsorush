@@ -1,9 +1,10 @@
 baseURL = "https://iamsorush.com/"
 languageCode = "en-us"
 title = "Sorush Khajepor - Numerical programming and app development"
-author="Sorush Khajepor"
 theme = "blank"
 summaryLength = 25
 [Author]  
   name = "Sorush Khajepor" 
-
+[params]
+  myname="Sorush Khajepor"
+  websitename="IamSorush.com"
