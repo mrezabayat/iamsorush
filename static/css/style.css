@@ -41,11 +41,9 @@ footer {
   color: white;
   background-color: black;
   width: 100%;
-  height: 60px; 
-  line-height: 60px;
+  min-height: 60px; 
   margin: 0 auto;
   margin-top: 1em;
-  text-align: center;
 }
 footer p {
   margin: 0;
@@ -277,6 +275,10 @@ article {
   .my-1{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+  }
+  .my-2{
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
   .mb-1{
     margin-bottom: 0.5em;

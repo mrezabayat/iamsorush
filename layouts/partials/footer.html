@@ -1,23 +1,17 @@
 <footer>
-<!-- Begin Mailchimp Signup Form -->
-<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
-	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-</style>
-<div id="mc_embed_signup">
-<form action="https://presentofpersia.us16.list-manage.com/subscribe/post?u=8269c9b47feced183adc11e56&amp;id=a078c5301b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <div id="mc_embed_signup_scroll">
-	
-	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_8269c9b47feced183adc11e56_a078c5301b" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-    </div>
-</form>
+    <div class="pure-g container">
+	<div class="pure-u-1 pure-u-md-1-2 my-2">
+		
+	<form name="Subscription" method="POST" data-netlify="true">	
+		<p>Subscribe so I notify you of new posts</p>
+		<p>
+		  <input type="email" name="email" placeholder="Email"/>
+		  <button type="submit">Subscribe</button>
+		</p>
+	</form>
 </div>
-
-<!--End mc_embed_signup-->
+<div class="pure-u-1 pure-u-md-1-2 my-1 display-flex justify-start justify-md-end align-center">
 	<p>Copyright &copy; {{ now.Year }} <a href="{{ .Site.BaseURL }}">{{ .Site.Params.myname }}</a></p>
+</div>
+</div>
 </footer>
