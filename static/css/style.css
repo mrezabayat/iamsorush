@@ -197,6 +197,12 @@ article {
   .justify-end {
     justify-content: flex-end;
   }
+  .flex-grow0{
+    flex-grow: 0;
+  }
+  .flex-grow1{
+    flex-grow: 1;
+  }
 
   @media (min-width: 768px) {
     .justify-md-end {
@@ -282,6 +288,9 @@ article {
   }
   .mb-1{
     margin-bottom: 0.5em;
+  }
+  .mr-1{
+    margin-right: 0.5em;
   }
   .icon{
     width:32px;
