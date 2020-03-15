@@ -1,6 +1,6 @@
 ---
 title: 'How Inversion of Control improves flexebility of numerical codes?'
-date: 2020-03-09T23:05:39Z
+date: 2020-03-14T22:00:00Z
 draft: false
 image: /images/ball.webp
 thumbnail: /images/ball_tn.webp
