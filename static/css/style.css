@@ -53,8 +53,8 @@ footer a, header a{
   text-decoration: none;
 }
 a{
-  color: black;
-  text-decoration: none;
+  color: purple;
+  text-decoration: underline;
 }
 a:hover{
   cursor: pointer;
@@ -62,7 +62,7 @@ a:hover{
 
 .scale-sm:hover{
   transform-origin: center;
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: transform 0.1s ;
 }
 .scale-left-sm:hover{
@@ -257,6 +257,10 @@ article {
   .card-image-container{
     overflow: hidden;
     border-radius: 5px 5px 0 0;
+  }
+  .card-title{
+    color:black;
+    text-decoration: none;
   }
 
   .summary{
