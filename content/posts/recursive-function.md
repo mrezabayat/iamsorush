@@ -42,7 +42,7 @@ void FindPermutations(string str, int j, int k)
         {  
             // std::swap() is a built-in function in the C++
             swap(str[j], str[i]);  
-            permute(str, j+1, k);    
+            FindPermutations(str, j+1, k);    
             swap(str[j], str[i]);  
         }  
     }  
