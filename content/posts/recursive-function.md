@@ -10,7 +10,7 @@ thumbnail: /images/circle_tn.webp
 
 A recursive function is a function that calls itself with different arguments. Therefore, it is applied to a problem that each step of it is similar to the previous one. The function must have a condition (base case) to break self-calling when desired result is achieved.
 
-## Examples (C++)
+## Examples
 
 **1-  Function calls itself once: Factorial of a positive integer**
 
