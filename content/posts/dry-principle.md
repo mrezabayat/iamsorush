@@ -6,11 +6,17 @@ image: /images/flower.webp
 thumbnail: /images/flower_tn.webp
 ---
 
+## Introduction
 
-Dry is short for “Don’t repeat yourself”. There are occasions that a piece of code is rewritten several times. It is better to define that as a specific method or class. I explain it with an example
+Dry is short for “Don’t repeat yourself”.
+ There are occasions that a piece of code is rewritten several times.
+ It is better to define that as a specific method or class. 
+ I explain it with examples
 Example.
 
-We have a car class which calculates momentum and air drag force as below
+## Example 1
+
+We have a car class which calculates momentum, air drag force and kinetic energy as below
 
 ```c#
 public class Car
@@ -39,7 +45,12 @@ public class Car
 }
 ```
 
-Both ComputeMomentum and ComputeDragForce methods calculate velocity but the equation is repeated. There are two problems with this approach: firstly, we usually write more than what we should.  Secondly, it is prone to future bugs since sometime in future we may want to change the velocity equation, then we have to find and then change all equations. And secondly, we usually write more. 
+Both ComputeMomentum and ComputeDragForce methods calculate velocity 
+but the equation is repeated. There are two problems with this 
+approach: firstly, we usually write more than what we should.  
+Secondly, it is prone to future bugs since sometime in future we may 
+want to change the velocity equation, then we have to find and then 
+change all equations.
 To solve the issues we can do this
 
 ```C#
@@ -70,16 +81,19 @@ public class Car
     }
 ```
 
-Now the way velocity is computed is hidden from other methods (encapulation principle), by changing ComputeVelocity definition, all other methods get the new correct value. 
-Moreover, it is simpler and cleaner to debug. Remember to name functions in a way that they can be understood quickly (clean code book by R. C. Martin).
+Now the way velocity is computed is hidden from other methods (encapsulation principle), 
+by changing ComputeVelocity definition, all other methods get the new correct value. 
+Moreover, it is simpler and cleaner to debug. Remember to name functions in a way that 
+they can be understood quickly (book Clean Code by R. C. Martin).
 Generally, I do not recommend predicting every scenario and 
-create unnecessary methods, but the moment you see 
+create unnecessary methods and wasting your time, but the moment you see 
 yourself repeating a piece of code like an equation, 
-or several lines with a specific logic, immediately create a method out of it. 
+or several lines with specific logic, immediately create a method out of it. 
 
+## Example 2
 
-The example above, was to extract a method and repeatedly use it in the same class. 
-But there are cases that a set of behaviors together are repeated among different classes.
+The example above was to extract a method and repeatedly use it in the same class. 
+But there are cases that a set of behaviours together are repeated among different classes.
 Let's have a look at the below example
 
 ```C#
@@ -125,8 +139,10 @@ public class Velocities
 }
 ```
 
-In both locations and velocities classes, the `Export` method is repeated. The method carries a independent responsibility of 
-dumping array of `Data2D` into a desired file. So we can create a new class out of it to be used in similar scenarios.
+In both locations and velocities classes, the `Export` method is repeated. 
+The method carries an independent responsibility of 
+dumping the array of `Data2D` into a desired file. 
+We can create a new class out of it to be used in similar scenarios.
 
 ```C#
 public class Data2dExporter
@@ -182,8 +198,9 @@ public class Velocities
 }
 ```
 
-Now both locations and velocities are using the logic we wrote in class `Data2dExporter`. 
-You might say we didn't save in writing, actually we wrote more in our DRY version. 
-However, firstly, we wrote `Data2dExporter` once and we can instanciate it in many other/new classes
-without re-writting it. Secondly, if any logic of the exporter is changed in future, it will be fixed 
-in one place. Thirdly, `Data2dExporter` can now be extended to accomodate different implementations. 
+Now both `Locations` and `Velocities` are using the logic we wrote in class `Data2dExporter`. 
+You might say we haven't saved in writing, actually, we wrote more in our DRY version. 
+However, firstly, we wrote `Data2dExporter` once and we can instantiate it in many other/new classes
+without rewriting it. Secondly, if any logic of the exporter is changed in future, it will be fixed 
+in one place. Thirdly, `Data2dExporter` can now be extended to accommodate different implementations like 
+CSV and JSON exporter.
