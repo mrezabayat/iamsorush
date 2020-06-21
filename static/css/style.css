@@ -300,6 +300,7 @@ article {
     width:32px;
   }
   pre {
+    font-size:0.9rem;
     overflow-x: auto; 
     padding-left: 0.5em;
     padding-top: 0.5em;
