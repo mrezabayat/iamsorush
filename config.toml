@@ -8,3 +8,4 @@ summaryLength = 25
 [params]
   myname="Sorush Khajepor"
   websitename="IamSorush.com"
+  katex=false

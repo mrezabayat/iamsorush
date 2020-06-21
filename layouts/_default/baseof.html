@@ -12,9 +12,11 @@
 	{{ with .OutputFormats.Get "RSS" -}}
 		{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
 	{{- end }}
+
 </head>
 <body>
 	{{ block "main" . }}{{ end }}
 	{{ partial "footer" . }}
+    {{ if .Params.katex}}{{ partial "katex.html" . }}{{ end }}
 </body>
 </html>
