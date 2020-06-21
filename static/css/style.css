@@ -23,7 +23,7 @@ html {
 body {
   min-height: 100%;
   flex-direction: column;
-  font-family: Candara, Arial, Helvetica, sans-serif;
+  font-family: Dosis, Candara, Arial, Helvetica, sans-serif;
   word-spacing: 0.2em;
   line-height: 1.46;
   margin: 0em;
@@ -305,7 +305,9 @@ article {
     padding-top: 0.5em;
     padding-bottom: 0.3em;
   }
-
+  code{
+   font-family:monospace, "Lucida Console", Monaco
+  }
   .nedia{
     visibility: hidden;
     height: 0;
