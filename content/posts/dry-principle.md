@@ -11,8 +11,7 @@ thumbnail: /images/flower_tn.webp
 Dry is short for “Don’t repeat yourself”.
  There are occasions that a piece of code is rewritten several times.
  It is better to define that as a specific method or class. 
- I explain it with examples
-Example.
+ I explain it with examples.
 
 ## Example 1
 
@@ -37,7 +36,7 @@ public class Car
         return 10 * velocity * velocity + 100;
     }
         
-    double ComputeKineticEnergy(time)
+    double ComputeKineticEnergy(double time)
     {
         var velocity = (Acceleration * 0.098 * (time + Math.Log(time)) + 0.1 * time + InitialVelocity;
         return 0.5 * Mass * velocity * velocity;
@@ -45,7 +44,7 @@ public class Car
 }
 ```
 
-Both ComputeMomentum and ComputeDragForce methods calculate velocity 
+Both `ComputeMomentum` and `ComputeDragForce` methods calculate velocity 
 but the equation is repeated. There are two problems with this 
 approach: firstly, we usually write more than what we should.  
 Secondly, it is prone to future bugs since sometime in future we may 
@@ -74,7 +73,7 @@ public class Car
         return 10 * velocity * velocity + 100;
     }
         
-    double ComputeKineticEnergy(time)
+    double ComputeKineticEnergy(double time)
     {
         var velocity = ComputeVelocity(time);
         return 0.5 * Mass * velocity * velocity;
@@ -82,11 +81,11 @@ public class Car
 ```
 
 Now the way velocity is computed is hidden from other methods (encapsulation principle), 
-by changing ComputeVelocity definition, all other methods get the new correct value. 
+by changing `ComputeVelocity` definition, all other methods get the new correct value. 
 Moreover, it is simpler and cleaner to debug. Remember to name functions in a way that 
 they can be understood quickly (book Clean Code by R. C. Martin).
 Generally, I do not recommend predicting every scenario and 
-create unnecessary methods and wasting your time, but the moment you see 
+creating unnecessary methods and wasting your time, but the moment you see 
 yourself repeating a piece of code like an equation, 
 or several lines with specific logic, immediately create a method out of it. 
 
@@ -139,7 +138,7 @@ public class Velocities
 }
 ```
 
-In both locations and velocities classes, the `Export` method is repeated. 
+In both `Locations` and `Velocities` classes, the `Export` method is repeated. 
 The method carries an independent responsibility of 
 dumping the array of `Data2D` into a desired file. 
 We can create a new class out of it to be used in similar scenarios.
