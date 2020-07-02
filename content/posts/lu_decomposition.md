@@ -490,7 +490,7 @@ public double[] SolveX()
 ```
 
 
-Summary
+## Summary
 
 In this post, I coded LU decomposition in C# to have a stand-alone library. It is lightweight because it doesn’t include other non-related math stuff. You can implement it in lightweight projects like Blazor client side app.
 
