@@ -7,8 +7,10 @@ thumbnail: /images/matrix_tn.webp
 ---
 ## Introduction
 
-In this post I want to revisit PLU or LU decomposition or factorisation, which is used to find unknowns of a system of linear equations, for two reasons. Firstly to recode it in an object oriented way to use it in my C# projects and secondly to refresh myself on the topic. The library can be useful for you too as it is light and contains only LU decomposition not a whole math library of everything. I may only add a few solvers of linear system to it but nothing else.  
-LU decomposition solves of a system of linear equations exactly (versus iteratively). It is similar to Gauss elimination technique with time complexity of O(N³). One advantage of LU decomposition over Gauss elimination is that decomposed matrices can be reused in cases that only matrix of constants changes. It finds the solution exactly (opposite to iteratively).   
+In this post I want to revisit PLU or LU decomposition or factorisation, which is used to find unknowns of a system of linear equations, for two reasons. Firstly to recode it in an object oriented way to use it in my C# projects and secondly to refresh myself on the topic. The library can be useful for you too as it is light and contains only LU decomposition not a whole math library of everything. I may only add a few solvers of linear system to it in future but nothing else.  
+
+LU decomposition solves of a system of linear equations exactly (versus iteratively). It is similar to Gauss elimination technique with time complexity of O(N³). One advantage of LU decomposition over Gauss elimination is that decomposed matrices can be reused in cases that only matrix of constants changes.
+
 If you search on the internet you will probably see many codes written in a procedural way. Unless you are very familiar with the topic, the codes needs a good amount of time to be understood. Here, I want to code PLU decomposition in an object oriented and clean way. I use some classes to encapsulate data, they can be extended, and an API will be exposed to user of the library. But for the sake of KISS principle, I won’t fit everything there. I try to have a clean code too, the functions will be short for readability and single responsibility.   Unfortunately, there is a trade-off between object oriented style and code speed which I talk about it in the summary section.
 
 ## Background  
@@ -18,7 +20,7 @@ Before going to coding, let’s refresh ourselves briefly on PLU decomposition. 
 
 A X = B   &nbsp; &emsp; &nbsp; &emsp;   (Eq 1)  
 
-where A is the coefficient matrix, X is the unknown matrix, and B is the constants matrix. This system can be solved using LU decomposition method. Matrix A can be factorized as
+where A is the coefficient matrix, X is the unknown matrix, and B is the constants matrix. This system can be solved using LU decomposition method. Matrix A can be factorised as
 
 A = L U &nbsp; &emsp; &nbsp; &emsp;  (Eq 2)  
 
@@ -34,8 +36,10 @@ and then solve
 
 U X = Y &nbsp; &emsp; &nbsp; &emsp;  (Eq 5)  
 
-to find X. But what is P? In the first step of decomposition A = LU, most of the time we have to joggle lines to make sure diagonals are not zero. We record the final order of rows in P, permutation matrix. Then we can apply that to B before solving LY=B. To make the code a little bit more memory efficient I will save both L and U matrices in A. I will explain it in detail in the example below.
-Linear System Example
+to find X. But what is P? In the first step of decomposition A = LU, most of the time we have to joggle lines to make sure diagonals are not zero. We record the final order of rows in P, permutation matrix. Then we can apply that to B before solving LY=B. To make the code a little bit more memory efficient I will save both L and U matrices in A. I will explain it in detail in the example below.  
+
+## Linear System Example
+
 Here I solve an example step by step which help me to identify classes, functions and their relations.
 
 
@@ -66,7 +70,7 @@ A =│0 (3/4)  &nbsp;        -1    &nbsp;&nbsp;       -7/4│
  &nbsp; &nbsp;     │1   &nbsp; &nbsp;  &nbsp; &nbsp;         3   &nbsp;&nbsp;  &nbsp;      1│  
 
 
-* Store the multiplier, as it is the element of lower matrix, L. It is shown in parenthesis in front of the zero element.
+* Store the multiplier, as it is the element of lower matrix, L. It is shown in parenthesis in front of zero elements.
 Do the same for the next element in the same column
 
  &nbsp; &nbsp; │4   &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;    4    &nbsp;  &nbsp; &nbsp;        5│    
@@ -489,3 +493,9 @@ public double[] SolveX()
 Summary
 
 In this post, I coded LU decomposition in C# to have a stand-alone library. It is lightweight because it doesn’t include other non-related math stuff. You can implement it in lightweight projects like Blazor client side app.
+
+I tried to make it more readable: small methods are created and their names explain what they do. Dummy variables are used to clear up ambiguous parts of the code.
+
+The code has a simple API which accepts A and B matrices and returns the solution.
+
+I should note breaking numerical stages into small functions usually decreases speed of the code. Because function calls carry computational overheads. Moreover, functions usually hide the details which can help compilers to optimise the executables. Of course, these points depend on the language and compilers.
