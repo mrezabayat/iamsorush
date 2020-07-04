@@ -3,9 +3,10 @@ languageCode = "en-us"
 title = "Sorush Khajepor - Numerical programming and app development"
 theme = "blank"
 summaryLength = 25
-[Author]  
-  name = "Sorush Khajepor" 
+[Author]
+  name = "Sorush Khajepor"
 [params]
   myname="Sorush Khajepor"
   websitename="IamSorush.com"
   katex=false
+[Taxonomies]
