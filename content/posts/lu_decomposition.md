@@ -4,6 +4,7 @@ date: 2020-06-28T22:06:30+01:00
 draft: false
 image: /images/matrix.webp
 thumbnail: /images/matrix_tn.webp
+jqmath: true
 ---
 ## Introduction
 
@@ -18,42 +19,42 @@ If you search on the internet you will probably see many codes written in a proc
 
 Before going to coding, let’s refresh ourselves briefly on PLU decomposition.  A system of linear equations is defined as
 
-A X = B   &nbsp; &emsp; &nbsp; &emsp;   (Eq 1)  
+$A X = B$             (Eq 1)  
 
-where A is the coefficient matrix, X is the unknown matrix, and B is the constants matrix. This system can be solved using LU decomposition method. Matrix A can be factorised as
+where $A$ is the coefficient matrix, $X$ is the unknown matrix, and$B$is the constants matrix. This system can be solved using LU decomposition method. Matrix $A$ can be factorised as
 
-A = L U &nbsp; &emsp; &nbsp; &emsp;  (Eq 2)  
+$A = L U$          (Eq 2)  
 
 where L is lower matrix with all elements above diagonal zero and U is upper matrix with all elements under diagonal zero. This way the system can be solved faster because we have
 
-L U X = B &nbsp; &emsp; &nbsp; &emsp;       (Eq 3)  
+$L U X = B$               (Eq 3)  
 
 we can first solve
 
-L Y = B  &nbsp; &emsp; &nbsp; &emsp;   (Eq 4)  
+$L Y = B$            (Eq 4)  
 
 and then solve
 
-U X = Y &nbsp; &emsp; &nbsp; &emsp;  (Eq 5)  
+$U X = Y$          (Eq 5)  
 
-to find X. But what is P? In the first step of decomposition A = LU, most of the time we have to joggle lines to make sure diagonals are not zero. We record the final order of rows in P, permutation matrix. Then we can apply that to B before solving LY=B. To make the code a little bit more memory efficient I will save both L and U matrices in A. I will explain it in detail in the example below.  
+to find X. But what is P? In the first step of decomposition $A = LU$, most of the time we have to joggle lines to make sure diagonals are not zero. We record the final order of rows in P, permutation matrix. Then we can apply that to $B$ before solving $LY=B$. To make the code a little bit more memory efficient I will save both $L$ and $U$ matrices in $A$. I will explain it in detail in the example below.  
 
 ## Linear System Example
 
 Here I solve an example step by step which help me to identify classes, functions and their relations.
 
+$[\table 4,4,5;3,2,2;1,3,1] [\table x_0;x_1;x_2] = [\table 27; 13;10]$
 
+│4      4       5│        │x₀│       │27│   
+│3      2       2│        │x₁│ =      │13│  
+│1      3       1│        │x₂│      │10│  
 
-│4 &nbsp; &emsp;  4  &nbsp; &emsp;  5│  &nbsp; &emsp;   │x₀│    &nbsp; &emsp;│27│   
-│3  &nbsp; &emsp; 2  &nbsp; &emsp;  2│  &nbsp; &emsp;   │x₁│ =  &nbsp; &emsp; │13│  
-│1  &nbsp; &emsp; 3  &nbsp; &emsp;  1│  &nbsp; &emsp;   │x₂│  &nbsp; &emsp; │10│  
+### 1)	Only matrix $A$ is focused to be decomposed.
 
-### 1)	Only matrix A is focused to be decomposed.
-
-&nbsp; &emsp; col0 &nbsp; col1 &nbsp; col2      
- &nbsp; &emsp;│4 &nbsp; &emsp;  4 &nbsp; &emsp;   5│     row0  
-A =│3 &nbsp; &emsp;  2 &nbsp; &emsp;   2│     row1  
-&nbsp; &emsp;│1 &nbsp; &emsp;  3  &nbsp; &emsp;  1│     row2   
+    col0   col1   col2      
+    │4      4       5│     row0  
+A =│3      2       2│     row1  
+   │1      3       1│     row2   
 
 * Make lower triangle zero to find U matrix.  
 * Inside the triangle, move column by column from left to right and from top to bottom.   
@@ -61,81 +62,81 @@ A =│3 &nbsp; &emsp;  2 &nbsp; &emsp;   2│     row1
 * Find diagonal element in the same column=>  Element(0,0)=4.   
 * Find a multiplier that  
 Focused element + multiplier × diagonal element = 0, so multiplier = - 3/4.   
-* The multiplier is used to modify A matrix as:   
+* The multiplier is used to modify $A$ matrix as:   
 Row of focused element = Row of focused element + multiplier × row of diagonal element,
-therefore, A is updated as row1 = row1 – 3/4 × row0
+therefore, $A$ is updated as row1 = row1 – 3/4 × row0
 
-   &nbsp; &nbsp; │4      &nbsp; &nbsp;  &nbsp; &nbsp;      4    &nbsp; &nbsp;        5│    
-A =│0 (3/4)  &nbsp;        -1    &nbsp;&nbsp;       -7/4│    
- &nbsp; &nbsp;     │1   &nbsp; &nbsp;  &nbsp; &nbsp;         3   &nbsp;&nbsp;  &nbsp;      1│  
+       │4                    4               5│    
+A =│0 (3/4)           -1             -7/4│    
+         │1                    3              1│  
 
 
 * Store the multiplier, as it is the element of lower matrix, L. It is shown in parenthesis in front of zero elements.
 Do the same for the next element in the same column
 
- &nbsp; &nbsp; │4   &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;    4    &nbsp;  &nbsp; &nbsp;        5│    
-A =│0 (3/4)   &nbsp; &nbsp;  -1  &nbsp; &nbsp;   -7/4│    
-     &nbsp; &nbsp;  │0 (1/4)  &nbsp; &nbsp;   2   &nbsp; &nbsp;   -1/4│  
+     │4                  4                  5│    
+A =│0 (3/4)        -1        -7/4│    
+          │0 (1/4)        2         -1/4│  
 
 I put emphasis again the numbers in parenthesis are negative of multipliers which are used to make those elements zero.
 
 * When in this column, all lower elements are zero, go to next column, so column 1 is focused now.
 
-* Before we continue, there is permutation step. The diagonal element, -1, is checked to make sure is the maximum absolute value compared to the rows below. If not, swap diagonal row with row of maximum of value. Here |2|>|-1|, so we swap row1 and row2
+* Before we continue, there is permutation step. The diagonal element, -1, is checked to make sure is the maximum absolute value compared to the rows below. If not, swap diagonal row with row of maximum of value. Here $|2|>|-1|$, so we swap row1 and row2
 
- &nbsp; &emsp;│4    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;           4    &nbsp; &nbsp; &nbsp; &nbsp;        5│    
-A = │0 (1/4) &nbsp; &nbsp;    2  &nbsp; &nbsp; &nbsp;    -1/4│       
- &nbsp; &emsp;│0  (3/4)  &nbsp; &nbsp;  -1  &nbsp; &nbsp; &nbsp;   -7/4│   
+    │4                        4                   5│    
+A = │0 (1/4)        2           -1/4│       
+    │0  (3/4)       -1          -7/4│   
 
 Record the change in a permutation matrix. For the sake of saving memory I record order of rows in a vector
 
- &nbsp; &emsp;│0│  
+    │0│  
 P = │2│  
-&nbsp; &emsp;│1│  
+   │1│  
 
 Row0 didn’t change but row1 and row2 are swapped which are captured in P.
 
 Now we can move on and make element(2,1) = -1 zero. With the same procedure explained above, row2 = row2 + 0.5 row1
 
-&nbsp; &emsp;│4        &nbsp; &emsp; &nbsp; &emsp;      4  &nbsp;   &nbsp; &emsp; &nbsp; &emsp;               5│    
-A = │0 (1/4) &nbsp; &emsp;   2  &nbsp; &emsp; &nbsp; &emsp;-1/4│        => U  
-&nbsp; &emsp;│0 (3/4)  &nbsp; &emsp;  0 (-0.5)  &nbsp; -15/8│   
+   │4                     4                            5│    
+A = │0 (1/4)       2         -1/4│        => U  
+   │0 (3/4)       0 (-0.5)    -15/8│   
 
-So now officially, A is converted to U matrix.
+So now officially, $A$ is converted to U matrix.
 
-&nbsp; &emsp;│4  &nbsp; &emsp;  4  &emsp;&nbsp; &emsp;        5│    
-U = │0  &nbsp; &emsp;  2   &nbsp; &emsp;    -1/4│    
-&nbsp; &emsp;│0   &nbsp; &emsp;  0   &nbsp; &emsp;-15/8│   
+   │4       4              5│    
+U = │0       2          -1/4│    
+   │0        0      -15/8│   
 
 And all the multipliers make L matrix. Note L matrix diagonals are one:
 
-&nbsp; &emsp;│1     &nbsp; &emsp;&emsp;   0  &nbsp; &emsp; &emsp;0│    
-L = │1/4   &nbsp; &emsp;  1   &nbsp; &emsp; &emsp;    0│      
-&nbsp; &emsp;│3/4 &nbsp; &emsp;  -0.5  &nbsp; &emsp; &nbsp;1│   
+   │1            0       0│    
+L = │1/4        1            0│      
+   │3/4      -0.5       1│   
 
 ### 2)	System is solved with forward and backward substitution.  
 
 Apply row permutations, P, to B
 
- &emsp; |27|  
+   |27|  
 B= 	|10|  
- &emsp; |13|  
+   |13|  
 
 Forward Substitution LY=B
 
- │1   &nbsp; &emsp;  &nbsp; &emsp;     0  &nbsp;  &nbsp;&emsp;   0│   &nbsp; |y₀|  &nbsp;&emsp;   |27|  
- │1/4  &nbsp; &emsp;  &emsp;  1 &nbsp; &emsp; &nbsp;      0│ &nbsp;    |y₁| = &emsp;|10|  
- │3/4  &nbsp; &emsp;&emsp; -0.5  &nbsp; &emsp;   1│  &nbsp;    |y₂|    &nbsp; &emsp;  |13|  
+ │1                0          0│     |y₀|       |27|  
+ │1/4          1            0│      |y₁| =  |10|  
+ │3/4       -0.5        1│       |y₂|         |13|  
 
-y₀ = 27  
+$y₀ = 27$  
 1/4 (27) + y₁ = 10    => y₁ = 3.25  
 3/4 (27) - 0.5 (3.25) + y₂ = 13    =>  y₂ = -5.625   
 
 And a backward substitution UX=Y
 
- │4  &nbsp; &emsp;  4    &nbsp; &emsp;  &nbsp;  &nbsp;   5│  &nbsp; &emsp;     |x₀| &nbsp; &emsp;   |  27     |  
- │0  &nbsp; &emsp;  2  &nbsp; &emsp; &nbsp;    -1/4│  &nbsp; &emsp;     |x₁| = &nbsp;&emsp;|3.25  |  
- │0  &nbsp; &emsp;   0  &nbsp; &emsp;   -15/8│  &nbsp; &emsp;    |x₂|   &nbsp; &emsp; |-5.625|  
+ │4       4                5│          |x₀|       |  27     |  
+ │0       2           -1/4│          |x₁| =   |3.25  |  
+ │0        0        -15/8│         |x₂|       |-5.625|  
 
 x₂ = -5.625 × (-8/15) = 3  
 2 × x₁   –  1/4 × 3 = 3.25    => x₁ = 2  
@@ -206,7 +207,7 @@ public (int[], double[,]) FindPAndCombinedLU()
 }
 ```
 
-As you can see, I don’t need to put comment as everything is clear: first convert A to LU then return P and LU (formerly A).
+As you can see, I don’t need to put comment as everything is clear: first convert $A$ to LU then return P and LU (formerly A).
 
 How the conversion done? The lower triangle should become zero so we have U matrix. And because we want to have a compact matrix, the zeros of U filled with L.
 
@@ -332,7 +333,7 @@ private void MakeElementZeroAndFillWithLowerMatrixElement(int elementRow, int el
 ```
 
 I used dummy variables like ` sameColumnDiagonalElement` and ` lowerMatrixElement` so the code be easily readable without comments. Since I don’t assume the reader of this code has knowledge of legacy codes, I do not implement i, j, or k variables as iterators but use meaningful words like row and column. The loop boundaries are set by variables which exactly explain what they are rather than being puzzles to be discovered.
-Now, the class for finding X is defined as below
+Now, the class for finding $X$ is defined as below
 
 ``` c#
 public class XFinder
@@ -350,7 +351,7 @@ public class XFinder
 }
 ```
 
-The constructor accepts compact LU, P and B. Their reference is stored in this class. `numberOfRows` and `numberOfColumns` are helper variables for readability. X is the matrix of unknowns, Y is the helper matrix defined in the previous section.
+The constructor accepts compact LU, P and B. Their reference is stored in this class. `numberOfRows` and `numberOfColumns` are helper variables for readability. $X$ is the matrix of unknowns, Y is the helper matrix defined in the previous section.
 
 ``` c#
 public XFinder(double[,] lu, int[] p, double[] b)
@@ -369,7 +370,7 @@ public XFinder(double[,] lu, int[] p, double[] b)
 }
 ```
 
-Users have access to `Solve` method which returns the solutions, X. I created functions in the order we need to solve the problem. B is reoredered, Y is found from LY=B, X is found from UX=Y, and finally X is checked to see if it is valid. What I wrote is in this paragraph are exactly the name of methods. Because of that no comments added to the code.
+Users have access to `Solve` method which returns the solutions, X. I created functions in the order we need to solve the problem.$B$is reoredered, Y is found from LY=B, $X$ is found from UX=Y, and finally $X$ is checked to see if it is valid. What I wrote is in this paragraph are exactly the name of methods. Because of that no comments added to the code.
 
 ``` c#
 public double[] Solve()
@@ -440,7 +441,7 @@ void SolveXfromUXequalY()
 }
 ```
 
-Here I check if X is a valid solution by checking there is not a Nan in it. You can add more conditions inside this function without effecting other part of the code.
+Here I check if $X$ is a valid solution by checking there is not a Nan in it. You can add more conditions inside this function without effecting other part of the code.
 
 ``` c#
 private void CheckXIsValid()
@@ -456,7 +457,7 @@ private void CheckXIsValid()
 ```
 
 
-And lastly the API which is exposed to users of this library. It contains A, B, and the instances of decomposer and XFinder. Users only need to inject A and B in the constructor. The decomposer needs only A to be initialized.  
+And lastly the API which is exposed to users of this library. It contains A, B, and the instances of decomposer and XFinder. Users only need to inject $A$ and $B$ in the constructor. The decomposer needs only $A$ to be initialized.  
 
 ``` c#
 public class Solver
@@ -477,7 +478,7 @@ public class Solver
 …}
 ```
 
-The second method which users are interested is `SolveX` to get the solution. First we ask the decomposer to find P and compact LU. Then they along B are injected to XFinder. XFinder returns the solution.
+The second method which users are interested is `SolveX` to get the solution. First we ask the decomposer to find P and compact LU. Then they along$B$are injected to XFinder. XFinder returns the solution.
 
 ``` c#
 public double[] SolveX()
@@ -496,6 +497,6 @@ In this post, I coded LU decomposition in C# to have a stand-alone library. It i
 
 I tried to make it more readable: small methods are created and their names explain what they do. Dummy variables are used to clear up ambiguous parts of the code.
 
-The code has a simple API which accepts A and B matrices and returns the solution.
+The code has a simple API which accepts $A$ and $B$ matrices and returns the solution.
 
 I should note breaking numerical stages into small functions usually decreases speed of the code. Because function calls carry computational overheads. Moreover, functions usually hide the details which can help compilers to optimise the executables. Of course, these points depend on the language and compilers.
