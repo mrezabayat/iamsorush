@@ -43,18 +43,14 @@ to find X. But what is P? In the first step of decomposition $A = LU$, most of t
 
 Here I solve an example step by step which help me to identify classes, functions and their relations.
 
-$[\table 4,4,5;3,2,2;1,3,1] [\table x_0;x_1;x_2] = [\table 27; 13;10]$
+$$[\table 4,4,5;3,2,2;1,3,1] [\table x_0;x_1;x_2] = [\table 27; 13;10]$$
 
-│4      4       5│        │x₀│       │27│   
-│3      2       2│        │x₁│ =      │13│  
-│1      3       1│        │x₂│      │10│  
 
 ### 1)	Only matrix $A$ is focused to be decomposed.
 
-    col0   col1   col2      
-    │4      4       5│     row0  
-A =│3      2       2│     row1  
-   │1      3       1│     row2   
+$$\table col0,col1,col2$$
+
+$$A=[\table 4,4,5;3,2,2;1,3,1] \table row0;row1;row2 $$
 
 * Make lower triangle zero to find U matrix.  
 * Inside the triangle, move column by column from left to right and from top to bottom.   
@@ -66,17 +62,15 @@ Focused element + multiplier × diagonal element = 0, so multiplier = - 3/4.
 Row of focused element = Row of focused element + multiplier × row of diagonal element,
 therefore, $A$ is updated as row1 = row1 – 3/4 × row0
 
-       │4                    4               5│    
-A =│0 (3/4)           -1             -7/4│    
-         │1                    3              1│  
+
+$$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;1,3,1]$$
 
 
 * Store the multiplier, as it is the element of lower matrix, L. It is shown in parenthesis in front of zero elements.
 Do the same for the next element in the same column
 
-     │4                  4                  5│    
-A =│0 (3/4)        -1        -7/4│    
-          │0 (1/4)        2         -1/4│  
+$$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;0 (1 /4),2,-1 /4]$$
+
 
 I put emphasis again the numbers in parenthesis are negative of multipliers which are used to make those elements zero.
 
@@ -84,35 +78,33 @@ I put emphasis again the numbers in parenthesis are negative of multipliers whic
 
 * Before we continue, there is permutation step. The diagonal element, -1, is checked to make sure is the maximum absolute value compared to the rows below. If not, swap diagonal row with row of maximum of value. Here $|2|>|-1|$, so we swap row1 and row2
 
-    │4                        4                   5│    
-A = │0 (1/4)        2           -1/4│       
-    │0  (3/4)       -1          -7/4│   
+$$A=[\table 4,4,5;0 (1 /4),2,-1 /4;0 (3 /4),-1,-7 /4]$$
+
 
 Record the change in a permutation matrix. For the sake of saving memory I record order of rows in a vector
 
-    │0│  
-P = │2│  
-   │1│  
 
-Row0 didn’t change but row1 and row2 are swapped which are captured in P.
+$$P=[\table 0;2;1]$$
+
+
+Row0 didn’t change but row1 and row2 are swapped which are captured in $P$.
 
 Now we can move on and make element(2,1) = -1 zero. With the same procedure explained above, row2 = row2 + 0.5 row1
 
-   │4                     4                            5│    
-A = │0 (1/4)       2         -1/4│        => U  
-   │0 (3/4)       0 (-0.5)    -15/8│   
+
+$$A=[\table 4,4,5;0 (1 /4),2,-1 /4;0 (3 /4),0 (-1 /2),-15 /8]=> U$$
+
 
 So now officially, $A$ is converted to U matrix.
 
-   │4       4              5│    
-U = │0       2          -1/4│    
-   │0        0      -15/8│   
+$$U=[\table 4,4,5;0,2,-1 /4;0,0,-15 /8]$$
+
 
 And all the multipliers make L matrix. Note L matrix diagonals are one:
 
-   │1            0       0│    
-L = │1/4        1            0│      
-   │3/4      -0.5       1│   
+$$L=[\table 1,0,0;1 /4,1,0;3 /4,-1 /2,1]$$
+
+
 
 ### 2)	System is solved with forward and backward substitution.  
 
