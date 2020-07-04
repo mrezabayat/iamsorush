@@ -9,6 +9,7 @@ summaryLength = 25
   myname="Sorush Khajepor"
   websitename="iamsorush.com"
   katex=false
+  jqmath=false
 [taxonomies]
     category = "categories"
     tag = "tags"

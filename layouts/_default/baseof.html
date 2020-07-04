@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
-	{{ if .Data.Singular }}
+	{{ if .Data.Singular }} {{/* if this is a taxemony page, search engine does not index it*/}}
     <meta name="robots" content="noindex">
 	{{ end }}
 	<link rel="icon" href="/images/me.gif" type="image/gif" >
@@ -21,5 +21,6 @@
 	{{ block "main" . }}{{ end }}
 	{{ partial "footer" . }}
     {{ if .Params.katex}}{{ partial "katex.html" . }}{{ end }}
+		{{ if .Params.jqmath}}{{ partial "jqmath.html" . }}{{ end }}
 </body>
 </html>

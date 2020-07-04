@@ -69,24 +69,19 @@ a:hover{
   transform: scale(1.1);
   transition: transform 0.1s ;
 }
-
-
 header{
   flex-shrink: 0;
   color: white;
   background-color: black;
   width: 100%;
 }
-
 .header-black{
   padding: 1em 0em;
 }
-
 .header-white, .header-white a{
   color: black;
   background-color: transparent;
 }
-
 article {
   max-width: 580px;
   padding-left: 15px;
