@@ -7,6 +7,8 @@ summaryLength = 25
   name = "Sorush Khajepor"
 [params]
   myname="Sorush Khajepor"
-  websitename="IamSorush.com"
+  websitename="iamsorush.com"
   katex=false
-[Taxonomies]
+[taxonomies]
+    category = "categories"
+    tag = "tags"

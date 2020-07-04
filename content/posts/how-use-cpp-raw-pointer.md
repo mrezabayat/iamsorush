@@ -8,7 +8,7 @@ thumbnail: /images/pointer_tn.webp
 ## Introduction
 
 
-C/C++ is used widely for high performance, number crunching, and gaming projects. For example in computational fluid dynamics (CFD) codes millions of times equations are solved on millions of mesh nodes to simulate a few seconds in real life. However, An unoptimized code can run 10, 100, or 1000 times slower. There are many tips and tricks on optimizing a code but simply mastering pointers is an important step in writing efficient code. Here, I try to mention some important characteristics of pointers that help you design your code better.   
+C/C++ is used widely for high performance, number crunching, and gaming projects. For example in computational fluid dynamics (CFD) codes millions of times equations are solved on millions of mesh nodes to simulate a few seconds in real life. However, An unoptimised code can run 10, 100, or 1000 times slower. There are many tips and tricks on optimising a code but simply mastering pointers is an important step in writing efficient code. Here, I try to mention some important characteristics of pointers that help you design your code better.   
 
 
 
@@ -24,8 +24,8 @@ A pointer is an 8-byte type on a 64-bit machine that holds the memory address of
 
 
 
-```cpp 
-int  x = 20;   //  variable declaration 
+```cpp
+int  x = 20;   //  variable declaration
 int* p; // pointer declaration
 p = &x;  // pointer stores address of x
 cout<< p <<endl; //0x7ffc52a21a84
@@ -46,7 +46,7 @@ A pointer is usually pointed to dynamically allocated memory on the heap
 
 
 
-```cpp 
+```cpp
 int* p = new int;
 ```
 
@@ -54,7 +54,7 @@ int* p = new int;
 
 
 
-```cpp 
+```cpp
 delete p; // new int memory now deleted
 ```
 
@@ -68,11 +68,11 @@ Do not delete a stack memory that a pointer points to
 
 
 
-```cpp 
+```cpp
 void main(){
 int x;
 int* p=&x;
-delete p; // Undefined Behavior: deleting a memory on stack!
+delete p; // Undefined Behaviour: deleting a memory on stack!
 }
 ```
 
@@ -82,7 +82,7 @@ Do not double delete
 
 
 
-```cpp 
+```cpp
 int* p = new int;
 delete p; // target memory deleted
 delete p; // error or undefined behavior
@@ -94,15 +94,15 @@ delete p; // error or undefined behavior
 
 
 
-I prefer to point the pointer to nullptr (or NULL for C and older than c++11 compilers) when there is nothing to point to: declaration and deletion. In this way, I avoid undefined behavior.    
+I prefer to point the pointer to nullptr (or NULL for C and older than c++11 compilers) when there is nothing to point to: declaration and deletion. In this way, I avoid undefined behaviour.    
 
 
 
-```cpp 
+```cpp
 int* p = nullptr  // declaration with null
 int* q = new int; // memory allocation
 delete q; // removing allocated memory
-q = nullptr; 
+q = nullptr;
 ```
 
 
@@ -111,9 +111,9 @@ nullptr is type-safe in comparison with NULL. In some <a href="https://stackover
 
 
 
-```cpp 
+```cpp
 if(p!=nullptr) {...}  // C++11 and later
-if(p!=NULL) {...} // C and older C++ compilers 
+if(p!=NULL) {...} // C and older C++ compilers
 ```
 
 
@@ -140,11 +140,11 @@ p = &x;  // re-pointed but "new int" not deleted
 
 
 
-```cpp 
+```cpp
 int x;
 int* p = new int;
 delete p;
-p = &x; 
+p = &x;
 ```
 
 
@@ -152,11 +152,11 @@ The same happens if the pointer goes out of scope
 
 
 
-```cpp 
+```cpp
 // some code here
 {
-    int* p = new int; // p decleared and given a new memory
-    // do some stuff with p 
+    int* p = new int; // p declared and given a new memory
+    // do some stuff with p
 }
 // p is destroyed here but new int memory is somewhere not deleted
 ```
@@ -167,9 +167,9 @@ Again we have to remember to delete it ourself
 
 
 
-```cpp 
+```cpp
 {
-    int* p= new int; // p decleared and given a new memory
+    int* p= new int; // p declared and given a new memory
     // do some stuff with p
     delete p;  // the new int is deleted.
 }
@@ -184,13 +184,13 @@ However,  in practice, it is not that straightforward. The things get complicate
 ```cpp
 Class Student{...}
 Class CourseA{
-  public: 
+  public:
     CourseA(*Student student):Top(student) {}
     ~A(){// delete Top here?}
     Student* Top;
 }
 Class CourseB{
-  Public: 
+  Public:
     CourseB(*Student student):Top(student) {}
     ~B(){// delete Top here?}
     Student* Top;
@@ -210,7 +210,7 @@ In the above example, three pointers target the same memory location, thus we ca
 There is another situation that memory leaks:   
 
 
-```cpp 
+```cpp
 int* p = new int;
 ... an exception is thrown here..
 delete p; // this is not reached.
@@ -222,13 +222,13 @@ A raw pointer cannot handle this, you need to use smart pointers (see this <a hr
 
 
 
-##  Dereference class members 
+##  Dereference class members
 
 
 A class member, method or variable, can be accessed via -&gt; operator:   
 
 
-```cpp 
+```cpp
 class Person{
 public:
     string name = "Jack";
@@ -241,13 +241,11 @@ std::cout << p->name << endl;  // Jack
 
 ## Pass by pointer
 
-
-
 It is a good practice to pass objects especially the huge ones by a pointer. Instead of copying the whole data, only the pointer is passed:   
 
 
 
-```cpp 
+```cpp
 void DoSomething(vector<int>* v){
  /* do something with v */
 }
@@ -266,7 +264,7 @@ When passing by pointer, the pointer itself passed by value
 
 
 
-```cpp 
+```cpp
 void f(int* p)
 {
     *p = 100;   // the pointed memory changed
@@ -291,7 +289,7 @@ A constant definition can be added to a pointer as below
 
 
 
-```cpp 
+```cpp
 const int* p // constant or read-only target, pointer can be reassigned
 int* const p // constant pointer cannot be reassigned
 const int* const p // both above constraints
@@ -307,7 +305,7 @@ The target of a constant-target pointer is not necessarily constant:
 
 
 
-```cpp 
+```cpp
 int a=5;
 const int* p = &a; // ok: read-only pointer
 a = 10;  // ok
@@ -336,9 +334,9 @@ In C language, it is common to define an array using a pointer
 
 
 
-```cpp 
+```cpp
 int (*p)[5]; // array of 5 integer using pointer  
-int arr[5];  // array of 5 integer 
+int arr[5];  // array of 5 integer
 int* q = arr;  // pointer points to first element of array
 cout<< *(q+2) << endl; // shows third element of array
 ```
@@ -349,7 +347,7 @@ In C++, we have the vector class which has many features and in terms of read-an
 
 
 
-```cpp 
+```cpp
 vector<int> *v = new vector<int>(10);
 
 v->operator[](2); // using operator

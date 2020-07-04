@@ -4,6 +4,6 @@
 {{ end }}
 {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}
 {{ if .Paginator.HasNext }}
-	<a href="{{ .Paginator.Next.URL }}">Next Page</a>
+ 	<a href="{{ .Paginator.Next.URL }}" class="button">Next Page</a>
 {{ end }}
 </div>
