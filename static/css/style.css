@@ -13,9 +13,9 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 /* Custom Css*/
 
 @font-face {
-    font-family: 'ralewayregular';
-    src: url('/fonts/raleway-regular-webfont.woff2') format('woff2'),
-         url('/fonts/raleway-regular-webfont.woff') format('woff');
+    font-family: 'pt_sansregular';
+    src: url('/fonts/ptsans-regular-webfont.woff2') format('woff2'),
+         url('/fonts/ptsans-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -32,7 +32,7 @@ html {
 body {
   min-height: 100%;
   flex-direction: column;
-  font-family: ralewayregular, Candara, Arial, Helvetica, sans-serif;
+  font-family: pt_sansregular, Candara, Arial, Helvetica, sans-serif;
   word-spacing: 0.2em;
   line-height: 1.46;
   margin: 0em;
