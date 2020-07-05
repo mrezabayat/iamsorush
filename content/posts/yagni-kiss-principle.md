@@ -47,7 +47,7 @@ And that is job done. But you think “it is good to have a method that calculat
 
 KISS stands for “Keep It Simple, Stupid”. Simple is opposite to complex and entangled. The code you write should be easy to understand by others and yourself. You might work with other developers in a project, or at some point in future you hand over the code, in either case you don’t want to bother others much. Moreover, you may be busy on another project for a few months and you come back to your code and say “what the hell did I do here”. Being simple is subjective and relative to situations. However, there are few points that help you to keep a code simple.
 
-1-	Do not purposefully make the design complex to show you are smart i.e. do not create puzzles. For example, instead of
+1.	Do not purposefully make the design complex to show you are smart i.e. do not create puzzles. For example, instead of
 
 ```c#
 for (int i=0;i<n;i++)
@@ -69,9 +69,9 @@ for (int i=1;i<n;i=i+2)
 }
 ```
 
-2-	Avoid mega classes that do many unrelated tasks. Keep them focused using single responsibility principle (SRP).
+2.	Avoid mega classes that do many unrelated tasks. Keep them focused using single responsibility principle (SRP).
 
-3-	If possible keep methods less than 20 lines with a particular goal for SRP. For example, we have a big method like
+3.	If possible keep methods less than 20 lines with a particular goal for SRP. For example, we have a big method like
 
 ```c#
 public Void Run()
@@ -120,7 +120,7 @@ public Void Run()
 
 The complexity is not solved in the above example, it is just swept under the carpet.
 
-4-	Use interfaces and abstracts when needed. Design patterns recommend use of abstracts and interfaces but remember they came to existence to solve common problems of programming. If there is no problem, then YAGNI. For example, you have the below class
+4.	Use interfaces and abstracts when needed. Design patterns recommend use of abstracts and interfaces but remember they came to existence to solve common problems of programming. If there is no problem, then YAGNI. For example, you have the below class
 
 ```c#
 class Point
@@ -138,8 +138,8 @@ class Point
 
 Let's assume that is all about it, and there is not any plan to extend Point class so why should you bother creating an interface for it where it adds complexity to the code. However, if from beginning we know there is a hierarchy of derived classes, then we would consider an interface.
 
-5-	Try to inject/initialise an object’s dependencies, properties and fields when its constructor called.  Therefore, when you debug them, you know where to start.
+5.	Try to inject/initialise an object’s dependencies, properties and fields when its constructor called.  Therefore, when you debug them, you know where to start.
 
-6-	Avoid global variables (it's a C/C++ feature). They can be changed anywhere in the software and hard to track.
+6.	Avoid global variables (it's a C/C++ feature). They can be changed anywhere in the software and hard to track.
 
-7-	Avoid as much as possible nested *if statements*. Each *if statement* creates different path for the application to run through, so it becomes harder for readers to follow. The exception to this is when there are several conditions in a method but all serve the same purpose, for example, when you check whether different parameters are null.
+7.	Avoid as much as possible nested *if statements*. Each *if statement* creates different path for the application to run through, so it becomes harder for readers to follow. The exception to this is when there are several conditions in a method but all serve the same purpose, for example, when you check whether different parameters are null.
