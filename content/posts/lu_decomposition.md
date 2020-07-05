@@ -66,8 +66,8 @@ therefore, $A$ is updated as row1 = row1 – 3/4 × row0
 $$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;1,3,1]$$
 
 
-* Store the multiplier, as it is the element of lower matrix, $L$. It is shown in parenthesis in front of zero elements.
-Do the same for the next element in the same column
+* Store the multiplier, as it is the element of lower matrix, $L$. It is shown in parenthesis in front of zero elements.  
+* Do the same for the next element in the same column
 
 $$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;0 (1 /4),2,-1 /4]$$
 
@@ -81,7 +81,7 @@ I put emphasis again the numbers in parenthesis are negative of multipliers whic
 $$A=[\table 4,4,5;0 (1 /4),2,-1 /4;0 (3 /4),-1,-7 /4]$$
 
 
-Record the change in a permutation matrix. For the sake of saving memory I record order of rows in a vector
+* Record the change in a permutation matrix. For the sake of saving memory I record order of rows in a vector
 
 
 $$P=[\table 0;2;1]$$
