@@ -13,15 +13,15 @@ After reading a lot of design patterns, loose-coupling ideas, and so, you cannot
 YAGNI stands for You Aren’t Gonna Need It. It is very tempting to keep commented codes or write methods which are not asked but we predict we will need them. For example, the total mass of particles in a system calculated like  
 
 ```c#
-totalMass = n * particle[0].Mass;
+double totalMass = n * particle[0].Mass;
 ```
 But later on you think it is better to be calculated like
 
 ```c#
-totalMass = 0.0;
-For (int i=0;i<n;i++)
+double totalMass = 0.0;
+for (int i=0;i<n;i++)
 {
-  totalMass = n * particle[0].Mass;
+  totalMass += particle[i].Mass;
 }
 ```
 
@@ -30,14 +30,14 @@ You probably thinking I comment the old line, I may need it later but we know 99
 There times that you know the class you are designing needs to have specific properties and methods but you add more because there is a chance they will be useful. For example, you need to write a one dimensional particle class like
 
 ```c#
-Public Class Particle
+public class Particle
 {
-      Public double Mass {get; set;}
-      Public double Position {get; set;}
-      public   double  CalculateForce(Particle other)
-      {
-        return 6.673 x 10e-11 * Mass* other.Mass / Math.Abs(Position - other.Position)
-      }
+    public double Mass {get; set;}
+    public double Position {get; set;}
+    public double  CalculateForce(Particle other)
+    {
+      return 6.673 * 10e-11 * Mass* other.Mass / Math.Abs(Position - other.Position);
+    }
 }
 ```
 
@@ -50,20 +50,20 @@ KISS stands for “Keep It Simple, Stupid”. Simple is opposite to complex and 
 1-	Do not purposefully make the design complex to show you are smart i.e. do not create puzzles. For example, instead of
 
 ```c#
-For (i=0;n<100;i++)
+for (int i=0;i<n;i++)
 {
- totalMass += particle[i].Mass;
+  totalMass += particle[i].Mass;
 }
 ```
 
 Do not write
 
 ```c#
-For (i=0;n<100;i=i+2)
+for (int i=0;i<n;i=i+2)
 {
   totalMass+=particle[i].Mass;
 }
-For (i=1;n<100;i=i+2)
+for (int i=1;i<n;i=i+2)
 {
   totalMass+=particle[i].Mass;
 }
@@ -74,17 +74,17 @@ For (i=1;n<100;i=i+2)
 3-	If possible keep methods less than 20 lines with a particular goal (single responsibility principle). For example, we have a big method like
 
 ```c#
-Public Void Run()
+public Void Run()
 {
   // More code here
 
-  For (i=0;n<100;i++)
+  for (int i=0;i<n;i++)
   {
     particle[i].Position += 0.5 * acceleration * time * time ;
   }
 
-  TotalMass =0;
-  For (i=0;n<100;i++)
+  double totalMass =0;
+  for (int i=0;i<n;i++)
   {
     totalMass += particle[i].Mass;
   }
@@ -96,12 +96,12 @@ Public Void Run()
 We can change it to
 
 ```c#
-Public Void Run()
+public Void Run()
 {
   // More code here
 
   UpdatePositions()
-  totalMass = CalculateTotalMass();
+  var totalMass = CalculateTotalMass();
 
   // More codes here
 }
@@ -110,10 +110,10 @@ Public Void Run()
 But do not hide the mixup in another method like
 
 ```c#
-Public Void Run()
+public Void Run()
 {
   // More code here
-  TotalMass = UpdatePositionsAndCalculateTotalMass();
+  var totalMass = UpdatePositionsAndCalculateTotalMass();
   // More codes here
 }
 ```
@@ -123,15 +123,15 @@ The complexity is not solved in the above example, it is just swept under the ca
 4-	Use interfaces and abstracts when needed. Design patterns recommend use of abstracts and interfaces but remember they came to existence to solve common problems of programming. If there is no problem, then YAGNI. For example, you have the below class
 
 ```c#
-Class Point
+class Point
 {
   private double X{get; set;}
   private double Y{get; set;}
   private double Z{get; set;}
 
-  Public double GetMagnitude()
+  public double GetMagnitude()
   {
-  	Return Math.Sqrt(X*X + Y*Y + Z*Z);
+  	return Math.Sqrt(X*X + Y*Y + Z*Z);
   }
 }
 ```
