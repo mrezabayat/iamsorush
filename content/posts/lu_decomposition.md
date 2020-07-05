@@ -19,25 +19,25 @@ If you search on the internet you will probably see many codes written in a proc
 
 Before going to coding, let’s refresh ourselves briefly on PLU decomposition.  A system of linear equations is defined as
 
-$A X = B$             (Eq 1)  
+$A X = B$             
 
 where $A$ is the coefficient matrix, $X$ is the unknown matrix, and$B$is the constants matrix. This system can be solved using LU decomposition method. Matrix $A$ can be factorised as
 
-$A = L U$          (Eq 2)  
+$A = L U$         
 
-where L is lower matrix with all elements above diagonal zero and U is upper matrix with all elements under diagonal zero. This way the system can be solved faster because we have
+where $L$ is lower matrix with all elements above diagonal zero and $U$ is upper matrix with all elements under diagonal zero. This way the system can be solved faster because we have
 
-$L U X = B$               (Eq 3)  
+$L U X = B$                
 
 we can first solve
 
-$L Y = B$            (Eq 4)  
+$L Y = B$         
 
 and then solve
 
-$U X = Y$          (Eq 5)  
+$U X = Y$          
 
-to find X. But what is P? In the first step of decomposition $A = LU$, most of the time we have to joggle lines to make sure diagonals are not zero. We record the final order of rows in P, permutation matrix. Then we can apply that to $B$ before solving $LY=B$. To make the code a little bit more memory efficient I will save both $L$ and $U$ matrices in $A$. I will explain it in detail in the example below.  
+to find $X$. But what is $P$? In the first step of decomposition $A = LU$, most of the time we have to joggle lines to make sure diagonals are not zero. We record the final order of rows in $P$, permutation matrix. Then we can apply that to $B$ before solving $LY=B$. To make the code a little bit more memory efficient I will save both $L$ and $U$ matrices in $A$. I will explain it in detail in the example below.  
 
 ## Linear System Example
 
@@ -52,7 +52,7 @@ $$\table col0,col1,col2$$
 
 $$A=[\table 4,4,5;3,2,2;1,3,1] \table row0;row1;row2 $$
 
-* Make lower triangle zero to find U matrix.  
+* Make lower triangle zero to find $U$ matrix.  
 * Inside the triangle, move column by column from left to right and from top to bottom.   
 * First element, (row=1, col=0)=3, is focused.   
 * Find diagonal element in the same column=>  Element(0,0)=4.   
@@ -66,7 +66,7 @@ therefore, $A$ is updated as row1 = row1 – 3/4 × row0
 $$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;1,3,1]$$
 
 
-* Store the multiplier, as it is the element of lower matrix, L. It is shown in parenthesis in front of zero elements.
+* Store the multiplier, as it is the element of lower matrix, $L$. It is shown in parenthesis in front of zero elements.
 Do the same for the next element in the same column
 
 $$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;0 (1 /4),2,-1 /4]$$
@@ -87,20 +87,20 @@ Record the change in a permutation matrix. For the sake of saving memory I recor
 $$P=[\table 0;2;1]$$
 
 
-Row0 didn’t change but row1 and row2 are swapped which are captured in $P$.
+row0 didn’t change but row1 and row2 are swapped which are captured in $P$.
 
 Now we can move on and make element(2,1) = -1 zero. With the same procedure explained above, row2 = row2 + 0.5 row1
 
 
-$$A=[\table 4,4,5;0 (1 /4),2,-1 /4;0 (3 /4),0 (-1 /2),-15 /8]=> U$$
+$$A=[\table 4,4,5;0 (1 /4),2,-1 /4;0 (3 /4),0 (-1 /2),-15 /8]⇒ U$$
 
 
-So now officially, $A$ is converted to U matrix.
+So now officially, $A$ is converted to $U$ matrix.
 
 $$U=[\table 4,4,5;0,2,-1 /4;0,0,-15 /8]$$
 
 
-And all the multipliers make L matrix. Note L matrix diagonals are one:
+And all the multipliers make $L$ matrix. Note $L$ matrix diagonals are one:
 
 $$L=[\table 1,0,0;1 /4,1,0;3 /4,-1 /2,1]$$
 
@@ -108,31 +108,30 @@ $$L=[\table 1,0,0;1 /4,1,0;3 /4,-1 /2,1]$$
 
 ### 2)	System is solved with forward and backward substitution.  
 
-Apply row permutations, P, to B
+Apply row permutations, $P$, to $B$
 
-   |27|  
-B= 	|10|  
-   |13|  
 
-Forward Substitution LY=B
+$$B= [\table 27;10;13]$$  
 
- │1                0          0│     |y₀|       |27|  
- │1/4          1            0│      |y₁| =  |10|  
- │3/4       -0.5        1│       |y₂|         |13|  
 
-$y₀ = 27$  
-1/4 (27) + y₁ = 10    => y₁ = 3.25  
-3/4 (27) - 0.5 (3.25) + y₂ = 13    =>  y₂ = -5.625   
+Forward Substitution $LY=B$
 
-And a backward substitution UX=Y
 
- │4       4                5│          |x₀|       |  27     |  
- │0       2           -1/4│          |x₁| =   |3.25  |  
- │0        0        -15/8│         |x₂|       |-5.625|  
+$$L=[\table 1,0,0;1 /4,1,0;3 /4,-1 /2,1] [\table y_0;y_1;y2] = [\table 27;10;13]$$
 
-x₂ = -5.625 × (-8/15) = 3  
-2 × x₁   –  1/4 × 3 = 3.25    => x₁ = 2  
-4 × x₀ + 4×2 + 5 × 3 = 27   => x₀ = 1  
+$y_0 = 27$  
+
+$ 1 /4 (27) + y_1 = 10  ⇒ y_1 = 3.25 $
+
+$3 /4 (27) - 0.5 (3.25) + y_2 = 13    ⇒  y_2 = -5.625$
+
+And a backward substitution $UX=Y$
+
+$$[\table 4,4,5;0,2,-1 /4;0,0,-15 /8] [\table x_0;x_1;x_2]=[\table 27 ;3.25 ;-5.625]$$
+
+$x_2 = -5.625 × (-8 /15) = 3$  
+$2  x_1   –  1 /4 × 3 = 3.25    ⇒ x_1 = 2$   
+$4 x₀ + 4×2 + 5 × 3 = 27   ⇒ x_0 = 1$   
 
 ## Code
 
@@ -140,14 +139,14 @@ Now we know the method, let’s write the code and start from bottom to top. Fro
 
 ``` c#
 public class PluDecomposer
-    {
-        private double[,] A;
-        private int[] P;
+{
+  private double[,] A;
+  private int[] P;
 
 
-        private SubMatrixBoundariess LowerTriangleBounds;
-        private int numberOfColumns;
-        private int numberOfRows;
+  private SubMatrixBoundariess LowerTriangleBounds;
+  private int numberOfColumns;
+  private int numberOfRows;
 …
 }
 ```
@@ -158,38 +157,38 @@ The constructor is as below.
 ``` c#
 public PluDecomposer(double[,] A)
 {
-    this.A = A;
+  this.A = A;
 
-    numberOfRows = A.GetLength(0);
-    numberOfColumns = A.GetLength(1);
+  numberOfRows = A.GetLength(0);
+  numberOfColumns = A.GetLength(1);
 
-    InitializePWithRowNumbers();
+  InitializePWithRowNumbers();
 
-    LowerTriangleBounds = new SubMatrixBoundariess()
-    {
-        StartColumn = 0,
-        EndColumn = A.GetLength(1) - 1,
-        StartRow = 1,
-        EndRow = A.GetLength(0)
+  LowerTriangleBounds = new SubMatrixBoundariess()
+  {
+      StartColumn = 0,
+      EndColumn = A.GetLength(1) - 1,
+      StartRow = 1,
+      EndRow = A.GetLength(0)
 
-    };
+  };
 }
 ```
 
-A is injected and all the related parameters are set. P is initialized as no row is permuted.
+$A$ is injected and all the related parameters are set. $P$ is initialized as no row is permuted.
 
 ``` c#
 private void InitializePWithRowNumbers()
 {
-    P = new int[numberOfRows];
-    for (int row = 0; row < numberOfRows; row++)
-    {
-        P[row] = row;
-    }
+  P = new int[numberOfRows];
+  for (int row = 0; row < numberOfRows; row++)
+  {
+    P[row] = row;
+  }
 }
 ```
 
-Here, is the what want from this class: find P and combined LU matrix.
+Here, is the what want from this class: find $P$ and combined $LU$ matrix.
 
 ``` c#
 public (int[], double[,]) FindPAndCombinedLU()
@@ -199,14 +198,14 @@ public (int[], double[,]) FindPAndCombinedLU()
 }
 ```
 
-As you can see, I don’t need to put comment as everything is clear: first convert $A$ to LU then return P and LU (formerly A).
+As you can see, I don’t need to put comment as everything is clear: first convert $A$ to $LU$ then return $P$ and $LU$ (formerly $A$).
 
-How the conversion done? The lower triangle should become zero so we have U matrix. And because we want to have a compact matrix, the zeros of U filled with L.
+How the conversion done? The lower triangle should become zero so we have $U$ matrix. And because we want to have a compact matrix, the zeros of $U$ filled with $L$.
 
 ``` c#
 private void ConvertAtoLU()
 {
-    MakeLowerTriangleZeroAndFillWithL();
+  MakeLowerTriangleZeroAndFillWithL();
 }
 ```
 
@@ -215,11 +214,11 @@ To do so, we iterate over columns of lower triangle. First we make sure, the dia
 ``` c#
 private void MakeLowerTriangleZeroAndFillWithL()
 {
-    for (int column = LowerTriangleBounds.StartColumn; column < LowerTriangleBounds.EndColumn; column++)
-    {
-        MakeSureDiagonalElementIsMaximum (column);
-        MakeColumnZero(column);
-    }
+  for (int column = LowerTriangleBounds.StartColumn; column < LowerTriangleBounds.EndColumn; column++)
+  {
+      MakeSureDiagonalElementIsMaximum (column);
+      MakeColumnZero(column);
+  }
 }
 ```
 
@@ -229,59 +228,56 @@ In each column first, we swap the row of diagonal element with the row which has
 private void MakeSureDiagonalElementIsMaximum (int focusedColumn)
 {
 
-    var rowOfDiagonal = focusedColumn;
-    var rowOfMaxElement = GetRowOfMaxElementUnderDiagonal(focusedColumn);
+  var rowOfDiagonal = focusedColumn;
+  var rowOfMaxElement = GetRowOfMaxElementUnderDiagonal(focusedColumn);
 
-    if (rowOfMaxElement != rowOfDiagonal)
-    {
-        SwapRows(rowOfMaxElement, rowOfDiagonal);
-
-    };
+  if (rowOfMaxElement != rowOfDiagonal)
+  {
+      SwapRows(rowOfMaxElement, rowOfDiagonal);
+  };
 
 }
 ```
 
-Details of how we find the row which has maximum element under diagonal element.
+Details of how we find the row which has maximum element under diagonal element is shown below.
 
 ``` c#
 private int GetRowOfMaxElementUnderDiagonal(int focusedColumn)
 {
-    var rowOfDiagonal = focusedColumn;
-    var columnOfDiagonal = focusedColumn;
-    var rowAfterDiagonal = rowOfDiagonal + 1;
+  var rowOfDiagonal = focusedColumn;
+  var columnOfDiagonal = focusedColumn;
+  var rowAfterDiagonal = rowOfDiagonal + 1;
 
+  double maxElement = A[rowOfDiagonal, columnOfDiagonal];
+  int rowOfMaxElement = rowOfDiagonal;
 
-    double maxElement = A[rowOfDiagonal, columnOfDiagonal];
-    int rowOfMaxElement = rowOfDiagonal;
-
-
-    for (int row = rowAfterDiagonal; row < numberOfRows; row++)
+  for (int row = rowAfterDiagonal; row < numberOfRows; row++)
+  {
+    if (Math.Abs(A[row, focusedColumn]) > maxElement)
     {
-        if (Math.Abs(A[row, focusedColumn]) > maxElement)
-        {
-            maxElement = Math.Abs(A[row, focusedColumn]);
-            rowOfMaxElement = row;
-        }
+        maxElement = Math.Abs(A[row, focusedColumn]);
+        rowOfMaxElement = row;
     }
-    return rowOfMaxElement;
+  }
+  return rowOfMaxElement;
 }
 ```
 
-If we have to swap rows we use below method, and we record it in P.
+If we have to swap rows, we use below method, and record it in $P$.
 
 ``` c#
 private void SwapRows(int row1, int row2)
 {
-    for (int column = 0; column < numberOfColumns; column++)
-    {
-        var tmp = A[row1, column];
-        A[row1, column] = A[row2, column];
-        A[row2, column] = tmp;
-    }
-    RecordSwap(row1, row2);
+  for (int column = 0; column < numberOfColumns; column++)
+  {
+    var tmp = A[row1, column];
+    A[row1, column] = A[row2, column];
+    A[row2, column] = tmp;
+  }
+  RecordSwap(row1, row2);
 }
 ```
-We record the swap in P.
+We record the swap in $P$.
 
 ``` c#
 private void RecordSwap(int row1, int row2)
@@ -292,16 +288,16 @@ private void RecordSwap(int row1, int row2)
 }
 ```
 
-Now how we can make column zero. Remember, we make only lower triangle zero, so we focus on rows under diagonal element. All the rows are iterated and the corresposindg element made zero and then replaced with L matrix value.
+Now how we can make the column zero. Remember, we make only lower triangle zero, so we focus on rows under diagonal element. All the rows are iterated and the corresponding element made zero and then replaced with $L$ matrix value.
 
 ``` c#
 private void MakeColumnZero(int column)
 {
-    int rowUnderDiagonalElement = column + 1;
-    for (int row = rowUnderDiagonalElement; row < LowerTriangleBounds.EndRow; row++)
-    {
-        MakeElementZeroAndFillWithLowerMatrixElement(row, column);
-    }
+  int rowUnderDiagonalElement = column + 1;
+  for (int row = rowUnderDiagonalElement; row < LowerTriangleBounds.EndRow; row++)
+  {
+    MakeElementZeroAndFillWithLowerMatrixElement(row, column);
+  }
 }
 ```
 
@@ -310,17 +306,18 @@ So we broke the whole process into separate steps to reach a point we focus only
 ``` c#
 private void MakeElementZeroAndFillWithLowerMatrixElement(int elementRow, int elementColumn)
 {
-    var element = A[elementRow, elementColumn];
-    var sameColumnDiagonalElement = A[elementColumn, elementColumn];
+  var element = A[elementRow, elementColumn];
+  var sameColumnDiagonalElement = A[elementColumn, elementColumn];
 
-    var rowMultiplier = -element / sameColumnDiagonalElement;
+  var rowMultiplier = -element / sameColumnDiagonalElement;
 
-    for (int col = elementColumn; col < numberOfColumns; col++)
-    {
-        A[elementRow, col] += rowMultiplier * A[elementColumn, col];
-    }
-   var lowerMatrixElement = - rowMultiplier;
-    A[elementRow, elementColumn] = lowerMatrixElement;
+  for (int col = elementColumn; col < numberOfColumns; col++)
+  {
+    A[elementRow, col] += rowMultiplier * A[elementColumn, col];
+  }
+
+  var lowerMatrixElement = - rowMultiplier;
+  A[elementRow, elementColumn] = lowerMatrixElement;
 }
 ```
 
@@ -330,155 +327,150 @@ Now, the class for finding $X$ is defined as below
 ``` c#
 public class XFinder
 {
-    private double[,] lu;
-    private double[] b;
-    private double[] y;
-    private double[] x;
-    private readonly int[] p;
+  private double[,] lu;
+  private double[] b;
+  private double[] y;
+  private double[] x;
+  private readonly int[] p;
 
-
-    private readonly int numberOfRows;
-    private readonly int numberOfColumns;
+  private readonly int numberOfRows;
+  private readonly int numberOfColumns;
 …
 }
 ```
 
-The constructor accepts compact LU, P and B. Their reference is stored in this class. `numberOfRows` and `numberOfColumns` are helper variables for readability. $X$ is the matrix of unknowns, Y is the helper matrix defined in the previous section.
+The constructor accepts compact $LU$, $P$ and $B$. Their reference is stored in this class. `numberOfRows` and `numberOfColumns` are helper variables for readability. $X$ is the matrix of unknowns, $Y$ is the helper matrix defined in the previous section.
 
 ``` c#
 public XFinder(double[,] lu, int[] p, double[] b)
 {
-    this.lu = lu;
-    this.p = p;
-    this.b = b;
+  this.lu = lu;
+  this.p = p;
+  this.b = b;
 
-    numberOfRows = lu.GetLength(0);
-    numberOfColumns = lu.GetLength(1);
+  numberOfRows = lu.GetLength(0);
+  numberOfColumns = lu.GetLength(1);
 
-    y = new double[numberOfRows];
-    x = new double[numberOfRows];
-
-
+  y = new double[numberOfRows];
+  x = new double[numberOfRows];
 }
 ```
 
-Users have access to `Solve` method which returns the solutions, X. I created functions in the order we need to solve the problem.$B$is reoredered, Y is found from LY=B, $X$ is found from UX=Y, and finally $X$ is checked to see if it is valid. What I wrote is in this paragraph are exactly the name of methods. Because of that no comments added to the code.
+Users have access to `Solve` method which returns the solutions, $X$. I created functions in the order we need to solve the problem.$B$is reoredered, $Y$ is found from $LY=B$, $X$ is found from UX=Y, and finally $X$ is checked to see if it is valid. What I wrote is in this paragraph are exactly the name of methods. Because of that no comments added to the code.
 
 ``` c#
 public double[] Solve()
 {
-    ReorderB();
-    SolveYfromLYequalB();
-    SolveXfromUXequalY();
-    CheckXIsValid();
-    return x;
+  ReorderB();
+  SolveYfromLYequalB();
+  SolveXfromUXequalY();
+  CheckXIsValid();
+  return x;
 }
 ```
 
-B is reordered according to P.
+$B$ is reordered according to $P$.
 
 ``` c#
 private void ReorderB()
 {
-    double[] reorderedB = new double[b.Length];
+  double[] reorderedB = new double[b.Length];
 
-    for (int row = 0; row < numberOfRows; row++)
-    {
-        reorderedB[row] = b[p[row]];
-    }
+  for (int row = 0; row < numberOfRows; row++)
+  {
+    reorderedB[row] = b[p[row]];
+  }
 
-    for (int row = 0; row < numberOfRows; row++)
-    {
-        b[row] = reorderedB[row];
-    }
+  for (int row = 0; row < numberOfRows; row++)
+  {
+    b[row] = reorderedB[row];
+  }
 }
 ```
 
-Y is found using forward substitution mentioned in the previous section.
+$Y$ is found using forward substitution mentioned in the previous section.
 
 ``` c#
 void SolveYfromLYequalB()
 {
-
-    for (int row = 0; row < b.Length; row++)
+  for (int row = 0; row < b.Length; row++)
+  {
+    double sum = 0;
+    var columnOfDiagonal = row;
+    for (int column = 0; column < columnOfDiagonal; column++)
     {
-        double sum = 0;
-        var columnOfDiagonal = row;
-        for (int column = 0; column < columnOfDiagonal; column++)
-        {
-            sum += y[column] * lu[row, column];
-        }
-        y[row] = b[row] - sum;
+      sum += y[column] * lu[row, column];
     }
+    y[row] = b[row] - sum;
+  }
 }
 ```
 
-And a backward substitution to find X.
+And a backward substitution to find $X$.
 
 
 ``` c#
 void SolveXfromUXequalY()
 {
-    for (int row = y.Length - 1; row > -1; row--)
-    {
-        double sum = 0;
-        var columnOfDiagonal = row;
+  for (int row = y.Length - 1; row > -1; row--)
+  {
+    double sum = 0;
+    var columnOfDiagonal = row;
 
-        for (int column = columnOfDiagonal + 1; column < x.Length; column++)
-        {
-            sum += x[column] * lu[row, column];
-        }
-        x[row] = (y[row] - sum) / lu[row, row];
+    for (int column = columnOfDiagonal + 1; column < x.Length; column++)
+    {
+      sum += x[column] * lu[row, column];
     }
+    x[row] = (y[row] - sum) / lu[row, row];
+  }
 }
 ```
 
-Here I check if $X$ is a valid solution by checking there is not a Nan in it. You can add more conditions inside this function without effecting other part of the code.
+Here I check if $X$ is a valid solution by checking there is not a `Nan` in it. You can add more conditions inside this function without effecting other part of the code.
 
 ``` c#
 private void CheckXIsValid()
 {
-    for (int row = 0; row < x.Length; row++)
+  for (int row = 0; row < x.Length; row++)
+  {
+    if (double.IsNaN(x[row]))
     {
-        if (double.IsNaN(x[row]))
-        {
-            throw new Exception("Error: No solution for this, AX=B, system found.");
-        }
+      throw new Exception("Error: No solution for this, AX=B, system found.");
     }
+  }
 }
 ```
 
 
-And lastly the API which is exposed to users of this library. It contains A, B, and the instances of decomposer and XFinder. Users only need to inject $A$ and $B$ in the constructor. The decomposer needs only $A$ to be initialized.  
+And lastly the API which is exposed to users of this library. It contains $A$, $B$, and the instances of decomposer and `XFinder`. Users only need to inject $A$ and $B$ in the constructor. The decomposer needs only $A$ to be initialized.  
 
 ``` c#
 public class Solver
 {
-    private double[,] A;
-    private double[] B;
-    private PluDecomposer pluDecomposer;
-    private XFinder xFinder;
+  private double[,] A;
+  private double[] B;
+  private PluDecomposer pluDecomposer;
+  private XFinder xFinder;
 
-    public Solver(double[,] A, double[] B)
-    {
-        this.A = A;
-        this.B = B;
+  public Solver(double[,] A, double[] B)
+  {
+    this.A = A;
+    this.B = B;
 
-        pluDecomposer = new PluDecomposer(A);
-
-    }
+    pluDecomposer = new PluDecomposer(A);
+  }
 …}
 ```
 
-The second method which users are interested is `SolveX` to get the solution. First we ask the decomposer to find P and compact LU. Then they along$B$are injected to XFinder. XFinder returns the solution.
+The second method which users are interested is `SolveX` to get the solution. First we ask the decomposer to find $P$ and compact $LU$. Then they along $B$ are injected to `XFinder`. `XFinder` returns the solution.
 
 ``` c#
 public double[] SolveX()
 {
-    (var p, var lu)=pluDecomposer.FindPAndCombinedLU();
-    xFinder = new XFinder(lu, p, B);
+  (var p, var lu)=pluDecomposer.FindPAndCombinedLU();
+  xFinder = new XFinder(lu, p, B);
 
-    return xFinder.Solve();
+  return xFinder.Solve();
 }
 ```
 
