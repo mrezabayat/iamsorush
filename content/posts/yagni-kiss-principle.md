@@ -25,7 +25,8 @@ For (int i=0;i<n;i++)
 }
 ```
 
-You probably thinking I comment the old line, I may need it later but we know 99%  of times you don’t need it. You have seen commented codes which have been there for years and nobody dares to touch them. As a developer you must use a version control like Git, so you always have a copy of old code in the history of Git.
+You probably thinking I comment the old line, I may need it later but we know 99%  of times you don’t need it. You have seen commented codes which have been there for years and nobody dares to touch them. As a developer you must use a version control like Git, so you always have a copy of old code in the history of Git.  
+
 There times that you know the class you are designing needs to have specific properties and methods but you add more because there is a chance they will be useful. For example, you need to write a one dimensional particle class like
 
 ```c#
@@ -44,7 +45,7 @@ And that is job done. But you think “it is good to have a method that calculat
 
 ## KISS
 
-KISS stands for “Keep It Simple, Stupid”. Simple is opposite to complex and entangled. The code you write should be easy to understand by others and yourself. You might work with other developers in a project, or at some point in future you hand over the code, in either case you don’t want to bother others much. Moreover, you may be busy on another project for a few months and you come back to your code and say “what the hell I did here”. Being simple is subjective and relative to situations. However, there are a few points that help you to keep a code simple.
+KISS stands for “Keep It Simple, Stupid”. Simple is opposite to complex and entangled. The code you write should be easy to understand by others and yourself. You might work with other developers in a project, or at some point in future you hand over the code, in either case you don’t want to bother others much. Moreover, you may be busy on another project for a few months and you come back to your code and say “what the hell did I do here”. Being simple is subjective and relative to situations. However, there are a few points that help you to keep a code simple.
 
 1-	Do not purposefully make the design complex to show you are smart i.e. do not create puzzles. For example, instead of
 
@@ -106,7 +107,7 @@ Public Void Run()
 }
 ```
 
-But Do Not hide the mixup in another method like
+But do not hide the mixup in another method like
 
 ```c#
 Public Void Run()
@@ -141,4 +142,4 @@ Let's assume that is all about it, and there is not any plan to extend it so why
 
 6-	Avoid public variables. They can be changed anywhere in the software and hard to track.
 
-7-	Avoid as much as possible nested IF conditions. Each IF condition means create different path for the application to run through, so becomes harder for a reader to follow. The exception to this is when there are several conditions in a method but all serve the same purpose, for example, when you check different parameters are not null and moreover
+7-	Avoid as much as possible nested IF conditions. Each IF condition means create different path for the application to run through, so becomes harder for a reader to follow. The exception to this is when there are several conditions in a method but all serve the same purpose, for example, when you check different parameters are not null.
