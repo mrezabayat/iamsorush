@@ -8,12 +8,12 @@ thumbnail: /images/weopen_tn.webp
 
 ## Introduction  
 
-Visitor design pattern is separating operations from data storage. When the efficiency and memory consumption is not of concern this design pattern is not common. However, in numerical programming 
+Visitor design pattern is separating operations from data storage. When the efficiency and memory consumption is not of concern this design pattern is not common. However, in numerical programming
 it can be a game-changer.   
 
 ## Numerical Example
 
-In most of numerical programs, we face a huge amount of data stored in arrays. For example, on a Cartesian grid we have 10^6 points where each point contains below properties:
+In most of numerical programs, we face a huge amount of data stored in arrays. For example, on a Cartesian grid we have 10⁶ points where each point contains below properties:
 
 ```cpp
 class Point{
@@ -44,16 +44,16 @@ Initialize Density ==> {
 }
 ```
 
-We cannot simply make this modifiers class members for three reasons: first we negate *single responsibility principle* for point class, second we cannot extend modifiers separately, and last but most important here, the point class needs to accomadate alpha and beta. So we would have 10^6 of alpha and beta. As we add more modifiers they need more fields (properties). 
+We cannot simply make this modifiers class members for three reasons: first we negate *single responsibility principle* for point class, second we cannot extend modifiers separately, and last but most important here, the point class needs to accommodate alpha and beta. So we would have 10⁶ of alpha and beta. As we add more modifiers they need more fields (properties).
 
 ## Solution
 
-We keep point class the same. It is extended only based on its initial concept, e.g., `Point3d` would be a derived class with field `veclocityZ`. 
+We keep point class the same. It is extended only based on its initial concept, e.g., `Point3d` would be a derived class with field `veclocityZ`.
 
 `Point` implements just a method called `Accept`:
 
 ```cpp
-class Point 
+class Point
 {
     public:
     double Density;
@@ -94,7 +94,7 @@ class DensityInitializer: public IVisitor {
     public:
     double Beta;
     void Visit(Point& point){
-        point.Density = Beta * (point.x + point.y); 
+        point.Density = Beta * (point.x + point.y);
     }
 }
 ```
@@ -123,4 +123,3 @@ for(auto& point:points){
 * Storage class (Point) is concerning itself not new modifiers,
 * Modifiers not store data in storage class to be repeated numerously,
 * Modifiers can have any shape and extend in any way independent of storage class (loosely coupled).
-

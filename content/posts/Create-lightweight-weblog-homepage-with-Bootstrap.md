@@ -8,7 +8,7 @@ thumbnail: /images/bird_tn.webp
 
 ## Introduction
 
-Website elements like headings, paragraphs, tables are defined by Html document and they are styled by CSS. By "style", I mean color, width, height, margin, padding, border, font, animations, and many more details. Basically, you can design anything comes to your mind but it is usually time-consuming and might not be beautiful.  Luckily we have CSS frameworks like Bootstrap, Base, Pure which are designed by experts to be stylish and responsive on different size monitors. Bootstrap is well self-contained that you can design a website with only a little bit of CSS coding.   
+Website elements like headings, paragraphs, tables are defined by Html document and they are styled by CSS. By *style*, I mean colour, width, height, margin, padding, border, font, animations, and many more details. Basically, you can design anything comes to your mind but it is usually time-consuming and might not be beautiful.  Luckily we have CSS frameworks like Bootstrap, Base, Pure which are designed by experts to be stylish and responsive on different size monitors. Bootstrap is well self-contained that you can design a website with only a little bit of CSS coding.   
 
 
 
@@ -19,7 +19,7 @@ Website elements like headings, paragraphs, tables are defined by Html document 
 
 I want to create a lightweight homepage of a weblog with HTML, Bootstrap and a bit of custom CSS. No javascript, no database, no WordPress is used. It should be a lightweight and fast static website.  The sketch is shown below and some animations will be added:
 
-![sketch](/images/weblog_drawing_homepage.webp) 
+![sketch](/images/weblog_drawing_homepage.webp)
 
 
 ## Tools
@@ -59,12 +59,12 @@ folder `images` and `icons` contain images and icons, folder `css` has the Boots
 We put elements in index.html from top to bottom and use below Bootstrap classes   
 
 
-* Container: controls the width of children 
-* Row and Col: create responsive columns 
-* Flex: controls the way children spread in a container 
-* Jumbotron: create a banner 
+* Container: controls the width of children
+* Row and Col: create responsive columns
+* Flex: controls the way children spread in a container
+* Jumbotron: create a banner
 * Card: create a bordered image and caption  
-* Text: set color, alignment, weight, style of text 
+* Text: set colour, alignment, weight, style of text
 * Margin: `my-*`, `mx-*`, `mt-*`, ... (where * is 1,2,..,5) * Padding: `py-*`, `px-*`, ...
 
 
@@ -104,7 +104,7 @@ The `index.html` is like below
 The `<head>` section is for definitions and `<body>` section is what we see in the browser. `<Meta>` tags contain information about the website that helps search engines to know it better.  The CSS files are reference via `<link>` tag. Now we can use Bootstrap classes in the body.   
 
 
-```html 
+```html
 <body>
     <!-- title and social -->
     <div class="container">
@@ -135,7 +135,7 @@ The first `<div>` is to create a row with two equal columns: left is title and t
 Now let's check each section one by one. First title and social icons:   
 
 
-```html 
+```html
 <div class="container">
    <div class="row">
         <div class="col-md ">
@@ -159,11 +159,11 @@ The `container` class is used to make sure everything is visible on desktop, tab
 The banner is:   
 
 
-```html 
+```html
 <div class="jumbotron-fluid py-5 bg-dark text-white">
     <h1 class="display-4 text-center">Hello, world!</h1>
-    <p class="lead text-center">This is a simple hero unit, a 
-        simple jumbotron-style component for calling 
+    <p class="lead text-center">This is a simple hero unit, a
+        simple jumbotron-style component for calling
         extra attention to featured content or information.
     </p>
 </div>
@@ -178,21 +178,21 @@ The banner is:
 
 
 
-```html 
+```html
 <div class="d-flex justify-content-center mb-2 mt-n5">
     <img src="images/person.jpg" class="shadow rounded-circle" />
 </div>
 ```
 
 
-`Shadow` class adds shadow and `rounded-circle` makes the picture a circle. The Flex `div `put the picture horizontally center. To create an overlay of the picture on jumbotron, top margin is set to -5 unit, `mt-n5`. If we look back at jumbotron we have a padding of 5 units in the y-direction, `py-5`. So Picture doesn't cover jumbotron text.   
+`Shadow` class adds shadow and `rounded-circle` makes the picture a circle. The Flex `div `put the picture horizontally centre. To create an overlay of the picture on jumbotron, top margin is set to -5 unit, `mt-n5`. If we look back at jumbotron we have a padding of 5 units in the y-direction, `py-5`. So Picture doesn't cover jumbotron text.   
 
 
 The cards (posts) are:   
 
 
 
-```html 
+```html
 <div class="container d-flex flex-wrap justify-content-around">
     <div class="card shadow m-2 my-card">
         <div class="my-card-image-container">
@@ -220,7 +220,7 @@ We have a container class here to have the cards (post titles) inside. Class Fle
 
 
 
-```html 
+```html
 <footer class="py-4 bg-dark text-white-50">
     <div class="container text-center">
         <small>Copyright © Your Website</small>
@@ -235,7 +235,7 @@ It has a dark background and white text. The texts are put in a container to mak
 My custom CSS, site.css, are:   
 
 
-```css 
+```css
 .icon{
     transition: transform 0.2s ease-out;
 }
@@ -262,13 +262,13 @@ My custom CSS, site.css, are:
 .my-card-image:hover {
     filter: grayscale(100%) sepia(100%);
     transform: scale(1.2);
-}	
+}
 ```
 
 `Icon` class is to create a zoom-in animation when the icon hovered. `icon-md` class is to give icons a medium size.   
 
 
-`my-card-image` class is to add zoom-in and color-change animations to card images. `my-card-image-container` is used to make sure when the image hovered and scaled it doesn't overlay others.     
+`my-card-image` class is to add zoom-in and colour-change animations to card images. `my-card-image-container` is used to make sure when the image hovered and scaled it doesn't overlay others.     
 
 
 ## Download Size

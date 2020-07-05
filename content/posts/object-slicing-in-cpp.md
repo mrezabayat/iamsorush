@@ -25,13 +25,13 @@ int main(){
    B b;
    A a1;
    A a2=b;
-   
+
    b.Say(); // I am B
    a1.Say(); // I am A
    a2.Say(); // I am A   why???
 }
 ```
- 
+
 B (object `b`) is derived from A (object `a1` and `a2`). `b` and `a1`, as we expect, call their member function. But from polymorphism viewpoint I don't expect `a2`, which is assigned by `b`, to  not be overridden. Basically, `a2` only saves `A`-class part of `b` and that is object slicing in C++.<br/>
 
 
@@ -44,7 +44,7 @@ public:
         obj = a;
     }
     A obj;
-    
+
 };
 
 int main(){
@@ -52,14 +52,14 @@ int main(){
    B b;
    C c1(a);
    C c2(b);
-   
+
    c1.obj.Say(); // I am A
    c2.obj.Say(); // I am A
 }
 ```
- 
-In the above example, C has a class A member in the hope that it stores all the objects with a class derived from A. But Nope! object c2 initialized its obj member with b and only A part of it passed.<br/>
- 
+
+In the above example, C has a class A member in the hope that it stores all the objects with a class derived from A. But Nope! object c2 initialised its obj member with b and only A part of it passed.<br/>
+
 To avoid this problem, the assignment should be by reference or pointer. In the first example change as below<br/>
 
  ```c++   
@@ -82,7 +82,7 @@ int main(){
    B b;
    C c1(&a);
    C c2(&b);
-   
+
    c1.obj->Say(); // I am A
    c2.obj->Say(); // I am B
 }

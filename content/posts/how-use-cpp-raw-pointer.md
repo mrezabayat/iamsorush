@@ -85,7 +85,7 @@ Do not double delete
 ```cpp
 int* p = new int;
 delete p; // target memory deleted
-delete p; // error or undefined behavior
+delete p; // error or undefined behaviour
 ```
 
 
@@ -322,7 +322,7 @@ However, a constant target must be pointed only by a constant-target pointer.
 
 
 
-A reference member of a class must be initialized in the constructor and it cannot be reassigned. However, a pointer member can be reassigned, freed, and null. So, if not sure, a pointer is an easy choice as it is more flexible.    
+A reference member of a class must be initialised in the constructor and it cannot be reassigned. However, a pointer member can be reassigned, freed, and null. So, if not sure, a pointer is an easy choice as it is more flexible.    
 
 
 

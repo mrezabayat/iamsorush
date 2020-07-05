@@ -6,21 +6,13 @@ image: /images/cactus.webp
 thumbnail: /images/cactus_tn.webp
 ---
 
-## Introduction 
+## Introduction
 
 
 
 Blazor currently is a very new open-source framework that helps C# developers create interactive web applications without javascript. There are several editions of Blazor like Server-side rendering and client-side rendering (WebAssembly). A Blazor app is made of razor components. Each one is a reusable user-interface that is designed to be very similar to a C# class.  Knowing how to create components in one edition means you can do the same in others.    
 
-
-
-   
-
-
-
-## Goal 
-
-
+## Goal
 
 In this post, I want to create a simple word-block which is a rectangle that contains a word with an X button at its right side similar to the picture below   
 
@@ -31,38 +23,29 @@ In this post, I want to create a simple word-block which is a rectangle that con
 
 They can be used as keywords or tags that users can add or delete. Here, I want the word-block to have the specifications below:   
 
-
-
-* On mouse hover X, it's background-color changes (CSS)
+* On mouse hover X, it's background-colour changes (CSS)
 * On mouse button down on X, the block shrinks with animation (Blazor + CSS)
-* On mouse button released on X, it is removed from a page (Blazor) 
+* On mouse button released on X, it is removed from a page (Blazor)
 * The page is notified by an event-call-back that the user removed the component (Blazor)
 
 
 
 
-## Results 
-
-
+## Results
 
 See the full code on [GitHub](https://github.com/sorush-khajepor/BlazorHostedLive) and the demo app on [Heroku](https://iamsorush.herokuapp.com/wordblocksample). The app can take several seconds to boot up.   
 
 
-
-## Tools 
-
+## Tools
 
 
 I am using Visual Studio 2019 v16.4. It provides Blazor server template out of the box but Blazor WebAssembly template currently is not there.  The preview version can be added ([see instruction](https://docs.microsoft.com/en-us/aspnet/core/blazor/get-started)).    
 
 
-
-## Project files 
-
+## Project files
 
 
 First, you need to add the empty files below to the Blazor project:   
-
 
 
 1- WordBlock.razor:  the component contains C# and Html code.  It can be added by right-clicking in solution explorer -> Add new item -> Razor Component. It can be placed in an arbitrary folder.   
@@ -76,11 +59,7 @@ First, you need to add the empty files below to the Blazor project:
 <link href="css/wordblock.css" rel="stylesheet" />
 ```
 
-
-
-## Solution 
-
-
+## Solution
 
 The outcome files are shown below. I explain them in the next section. WordBlock.razor Component file:   
 
@@ -89,7 +68,7 @@ The outcome files are shown below. I explain them in the next section. WordBlock
 @if (isVisible)
 {
     <div class="wordblock__container ">
-        <span 
+        <span
               class="wordblock__word @wordClassModifier"
               >@Word</span>
         <span class="wordblock__x"
@@ -179,7 +158,7 @@ wordblock.css file
 ```
 
 
-## Solution Explained 
+## Solution Explained
 
 
 
@@ -195,7 +174,6 @@ A Blazor component has two sections: rendred section and code section. The Rende
 
 }
 ```
-
 
 
 In the Rendered section, I wrapped HTML elements in an `if block` controlled by `isVisible `variable. If `false`, the rendered section is not seen in DOM.    
@@ -220,8 +198,8 @@ Then I put the Html elements: a container, a span for the word, and a span for X
 
 
 ```c#
-... 
-<span class="wordblock__x" @onmouseup='(_=>OnMouseUp())' 
+...
+<span class="wordblock__x" @onmouseup='(_=>OnMouseUp())'
 ...
 @code{
 ...
@@ -230,7 +208,7 @@ public EventCallback<string> OnClose { get; set; }
 
 private void OnMouseUp()
 {
-    isVisible = false; 
+    isVisible = false;
     OnClose.InvokeAsync(Word);
 } ...
 ```
@@ -251,7 +229,7 @@ For shrinking animation, I added a modifier class, `wordblock__word-shrinked`, f
 
 ```c#
 ...
-<span class="wordblock__x" @onmousedown='(_=>OnMouseDown())' 
+<span class="wordblock__x" @onmousedown='(_=>OnMouseDown())'
 ...
 @code{
 ...
@@ -269,7 +247,7 @@ And of course, we have to remove the class modifier when the pointer away
 
 ```c#
 ...
-<span class="wordblock__x" @onmouseout='(_=>OnMouseOut())' 
+<span class="wordblock__x" @onmouseout='(_=>OnMouseOut())'
 ...
 @code{
 ...
@@ -295,14 +273,10 @@ Now we can use the component anywhere and many times in other components or page
 
 @code{
     private string _message = "";
-    
+
     private void OnBlockClosed(string word)
     {
         message += word + " closed!";
     }
 }
 ```
-
-
-
-   
