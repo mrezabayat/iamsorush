@@ -142,4 +142,4 @@ Let's assume that is all about it, and there is not any plan to extend it so why
 
 6-	Avoid public variables. They can be changed anywhere in the software and hard to track.
 
-7-	Avoid as much as possible nested IF conditions. Each IF condition means create different path for the application to run through, so becomes harder for a reader to follow. The exception to this is when there are several conditions in a method but all serve the same purpose, for example, when you check different parameters are not null.
+7-	Avoid as much as possible nested *if statements*. Each *if statement* creates different path for the application to run through, so it becomes harder for readers to follow. The exception to this is when there are several conditions in a method but all serve the same purpose, for example, when you check whether different parameters are null.
