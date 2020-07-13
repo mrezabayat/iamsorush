@@ -12,5 +12,4 @@ on the internet average pages are around 4MB (reference google). To reach this a
 * Non-vector images are in WebP format as they are very light compared to JPEG. Some browsers do not support them yet, but sooner or later all will pick this format.   
 * Vector images are in SVG format.  
 * Where needed, Netlify facilities are prefered than Javascript or third-party websites like Subscription forms because Netlify does not compromise website loading speed.  
-* I constantly monitor the speed of the website, currently at this commit, in all pages, I get 100/100 from Google PageSpeed Insights.
-
+* I frequently monitor the speed of the website, currently at this commit, all pages get score of 100/100 on mobile and desktop from Google PageSpeed Insights.  
