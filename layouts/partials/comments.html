@@ -1,0 +1,112 @@
+{{ if .Site.Data.comments }}
+    {{ $commentsForPage := index .Site.Data.comments .URL }}
+    {{ if $commentsForPage }}
+        <div class="row justify-content-center content-title pt-5">
+            <div class="offset-1 col-11 col-lg-8 col-xl-8">
+                {{ if gt (len $commentsForPage) 1 }}
+                    <h5>{{ len $commentsForPage }} comments</h5>
+                {{ else }}
+                    <h5>1 comment</h5>
+                {{ end }}
+            </div>
+        </div>
+        <ul class="comments pb-0 mb-0 pl-0">
+            {{ range $commentsForPage }}
+            <li class="comment pt-3">
+                <div class="row justify-content-center">
+                    <div class="col-10 col-lg-7 col-xl-7">
+                        <div class="row justify-content-start">
+                            <div class="col-auto">
+                                <img class="avatar" src="{{ .gravatar }}">
+                            </div>
+                            <div class="col pl-0">
+                                {{ .first_name | html }} {{ .last_name | html }}
+                                <small class="form-text text-muted">
+                                    <time>{{ dateFormat "Jan 2, 2006 15:04:05 MST" .received }}</time>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center pt-1">
+                    <div class="col-10 col-lg-7 col-xl-7">
+                        <div class="comment-text">{{ emojify .comment | html }}</div>
+                    </div>
+                </div>
+            </li>
+            {{ end }}
+        </ul>
+    {{ end }}
+{{ end }}
+<!-- Comment out form now that it has created a form entry in netlify API -->
+<p>Comment section under development ...</p>
+<form class="d-none" name="approved-comments" method="POST" netlify-honeypot="callsign" netlify>
+    <input class="d-none" name="callsign">
+    <input name="path" type="hidden">
+    <input name="first_name" type="text">
+    <input name="last_name" type="text">
+    <input name="received" type="text">
+    <input name="email" type="text">
+    <textarea name="comment"></textarea>
+</form>
+
+<div class="row justify-content-center content-title pt-5">
+    <div class="offset-1 col-11 col-lg-8 col-xl-8 pb-3">
+        <h5>Leave a comment</h5>
+        <small class="form-text text-muted">Comments will go into a moderation queue.</small>
+    </div>
+</div>
+<form class="needs-validation" novalidate name="pending-comments" method="POST" action="/thanks" netlify-honeypot="callsign" netlify>
+    <div class="row justify-content-center content-body">
+        <div class="col-3 col-lg-2 col-xl-2">
+            <input class="d-none" name="callsign">
+            <input name="path" type="hidden" value="{{ .URL }}">
+            <label for="validationCustom01">First Name</label>
+            <input name="first_name" type="text" class="form-control" id="validationCustom01" required>
+            <div class="invalid-feedback">Please provide a first name.</div>
+        </div>
+        <div class="col-3 col-lg-2 col-xl-2">
+            <label for="validationCustom02">Last Name</label>
+            <input name="last_name" type="text" class="form-control" id="validationCustom02" required>
+            <div class="invalid-feedback">Please provide a last name.</div>
+        </div>
+        <div class="col-4 col-lg-3 col-xl-3">
+            <label for="validationCustom03">Email</label>
+            <input name="email" type="text" class="form-control" id="validationCustom03" aria-describedby="emailHelp" required>
+            <div class="invalid-feedback">Please provide a valid email address.</div>
+            <small id="emailHelp" class="form-text text-muted">Your email will never be shared.</small>
+        </div>
+    </div>
+    <div class="row justify-content-center content-body">
+        <div class="col-10 col-lg-7 col-xl-7">
+            <label for="validationCustom04">Comment</label>
+            <textarea rows="5" name="comment" class="form-control" id="validationCustom04" required></textarea>
+            <div class="invalid-feedback">Please provide a comment.</div>
+        </div>
+    </div>
+    <div class="row justify-content-center content-body">
+        <div class="offset-1 col-11 col-lg-8 col-xl-8 pt-4">
+            <button class="btn btn-primary" type="submit">Submit Comment</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
