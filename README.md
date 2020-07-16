@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b4fcb993-656d-421b-b8b0-f343f34dc959/deploy-status)](https://app.netlify.com/sites/iamsorush/deploys)
+
 # What is this repo?
 
 This is the code behind my blog [IamSorush.com](https://iamsorush.com)  in which I write about numerical coding and app development. The blog is a static website complied using Hugo on Netlify. 
