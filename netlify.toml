@@ -2,7 +2,7 @@
     command = "gulp build:comments && hugo && npx netlify-lambda build ./functions"
     publish = "build/public"
     functions = "build/functions"
-
+ 
 [context.production]
     command = "gulp build:comments && hugo && npx netlify-lambda build ./functions"
     functions = "build/functions"
