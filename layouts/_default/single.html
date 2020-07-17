@@ -41,14 +41,6 @@
 		</script>
 	</article>
 </main>
+
 {{ partial "sidebar.html" . }}
-
-{{/* This is a Test to check if path mentioned in a json file can be matched with url comes from hugo */}}
-{{ range $.Site.Data.comment.sample1.comments }}
-{{ if eq  (trim $.Page.File " ") .Path}}
-  <p>if this text shown in dry-principle page means the page path matches the comments json file <p>
-	<p>hastim<p>
-{{ end }}
-{{ end }}
-
 {{ end }}
