@@ -4,6 +4,7 @@ date: 2020-07-17T23:33:46+01:00
 draft: false
 image: /images/equation.webp
 thumbnail: /images/equation_tn.webp
+tags: ['Front-End Web']
 ---
 If you want to write math equations in your website or blog, plain text becomes immediately illegible when
 writing something more complex than addition and subtraction. Here, I list what solutions I found and what

@@ -4,6 +4,7 @@ date: 2020-02-15T20:05:39Z
 draft: false
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
+tags: ['Front-End Web']
 ---
 
 ## Introduction
