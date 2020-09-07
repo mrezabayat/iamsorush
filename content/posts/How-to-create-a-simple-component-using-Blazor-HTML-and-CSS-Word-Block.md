@@ -4,6 +4,7 @@ date: 2020-02-02T22:24:39Z
 draft: false
 image: /images/cactus.webp
 thumbnail: /images/cactus_tn.webp
+tags: ['Front-End Web']
 ---
 
 ## Introduction

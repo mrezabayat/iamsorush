@@ -4,6 +4,7 @@ date: 2020-02-26T20:05:39Z
 draft: false
 image: /images/avocado.webp
 thumbnail: /images/avocado_tn.webp
+tags: ['C++']
 ---
 Every now and then, I switch programming language from C# to C++, I fall in the trap of object slicing. It happens when a derived object is assigned by value to a base object where the extra information in the derived object is scrapped for worst. This is not happening in C#. Let see an example<br/>
 

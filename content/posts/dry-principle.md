@@ -4,7 +4,7 @@ date: 2020-06-17T18:54:08+01:00
 draft: false
 image: /images/flower.webp
 thumbnail: /images/flower_tn.webp
-tags: ['Design Patterns']
+tags: ['Design Pattern']
 ---
 
 ## Introduction

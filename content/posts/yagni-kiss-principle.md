@@ -4,6 +4,7 @@ date: 2020-05-03T21:04:57+01:00
 draft: false
 image: /images/chair.webp
 thumbnail: /images/chair_tn.webp
+tags: ['Design Pattern']
 ---
 
 After reading a lot of design patterns, loose-coupling ideas, and so, you cannot wait to implement all of them in the first program you are making. However, there must be a limit on usage of them. That’s when YAGNI and KISS principles shine.

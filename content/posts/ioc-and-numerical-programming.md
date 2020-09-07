@@ -4,6 +4,7 @@ date: 2020-03-14T22:00:00Z
 draft: false
 image: /images/ball.webp
 thumbnail: /images/ball_tn.webp
+tags: ['Design Pattern', 'Numerical Code', 'C#']
 ---
 
 ## Introduction  

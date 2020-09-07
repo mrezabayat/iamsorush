@@ -4,6 +4,7 @@ date: 2020-03-09T23:05:39Z
 draft: false
 image: /images/weopen.webp
 thumbnail: /images/weopen_tn.webp
+tags: ['Design Pattern']
 ---
 
 ## Introduction  
