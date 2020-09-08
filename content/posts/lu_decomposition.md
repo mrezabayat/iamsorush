@@ -5,7 +5,7 @@ draft: false
 image: /images/matrix.webp
 thumbnail: /images/matrix_tn.webp
 jqmath: true
-tags: ['Numerical Code', 'C#']
+tags: ['Numerical Code', 'C Sharp']
 ---
 ## Introduction
 
