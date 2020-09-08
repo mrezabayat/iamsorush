@@ -4,7 +4,7 @@ date: 2020-02-22T20:05:39Z
 draft: false
 image: /images/pointer.webp
 thumbnail: /images/pointer_tn.webp
-tags: ['C PlusPlus']
+tags: ['C++']
 ---
 ## Introduction
 
