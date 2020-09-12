@@ -1,0 +1,11 @@
+
+{{ with .Params.tags }}
+<div class="container">
+  <h3>Related Tags</h3>
+    <div id="tags">
+        {{ range . }}
+        <span><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </span>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
