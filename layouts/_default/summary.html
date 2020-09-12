@@ -1,6 +1,5 @@
 <div class="pure-u-1 pure-u-md-1-2 pure-u-xl-1-3">
 	<div class="card shadow">
-		
 	<div class="card-image-container">
 		<a href="{{ .Permalink }}">
 			<img src="{{.Params.thumbnail}}" class="thumbnail-post"/>
@@ -9,9 +8,6 @@
 	<div class="card-content">
 	<h3 class="m-0 mb-1 "><a class="card-title" href="{{ .Permalink }}">{{ .Title }}</a></h3>
 	<time>{{ .Date.Format "02 Jan 2006" }}</time>
-	{{ range .Params.tags }}
-	<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-	{{ end }}
 	<div>
 		<div class="summary">
 		{{ .Summary }}
