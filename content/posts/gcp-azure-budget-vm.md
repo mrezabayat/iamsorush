@@ -7,7 +7,7 @@ thumbnail: /images/azure_tn.webp
 
 It is very tempting to deploy your website with web hosting services like Bluehost and Hostgator
  due to their long time existence in this market. Recently, I tried Ionos to host
-my .Net core  app. The price was very cheap £1 for 12 months and then £5/month.
+my .Net core  app. The price was very cheap £1 ($1.29) for 12 months and then £5 ($6.47)/month.
 I fell for the good price, but when I passed the fancy well marketed home page,
  the control panel for deploying the app had no
 user guide, everything was slow, and you'd get more help from a baker than their customer service. After days of trial
@@ -50,5 +50,5 @@ $4.42/month when 1 year reserved ($7.59/month pay as you go)
 The prices are estimates. Azure charges egress as well. There are free, F1, and shared (£0.01/hour), D1, app services with Azure however they are limited to 60 CPU minutes/day and 240 CPU minutes/day, so not
 suitable for production, [see them in Azure website](https://azure.microsoft.com/en-gb/pricing/details/app-service/windows/).
 
-I should mention Heroku too. They have a completely free app service which you can deploy onto. it has 550 dyno/hour which is less than a month but if you verify your credit car it is increased to 1000 dyno/hour which is higher than a month of usage. But the problem is the app hibernates after 30 minutes of inactivity (no visitors). You can pay $7 and it never sleeps.
+I should mention Heroku too. They have a completely free app service which you can deploy onto. it has 550 dyno/hour which is less than a month but if you verify your credit car it is increased to 1000 dyno/hour which is higher than a month of usage. But the problem is the app sleeps after 30 minutes of inactivity (no visitors). You can pay $7 and it never sleeps.
 Check my Blazor hosted app on [Heroku](https://iamsorush.herokuapp.com/), it takes several seconds to wake up.
