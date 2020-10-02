@@ -10,7 +10,7 @@ It is very tempting to deploy your website with web hosting services like Blueho
 my .Net core  app. The price was very cheap £1 ($1.29) for 12 months and then £5 ($6.47)/month.
 I fell for the good price, but when I passed the fancy well marketed home page,
  the control panel for deploying the app had no
-user guide, everything was slow, and you'd get more help from a baker than their customer service. After days of trial
+user guide, everything was slow, the system was 32-bit, and you'd get more help from a baker than their customer service. After days of trial
 and error I figured that out; I might write a post in detail about how I published the app eventually.
 
 
