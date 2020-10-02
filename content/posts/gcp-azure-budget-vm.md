@@ -10,7 +10,7 @@ It is very tempting to deploy your website with web hosting services like Blueho
 my .Net core  app. The price was very cheap £1 ($1.29) for 12 months and then £5 ($6.47)/month.
 I fell for the good price, but when I passed the fancy well marketed home page,
  the control panel for deploying the app had no
-user guide, everything was slow, the system was 32-bit, and you'd get more help from a baker than their customer service. After days of trial
+user guide, everything was slow, the system was 32-bit, and you'd get more help from a baker than their technical customer service. After days of trial
 and error I figured that out; I might write a post in detail about how I published the app eventually.
 
 
@@ -37,15 +37,15 @@ the instance got ready with Ubuntu 20.04. It came up immediately taking only ~22
 It is suitable for a website with a light application and low
 traffic. I deployed a template of Blazor server app and it ran smoothly with memory being ~ 260MB.
 This instance is introduced as a free machine but not completely.
-You will be charged if there is cpu burst (hitting 100%) or the egress (download/outbound) traffic from
+You will be charged if there is cpu burst (hitting 100%) or the egress (download or outbound) traffic from
 the website is more than
-1 GB per month [see GCP for more details](https://cloud.google.com/compute/docs/machine-types). Google estimates $4.28/month for this instance [see GCP options here](https://cloud.google.com/compute/vm-instance-pricing).
+1 GB per month, [see GCP website for more details](https://cloud.google.com/compute/docs/machine-types). Google estimates $4.28/month for this instance, [see GCP options here](https://cloud.google.com/compute/vm-instance-pricing).
 
-Azure budget machine is [see in Azure website](https://azure.microsoft.com/en-gb/pricing/details/virtual-machines/windows/):
+Azure budget machine is ([see in Azure website](https://azure.microsoft.com/en-gb/pricing/details/virtual-machines/windows/)):  
 Instance B1S: 1 vCPU, 1GB RAM 4GB storage  
 OS: Ubuntu  
-Region North Central US  
-$4.42/month when 1 year reserved ($7.59/month pay as you go)  
+Region: North Central US  
+Price: $4.42/month when 1 year reserved ($7.59/month pay as you go)  
 
 The prices are estimates. Azure charges egress as well. There are free, F1, and shared (£0.01/hour), D1, app services with Azure however they are limited to 60 CPU minutes/day and 240 CPU minutes/day, so not
 suitable for production, [see them in Azure website](https://azure.microsoft.com/en-gb/pricing/details/app-service/windows/).
