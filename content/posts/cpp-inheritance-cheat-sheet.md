@@ -87,7 +87,39 @@ class C: private Base{
   // private y
   // no access to z
 };
+```
 
+## Order of constructor call in inheritance hierarchy
 
+- If derived class constructor called, base default constructor is called first automatically (implicitly):
 
+```c++
+class Base{
+  public:
+  int i;
+  Base(){cout<<"Base called.";}
+  Base(int j){cout<<"Parameter Base called.";}
+};
+class Derived: public Base{
+  public: Derived(int j){cout<<"Derived called.";}
+};
+Derived d(1);
+// Base called.  Derived called.
+```
+
+- To enforce call to parameterised constructor of base class, it should be explicitly mentioned in
+derived class constructor:
+
+```c++
+class Base{
+  public:
+  int i;
+  Base(){cout<<"Base called.";}
+  Base(int j){cout<<"Parameterised Base called.";}
+};
+class Derived: public Base{
+  public: Derived(int j):Base(j){cout<<"Derived called.";}
+};
+Derived d;
+// Parameterised Base called.  Derived called.
 ```
