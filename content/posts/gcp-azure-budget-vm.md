@@ -3,6 +3,7 @@ title: "Host a .Net core web application for less than $5 a month"
 date: 2020-10-02T18:50:47+01:00
 image: /images/azure.webp
 thumbnail: /images/azure_tn.webp
+tags: ["Back-End Web"]
 ---
 
 It is very tempting to deploy your website with web hosting services like Bluehost and Hostgator

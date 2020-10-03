@@ -2,6 +2,9 @@
 title: "C++ inheritance cheat sheet "
 date: 2020-10-03T19:37:36+01:00
 draft: true
+image: /images/bird.webp
+thumbnail: /images/bird_tn.webp
+tags: ["C++"]
 ---
 
 ## Public, protected and private inheritance
