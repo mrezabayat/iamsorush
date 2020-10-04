@@ -89,6 +89,25 @@ class C: private Base{
 };
 ```
 
+- Access specifiers can be relaxer or restricter when a method overridden in the derived class:
+
+```c++
+class Base{
+private:
+  virtual void DoSomething(){}
+}
+
+class Derived: public Base{
+Public:
+   void DoSomething() override {}
+}
+
+Base b;
+Derived d;
+b.DoSomething(); // Error, not accessible
+d.DoSomething(); // OK
+```
+
 ## Order of constructor call in inheritance hierarchy
 
 - If derived class constructor called, base default constructor is called first automatically (implicitly):
@@ -142,7 +161,7 @@ Derived d;
 //Base called.  Base does something.  Derived called.
 ```
 
-- In multiple inheritance, the base constructors are called in the order of appearance:
+- In multiple inheritance, the base constructors are called in the order of appearance in class definition:
 
 ```c++
 class Base1{
@@ -151,10 +170,131 @@ class Base1{
 class Base2{
   public: Base2(){cout<<"Base2 called.";}
 };
-class Derived: public Base1, public Base2 { // This order is important
+
+// The order below is important
+class Derived: public Base1, public Base2 {
     public:
-    Derived():Base2(),Base1(){} // this order isn't important
+    Derived():Base2(),Base1(){} // Not here
 };
 
 Derived d; // Base1 called. Base2 called.   
+```
+
+## Multiple inheritance
+
+- It can be used for merge feature classes to create a complex system.
+
+- It can be done with the aid of interfaces (abstract classes) or implementations.
+
+- Note some programming languages like C# only support multiple inheritance of interfaces but Not multiple inheritance of class implementations and they are successful.
+
+- Example of multiple inheritance of interfaces:
+
+```c++
+struct IMotion {
+	virtual void Walk() = 0;
+};
+
+struct ISpeech {
+	virtual void Talk() = 0;
+};
+
+struct Robot : IMotion, ISpeech {
+  void Walk() override {cout<<"Robot is walking... ";}
+  void Talk() override {cout<<"Robot is talking... ";}
+};
+
+// Anything with interface of ISpeech accepted
+void SpeechPlayer(ISpeech& speech){
+  cout<< "playing the speech: ";
+  speech.Talk();
+}
+
+int main(){
+Robot robot;
+SpeechPlayer(robot);}
+
+```
+
+- An example of multiple inheritance of implementations:
+
+```cpp
+struct Motion {
+	void Walk() {cout<<"Walking ...";};
+};
+
+struct Speech {
+	void Talk()  {cout<<"Talking ... \n";}
+};
+
+struct Robot : Motion, Speech { };
+
+int main(){
+  Robot r;
+  r.Walk(); // Walking ...
+  r.Talk(); // Talking ...
+}
+```
+
+- An example of multiple inheritance of implementations with interface:
+
+```c++
+struct IMotion {
+	virtual void Walk() = 0;
+};
+
+struct Motion: IMotion {
+	void Walk() {cout<<"Walking ...";};
+};
+
+struct ISpeech {
+	virtual void Talk() = 0;
+};
+
+struct Speech : ISpeech{
+	void Talk()  {cout<<"Talking ... \n";}
+};
+
+struct Robot : Motion, Speech { };
+
+void SpeechPlayer(ISpeech& speech){
+  cout<< "playing the speech: ";
+  speech.Talk();
+}
+
+int main(){
+  Robot robot;
+  SpeechPlayer(robot);
+}
+```
+
+- Multiple inheritance can be a good alternative to Bridge design pattern.
+Bridge Design:
+
+```c++
+struct IMotion {
+	virtual void Move() = 0;
+};
+
+struct Run: IMotion {
+	 void Move() {cout<<"running ... \n";};
+};
+struct Walk: IMotion {
+	 void Move() {cout<<"walking ...";};
+};
+
+struct Robot {
+    Robot(IMotion* motion):_motion(motion){}
+    void Move(){ _motion->Move();}
+    private:
+    IMotion* _motion;
+};
+
+
+int main(){
+  Robot fastRobot(new Run());
+  Robot slowRobot(new Walk());
+  fastRobot.Move(); // running ...
+  slowRobot.Move(); // walking ...
+}
 ```
