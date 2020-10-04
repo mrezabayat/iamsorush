@@ -96,14 +96,13 @@ class C: private Base{
 ```c++
 class Base{
   public:
-  int i;
   Base(){cout<<"Base called.";}
   Base(int j){cout<<"Parameter Base called.";}
 };
 class Derived: public Base{
   public: Derived(int j){cout<<"Derived called.";}
 };
-Derived d(1);
+Derived d(0);
 // Base called.  Derived called.
 ```
 
@@ -113,13 +112,49 @@ derived class constructor:
 ```c++
 class Base{
   public:
-  int i;
   Base(){cout<<"Base called.";}
   Base(int j){cout<<"Parameterised Base called.";}
 };
 class Derived: public Base{
-  public: Derived(int j):Base(j){cout<<"Derived called.";}
+  public:
+  Derived(int j):Base(j){cout<<"Derived called.";}
 };
-Derived d;
+Derived d(0);
 // Parameterised Base called.  Derived called.
+```
+
+- A virtual method, called in constructor of base class, will not be overridden when base constructor call is as a consequence of derived class construction.
+
+```c++
+class Base{
+  public:
+  Base(){cout<<"Base called."; Do();}
+  virtual void Do(){cout<<"Base does something.";}
+};
+class Derived: public Base{
+  public:
+  Derived() {cout<<"Derived called.";}
+  void Do() override {cout<<"Derived does something.";}
+};
+
+Derived d;
+
+//Base called.  Base does something.  Derived called.
+```
+
+- In multiple inheritance, the base constructors are called in the order of appearance:
+
+```c++
+class Base1{
+  public: Base1(){cout<<"Base1 called.";}
+};
+class Base2{
+  public: Base2(){cout<<"Base2 called.";}
+};
+class Derived: public Base1, public Base2 { // This order is important
+    public:
+    Derived():Base2(),Base1(){} // this order isn't important
+};
+
+Derived d; // Base1 called. Base2 called.   
 ```
