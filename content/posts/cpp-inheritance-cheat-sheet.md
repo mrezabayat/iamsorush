@@ -268,7 +268,7 @@ int main(){
 }
 ```
 
-- Multiple inheritance can be a good alternative to Bridge design pattern.
+- Multiple inheritance can be used instead of Bridge design pattern if fine grain control over mixing classes needed.
 Bridge Design:
 
 ```c++
@@ -276,25 +276,76 @@ struct IMotion {
 	virtual void Move() = 0;
 };
 
-struct Run: IMotion {
-	 void Move() {cout<<"running ... \n";};
+struct TwoLegs: IMotion {
+	 void Move() {cout<<"Two-leg robot moving ... \n";};
 };
-struct Walk: IMotion {
-	 void Move() {cout<<"walking ...";};
+struct FourLegs: IMotion {
+	 void Move() {cout<<"Four-leg robot moving ...";};
 };
 
-struct Robot {
-    Robot(IMotion* motion):_motion(motion){}
+struct CommunicatingRobot {    
+    CommunicatingRobot(IMotion* motion):_motion(motion){}
     void Move(){ _motion->Move();}
+    virtual void Communicate() = 0;
     private:
     IMotion* _motion;
 };
 
+struct TalkingRobot: CommunicatingRobot{
+    TalkingRobot(IMotion* motion):CommunicatingRobot(motion){}
+    void Communicate(){cout<<"Talking ...";}
+};
+
+struct DisplayRobot: CommunicatingRobot{
+    DisplayRobot(IMotion* motion):CommunicatingRobot(motion){}
+    void Communicate(){cout<<"Display ...";}
+};
+
 
 int main(){
-  Robot fastRobot(new Run());
-  Robot slowRobot(new Walk());
-  fastRobot.Move(); // running ...
-  slowRobot.Move(); // walking ...
+  TalkingRobot twoLegTalkingRobot(new TwoLegs());
+  TalkingRobot fourLegTalkingRobot(new FourLegs());
+  DisplayRobot twoLegDisplayRobot(new TwoLegs());
+  DisplayRobot fourLegDisplayRobot(new FourLegs());
+  twoLegTalkingRobot.Move();//Two-leg robot moving ...
+  twoLegTalkingRobot.Communicate(); // Talking ...
+}
+```
+
+Above example using multiple inheritance
+
+```cpp
+struct IMotion {
+	virtual void Move() = 0;
+};
+
+struct TwoLegs: IMotion {
+	 virtual void Move() {cout<<"Two-leg robot moving ... \n";};
+};
+struct FourLegs: IMotion {
+	 virtual void Move() {cout<<"Four-leg robot moving ...";};
+};
+
+struct ICommunicatingRobot {    
+    virtual void Communicate() = 0;
+};
+
+struct TalkingRobot: ICommunicatingRobot{
+    virtual void Communicate(){cout<<"Talking ...";}
+};
+
+struct DisplayRobot: ICommunicatingRobot{
+    virtual void Communicate(){cout<<"Display ...";}
+};
+
+struct TwoLegTalkingRobot: TwoLegs, TalkingRobot {/* specific methods for this composition */};
+struct FourLegTalkingRobot: FourLegs, TalkingRobot {/* specific methods for this composition */};
+struct TwoLegDisplayRobot: TwoLegs, DisplayRobot {/* specific methods for this composition */};
+struct FourLegDisplayRobot: FourLegs, DisplayRobot {/* specific methods for this composition */};
+
+int main(){
+  TwoLegTalkingRobot robo;
+  robo.Move();//Two-leg robot moving ...
+  robo.Communicate(); // Talking ...
 }
 ```
