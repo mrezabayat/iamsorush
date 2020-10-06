@@ -1,5 +1,5 @@
 ---
-title: "C++ inheritance cheat sheet "
+title: "C++ inheritance crash course"
 date: 2020-10-03T19:37:36+01:00
 draft: true
 image: /images/bird.webp
@@ -350,4 +350,36 @@ int main(){
 }
 ```
 
-https://isocpp.org/wiki/faq/strange-inheritance#hiding-rule
+## Hiding rule
+
+A method in derived class aims to overload a method of base class does not happen automatically. The compiler only looks in the scope of derived class for overloading. In this case the base method should be explicitely mentioned in the derived class, see below example:
+
+```cpp
+struct Base
+{
+    virtual void f(int i){cout<<"integer function called.";}
+};
+struct Derived : Base
+{
+    void f(double x){cout<<"double function called.";}
+};
+
+struct OverloadingDerived : Base
+{
+    using Base::f; // Let compiler consider base method for overloading
+    void f(double x){cout<<"double function called.";}
+};
+ 
+
+int main() {
+    Derived d;
+    int j = 1;
+    double x = 0.0;
+    d.f(j); // double function called. :( 
+    d.f(x); // double function called.
+
+    OverloadingDerived o;
+    o.f(j); //integer function called.
+    o.f(x); //double function called.
+}
+```
