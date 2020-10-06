@@ -8,17 +8,16 @@ tags: ["C++"]
 ---
 
 ## Virtual Method
- Use `virtual` keyword to let compiler know the method can be overridden in a future derived class. Use keyword `override` in derived class method:
+ Use `virtual` keyword to let compiler know the method can be overridden in a future derived class. To complete overriding, use keyword `override` in derived class method:
  
- ```cpp
- 
+ ```cpp 
  struct Base
 {
-    virtual void Move(){cout<<"I am Walking ...";}
+    virtual void Move() {cout<<"I am Walking ...";}
 };
 struct Derived : Base
 {
-    void Move() override{cout << "I am running" << std::endl;}
+    void Move() override  {cout << "I am running" << std::endl;}
 };
 
 int main() {
@@ -29,7 +28,7 @@ int main() {
 }
 ```
 
-- If keyword `override` not used, no error will rises but polymorphic behaviour will be missing; in the above example, b->Move() would show "I am walking ...".
+- If keyword `override` not used, no error will rise but polymorphic behaviour will be missing; in the above example, `b->Move()` would show `"I am walking ..."`.
 
 ## Public, protected and private inheritance
 
