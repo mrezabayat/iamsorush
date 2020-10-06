@@ -349,3 +349,5 @@ int main(){
   robo.Communicate(); // Talking ...
 }
 ```
+
+https://isocpp.org/wiki/faq/strange-inheritance#hiding-rule
