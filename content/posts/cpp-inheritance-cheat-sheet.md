@@ -6,6 +6,24 @@ image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["C++"]
 ---
+## Ineritance 
+
+The attributes and methods of a base (or parent) class can be passed to a derived (or child) class which is called inheritance.  
+
+## Struct vs Class
+
+`struct` inheritance is public by default, and `class` inheritance is private:
+```cpp
+class Base{};
+class Derived: public Base{};
+```
+is similar to 
+
+```cpp
+struct Base{};
+struct derived: base{};
+```
+
 
 ## Virtual Method
  Use `virtual` keyword to let compiler know the method can be overridden in a future derived class. To complete overriding, use keyword `override` in derived class method:
