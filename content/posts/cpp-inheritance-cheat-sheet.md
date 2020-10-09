@@ -25,26 +25,6 @@ d.doSomething();
 
 In the above example, `Derived` inherits `i` and `doSomething` from base class; 
 
-## Final class or method
-
-A final class cannot be derived and a final method cannot be overriden. Use `final` keyword for this purpose:
-
-```cpp
-struct Base
-{
-     virtual void Move()  {cout<<"I am Walking ...";}
-};
-struct Derived final : Base
-{
-    virtual void Move() final override{cout << "I am running";}
-};
-struct Extended : Derived // Error
-{
-        void Move() override {cout<<"...";} //Error 
-};
-```
-Making classes final increases the efficiency and safety of the code. 
-
 ## Public, protected and private inheritance
 
 These specifiers modify accessibility of inherited members as below
@@ -182,6 +162,26 @@ int main() {
 ```
 
 - If keyword `override` not used, no error will rise but polymorphic behaviour will be missing; in the above example, `b->Move()` would show `"I am walking ..."`.
+
+## Final class or method
+
+A final class cannot be derived and a final method cannot be overriden. Use `final` keyword for this purpose:
+
+```cpp
+struct Base
+{
+     virtual void Move()  {cout<<"I am Walking ...";}
+};
+struct Derived final : Base
+{
+    virtual void Move() final override{cout << "I am running";}
+};
+struct Extended : Derived // Error
+{
+        void Move() override {cout<<"...";} //Error 
+};
+```
+Making classes final increases the efficiency and safety of the code. 
 
 ## Order of constructor call in inheritance hierarchy
 
