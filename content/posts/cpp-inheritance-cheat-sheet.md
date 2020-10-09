@@ -8,45 +8,22 @@ tags: ["C++"]
 ---
 ## Ineritance 
 
-The attributes and methods of a base (or parent) class can be passed to a derived (or child) class which is called inheritance.  
-
-## Struct vs Class
-
-`struct` inheritance is public by default, and `class` inheritance is private:
-```cpp
-class Base{};
-class Derived: public Base{};
-```
-is similar to 
+Inheritance is the machanism that the attributes and methods of a base class are passed to a derived class. 
 
 ```cpp
-struct Base{};
-struct derived: base{};
-```
-
-
-## Virtual Method
- Use `virtual` keyword to let compiler know the method can be overridden in a future derived class. To complete overriding, use keyword `override` in derived class method:
- 
- ```cpp 
- struct Base
-{
-    virtual void Move() {cout<<"I am Walking ...";}
-};
-struct Derived : Base
-{
-    void Move() override  {cout << "I am running" << std::endl;}
-};
-
-int main() {
-    Base* b = new Derived();
-    Derived* d = new Derived();
-    b->Move(); // I am running
-    d->Move(); // I am running
+class Base(){
+public:
+    int i;
+    void doSomething(){};
 }
+class Derived: public Base(){}
+
+Derived d;
+d.i =10;
+d.doSomething();
 ```
 
-- If keyword `override` not used, no error will rise but polymorphic behaviour will be missing; in the above example, `b->Move()` would show `"I am walking ..."`.
+In the above example, `Derived` inherits `i` and `doSomething` from base class; 
 
 ## Final class or method
 
@@ -168,6 +145,43 @@ Derived d;
 b.DoSomething(); // Error, not accessible
 d.DoSomething(); // OK
 ```
+## Struct vs Class
+
+`struct` inheritance is public by default, and `class` inheritance is private:
+```cpp
+class Base{};
+class Derived: public Base{};
+```
+is similar to 
+
+```cpp
+struct Base{};
+struct derived: base{};
+```
+
+
+## Virtual Method
+ Use `virtual` keyword to let compiler know the method can be overridden in a future derived class. To complete overriding, use keyword `override` in derived class method:
+ 
+ ```cpp 
+ struct Base
+{
+    virtual void Move() {cout<<"I am Walking ...";}
+};
+struct Derived : Base
+{
+    void Move() override  {cout << "I am running" << std::endl;}
+};
+
+int main() {
+    Base* b = new Derived();
+    Derived* d = new Derived();
+    b->Move(); // I am running
+    d->Move(); // I am running
+}
+```
+
+- If keyword `override` not used, no error will rise but polymorphic behaviour will be missing; in the above example, `b->Move()` would show `"I am walking ..."`.
 
 ## Order of constructor call in inheritance hierarchy
 
