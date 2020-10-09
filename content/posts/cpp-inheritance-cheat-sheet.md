@@ -188,7 +188,7 @@ class Square: public Shape{
     Square(double _s):s(_s){}
     double ComputeArea() override {return s*s}
 }
-```cpp
+```
 
 Interface cannot be used to create objects
 
