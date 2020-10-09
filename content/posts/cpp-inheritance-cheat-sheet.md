@@ -160,8 +160,58 @@ int main() {
     d->Move(); // I am running
 }
 ```
-
 - If keyword `override` not used, no error will rise but polymorphic behaviour will be missing; in the above example, `b->Move()` would show `"I am walking ..."`.
+
+## Interface (abstract class)
+
+An interface mentions the methods of a class but not giving the details. In the example below, `ComputeArea` is a pure virtual function: no details of how it works is given, we only know its signature.  
+
+```cpp
+class Shape{
+public:
+    virtual double ComputeArea()=0
+}
+```
+It expects derived classes define how they implement the methods.  
+
+```cpp
+class Circle: public Shape{
+    double r;
+    public:
+    Circle(double _r):r(_r){}
+    double ComputeArea() override {return 3.14*r*r}
+}
+
+class Square: public Shape{
+    double s;
+    public:
+    Square(double _s):s(_s){}
+    double ComputeArea() override {return s*s}
+}
+```cpp
+
+Interface cannot be used to create objects
+
+```cpp
+Shape s;  //Error
+```
+
+However, it can be used to create generic piece of code that works with all different derived classes:
+
+```cpp
+void displayArea(Shape& shape){
+      cout<<shape.ComputeArea();
+}
+
+Circle c(1.0);
+Square s(1.0);
+
+displayArea(c); // 3.14
+displayArea(s); // 1.0
+```
+
+
+Interfaces can help to create loosely-coupled systems [see an example with C#](https://iamsorush.com/posts/ioc-and-numerical-programming/).
 
 ## Final class or method
 
