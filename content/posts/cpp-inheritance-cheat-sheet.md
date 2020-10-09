@@ -490,7 +490,8 @@ t.i = 1; // Error: request for member ‘i’ is ambiguous
 }
 ```
 
-The multiple inhertance graph is like below shows the diamond problem.      
+The multiple inhertance graph is like below shows the diamond problem.   
+```
     Base    
      /\
     /  \
@@ -498,6 +499,7 @@ The multiple inhertance graph is like below shows the diamond problem.
     \  /
      \/
    Target
+ ```
    
    
      
