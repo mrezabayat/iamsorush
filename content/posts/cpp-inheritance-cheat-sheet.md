@@ -474,6 +474,32 @@ int main(){
 }
 ```
 
+## Dreaded diamond
+
+To explain this, lets look at below example:
+
+```cpp
+struct Base{ int i;};
+struct D1: Base {}
+struct D2: Base {}
+struct Target: D1, D2 {}
+
+int main(){
+Target  t;
+t.i = 1; Error: request for member ‘i’ is ambiguous 
+}
+```
+
+The multiple inhertance graph is like below shows the diamond problem. 
+
+    Base
+     /\
+    /  \
+ d1     d2
+    \  /
+     \/
+   Target
+     
 ## Hiding rule
 
 A method in derived class aims to overload a method of base class does not happen automatically. The compiler only looks in the scope of derived class for overloading. In this case the base method should be explicitely mentioned in the derived class, see below example:
