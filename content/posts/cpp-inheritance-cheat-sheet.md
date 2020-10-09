@@ -136,7 +136,7 @@ is similar to
 
 ```cpp
 struct Base{};
-struct derived: base{};
+struct derived: Base{};
 ```
 
 
