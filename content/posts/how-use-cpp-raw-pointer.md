@@ -322,7 +322,6 @@ However, a constant target must be pointed only by a constant-target pointer.
 ## Pointer vs reference member
 
 
-
 A reference member of a class must be initialised in the constructor and it cannot be reassigned. However, a pointer member can be reassigned, freed, and null. So, if not sure, a pointer is an easy choice as it is more flexible.    
 
 
@@ -346,8 +345,6 @@ cout<< *(q+2) << endl; // shows third element of array
 
 In C++, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array (<a href="https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays">see here</a>).  So it's better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:   
 
-
-
 ```cpp
 vector<int> *v = new vector<int>(10);
 
@@ -358,3 +355,18 @@ v->size(); //Get size
 vector<int> &r = *v; // create alias using a reference
 r[2]; // index reference
 ```
+
+## Void pointer 
+
+All the pointers (int*, double*, string*, custom_class*) have the same datatype holding the memory address of different targets. So, `void*` pointer is a pointer the same as others pointing to some memory address but the datatype of target is unknown. 
+
+```cpp
+void* p;
+int i=10;
+double d=1.5;
+p = &i;
+p = &d;
+cout<<*(double*)p; // cast when dereferenced
+```
+
+It is a C language feature to write generic functions. But in C++, knowing `void*` tricks are not necessary since generic code can be elegantly written with templates, functors and interfaces.  
