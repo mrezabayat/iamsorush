@@ -480,9 +480,9 @@ To explain this, lets look at below example:
 
 ```cpp
 struct Base{ int i;};
-struct D1: Base {}
-struct D2: Base {}
-struct Target: D1, D2 {}
+struct D1: Base {};
+struct D2: Base {};
+struct Target: D1, D2 {};
 
 int main(){
 Target  t;
@@ -490,18 +490,30 @@ t.i = 1; // Error: request for member ‘i’ is ambiguous
 }
 ```
 
-The multiple inhertance graph is like below shows the diamond problem.   
+The multiple inhertance graph of the example above is shown below .   
 ```
     Base    
      /\
     /  \
- d1     d2
+ D1     D2
     \  /
      \/
    Target
  ```
-   
-   
+ 
+ D1 and D2 pass two copy of Base to target. So when `i` is called the compiler cannot figure out which copy to call. To avoid this, use keyword `virtual` in definition of D1 and D2, therefore, only one copy of Base is passed to Target:
+
+```cpp
+struct Base{ int i;};
+struct D1: virtual Base {};
+struct D2: virtual Base {};
+struct Target: D1, D2 {};
+
+int main(){
+Target  t;
+t.i = 1; // works fine :)
+}
+```
      
 ## Hiding rule
 
