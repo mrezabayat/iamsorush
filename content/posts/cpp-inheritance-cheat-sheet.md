@@ -11,12 +11,12 @@ tags: ["C++"]
 Inheritance is the machanism that the attributes and methods of a base class are passed to a derived class. 
 
 ```cpp
-class Base(){
+class Base{
 public:
     int i;
     void doSomething(){};
 }
-class Derived: public Base(){}
+class Derived: public Base{}
 
 Derived d;
 d.i =10;
@@ -209,7 +209,6 @@ Square s(1.0);
 displayArea(c); // 3.14
 displayArea(s); // 1.0
 ```
-
 
 Interfaces can help to create loosely-coupled systems [see an example with C#](https://iamsorush.com/posts/ioc-and-numerical-programming/).
 
