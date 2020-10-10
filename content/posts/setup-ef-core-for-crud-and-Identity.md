@@ -1,4 +1,3 @@
-
 ---
 title: "Basic setup of Entity Framework (EF) core for CRUD and authentication"
 date: 2020-10-10T19:37:36+01:00
