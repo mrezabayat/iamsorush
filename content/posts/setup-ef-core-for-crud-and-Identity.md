@@ -84,6 +84,36 @@ If a property needs to be ignored by EF core, like `File Path`, annotate it with
 
 To have one-to-many relationship, mentioning the relationship in `Book` class was not necessary. Personally, I prefer to have them in `Book` class, so when a Book record pulled from database, automatically its correspondant publisher is found too. 
 
+`IdentityUser` is the default class that .Net core uses for user authentication. It contains username, email, password and related information. To add custom properties to the class we have to derive another class, `AppUser` here. `AppUser.cs` file contains
 
+```cpp
+using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
+namespace EfTest.Models
+{
+    public class AppUser : IdentityUser
+    {
+        public string Name { get; set; }
+    }
+}
+```
+
+I added only property `Name` but any arbitrary column table can be added like StartMembership, EndMembership, or a one-to-many relationship with `Book` class to denote the books user barrowed. 
+
+We have to modify `ConfigureServices` in `Startup.cs` so it uses the new `AppUser` class instead of default `IdentityUser`:
+
+public void ConfigureServices(IServiceCollection services)
+        {
+            // some codes here ...
+            services.AddDefaultIdentity<Models.AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            // rest of the code ...
+        }
+
+Make sure `.AddRoles<IdentityRole>()` is there as well which is necessary to have roles like admin, user, and so on.
 
