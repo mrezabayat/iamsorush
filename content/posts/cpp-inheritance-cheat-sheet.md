@@ -232,7 +232,7 @@ struct Extended : Derived // Error
 ```
 Making classes final increases the efficiency and safety of the code. 
 
-## Order of constructor call in inheritance hierarchy
+## Order of constructors call in inheritance hierarchy
 
 - If derived class constructor called, base default constructor is called first automatically (implicitly):
 
@@ -303,6 +303,10 @@ class Derived: public Base1, public Base2 {
 
 Derived d; // Base1 called. Base2 called.   
 ```
+
+## Order of destructors call in inheritance hierarchy
+
+The opposite of of constructors.
 
 ## Multiple inheritance
 
