@@ -79,10 +79,10 @@ namespace EfTest.Models
 
 In `Book` class, `Id` is the default primary key, `Title` is an arbitrary column in the Book table, more  can be added like author, year, edition. `PublisherId` and `Publisher` are EF core conventions to have the relationship of each book has a publisher. Here `Publisher` is the navigation property. Note that the foreign class id and name must follow the convetion "class name + Id" and "class name".   
 
-If a property needs to be ignored by EF core, like `File Path`, annotate it with `[NotMapped]`. Personally, I prefer to have them in `Book` class, so when a Book record pulled from database, automatically its correspondant publisher is found too. 
+If a property needs to be ignored by EF core, like `File Path`, annotate it with `[NotMapped]`. 
 
 
-To have one-to-many relationship, mentioning the relationship in `Book` class was not necessary. 
+To have one-to-many relationship, mentioning the relationship in `Book` class was not necessary. Personally, I prefer to have them in `Book` class, so when a Book record pulled from database, automatically its correspondant publisher is found too. 
 
 
 
