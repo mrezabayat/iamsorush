@@ -311,4 +311,87 @@ Note, `update-database` creates the database and tables, but not necessary in ou
  
  When testing, another migration useful command is `drop-database` which deletes the database.
  
+ Now from EF core point of view, we are done. We need to create some pages to finish the app. Create crud folders in Admin and Users folders
+ 
+ bookcrud_folder.JPG
+ 
+ Right-click on Admin/BookCrud folder and Add -> New Scaffolded Item -> Rezor Pages -> Razor Pages Using Entity Frame Work. Choose Book class and ApplicationDbContext as below
+ 
+ scaffoldBook.JPG
+ 
+ Hit create button and visual studio creates Book crud pages
+ 
+ bookcrud_folder2.JPG
+ 
+Before, you add the scaffolded items for others, change namespace of new files from `EfTest` to `EfTest.Admin.BookCrud`. So namespaces coincide with the folders, and new scaffolded items have their own folder won't be confused with the others.Do the same for Admin/PublisherCrud and Users/BookRead: create scaffolded items then change their namespace to their folder. Because users are not allowed to crud, delete Create/Delete/Edit pages and their references. 
+ 
+ To visit these pages, we put their link in `_Layout.cshtml`. Because we need to know if visitr is a user, admin or anonymous, the below objects are injected in top of the page
+ 
+ ``` c#
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Models.AppUser> SignInManager
+@inject UserManager<Models.AppUser> UserManager
+```
+
+And where the links are we add
+```html
+<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Admin/BookCrud/Index">Crud Books</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Admin/PublisherCrud/Index">Crud Publisher</a>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Users/BookRead/Index">See Books</a>
+                            </li>
+                        }
+```
+So admin can crud but users only can see the books.
+
+Now we can run the app, and use the Admin email and password mentioned in `seeddata` to login, then crud Books and Publishers. There is just one gotcha
+
+publisher_id.JPG
+
+We don't want to see publisher id. We want to see the name of publisher, so in Admin/BookCrud/Index.cshtml and Users/BookRead/Index.cshtml change
+
+```c#
+@Html.DisplayFor(modelItem => item.Publisher.Id)
+```
+
+to
+
+```c#
+@Html.DisplayFor(modelItem => item.Publisher.Name)
+```
+
+There is one more problem in Admin/BookCrud/Create page, still publisher id appears
+
+bookcreatepage.JPG
+
+To fix this, in the code behind of  Admin/BookCrud/Create change
+```
+            ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Id");
+```
+
+to 
+
+```
+            ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Name");
+```
+
+
+
+
+
+ 
+ 
+ 
  
