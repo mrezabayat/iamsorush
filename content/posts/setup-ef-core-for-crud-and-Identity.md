@@ -297,12 +297,18 @@ add-migration initial
  
  migrations.JPG
  
- Then run 
+ Then we can run 
  ```
  update-database
  ```
+ to test the migrations. If everything setup correctly no error will be seen. 
+
  If everything setup correctly, no error will come up and in SQL Server Object Explorer window of visual studio, you can find the database and tables
  
  sqlserver.JPG
  
- When testing, another useful command is `drop-database` which deletes the database.
+Note, `update-database` creates the database and tables, but not necessary in our app because `UpdateDatabase` method defined previousely does that automatically for us at startup. So if this project deployed to a remote server the database and tables are created automatically with seed data.
+ 
+ When testing, another migration useful command is `drop-database` which deletes the database.
+ 
+ 
