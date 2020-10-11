@@ -174,9 +174,9 @@ I found two of them in `_LoginPartials.cshtml`:
                 {
                     Id = Guid.NewGuid().ToString(),
                     UserName = "a@test.com",
-                    NormalizedUserName = "a@bp.com".ToUpper(),
-                    Email = "a@bp.com",
-                    NormalizedEmail = "a@bp.com".ToUpper(),
+                    NormalizedUserName = "a@test.com".ToUpper(),
+                    Email = "a@test.com",
+                    NormalizedEmail = "a@test.com".ToUpper(),
                     EmailConfirmed = true,
                     SecurityStamp = string.Empty,
                     PasswordHash = HashPassword(null, "pass")
@@ -200,10 +200,10 @@ private void AddAdmin(ModelBuilder modelBuilder)
                 {
                     Id = adminId,
                     Name = "admin",
-                    UserName = "admin@x.com",
-                    NormalizedUserName = "admin@x.com".ToUpper(),
-                    Email = "admin@x.com",
-                    NormalizedEmail = "admin@x.com".ToUpper(),
+                    UserName = "admin@test.com",
+                    NormalizedUserName = "admin@test.com".ToUpper(),
+                    Email = "admin@test.com",
+                    NormalizedEmail = "admin@test.com".ToUpper(),
                     EmailConfirmed = true,
                     SecurityStamp = string.Empty,
                     PasswordHash = HashPassword(null, "pass")
@@ -226,4 +226,30 @@ string HashPassword(AppUser user, string password)
             var hasher = new PasswordHasher<AppUser>();
             return hasher.HashPassword(user, password);
         }
+```
+
+we visit `Startup.cs` again and add below function apply seed data on startup
+
+```c#
+private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
+        }
+```
+and call it as below
+
+```c#
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            UpdateDatabase(app); // should be first line
+	    // rest of code
+	}
 ```
