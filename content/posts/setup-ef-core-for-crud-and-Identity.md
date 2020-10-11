@@ -305,4 +305,4 @@ add-migration initial
  
  sqlserver.JPG
  
- 
+ When testing, another useful command is `drop-database` which deletes the database.
