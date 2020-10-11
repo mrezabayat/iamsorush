@@ -35,7 +35,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EfTest.Models
+namespace EfCoreRazorCrud.Models
 {
     public class Publisher
     {
@@ -57,7 +57,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EfTest.Models
+namespace EfCoreRazorCrud.Models
 {
     public class Book
     {
@@ -93,7 +93,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EfTest.Models
+namespace EfCoreRazorCrud.Models
 {
     public class AppUser : IdentityUser
     {
@@ -323,7 +323,7 @@ Note, `update-database` creates the database and tables, but not necessary in ou
  
  bookcrud_folder2.JPG
  
-Before, you add the scaffolded items for others, change namespace of new files from `EfTest` to `EfTest.Admin.BookCrud`. So namespaces coincide with the folders, and new scaffolded items have their own folder won't be confused with the others.Do the same for Admin/PublisherCrud and Users/BookRead: create scaffolded items then change their namespace to their folder. Because users are not allowed to crud, delete Create/Delete/Edit pages and their references. 
+Before, you add the scaffolded items for others, change namespace of new files from `EfCoreRazorCrud` to `EfCoreRazorCrud.Admin.BookCrud`. So namespaces coincide with the folders, and new scaffolded items have their own folder won't be confused with the others.Do the same for Admin/PublisherCrud and Users/BookRead: create scaffolded items then change their namespace to their folder. Because users are not allowed to crud, delete Create/Delete/Edit pages and their references. 
  
  To visit these pages, we put their link in `_Layout.cshtml`. Because we need to know if visitr is a user, admin or anonymous, the below objects are injected in top of the page
  
