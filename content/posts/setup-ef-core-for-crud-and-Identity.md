@@ -1,5 +1,5 @@
 ---
-title: "Basic setup of Entity Framework (EF) core for CRUD and authentication"
+title: "Tutorial: Basic setup of Entity Framework (EF) core for CRUD and authentication with Razor pages"
 date: 2020-10-10T19:37:36+01:00
 draft: true
 image: /images/bird.webp
@@ -387,6 +387,9 @@ to
             ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Name");
 ```
 
+Now you should see the name of publishers to select rather than their Id.
+
+If face any problem, you can compare your project with mine on [Github]().
 
 
 
