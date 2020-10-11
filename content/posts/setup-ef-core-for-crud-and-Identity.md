@@ -389,7 +389,7 @@ to
 
 Now you should see the name of publishers to select rather than their Id.
 
-If face any problem, you can compare your project with mine on [Github]().
+If face any problem, you can compare your project with mine on [Github](https://github.com/sorush-khajepor/EfCoreRazorCrud).
 
 
 
