@@ -253,3 +253,56 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	    // rest of code
 	}
 ```
+
+Now we create two folders in pages: Admin and Users
+
+admin_user_folder.JPG
+
+Any page in folder Admin is only visible by admin, and any page in Users folder is visbile by authenticated users.
+Let's define these rules in `Startup.cs`, the final `ConfigureServices` shown below
+
+```c#
+public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<Models.AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admins", policy =>
+                {
+                    policy.RequireRole("Admin");
+                });
+            });
+
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeFolder("/Users");
+                options.Conventions.AuthorizeFolder("/Admin", "Admins");
+
+            });
+        }
+```
+
+We are pretty much set, now we apply the migrations. In the Package Manager Console, run command
+
+```
+add-migration initial
+```
+ The migrations are created and added to Migration folder
+ 
+ migrations.JPG
+ 
+ Then run 
+ ```
+ update-database
+ ```
+ If everything setup correctly, no error will come up and in SQL Server Object Explorer window of visual studio, you can find the database and tables
+ 
+ sqlserver.JPG
+ 
+ 
