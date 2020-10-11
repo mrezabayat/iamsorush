@@ -106,6 +106,7 @@ I added only property `Name` but any arbitrary column table can be added like St
 
 We have to modify `ConfigureServices` in `Startup.cs` so it uses the new `AppUser` class instead of default `IdentityUser`:
 
+```cpp
 public void ConfigureServices(IServiceCollection services)
         {
             // some codes here ...
@@ -114,6 +115,115 @@ public void ConfigureServices(IServiceCollection services)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             // rest of the code ...
         }
+```
 
 Make sure `.AddRoles<IdentityRole>()` is there as well which is necessary to have roles like admin, user, and so on.
+There are other instances of `IdentityUser` in other files, simply find all them by `Ctrl+f` replace them with `Models.AppUser`. Otherwise you get some errors.
 
+I found two of them in `_LoginPartials.cshtml`:
+
+```c#
+@inject SignInManager<Models.AppUser> SignInManager
+@inject UserManager<Models.AppUser> UserManager
+```
+
+`ApplicationDbContext.cs` is changed to have the name of tables
+
+```c#
+    public class ApplicationDbContext : IdentityDbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            SeedData(modelBuilder);
+            AddAdmin(modelBuilder);
+        }
+
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
+	
+	// rest of the code ...
+    }
+}
+```
+
+`SeedData` is created to initialize database with some test records:
+
+```c#
+        private void SeedData(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Publisher>().HasData(
+                new Publisher() { Name = "Little, Brown and Company", Id = -1 },
+                new Publisher() { Name = "Scholastic", Id = -2 }
+                );
+            modelBuilder.Entity<Book>().HasData(
+                new Book() { Id = -1, Title = "Harry Potter And The Cursed Child", PublisherId = -1 },
+                new Book() { Id = -2, Title = "The Hunger Games", PublisherId = -2 }
+                );
+
+
+            modelBuilder.Entity<AppUser>().HasData(
+
+                new AppUser()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "a@test.com",
+                    NormalizedUserName = "a@bp.com".ToUpper(),
+                    Email = "a@bp.com",
+                    NormalizedEmail = "a@bp.com".ToUpper(),
+                    EmailConfirmed = true,
+                    SecurityStamp = string.Empty,
+                    PasswordHash = HashPassword(null, "pass")
+                });
+        }
+        
+```
+and I added the admin here as well
+
+```c#
+private void AddAdmin(ModelBuilder modelBuilder)
+        {
+            string adminId = Guid.NewGuid().ToString();
+            string roleId = Guid.NewGuid().ToString();
+
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole { Id = roleId, Name = "Admin", NormalizedName = "Admin".ToUpper() });
+
+            modelBuilder.Entity<AppUser>().HasData(
+                new AppUser()
+                {
+                    Id = adminId,
+                    Name = "admin",
+                    UserName = "admin@x.com",
+                    NormalizedUserName = "admin@x.com".ToUpper(),
+                    Email = "admin@x.com",
+                    NormalizedEmail = "admin@x.com".ToUpper(),
+                    EmailConfirmed = true,
+                    SecurityStamp = string.Empty,
+                    PasswordHash = HashPassword(null, "pass")
+
+                });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = roleId,
+                UserId = adminId
+            });
+        }
+```
+
+`IdentityUser` saves the hash of a password, so I created the below function for that purpose:
+
+```c#
+string HashPassword(AppUser user, string password)
+        {
+            var hasher = new PasswordHasher<AppUser>();
+            return hasher.HashPassword(user, password);
+        }
+```
