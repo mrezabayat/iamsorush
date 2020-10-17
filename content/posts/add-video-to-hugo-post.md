@@ -23,7 +23,7 @@ Your browser does not support the video tag.
 
 ## Setup a raw HTML shortcode
 
-The posts in Hugo are written using Markdown syntax. To have raw HTML included create `shortcodes` folder in your Hugo website directory as
+The posts in Hugo are written using *Markdown* syntax. To have raw HTML code included, create `shortcodes` folder in your Hugo website directory as
 
 ```bash
 /your-website/layouts/shortcodes
@@ -36,7 +36,7 @@ create a file, `rawhtml.html` with the content
 {{.Inner}}
 ```
 
-Now, in any post we can any HTML code using the below code:
+Now, in any post we can insert desired HTML code using the below code:
 
 \{\{< rawhtml >\}\}    
     \<!-\- html codes here-\->  
@@ -46,7 +46,7 @@ Now, in any post we can any HTML code using the below code:
 
 ## Add Video
 
-To embed a video, we use `video` tag as 
+To embed a video, we use the `video` tag as 
 
 
 \{\{< rawhtml >\}\} 
@@ -64,7 +64,7 @@ Your browser does not support the video tag.
 
 ## References
 
-I got ideas from the below website(s)
+I got ideas and codes from the below website(s)
 
 [Raw html](https://anaulin.org/blog/hugo-raw-html-shortcode/)
 
