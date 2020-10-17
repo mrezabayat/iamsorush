@@ -87,8 +87,15 @@ header{
   color: black;
   background-color: transparent;
 }
+
+.content {
+  max-width: 680px;
+  padding-left: 15px;
+  padding-right: 15px;
+  
+}
 article {
-  max-width: 580px;
+  max-width: 680px;
   padding-left: 15px;
   padding-right: 15px;
   margin-left: auto;

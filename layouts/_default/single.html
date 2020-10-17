@@ -29,18 +29,19 @@
 					document.getElementById("myBar").style.width = scrolled + "%";
 				}
 			</script>
+			{{ partial "tags.html" .}}
+			{{ partial "sidebar.html" . }}
 		</article>
 		<nav class="hide-on-mobile section-nav">
-
 			<h3 class="ml-1">Table of contents</h3>
 			{{ .TableOfContents }}
-		</nav>
+		</nav>		
 	</div>
 </main>
 
 
-{{ partial "tags.html" .}}
-{{ partial "sidebar.html" . }}
+
+
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
