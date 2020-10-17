@@ -1,5 +1,5 @@
 ---
-title: "Create table of content from headings of a post"
+title: "Create a table of content from headings of a post"
 date: 2020-10-17T19:20:06+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
@@ -8,11 +8,11 @@ tags: ["Front-End Web", "Hugo"]
 
 ## Goal
 
-I want to write code to get a table of content (ToC) for each blog post automatically created and shown in the right hand side of content of a post. Readers can click on desired section and the browser automatically scrolls to that section. The ToC is hidden on small screens like smart phones. I style it to be nice and clean.
+I want to write code to get a table of content (ToC) for each blog post automatically. It is created and shown on the right-hand side of the content of a post. Readers can click on the desired section and the browser automatically scrolls to that section. The ToC is hidden on small screens like smartphones. I style it to be nice and clean.
 
 ## Result
 
-At the time of writing this post, this post has a ToC at the right-hand side. But it is not visible in small screen devices like smartphones. So I added a video for whom it is not visible. 
+At the time of writing this post, this post has a ToC on the right-hand side. But it is not visible on small screens like smartphones. So I added a video for whom it is not visible. 
 
 {{< rawhtml >}}
 <video width=100% controls>
@@ -21,9 +21,9 @@ Your browser does not support the video tag.
 </video>
 {{< /rawhtml >}}
 
-## Html 
+## HTML 
 
-The html code of a post is has different elements like top headers, title, some pictures and so on. But we focus only on content area to divide it to text (`article`) and ToC (`nav`) like picture below
+The HTML code of a post is has different elements like top headers, title, some pictures and so on. But we focus only on the content area to divide it to text (`article`) and ToC (`nav`) like the picture below
 
 ![toc](/images/toc.png)
 
@@ -44,7 +44,7 @@ In `singl.html` file of my Hugo website, I wrap my old content in a new `div` an
 
 ## CSS
 
-I only explain the importan CSS parts. To hide the ToC on small screens, I add a media quary
+I only explain the important CSS parts. To hide the ToC on small screens, I add a media quary
 
 ```css
   @media screen and (max-width: 1024px) {
@@ -53,7 +53,7 @@ I only explain the importan CSS parts. To hide the ToC on small screens, I add a
   }
 }
 ```
-To style container of article and nav, I use a grid so left-hand side is the article and right-hand side is the ToC.
+To style container of article and nav, I use a grid so the left-hand side is the article and the right-hand side is the ToC.
 
 ```css
 @media only screen and (min-width: 1025px) {
@@ -125,7 +125,7 @@ nav > ul, ol {
 
 ## JavaScript
 
-Add the below codes somewhere in `single.html` before \{{\ end \}\}  line. It finds current section on screen, and assign class `active` to its corresponding `nav` item and clears it when section goes out of view.
+Add the below codes somewhere in `single.html` before \{{\ end \}\}  line. It finds the current section on the screen, and assign class `active` to its corresponding `nav` item and clears it when the section goes out of view.
 
 ```js
 <script>
@@ -156,7 +156,7 @@ Add the below codes somewhere in `single.html` before \{{\ end \}\}  line. It fi
 
 ## References
 
-I pulled this task off hugely due to codes and ideas had been put before in below pages
+I pulled this task off hugely due to codes and ideas had been put before in the below pages.
 
 [Mattias Geniar](https://ma.ttias.be/adding-a-sticky-table-of-contents-in-hugo-to-posts/)
 [Bramus Van Damme](https://www.bram.us/2020/01/10/smooth-scrolling-sticky-scrollspy-navigation/)
