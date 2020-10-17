@@ -10,28 +10,83 @@
 	</article>
 	<div class="single-image" style="background-image: url('{{ .Params.image }}');">
 	</div>
-	<article class="overlay-top">
-		{{ .Content }}
-		{{ with .Site.DisqusShortname }}
-		<div>
-			{{ template "_internal/disqus.html" . }}
-		</div>
-		{{ end }}
-		<script>
-			window.onscroll = function () {
-				myFunction();
-			};
-			function myFunction() {
-				var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-				var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-				var scrolled = (winScroll / height) * 100;
-				document.getElementById("myBar").style.width = scrolled + "%";
-			}
-		</script>
-	</article>
+	<div class="article-nav" id="article-nav-id">
+		<article class="overlay-top">
+			{{ .Content }}
+			{{ with .Site.DisqusShortname }}
+			<div>
+				{{ template "_internal/disqus.html" . }}
+			</div>
+			{{ end }}
+			<script>
+				window.onscroll = function () {
+					myFunction();
+				};
+				function myFunction() {
+					var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+					var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+					var scrolled = (winScroll / height) * 100;
+					document.getElementById("myBar").style.width = scrolled + "%";
+				}
+			</script>
+		</article>
+		<nav class="hide-on-mobile section-nav">
+
+			<h3>Table of contents</h3>
+			{{ .TableOfContents }}
+		</nav>
+	</div>
 </main>
 
 
 {{ partial "tags.html" .}}
 {{ partial "sidebar.html" . }}
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		
+
+
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {
+					
+					clearActiveStatesInTableOfContents();
+
+					
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});
+
+		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+	/*
+
+function ali() {
+	var element = document.getElementById("article-nav-id");
+	if (window.innerWidth < 1024) {	
+		if (element.classList.contains("article-nav"))
+			element.classList.remove("article-nav");
+	}else{
+		if (!element.classList.contains("article-nav"))
+			element.classList.add("article-nav");
+	}
+};
+
+window.addEventListener('load', ali);
+window.addEventListener('resize', ali); */
+</script>
 {{ end }}
+
