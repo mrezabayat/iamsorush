@@ -13,7 +13,7 @@ I want to add a video to a Hugo blog post. The video is hosted on my website, so
 ## Result
 
 {{< rawhtml >}}
-<video width=100% >
+<video width=100% controls>
   <source src="/videos/table_of_contents.webm" type="video/webm">
 Your browser does not support the video tag.
 </video>
