@@ -309,6 +309,7 @@ article {
     width:32px;
   }
   pre {
+    border-radius: 5px;
     font-size:0.9rem;
     overflow-x: auto;
     padding-left: 0.5em;
