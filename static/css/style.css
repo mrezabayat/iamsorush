@@ -295,6 +295,9 @@ article {
   .mr-1{
     margin-right: 0.5em;
   }
+  .ml-1{
+    margin-left: 0.5em;
+  }
   .icon{
     width:32px;
   }
@@ -332,9 +335,9 @@ th, td {
 @media only screen and (min-width: 1025px) {
   .article-nav {
     display: grid;
-    grid-template-columns: 1fr 12em;
+    grid-template-columns: 1fr 15em;
     max-width: 100em;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
   }
 }
@@ -348,13 +351,14 @@ nav {
 /* 3. ScrollSpy active styles (see JS tab for activation) */
 .section-nav li.active > a {
   color:purple;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Sidebar Navigation */
 .section-nav {
+  font-size: smaller;
   padding-left: 0;
-  border-left: 1px solid #efefef;
+  border-left: 2px solid #efefef;
 }
 
 .section-nav a {
@@ -368,6 +372,7 @@ nav {
 .section-nav a:hover,
 .section-nav a:focus {
   color: #666;
+  font-weight: 600;
 }
 
 nav > ul, ol {
