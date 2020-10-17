@@ -23,12 +23,12 @@ Your browser does not support the video tag.
 
 ## HTML 
 
-The HTML code of a post is has different elements like top headers, title, some pictures and so on. But we focus only on the content area to divide it to text (`article`) and ToC (`nav`) like the picture below
+The HTML code of a post has different elements like top headers, title, pictures, and so on. But we focus only on the content area to divide it into text (`article`) and ToC (`nav`) like the picture below
 
 ![toc](/images/toc.png)
 
 
-In `singl.html` file of my Hugo website, I wrap my old content in a new `div` and add a new `nav` section for ToC as below
+In the `singl.html` file of my Hugo website, I wrap my old content in a new `div` and add a new `nav` section for ToC as below
 
 ```html
 <div class="article-nav" id="article-nav-id">
@@ -44,7 +44,7 @@ In `singl.html` file of my Hugo website, I wrap my old content in a new `div` an
 
 ## CSS
 
-I only explain the important CSS parts. To hide the ToC on small screens, I add a media quary
+I only explain the important CSS parts. To hide the ToC on small screens, I add a media query
 
 ```css
   @media screen and (max-width: 1024px) {
@@ -125,7 +125,7 @@ nav > ul, ol {
 
 ## JavaScript
 
-Add the below codes somewhere in `single.html` before \{{\ end \}\}  line. It finds the current section on the screen, and assign class `active` to its corresponding `nav` item and clears it when the section goes out of view.
+Add the below codes somewhere in `single.html` before \{{\ end \}\}  line. It finds the current section on the screen, and assign class `active` to its corresponding `nav` item, and clears it when the section goes out of view.
 
 ```js
 <script>
