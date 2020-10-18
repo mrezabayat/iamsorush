@@ -10,6 +10,16 @@ tags: ["C Sharp","Back-end Web"]
 
 In this post, step by step I create a web app using Entity Framework core and razor pages. The app is a library that admin can CRUD books info on a database and authenticated users can browse the records.
 
+## Result
+
+{{< rawhtml >}}
+<video width=100% controls>
+  <source src="/videos/ef_core_razor_crud.webm" type="video/webm">
+Your browser does not support the video tag.
+</video>
+{{< /rawhtml >}}
+
+
 ## Create Project
 
 Open visual studio (mine is 2019 v16.7),  click on *Create a new project*  and follow the below pictures
