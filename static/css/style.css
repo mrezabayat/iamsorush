@@ -39,8 +39,6 @@ body {
 }
 
 
-
-
 footer {
   flex-shrink: 0;
   color: white;
@@ -159,192 +157,195 @@ article {
       width: 750px;
     }
   }
-  @media (min-width: 1024px) {
-    .container {
-      width: 970px;
-    }
+@media (min-width: 1024px) {
+  .container {
+    width: 970px;
   }
-  @media (min-width: 1280px) {
-    .container {
-      width: 1170px;
-    }
+}
+@media (min-width: 1280px) {
+  .container {
+    width: 1170px;
   }
+}
 
-  .overlay-top {
-    padding-top: 0.5em;
-    margin-top: -7em;
-    background-color: white;
-    box-shadow: 0px 0px 5px white;
-  }
+.overlay-top {
+  padding-top: 0.5em;
+  margin-top: -7em;
+  background-color: white;
+  box-shadow: 0px 0px 5px white;
+}
 
-  .banner{
-    width: 100%;
-    min-height: 180px;
-    background-image: url("/images/banner.webp");
-    padding: 1em 0em 2em 0;
-  }
+.banner{
+  width: 100%;
+  min-height: 180px;
+  background-image: url("/images/banner.webp");
+  padding: 1em 0em 2em 0;
+}
 
-  .display-flex{
-    display: flex;
-  }
-  .align-start {
-    align-items: flex-start;
-  }
-  .align-center {
-    align-items: center;
-  }
-  .align-end {
-    align-items: flex-end;
-  }
-  .justify-start {
-    justify-content: flex-start;
-  }
-  .justify-center {
-    justify-content: center;
-  }
-  .justify-end {
+.display-flex{
+  display: flex;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: flex-end;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.flex-grow0{
+  flex-grow: 0;
+}
+.flex-grow1{
+  flex-grow: 1;
+}
+
+@media (min-width: 768px) {
+  .justify-md-end {
     justify-content: flex-end;
   }
-  .flex-grow0{
-    flex-grow: 0;
-  }
-  .flex-grow1{
-    flex-grow: 1;
-  }
-
-  @media (min-width: 768px) {
-    .justify-md-end {
-      justify-content: flex-end;
-    }
-  }
-
-  .flex-column{
-    flex-direction: column;
-  }
-  .pure-g{
-    height: 100%;
-  }
-
-  .mr-1{
-    margin-right: 0.5em;
-  }
-
-  .text-white{
-    color: white;
-  }
-  .text-center{
-    text-align: center;
-  }
-  .mypic{
-    width: 128px;
-    margin-top: -20px;
-    margin-bottom: 1em;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 50%;
-  }
-
-  .thumbnail-post{
-    width:100%;
-  }
-
-  .card{
-    border: 1px solid gray;
-    border-radius: 5px;
-    margin: 1em;
-  }
-  .card img:hover{
-      filter:  saturate(180%);
-      transition: filter 0.3s;
-  }
-  
-  .card-content{
-    padding:0em 1em 1em 1em;
-    line-height: 1;
-  }
-  .card-image-container{
-    overflow: hidden;
-    border-radius: 5px 5px 0 0;
-    
-  }
-  .card-image-container a{
-    border-bottom: none;
-  }
-  .card-title{
-    color:black;
-    text-decoration: none;
-    border-bottom: none;
-  }
-
-  .summary{
-    color: rgb(102, 102, 102);
-    line-height: 1.2;
-  }
-
-  time {
-    color: purple;
-  }
-
-  .shadow{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .text-shadow-1{
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);;
-  }
-  .m-0{
-    margin: 0px;
-  }
-  .my-1{
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-  .my-2{
-    margin-top: 1em;
-    margin-bottom: 1em;
-  }
-  .mb-1{
-    margin-bottom: 0.5em;
-  }
-  .mr-1{
-    margin-right: 0.5em;
-  }
-  .ml-1{
-    margin-left: 0.5em;
-  }
-  .icon{
-    width:32px;
-  }
-  pre {
-    border-radius: 5px;
-    font-size:0.9rem;
-    overflow-x: auto;
-    padding-left: 0.5em;
-    padding-top: 0.5em;
-    padding-bottom: 0.3em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  code{
-    font-family:monospace, "Lucida Console", Monaco;
-  }
-  :not(pre) > code{
-    color: purple;
-    background-color: rgb(223, 220, 136);
-    padding:2px;
-    padding-left: 4px;
-    padding-right: 4px;
-    border-radius: 4px;
-  }
-  .nedia{
-    visibility: hidden;
-    height: 0;
-  }
-
-  table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
 }
+
+.flex-column{
+  flex-direction: column;
+}
+.pure-g{
+  height: 100%;
+}
+
+.mr-1{
+  margin-right: 0.5em;
+}
+
+.text-white{
+  color: white;
+}
+.text-center{
+  text-align: center;
+}
+.mypic{
+  width: 128px;
+  margin-top: -20px;
+  margin-bottom: 1em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+}
+
+.thumbnail-post{
+  width:100%;
+}
+
+.card{
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 1em;
+}
+.card img:hover{
+    filter:  saturate(180%);
+    transition: filter 0.3s;
+}
+
+.card-content{
+  padding:0em 1em 1em 1em;
+  line-height: 1;
+}
+.card-image-container{
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+  
+}
+.card-image-container a{
+  border-bottom: none;
+}
+.card-title{
+  color:black;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.summary{
+  color: rgb(102, 102, 102);
+  line-height: 1.2;
+}
+
+time {
+  color: purple;
+}
+
+.shadow{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.text-shadow-1{
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);;
+}
+.m-0{
+  margin: 0px;
+}
+.my-1{
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.my-2{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.mb-1{
+  margin-bottom: 0.5em;
+}
+.mr-1{
+  margin-right: 0.5em;
+}
+.ml-1{
+  margin-left: 0.5em;
+}
+.icon{
+  width:32px;
+}
+pre {
+  border-radius: 5px;
+  font-size:0.9rem;
+  overflow-x: auto;
+  padding-left: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.3em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+code{
+  font-family:monospace, "Lucida Console", Monaco;
+  
+}
+:not(pre) > code{
+  color: purple;
+  font-size: 0.9rem;
+  background-color: rgb(223, 220, 136);
+  padding:2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 4px;
+}
+.nedia{
+  visibility: hidden;
+  height: 0;
+}
+
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+
 th, td {
   padding: 5px;
   text-align: left;
@@ -355,7 +356,6 @@ th, td {
       display: none !important;
   }
 }
-
 
 @media only screen and (min-width: 1025px) {
   .article-nav {
@@ -410,7 +410,6 @@ nav > li {
   margin-left: 1rem;
 }
 
-
 /* width */
 ::-webkit-scrollbar {
   width: 15px;
@@ -429,7 +428,6 @@ nav > li {
   border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: purple; 
 }
