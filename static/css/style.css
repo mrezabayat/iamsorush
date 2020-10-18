@@ -269,6 +269,7 @@ article {
   .card-title{
     color:black;
     text-decoration: none;
+    border-bottom: none;
   }
 
   .summary{
