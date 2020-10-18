@@ -23,7 +23,7 @@ Your browser does not support the video tag.
 
 ## HTML 
 
-The HTML code of a post has different elements like top headers, title, pictures, and so on. But we focus only on the content area to divide it into text (`article`) and ToC (`nav`) like the picture below
+The HTML code of a post has different elements like top headers, titles, pictures, and so on. But we focus only on the content area to divide it into text (`article`) and ToC (`nav`) like the picture below
 
 ![toc](/images/toc.png)
 

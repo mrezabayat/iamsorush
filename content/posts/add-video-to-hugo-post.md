@@ -36,7 +36,7 @@ create a file, `rawhtml.html` with the content
 {{.Inner}}
 ```
 
-Now, in any post we can insert desired HTML code using the below code:
+Now, in any post we can insert the desired HTML code using the below code:
 
 \{\{< rawhtml >\}\}    
     \<!-\- html codes here-\->  

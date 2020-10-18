@@ -42,7 +42,7 @@ the instance got ready with Ubuntu 20.04. It came up immediately taking only ~22
 It is suitable for a website with a light application and low
 traffic. I deployed a template of Blazor server app and it ran smoothly with memory being ~ 260MB.
 This instance is introduced as a free machine but not completely.
-You will be charged if there is CPU burst (hitting 100%) or the egress (download or outbound) traffic from
+You will be charged if there is a CPU burst (hitting 100%) or the egress (download or outbound) traffic from
 the website is more than
 1 GB per month, [see GCP website for more details](https://cloud.google.com/compute/docs/machine-types). Google estimates $4.28/month for this instance, [see GCP options here](https://cloud.google.com/compute/vm-instance-pricing).
 
