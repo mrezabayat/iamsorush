@@ -14,19 +14,20 @@ I want to write code to get a table of content (ToC) for each blog post automati
 
 At the time of writing this post, this post has a ToC on the right-hand side. But it is not visible on small screens like smartphones. So I added a video for whom it is not visible. 
 
-{{< rawhtml >}}
+{{<rawhtml>}}
 <video width=100% controls>
   <source src="/videos/table_of_contents.webm" type="video/webm">
 Your browser does not support the video tag.
 </video>
-{{< /rawhtml >}}
+{{</rawhtml>}}
 
 ## HTML 
 
 The HTML code of a post has different elements like top headers, titles, pictures, and so on. But we focus only on the content area to divide it into text (`article`) and ToC (`nav`) like the picture below
 
-![toc](/images/toc.png)
-
+{{<rawhtml>}}
+  <img src="/images/toc.png" class="article-image"  />
+{{</rawhtml>}}
 
 In the `singl.html` file of my Hugo website, I wrap my old content in a new `div` and add a new `nav` section for ToC as below
 

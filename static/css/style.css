@@ -1345,3 +1345,8 @@ nav>li {
 ::-webkit-scrollbar-thumb:hover {
     background: purple;
 }
+
+.article-image {
+    max-width:100%; 
+    height:auto;
+}
