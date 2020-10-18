@@ -125,7 +125,7 @@ nav > ul, ol {
 
 ## JavaScript
 
-Add the below codes somewhere in `single.html` before \{{\ end \}\}  line. It finds the current section on the screen, and assign class `active` to its corresponding `nav` item, and clears it when the section goes out of view.
+Add the below codes somewhere in `single.html` before the last `{{\end}}`  line. It finds the current section on the screen, and assign class `active` to its corresponding `nav` item, and clears it when the section goes out of view.
 
 ```js
 <script>
