@@ -258,6 +258,7 @@ article {
       filter:  saturate(180%);
       transition: filter 0.3s;
   }
+  
   .card-content{
     padding:0em 1em 1em 1em;
     line-height: 1;
@@ -265,6 +266,10 @@ article {
   .card-image-container{
     overflow: hidden;
     border-radius: 5px 5px 0 0;
+    
+  }
+  .card-image-container a{
+    border-bottom: none;
   }
   .card-title{
     color:black;
