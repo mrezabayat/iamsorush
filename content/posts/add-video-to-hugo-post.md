@@ -53,7 +53,7 @@ To embed a video, we use the `video` tag as
 
 `<video width=100% controls autoplay>`  
 `    <source src="/videos/table_of_contents.webm" type="video/webm">`   
-Your browser does not support the video tag.  
+`    Your browser does not support the video tag.  `
 `</video>`  
 
 \{\{< /rawhtml >\}\}
