@@ -56,10 +56,12 @@ footer p {
 footer a, header a{
   color: white;
   text-decoration: none;
+  border-bottom: none;
 }
 a{
-  color: purple;
-  text-decoration: underline;
+  color: black;
+  text-decoration: none;
+  border-bottom: 3px solid purple;
 }
 a:hover{
   cursor: pointer;
@@ -379,6 +381,7 @@ nav {
 
 .section-nav a {
   text-decoration: none;
+  border-bottom: none;
   display: block;
   padding: .125rem 0;
   color: #ccc;
