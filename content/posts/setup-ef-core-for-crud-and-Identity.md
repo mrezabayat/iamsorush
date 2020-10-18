@@ -3,7 +3,7 @@ title: "Tutorial: Setup of Entity Framework (EF) core for CRUD and authenticatio
 date: 2020-10-10T21:27:00+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
-tags: ["C#","Back-end Web"]
+tags: ["C Sharp","Back-end Web"]
 ---
 
 ## Goal 
