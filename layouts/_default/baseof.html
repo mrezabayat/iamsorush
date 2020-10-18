@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+<html lang="{{ .Site.LanguageCode | default " en-us " }}">
+
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179561110-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-179561110-1');
-  </script>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
-	{{ if .Data.Singular }} {{/* if this is a taxemony page, search engine does not index it*/}}
-    <meta name="robots" content="noindex">
-	{{ end }}
-	<link rel="icon" href="/images/me.gif" type="image/gif" >
-	<title>{{ .Title }}</title>
-	{{ with .Params.description }}<meta name="description" content="{{ . }}">{{ end }}
-	{{ with .Site.Author }}<meta name="author" content="{{ . }}">{{ end }}
-	<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-	{{ with .OutputFormats.Get "RSS" -}}
-		{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
-	{{- end }}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179561110-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-179561110-1');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> {{ if .Data.Singular }} {{/* if this is a taxemony page, search engine does not index it*/}}
+    <meta name="robots" content="noindex"> {{ end }}
+    <link rel="icon" href="/images/me.gif" type="image/gif">
+    <title>{{ .Title }}</title>
+    {{ with .Params.description }}
+    <meta name="description" content="{{ . }}">{{ end }} {{ with .Site.Author }}
+    <meta name="author" content="{{ . }}">{{ end }}
+    <link rel="stylesheet" href="{{ " css/style.min.css " | relURL }}"> {{ with .OutputFormats.Get "RSS" -}} {{ printf `
+    <link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }} {{- end }}
 
 </head>
+
 <body>
-	{{ block "main" . }}{{ end }}
-	{{ partial "footer" . }}
-    {{ if .Params.katex}}{{ partial "katex.html" . }}{{ end }}
-		{{ if .Params.jqmath}}{{ partial "jqmath.html" . }}{{ end }}
+    {{ block "main" . }}{{ end }} {{ partial "footer" . }} {{ if .Params.katex}}{{ partial "katex.html" . }}{{ end }} {{ if .Params.jqmath}}{{ partial "jqmath.html" . }}{{ end }}
 </body>
+
 </html>
