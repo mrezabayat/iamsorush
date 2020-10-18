@@ -190,32 +190,32 @@ I found two of them in `_LoginPartials.cshtml`:
 `SeedData` is created to initialize the database with some test records:
 
 ```c#
-        private void SeedData(ModelBuilder modelBuilder)
+private void SeedData(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<Publisher>().HasData(
+        new Publisher() { Name = "Little, Brown and Company", Id = -1 },
+        new Publisher() { Name = "Scholastic", Id = -2 }
+        );
+    modelBuilder.Entity<Book>().HasData(
+        new Book() { Id = -1, Title = "Harry Potter And The Cursed Child", PublisherId = -1 },
+        new Book() { Id = -2, Title = "The Hunger Games", PublisherId = -2 }
+        );
+
+
+    modelBuilder.Entity<AppUser>().HasData(
+
+        new AppUser()
         {
-            modelBuilder.Entity<Publisher>().HasData(
-                new Publisher() { Name = "Little, Brown and Company", Id = -1 },
-                new Publisher() { Name = "Scholastic", Id = -2 }
-                );
-            modelBuilder.Entity<Book>().HasData(
-                new Book() { Id = -1, Title = "Harry Potter And The Cursed Child", PublisherId = -1 },
-                new Book() { Id = -2, Title = "The Hunger Games", PublisherId = -2 }
-                );
-
-
-            modelBuilder.Entity<AppUser>().HasData(
-
-                new AppUser()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    UserName = "a@test.com",
-                    NormalizedUserName = "a@test.com".ToUpper(),
-                    Email = "a@test.com",
-                    NormalizedEmail = "a@test.com".ToUpper(),
-                    EmailConfirmed = true,
-                    SecurityStamp = string.Empty,
-                    PasswordHash = HashPassword(null, "pass")
-                });
-        }
+            Id = Guid.NewGuid().ToString(),
+            UserName = "a@test.com",
+            NormalizedUserName = "a@test.com".ToUpper(),
+            Email = "a@test.com",
+            NormalizedEmail = "a@test.com".ToUpper(),
+            EmailConfirmed = true,
+            SecurityStamp = string.Empty,
+            PasswordHash = HashPassword(null, "pass")
+        });
+}
         
 ```
 and I added the admin here as well
@@ -262,10 +262,10 @@ private void AddAdmin(ModelBuilder modelBuilder)
 
 ```c#
 string HashPassword(AppUser user, string password)
-        {
-            var hasher = new PasswordHasher<AppUser>();
-            return hasher.HashPassword(user, password);
-        }
+{
+    var hasher = new PasswordHasher<AppUser>();
+    return hasher.HashPassword(user, password);
+}
 ```
 
 ## Seed data in Startup
@@ -274,27 +274,27 @@ we visit `Startup.cs` again and add the below function apply seed data on startu
 
 ```c#
 private static void UpdateDatabase(IApplicationBuilder app)
+{
+    using (var serviceScope = app.ApplicationServices
+        .GetRequiredService<IServiceScopeFactory>()
+        .CreateScope())
+    {
+        using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
         {
-            using (var serviceScope = app.ApplicationServices
-                .GetRequiredService<IServiceScopeFactory>()
-                .CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
-                {
-                    context.Database.Migrate();
-                }
-            }
+            context.Database.Migrate();
         }
+    }
+}
 ```
 
 and call it as below
 
 ```c#
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            UpdateDatabase(app); // should be first line
-	    // rest of code
-	}
+{
+    UpdateDatabase(app); // should be first line
+    // rest of code
+}
 ```
 
 ## Create authorized folders
@@ -310,29 +310,29 @@ Let's define these rules in `Startup.cs`, the final `ConfigureServices` shown be
 
 ```c#
 public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(
+            Configuration.GetConnectionString("DefaultConnection")));
+    services.AddDefaultIdentity<Models.AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+        .AddRoles<IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>();
+    
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy("Admins", policy =>
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<Models.AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("Admins", policy =>
-                {
-                    policy.RequireRole("Admin");
-                });
-            });
+            policy.RequireRole("Admin");
+        });
+    });
 
-            services.AddRazorPages(options =>
-            {
-                options.Conventions.AuthorizeFolder("/Users");
-                options.Conventions.AuthorizeFolder("/Admin", "Admins");
+    services.AddRazorPages(options =>
+    {
+        options.Conventions.AuthorizeFolder("/Users");
+        options.Conventions.AuthorizeFolder("/Admin", "Admins");
 
-            });
-        }
+    });
+}
 ```
 ## Add and apply migrations
 
