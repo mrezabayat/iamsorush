@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Basic setup of Entity Framework (EF) core for CRUD and authentication with Razor pages"
+title: "Tutorial: Setup of Entity Framework (EF) core for CRUD and authentication with Razor pages"
 date: 2020-10-10T21:27:00+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
