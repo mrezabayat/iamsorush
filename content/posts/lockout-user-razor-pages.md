@@ -41,7 +41,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Step 2: *SignInManager*
 
-By default Identity pages are not accessible to be edited. See [my post](https://iamsorush.com/posts/add-identity-pages-net-core/) to add Identity Login page.
+By default, *Identity* pages are not accessible to be edited, see [my post](https://iamsorush.com/posts/add-identity-pages-net-core/) to add the *Identity Login* page.
 Then find file */Areas/Identity/Account/Login* page. In the code behind, *Login.cshtml.cs*, find and edit below line
 
 ```c#
@@ -55,7 +55,7 @@ var result = await _signInManager
                 lockoutOnFailure: true);
 ```
 
-Please note, this works well for users who register through the app, but might not work for user accounts which are created through seeding the database.
+Please note that this works well for users who register through the app, but might not work for user accounts which are created through seeding the database.
 
 ## References
 
