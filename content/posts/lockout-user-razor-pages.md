@@ -3,7 +3,7 @@ title: "Lockout user after multiple failed authentication via .Net core Identity
 date: 2020-10-19T19:10:20+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
-tags: ["Back-End Web", "C#",".Net Core"]
+tags: ["Back-End Web", "C Sharp",".Net Core"]
 ---
 
 ## Goal
