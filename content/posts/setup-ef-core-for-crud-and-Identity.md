@@ -12,7 +12,7 @@ In this post, step by step I create a web app using Entity Framework core and ra
 
 ## Result
 
-{{< rawhtml >}}
+{{<rawhtml>}}
 <video width=100% controls>
   <source src="/videos/ef_core_razor_crud.webm" type="video/webm">
 Your browser does not support the video tag.
@@ -163,7 +163,8 @@ I found two of them in `_LoginPartials.cshtml`:
 `ApplicationDbContext.cs` is changed to have the name of tables
 
 ```c#
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext 
+                : IdentityDbContext<AppUser> //Note AppUser
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -361,7 +362,7 @@ add-migration initial
 <img src="/images/EfCoreRazorCrud/sqlserver.webp" class="article-image"  />
 {{</rawhtml>}}
  
-Note, `update-database` command creates the database and tables, but is not necessary in our app because `UpdateDatabase` method, which is defined in *Startup.cs* previously, does the same automatically at startup. Therefore, if this project is deployed to a remote server the database and tables are created automatically with seed data.
+Note that the `update-database` command creates the database and tables, but is not necessary in our app because `UpdateDatabase` method, which is defined in *Startup.cs* in [Seed data in startup above](#seed-data-in-startup), does the same automatically at startup. Therefore, if this project is deployed to a remote server the database and tables are created automatically with seed data.
  
  When testing, another migration useful command is `drop-database` which deletes the database.
 
