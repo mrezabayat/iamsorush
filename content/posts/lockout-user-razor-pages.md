@@ -56,3 +56,8 @@ var result = await _signInManager
 ```
 
 Please note, this works well for users who register through the app, but might not work for user accounts which are created through seeding the database.
+
+## References
+
+[Microsoft](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio#configure-identity-services)
+
