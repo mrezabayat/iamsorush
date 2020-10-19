@@ -19,7 +19,7 @@ Your browser does not support the video tag.
 </video>
 {{< /rawhtml >}}
 
-## Step 1: Configure *Startup.cs*
+## Step 1: *Startup.cs*
 
 Edit *Startup.cs* file as below
 
@@ -39,7 +39,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-## Step 2: Change calls to SignInManager
+## Step 2: *SignInManager*
 
 By default Identity pages are not accessible to be edited. See [my post](https://iamsorush.com/posts/add-identity-pages-net-core/) to add Identity Login page.
 Then find file */Areas/Identity/Account/Login* page. In the code behind, *Login.cshtml.cs*, find and edit below line
