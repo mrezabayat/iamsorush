@@ -921,11 +921,13 @@ header a {
 a {
     color: black;
     text-decoration: none;
-    border-bottom: 3px solid purple;
+    border-bottom: 2px solid purple;
+    transition: border-width 0.4s linear;
 }
 
 a:hover {
     cursor: pointer;
+    border-bottom-width: 5px; 
 }
 
 .scale-sm:hover {
