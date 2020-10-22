@@ -8,7 +8,7 @@ tags: [".Net Core", "C Sharp", "Database"]
 
 ## Goal
 
-I want to connect to an MS Access database with C# in .Net core 3.1. Therefore, I will be able create, read, update, delete (CRUD) records.
+I want to connect to an MS Access database with C# in .Net core 3.1. Therefore, I will be able to create, read, update, and delete (CRUD) records.
 
 ## Install Odbc connection
 
@@ -29,8 +29,8 @@ Change my database address to yours. Leave the rest as it is.
 
 ## Write a query
 
-The easiest way to write a query is to use MS Access *Query Design* tool. Copy the query and
-paste it into a C# variable like:
+The easiest way to write a query is to use the MS Access *Query Design* tool. Copy the query and
+edit the variables in C# like:
 
 ```c#
 public string GetBookDeleteQuery(int id)
@@ -63,7 +63,7 @@ public void RunQuery(string query)
 The sample below can be used when multiple rows of a table are pulled from the MS Access database.
 
 ```c#
-public List<PersonHour> GetPeopleHoursWithoutContract(string query)
+public List<PersonHour> GetPeople(string query)
 {
   var people = new List<Person>();
   OdbcCommand command = new OdbcCommand(query);
@@ -84,7 +84,7 @@ public List<PersonHour> GetPeopleHoursWithoutContract(string query)
           }
       };
   }
-  return peopleHours;
+  return people;
 }
 ```
 ## Safe get 
