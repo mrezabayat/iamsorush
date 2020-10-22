@@ -20,7 +20,7 @@ Search for and install *System.Data.Odbc* package by Microsoft. My version is 4.
 
 ## Connection string 
 
-define connection string as below
+Define the connection string as
 
 ```c#
 ConnectionString = "Driver={Microsoft Access Driver (*.mdb, *.accdb)}; Dbq=C:\\Users\\sorush\\Documents\\nameOfDatabase.accdb; Uid = Admin; Pwd =; ",
