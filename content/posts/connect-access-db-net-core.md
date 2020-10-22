@@ -8,7 +8,7 @@ tags: [".Net Core", "C Sharp", "Database"]
 
 ## Goal
 
-I want to connect to an MS Access database with C# in .Net core 3.1. Therefore, I will be able to create, read, update, and delete (CRUD) records.
+I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records.
 
 ## Install Odbc connection
 
