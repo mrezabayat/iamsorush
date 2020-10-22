@@ -1,8 +1,9 @@
 ---
-title: "How to add a video to a Hugo post"
+title: "How to use Visual Studio Bookmark"
 date: 2020-10-16T18:30:30+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
+draft: true
 tags: ["Front-End Web", "Hugo"]
 ---
 
