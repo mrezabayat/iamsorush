@@ -2,7 +2,6 @@
 title: "C++ template crash course"
 date: 2020-10-31T19:34:31+01:00
 image: /images/bird.webp
-draft: true
 thumbnail: /images/bird_tn.webp
 tags: ["C++", "Template"]
 categories: C++
@@ -10,7 +9,7 @@ categories: C++
 
 ## Template
 
-It is a capability of C++ to create functions or classes having similar behaviors for different types.
+Using templates in C++, you can create functions or classes having similar behaviors for different types.
 
 ## Class Template
 
