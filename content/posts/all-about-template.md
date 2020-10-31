@@ -50,7 +50,7 @@ A function can be dependent to a generic type
 
 ```cpp
 template<class T>
-T& Min(T a, T b){
+T Min(T a, T b){
   return a>=b?b:a;
 }
 
@@ -120,5 +120,33 @@ int main()
 {
   MyCast(2.3); // Error: So what is T?
   MyCast<int>(2.3); // 2  OK, T is int.
+}
+```
+
+## Template specialization
+
+Sometimes the details of a template class/function need to be special for a type. For example, we define a special calculation for type `string` of `Min` function: 
+
+```cpp
+template<class T>
+T Min(T a, T b){
+  return a>=b?b:a;
+}
+
+template<>
+string Min(string a, string b){
+    auto m = a.length();
+    auto n = b.length();
+    return    m>=n?b:a;
+}
+
+int main()
+{
+  int a=2;
+  int b=4;
+  string x = "Hello";
+  string y = "Hi";
+  std::cout<< Min(a,b) << std::endl;// 2
+  std::cout<< Min(x,y) << std::endl; // H has lower ASCII value 
 }
 ```
