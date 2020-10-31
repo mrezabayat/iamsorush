@@ -5,9 +5,9 @@ image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["C++"]
 ---
-## Ineritance 
+## Inheritance 
 
-Inheritance is the machanism that the attributes and methods of a base class are passed to a derived class. 
+Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. 
 
 ```cpp
 class Base{
@@ -26,7 +26,7 @@ In the above example, `Derived` inherits `i` and `doSomething` from base class;
 
 ## Public, protected and private inheritance
 
-These specifiers modify accessibility of inherited members as below
+These specifiers modify the accessibility of inherited members as below
 
 
 <table style="width:100%">
@@ -106,7 +106,7 @@ class C: private Base{
 };
 ```
 
-- Access specifiers can be relaxer or restricter when a method overridden in the derived class:
+- Access specifiers can be relaxer or more restricted when a method overridden in the derived class:
 
 ```c++
 class Base{
@@ -140,7 +140,7 @@ struct derived: Base{};
 
 
 ## Virtual Method
- Use `virtual` keyword to let compiler know the method can be overridden in a future derived class. To complete overriding, use keyword `override` in derived class method:
+ Use `virtual` keyword to let the compiler know the method can be overridden in a future derived class. To complete overriding, use the keyword `override` in the derived class method:
  
  ```cpp 
  struct Base
@@ -189,13 +189,13 @@ class Square: public Shape{
 }
 ```
 
-Interface cannot be used to create objects
+The interface cannot be used to create objects
 
 ```cpp
 Shape s;  //Error
 ```
 
-However, it can be used to create generic piece of code that works with all different derived classes:
+However, it can be used to create a generic piece of code that works with all different derived classes:
 
 ```cpp
 void displayArea(Shape& shape){
@@ -213,7 +213,7 @@ Interfaces can help to create loosely-coupled systems [see an example with C#](h
 
 ## Final class or method
 
-A final class cannot be derived and a final method cannot be overriden. Use `final` keyword for this purpose:
+A final class cannot be derived and a final method cannot be overridden. Use `final` keyword for this purpose:
 
 ```cpp
 struct Base
@@ -248,7 +248,7 @@ Derived d(0);
 // Base called.  Derived called.
 ```
 
-- To enforce call to parameterised constructor of base class, it should be explicitly mentioned in
+- To enforce call to parameterised constructor of the base class, it should be explicitly mentioned in
 derived class constructor:
 
 ```c++
@@ -265,7 +265,7 @@ Derived d(0);
 // Parameterised Base called.  Derived called.
 ```
 
-- A virtual method, called in constructor of base class, will not be overridden when base constructor call is as a consequence of derived class construction.
+- A virtual method, called in the constructor of the base class, will not be overridden when base constructor call is as a consequence of derived class construction.
 
 ```c++
 class Base{
