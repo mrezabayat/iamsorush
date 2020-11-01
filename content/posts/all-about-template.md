@@ -192,12 +192,20 @@ int main()
 
 The easiest solution is to put both declaration and definition in the same file, *sample.h*. But it increases the size of the executable file and surpasses capabilities that separation of declaration and definition brings like solving circular dependencies. 
 
-The second solution is to inform the compiler, we need that special class in *sample.cpp* 
+The second solution is to inform the compiler that we need that special class
 
 ```cpp
 // file sample.cpp
 
-// omited code here
+#include "sample.h"
+
+template<class T>
+T Sample<T>::Compute(){
+
+	return T();
+}
+
+// This line is the key!
 template class Sample<int>;
 
 ```
