@@ -212,6 +212,32 @@ template class Sample<int>;
 
 Now compiling *sample.cpp* we get a sample.obj containing `Sample<int>` class.
 
+## Type Constraint
+
+We can limit the types a template can take using `static_assert`, `std::is_same`, and `std::is_base_of` :
+
+```cpp
+#include <type_traits>
+
+template<classT>
+class Foo
+{
+	Foo() {
+		static_assert(std::is_same<T, int>::value, "T must be int");
+	}
+};
+
+int main()
+{
+	
+	Foo<int> a; // works fine
+  Foo<bool> b; // Error: T must be int
+
+	return 0;
+}
+
+
+```
 
 ## References
 
