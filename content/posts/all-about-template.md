@@ -192,7 +192,7 @@ int main()
 
 The easiest solution is to put both declaration and definition in the same file, *sample.h*. But it increases the size of the executable file and surpasses capabilities that separation of declaration and definition brings like solving circular dependencies. 
 
-The second solutions is to inform the compiler, we need that special class in *sample.cpp* 
+The second solution is to inform the compiler, we need that special class in *sample.cpp* 
 
 ```cpp
 // file sample.cpp
