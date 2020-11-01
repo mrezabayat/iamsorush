@@ -212,3 +212,8 @@ template class Sample<int>;
 
 Now compiling *sample.cpp* we get a sample.obj containing `Sample<int>` class.
 
+
+## References
+
+[isocpp.org](https://isocpp.org/wiki/faq/templates#fn-templates)
+
