@@ -210,7 +210,7 @@ template class Sample<int>;
 
 ```
 
-Now compiling *sample.cpp* we get a sample.obj containing `Sample<int>` class.
+Now compiling *sample.cpp* we get a *sample.obj* (*sample.o* on linux) containing `Sample<int>` class.
 
 ## Type Constraints
 

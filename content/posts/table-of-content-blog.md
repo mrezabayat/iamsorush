@@ -1,5 +1,5 @@
 ---
-title: "Create a table of content from headings of a post"
+title: "Create a table of content from headings of a Hugo post"
 date: 2020-10-17T19:20:06+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
