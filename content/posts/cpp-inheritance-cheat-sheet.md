@@ -4,6 +4,7 @@ date: 2020-10-03T19:37:36+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["C++"]
+categories: "cpp"
 ---
 ## Inheritance 
 

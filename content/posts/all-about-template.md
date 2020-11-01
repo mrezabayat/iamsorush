@@ -4,7 +4,7 @@ date: 2020-10-30T19:34:31+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["C++", "Template"]
-categories: "C++"
+categories: "cpp"
 ---
 
 ## Template

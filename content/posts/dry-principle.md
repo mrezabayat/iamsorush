@@ -5,6 +5,7 @@ draft: false
 image: /images/flower.webp
 thumbnail: /images/flower_tn.webp
 tags: ['Design Pattern']
+categories: "design pattern"
 ---
 
 ## Introduction

@@ -5,6 +5,7 @@ draft: false
 image: /images/ball.webp
 thumbnail: /images/ball_tn.webp
 tags: ['Design Pattern', 'Numerical Code', 'C Sharp']
+categories: "design pattern"
 ---
 
 ## Introduction  

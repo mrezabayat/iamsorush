@@ -4,6 +4,7 @@ date: 2020-10-16T18:30:30+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["Front-End Web", "Hugo"]
+categories: "hugo"
 ---
 
 ## Goal
