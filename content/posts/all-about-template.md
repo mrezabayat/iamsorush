@@ -134,7 +134,7 @@ T Min(T a, T b){
 }
 
 template<>
-string Min(string a, string b){
+string Min<string>(string a, string b){
     auto m = a.length();
     auto n = b.length();
     return    m>=n?b:a;
@@ -147,6 +147,60 @@ int main()
   string x = "Hello";
   string y = "Hi";
   std::cout<< Min(a,b) << std::endl;// 2
-  std::cout<< Min(x,y) << std::endl; // H has lower ASCII value 
+  std::cout<< Min(x,y) << std::endl; // Hi
 }
 ```
+
+# Definition & declaration files
+
+It's a good practice to separate a class definition (implementation) file from its declaration file. However, the problem with a template class is that compiler creates  a specific class for a type only when it sees a template specialization or class instantiation of a template. 
+
+```cpp
+
+//file sample.h
+template<class T>
+struct Sample
+{
+	T Compute();
+};
+
+//file sample.cpp
+#include "sample.h"
+
+template<class T>
+T Sample<T>::Compute(){
+
+	return T();
+}
+
+//file main.cpp
+#include "sample.h"
+using namespace std;
+
+int main()
+{
+	Sample<int> s;
+	
+	std::cout << s.Compute();
+	return 0;
+}
+
+```
+
+*sample.cpp* successfully compiles to sample.obj, but it doesn't have a clue that in *main.cpp* special template of `Sample<int>` used, so the compiler does not create that special class to be instantiated. Therefore, when *main.cpp* is compiled with *sample.obj* we get a linking error. 
+
+
+The easiest solution is to put both declaration and definition in the same file, *sample.h*. But it increases the size of the executable file and surpasses capabilities that separation of declaration and definition brings like solving circular dependencies. 
+
+The second solutions is to inform the compiler, we need that special class in *sample.cpp* 
+
+```cpp
+// file sample.cpp
+
+// omited code here
+template class Sample<int>;
+
+```
+
+Now compiling *sample.cpp* we get a sample.obj containing `Sample<int>` class.
+
