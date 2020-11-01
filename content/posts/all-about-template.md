@@ -151,7 +151,7 @@ int main()
 }
 ```
 
-# Definition & declaration files
+## Definition & declaration files
 
 It's a good practice to separate a class definition (implementation) file from its declaration file. However, the problem with a template class is that compiler creates  a specific class for a type only when it sees a template specialization or class instantiation of a template. 
 
