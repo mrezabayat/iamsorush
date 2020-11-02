@@ -4,7 +4,7 @@ date: 2020-10-10T21:27:00+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["C Sharp","Back-end Web"]
-categories: ".Net"
+categories: "⋅Net"
 ---
 
 ## Goal 

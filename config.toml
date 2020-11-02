@@ -2,6 +2,7 @@ baseURL = "https://iamsorush.com/"
 languageCode = "en-us"
 title = "Sorush Khajepor - Numerical programming and app development"
 theme = "blank"
+RemovePathAccents = true
 summaryLength = 25
 [Author]
   name = "Sorush Khajepor"
