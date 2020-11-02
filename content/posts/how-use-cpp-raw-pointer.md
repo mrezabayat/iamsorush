@@ -5,7 +5,7 @@ draft: false
 image: /images/pointer.webp
 thumbnail: /images/pointer_tn.webp
 tags: ['C++']
-categories: "cpp"
+categories: "C++"
 ---
 ## Introduction
 

@@ -5,7 +5,7 @@ draft: false
 image: /images/weopen.webp
 thumbnail: /images/weopen_tn.webp
 tags: ['Design Pattern']
-categories: "design pattern"
+categories: "Design"
 ---
 
 ## Introduction  

@@ -5,7 +5,7 @@ draft: false
 image: /images/cactus.webp
 thumbnail: /images/cactus_tn.webp
 tags: ['Front-End Web']
-categories: "dotnet"
+categories: ".Net"
 ---
 
 ## Introduction

@@ -6,7 +6,7 @@ image: /images/matrix.webp
 thumbnail: /images/matrix_tn.webp
 jqmath: true
 tags: ['Numerical Code', 'C Sharp']
-categories: "numerical methods"
+categories: "Numerical"
 ---
 ## Introduction
 

@@ -4,7 +4,7 @@ date: 2020-10-22T18:34:21+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: [".Net Core", "C Sharp", "Database"]
-categories: "dotnet"
+categories: ".Net"
 ---
 
 ## Goal

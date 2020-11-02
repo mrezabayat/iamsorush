@@ -4,7 +4,7 @@ date: 2020-10-02T18:50:47+01:00
 image: /images/azure.webp
 thumbnail: /images/azure_tn.webp
 tags: ["Back-End Web"]
-categories: "cloud"
+categories: "Diverse"
 ---
 
 ## Introduction

@@ -4,7 +4,7 @@ date: 2020-10-22T20:22:31+01:00
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["Visual Studio"]
-categories: "dotnet"
+categories: ".Net"
 ---
 
 ## Shortcuts

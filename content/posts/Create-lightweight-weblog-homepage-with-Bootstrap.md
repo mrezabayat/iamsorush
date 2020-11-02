@@ -5,7 +5,7 @@ draft: false
 image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ['Front-End Web']
-categories: "html css"
+categories: "Html"
 ---
 
 ## Introduction
