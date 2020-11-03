@@ -6,6 +6,7 @@ image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ['Front-End Web']
 categories: "Html"
+summary: "I want to create a lightweight homepage of a weblog with HTML, Bootstrap and a bit of custom CSS. No javascript, no database, no WordPress is used. It should be a lightweight and fast static website. "
 ---
 
 ## Introduction

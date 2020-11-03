@@ -5,10 +5,11 @@ image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["C++"]
 categories: "C++"
+summary: "Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. Here, all useful details of C++ inheritance are mentioned with examples. "
 ---
 ## Inheritance 
 
-Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. 
+Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. Here, all useful details of C++ inheritance are mentioned with examples. 
 
 ```cpp
 class Base{

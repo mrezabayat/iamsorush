@@ -9,12 +9,10 @@
 	<h3 class="m-0 mb-1 "><a class="card-title" href="{{ .Permalink }}">{{ .Title }}</a></h3>
 	<time>{{ .Date.Format "02 Jan 2006" }}</time>
 	<div>
-		<div class="summary">
+		<div class="summary mb-1">
 		{{ .Summary }}
 		</div>
-		{{ if .Truncated }}
-			<a href="{{ .Permalink }}">Read more...</a>
-		{{ end }}
+		<a href="{{ .Permalink }}">Read more...</a>
 	</div>
 </div>
 </div>

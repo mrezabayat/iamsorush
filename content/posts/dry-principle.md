@@ -6,6 +6,10 @@ image: /images/flower.webp
 thumbnail: /images/flower_tn.webp
 tags: ['Design Pattern']
 categories: "Design"
+summary: "Dry is short for “Don’t repeat yourself”.
+ There are occasions that a piece of code is rewritten several times.
+ It is better to define that as a specific method or class.
+ I explain it with examples."
 ---
 
 ## Introduction

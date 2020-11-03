@@ -6,13 +6,13 @@ image: /images/pointer.webp
 thumbnail: /images/pointer_tn.webp
 tags: ['C++']
 categories: "C++"
+summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target. Here, I  mention the most useful characteristics of pointers with examples."
 ---
 ## Introduction
 
 
-C/C++ is used widely for high performance, number crunching, and gaming projects. For example in computational fluid dynamics (CFD) codes millions of times equations are solved on millions of mesh nodes to simulate a few seconds in real life. However, An unoptimised code can run 10, 100, or 1000 times slower. There are many tips and tricks on optimising a code but simply mastering pointers is an important step in writing efficient code. Here, I try to mention some important characteristics of pointers that help you design your code better.   
 
-
+C/C++ is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. Here, I  mention the most useful characteristics of pointers with examples.   
 
 I call them here pointers but nowadays they are called raw pointers to separate them from smart pointers. I will write on smart pointers separately.    
 
@@ -20,11 +20,7 @@ I call them here pointers but nowadays they are called raw pointers to separate 
 
 ## Definition
 
-
-
 A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target.    
-
-
 
 ```cpp
 int  x = 20;   //  variable declaration

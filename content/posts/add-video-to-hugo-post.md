@@ -5,6 +5,7 @@ image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["Front-End Web", "Hugo"]
 categories: "Html"
+summary: "I want to add a video to a Hugo blog post. The video is hosted on my website, so it is not a Youtube or Vimeo."
 ---
 
 ## Goal

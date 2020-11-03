@@ -5,6 +5,7 @@ image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: [".Net Core", "C Sharp", "Database"]
 categories: "⋅Net"
+summary: "I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records."
 ---
 
 ## Goal

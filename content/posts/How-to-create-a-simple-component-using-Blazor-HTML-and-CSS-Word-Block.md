@@ -6,6 +6,7 @@ image: /images/cactus.webp
 thumbnail: /images/cactus_tn.webp
 tags: ['Front-End Web']
 categories: "⋅Net"
+summary: "Using .Net Blazor, I want to create a simple word-block which is a rectangle that contains a word with an X button at its right side. Clicking on X the word-block disappears."
 ---
 
 ## Introduction

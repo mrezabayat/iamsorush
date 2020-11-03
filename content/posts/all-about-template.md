@@ -5,11 +5,12 @@ image: /images/bird.webp
 thumbnail: /images/bird_tn.webp
 tags: ["C++", "Template"]
 categories: "C++"
+summary: "Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples."
 ---
 
 ## Template
 
-Using templates in C++, you can create functions or classes having similar behaviors for different types.
+Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples.
 
 ## Class Template
 

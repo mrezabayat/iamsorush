@@ -5,6 +5,8 @@ image: /images/azure.webp
 thumbnail: /images/azure_tn.webp
 tags: ["Back-End Web"]
 categories: "Diverse"
+summary: "I talk about Google Cloud Platform (GCP), Microsoft Azure and Heroku.
+You can register with them and try their services for free or very low prices."
 ---
 
 ## Introduction
