@@ -5,7 +5,7 @@ draft: false
 image: /images/circle.webp
 thumbnail: /images/circle_tn.webp
 tags: ['C++', 'Numerical Code']
-categories: "Numerical"
+categories: "Algorithms"
 ---
 
 ## Definition

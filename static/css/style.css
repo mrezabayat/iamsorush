@@ -1355,43 +1355,43 @@ nav>li {
 
 .wrapper-categories {
     display: grid;
-    grid-template-columns: repeat(6, auto);
     background-color: #fff;
     color: #444;
-    overflow:hidden;
     
+    overflow:hidden;
   }
+
+  @media (min-width: 0px) {
+    .wrapper-categories {
+        grid-template-columns: repeat(2, auto);
+    }
+}
+@media (min-width: 250px) {
+    .wrapper-categories {
+        grid-template-columns: repeat(3, auto);
+    }
+}
+@media (min-width: 768px) {
+    .wrapper-categories {
+        grid-template-columns: repeat(6, auto);
+    }
+}
 
   .category-link{
       
       text-decoration: none;
-      padding-left: 2px;
+      border: 2px solid transparent;
       text-align: center;
-      border-bottom: none;
-
-
     color: black;
     font-size:1.0em;
     text-transform: uppercase;
     font-weight: 700;
-    transition: transform 0.5s ease;
-    -webkit-transition: transform 0.5s ease;
   }
-  .category-link:hover:before{
-    position: absolute;
-    top: 100%;
-    content: attr(title); /* The selector for Wordpress */
-    color:purple;
-    -webkit-transform: translate3d(0,0,0);
-    -moz-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-}
 
-  .category-link:hover, .category-link:focus{
-    
-        -webkit-transform: translateY(-100%);
-        -moz-transform: translateY(-100%);
-        transform: translateY(-100%);
-        visibility: visible;;
-    
+  .category-link:hover{
+    color: purple;
+    border: 2px solid purple;
   }
+  
+
+  
