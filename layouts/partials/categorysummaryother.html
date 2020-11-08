@@ -1,0 +1,35 @@
+
+
+
+{{ $c :="catcard-span1"}}
+{{ if or (eq .index .h1) (eq .index .h2)}}
+    {{ $c ="catcard-span2"}}
+{{end}}
+{{ if or (eq .index .v1) (eq .index .v2)}}
+    {{ $c ="catcard-rowspan2"}}
+    <div class="{{$c}} shadow cat-background" 
+        style="
+        background-image: url('{{.context.Params.thumbnail}}');
+        
+        display: flex; align-items: flex-end; justify-content: center;" >
+        <div class="cat-card-content text-backdrop">
+            <p class="m-0 mb-1"><a class="cat-card-title" style="color: white;" href="{{ .context.Permalink }}">{{ .context.Title }}</a></h3>
+            <p class="font-small m0" style="color: white;">{{ .context.Date.Format "02 Jan 2006" }}</span>
+        </div>
+    </div>
+{{else}}
+<div class="{{$c}} shadow cat-background" >
+    <div class="cat-card">
+    <div class="cat-card-image-container " style="background-image: url('{{.context.Params.thumbnail}}');">
+        <a class="border-bottom-0 hide-on-sm" href="{{ .context.Permalink }}">
+            <img src="{{.context.Params.thumbnail}}" class="cat-thumbnail-post" />
+        </a>
+    </div>
+    <div class="cat-card-content">
+        <h4 class="m-0 mb-1 "><a class="cat-card-title" href="{{ .context.Permalink }}">{{ .context.Title }}</a></h3>
+        <span class="font-small">{{ .context.Date.Format "02 Jan 2006" }}</span>
+    </div>
+    </div>
+</div>
+{{end}}
+
