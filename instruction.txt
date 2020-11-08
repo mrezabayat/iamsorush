@@ -1,0 +1,9 @@
+Website Design Instruction
+
+- All images are webp format
+
+- Post Main image 
+1280x400   < 40 KB
+
+- Post thumbnail image
+350x200  < 10KB

@@ -1,8 +1,8 @@
 ---
 title: "How to add a video to a Hugo post"
 date: 2020-10-16T18:30:30+01:00
-image: /images/bird.webp
-thumbnail: /images/bird_tn.webp
+image: /images/camerastand.webp
+thumbnail: /images/camerastand_tn.webp
 tags: ["Front-End Web", "Hugo"]
 categories: "Html"
 summary: "I want to add a video to a Hugo blog post. The video is hosted on my website, so it is not a Youtube or Vimeo."

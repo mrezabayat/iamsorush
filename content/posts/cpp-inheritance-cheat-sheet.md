@@ -1,8 +1,8 @@
 ---
 title: "C++ inheritance crash course"
 date: 2020-10-03T19:37:36+01:00
-image: /images/bird.webp
-thumbnail: /images/bird_tn.webp
+image: /images/gold.webp
+thumbnail: /images/gold_tn.webp
 tags: ["C++"]
 categories: "C++"
 summary: "Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. Here, all useful details of C++ inheritance are mentioned with examples. "
