@@ -874,6 +874,7 @@ https://github.com/pure-css/pure/blob/master/LICENSE.md
 /* Custom Css*/
 
 @font-face {
+    font-display: swap;
     font-family: 'pt_sansregular';
     src: url('/fonts/ptsans-regular-webfont.woff2') format('woff2'), url('/fonts/ptsans-regular-webfont.woff') format('woff');
     font-weight: normal;
