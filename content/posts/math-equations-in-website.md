@@ -3,6 +3,7 @@ title: "How to have math equations in your website"
 date: 2020-07-17T23:33:46+01:00
 draft: false
 image: /images/equation.webp
+image_v: /images/equation_v.webp
 thumbnail: /images/equation_tn.webp
 tags: ['Front-End Web']
 categories: "Html"

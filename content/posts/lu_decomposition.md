@@ -3,6 +3,7 @@ title: "Code LU decomposition step by step in object oriented way in C#"
 date: 2020-06-28T22:06:30+01:00
 draft: false
 image: /images/matrix.webp
+image_v: /images/matrix_v.webp
 thumbnail: /images/matrix_tn.webp
 jqmath: true
 tags: ['Numerical Code', 'C Sharp']

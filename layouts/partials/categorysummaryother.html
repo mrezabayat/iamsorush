@@ -9,8 +9,7 @@
     {{ $c ="catcard-rowspan2"}}
     <div class="{{$c}} shadow cat-background" 
         style="
-        background-image: url('{{.context.Params.thumbnail}}');
-        
+        background-image: url('{{.context.Params.image_v}}');
         display: flex; align-items: flex-end; justify-content: center;" >
         <div class="cat-card-content text-backdrop">
             <p class="m-0 mb-1"><a class="cat-card-title" style="color: white;" href="{{ .context.Permalink }}">{{ .context.Title }}</a></h3>

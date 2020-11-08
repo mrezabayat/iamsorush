@@ -3,6 +3,7 @@ title: 'How visitor design pattern is useful for numerical programming?'
 date: 2020-03-09T23:05:39Z
 draft: false
 image: /images/weopen.webp
+image_v: /images/weopen_v.webp
 thumbnail: /images/weopen_tn.webp
 tags: ['Design Pattern']
 categories: "Design"

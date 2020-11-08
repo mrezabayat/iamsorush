@@ -2,6 +2,7 @@
 title: "Tutorial: Setup of Entity Framework (EF) core for CRUD and authentication with Razor pages"
 date: 2020-10-10T21:27:00+01:00
 image: /images/library.webp
+image_v: /images/library_v.webp
 thumbnail: /images/library_tn.webp
 tags: ["C Sharp","Back-end Web"]
 categories: "⋅Net"

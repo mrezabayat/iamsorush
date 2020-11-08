@@ -1,9 +1,18 @@
 Website Design Instruction
 
+
+Images
+
 - All images are webp format
+- Batch JPG to Webp converter:
+https://nsspot.herokuapp.com/imagetowebp/
+
 
 - Post Main image 
 1280x400   < 40 KB
 
 - Post thumbnail image
 350x200  < 10KB
+
+- Post vertical image
+230x530
