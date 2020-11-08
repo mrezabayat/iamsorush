@@ -1486,6 +1486,8 @@ nav>li {
     color: black;
     text-decoration: none;
     border-bottom: none;
+    margin:0;
+    margin-bottom: 1rem;
   }
   .cat-summary{
     color: rgb(102, 102, 102);
@@ -1501,25 +1503,25 @@ nav>li {
   @media (max-width: 568px) {
     .cat-card {
         display: grid;
-        grid-template-columns: 8rem auto;
+        grid-template-columns: 6rem auto;
     }
     .cat-card-content {
-        
+        padding: 0.4rem;
       }
       .cat-card-image-container{
         max-height: 100%;
         overflow: hidden;
         border-radius: 5px 0px 0px 5px;
-        line-height: 0;
-        
         height: 100%;
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: cover;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
-    .cat-thumbnail-post{
-        max-height: 5rem;
+     .cat-thumbnail-post{
         width: auto;
+      }
+      .cat-card-title{
+        margin-bottom: 0;
       }
     
   }
