@@ -42,7 +42,7 @@ Note, when the function returns the message is not sent yet, it will happen in t
 
 ## MPI_Rsend
 
-It is a blocking function the same as MPI_Send, but, it expects the destination process has been **ready** to receive the message. 
+It is a blocking function the same as MPI_Send, but, it expects the destination process has been ready to receive the message. 
 
 ## MPI_Ibsend
 
