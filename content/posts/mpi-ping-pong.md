@@ -5,14 +5,14 @@ image: /images/pingpong.webp
 image_v: /images/pingpong_v.webp
 thumbnail: /images/pingpong_tn.webp
 tags: ["MPI", "C++"]
-categories: "Diverse"
+categories: "Algorithms"
 summary: "I want to write an MPI ping pong program where two processes send a piece of data back and forth to each other."
 ---
 
 ## Goal
 
 I want to write an MPI ping pong program where two processes send a piece of data back and forth
-to each other. This is a good example to measure the latency and bandwidth of a cluster machine. 
+to each other. This is a good example to measure the latency and bandwidth of a cluster machine. Since, currently, the MPI for C is developing stronger than C++ (see [References](#references), I am wrapping MPI-C commands in C++ classes here. 
 
 ## The ball
 
@@ -284,3 +284,5 @@ I got ideas and codes from the below website(s)
 [OpenMPI](https://www.open-mpi.org/doc/v4.0/)
 [EPCC MPI Exercise](https://www.archer.ac.uk/training/course-material/2017/08/mpi-exeter/exercises/MPP-exercises.pdf)
 [OLCF-tutorials](https://github.com/olcf-tutorials/MPI_ping_pong)
+[Boost MPI](https://www.boost.org/doc/libs/1_74_0/doc/html/mpi.html#mpi.introduction)
+[MPI Deprecated the C++ bindings](https://github.com/mpi-forum/mpi-forum-historic/issues/150)
