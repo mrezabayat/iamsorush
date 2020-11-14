@@ -1236,7 +1236,8 @@ time {
 pre {
     border-radius: 5px;
     font-size: 0.9rem;
-    overflow-x: auto;
+    overflow: auto;
+    max-height: 600px;
     padding-left: 0.5em;
     padding-top: 0.5em;
     padding-bottom: 0.3em;
@@ -1373,6 +1374,10 @@ nav>li {
 ::-webkit-scrollbar-thumb:hover {
     background: purple;
 }
+
+::-webkit-scrollbar-corner {
+    background: rgba(0,0,0,0);
+  }
 
 .article-image {
     max-width:100%; 
