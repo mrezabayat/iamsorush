@@ -1,8 +1,9 @@
 ---
 title: "MPI ping pong program using C++"
 date: 2020-11-14T10:30:30+01:00
-image: /images/camerastand.webp
-thumbnail: /images/camerastand_tn.webp
+image: /images/pingpong.webp
+image_v: /images/pingpong_v.webp
+thumbnail: /images/pingpong_tn.webp
 tags: ["MPI", "C++"]
 categories: "Diverse"
 summary: "I want to write an MPI ping pong program where two processes send a piece of data back and forth to each other."
@@ -16,7 +17,7 @@ to each other. This is a good example to measure the latency and bandwidth of a 
 ## The ball
 
 If we imagine the data transfer between two nodes is like a ping-pong game, the data is the ball.
-The ball can be an array of MPI types. Here for simplicity, is an integer:
+The ball can be an array of MPI types. Here for simplicity, is the integer:
 
 ```cpp
 struct Ball
@@ -31,11 +32,11 @@ struct Ball
 };
 ```
 
-In this example, I don't care exactly what is in `Data` array except 0-th element which counts the number of forths and backs of the ball.
+In this example, I ignore what is in `Data` array except *0-th* element which counts the number of back-and-forths of the ball.
 
 ## IPlayer
 
-As I am still in the world of ping pong, I call each process a player. We have different players, rank 0 and 1 which play the game and the other ranks which are idle. So to avoid nested if-conditions, I created `IPlayer` interface:
+As I am still thinking in the world of ping pong, I call each process a player. We have different players, rank 0 and 1 which play the game and the other ranks which are idle. So to avoid nested if-conditions, I created `IPlayer` interface:
 
 ```cpp
 struct IPlayer
@@ -150,7 +151,7 @@ struct Player: IPlayer
     };
     
     void SendBall(){
-        MPI_Isend( ball.Data , ball.Size , MPI_INT , target , 0 , MPI_COMM_WORLD ,  &req);
+        MPI_Isend( ball.Data , ball.Size , MPI_INT , target , 0 , MPI_COMM_WORLD, &req);
     }
     void RecvBall(){
         MPI_Recv( ball.Data, ball.Size , MPI_INT, target, 0 , MPI_COMM_WORLD, &stat);
@@ -182,48 +183,98 @@ int main() {
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
     // Customize here
-    int ballSize = 2;
-    int iterations = 3;
+    int ballSize = 1000000;
+    int warmupIterations = 0;
+    int mainIterations = 3;
 
     Ball ball(ballSize);
 
-    // player can be Idle or Player 
     IPlayer* player;
 
-    // setup players
+    // Only rank 0 and 1 play the game
     if (rank==0){
         // Rank 0 starts the game
         player = new Player(ball, true);
     } else if (rank==1)
     {
-        // Rank 1 is the first receiver
         player = new Player(ball, false);
     } else
     {
-        // The other ranks do nothing
         player = new Idle();
     }
     
-    // Start measuring time in MPI world
-    double start = MPI_Wtime();
-
-    // Loop of the game
-    for (size_t i = 0; i < iterations; i++)
+    // Warm up players before the game
+    for (size_t i = 0; i < warmupIterations; i++)
     {
         player->Play();
     }
-    
-    // Meaure when the game ended
+
+    double start = MPI_Wtime();
+    // Main loop to be monitored
+    for (size_t i = 0; i < mainIterations; i++)
+    {
+        player->Play();
+    }
     double end = MPI_Wtime();
 
-    if (rank==0) cout<<"elapsed time: "<< end-start <<endl;
+    auto elapsedTime = end-start;
+    // each iteration has 2 transfers: send and receive
+    auto transferTime = elapsedTime/(mainIterations * 2);
+    auto ballSizeInGigaByte = ballSize * 4.0 /* byte */ / 1000000000;
 
+    if (rank==0) 
+    {
+        cout<< "Ball size (GB): "<< ballSizeInGigaByte<<endl;
+        cout<< "Transfer time (Sec): "<< transferTime <<endl;
+        cout<< "Bandwidth (GB/s): " << ballSizeInGigaByte/transferTime <<endl;
+    }
     
     MPI_Finalize();
 }
 ```
-## More
+## Validation 
 
+The first run is only 3 iterations to see how the ball moves back and forth. In all tests, only 2 processes were utilized.
+
+``` cpp
+BallSize = 1000,000
+main iterations = 3
+warm up iterations = 0
+
+Rank :1 has the ball, No of throws: 1
+Rank :0 has the ball, No of throws: 2
+Rank :1 has the ball, No of throws: 3
+Rank :0 has the ball, No of throws: 4
+Rank :1 has the ball, No of throws: 5
+Rank :0 has the ball, No of throws: 6
+```
+
+## Bandwidth
+
+The second run is to measure the bandwidth:
+
+```cpp
+BallSize = 1000,000
+warm up iterations = 10
+iterations = 10,000
+
+Ball size (GB): 0.004
+Transfer time (Sec): 0.000523354
+Bandwidth (GB/s): 7.64301
+```
+
+I have seen some codes using blocking `MPI_Send` instead of `MPI_Isend` for ping pong program, so I changed 
+my `SendBall()` to use `MPI_Send` for one test. The results are almost the same as the previous test:
+
+```cpp
+BallSize = 1000,000
+warm up iterations = 10
+iterations = 10,000
+
+Ball size (GB): 0.004
+Transfer time (Sec): 0.000531798
+Bandwidth (GB/s): 7.52166
+```
 
 
 ## References
@@ -231,3 +282,5 @@ int main() {
 I got ideas and codes from the below website(s)
 
 [OpenMPI](https://www.open-mpi.org/doc/v4.0/)
+[EPCC MPI Exercise](https://www.archer.ac.uk/training/course-material/2017/08/mpi-exeter/exercises/MPP-exercises.pdf)
+[OLCF-tutorials](https://github.com/olcf-tutorials/MPI_ping_pong)
