@@ -12,7 +12,7 @@ summary: "I want to write an MPI ping pong program where two processes send a pi
 ## Goal
 
 I want to write an MPI ping pong program where two processes send a piece of data back and forth
-to each other. This is a good example to measure the latency and bandwidth of a cluster machine. Since, currently, the MPI for C is developing stronger than C++ (see [References](#references), I am wrapping MPI-C commands in C++ classes here. 
+to each other. This is a good example to measure the latency and bandwidth of a cluster machine. Since, currently, the MPI for C is developing stronger than C++ (see [References](#references)), I am wrapping MPI-C commands in C++ classes here. 
 
 ## The ball
 
@@ -79,11 +79,11 @@ struct Player: IPlayer
 }
 ```
 
-A player sends the ball and waits to receive it back. I used MPI_Isend to send the ball in a non-blocking way. But it will receive the ball using MPI_Recv which blocks the process until the ball is back. 
+A player sends the ball and waits to receive it back. I used `MPI_Send` to send the ball in a blocking way. It will receive the ball using `MPI_Recv` which blocks the process until the ball buffer is reusable. Both block the buffer, the ball, to make sure there is not a race condition to read and write there. For more information, read more on [the MPI race condition here](https://iamsorush.com/posts/mpi-race-condition/).  
 
 ```cpp
     void SendBall(){
-        MPI_Isend( ball.Data , ball.Size , MPI_INT , target , 0 , MPI_COMM_WORLD ,  &req);
+        MPI_Send( ball.Data , ball.Size , MPI_INT , target , 0 , MPI_COMM_WORLD);
     }
     void RecvBall(){
         MPI_Recv( ball.Data, ball.Size , MPI_INT, target, 0 , MPI_COMM_WORLD, &stat);
@@ -151,7 +151,7 @@ struct Player: IPlayer
     };
     
     void SendBall(){
-        MPI_Isend( ball.Data , ball.Size , MPI_INT , target , 0 , MPI_COMM_WORLD, &req);
+        MPI_Send( ball.Data , ball.Size , MPI_INT , target , 0 , MPI_COMM_WORLD);
     }
     void RecvBall(){
         MPI_Recv( ball.Data, ball.Size , MPI_INT, target, 0 , MPI_COMM_WORLD, &stat);
@@ -253,18 +253,6 @@ Rank :0 has the ball, No of throws: 6
 
 The second run is to measure the bandwidth:
 
-```cpp
-BallSize = 1000,000
-warm up iterations = 10
-iterations = 10,000
-
-Ball size (GB): 0.004
-Transfer time (Sec): 0.000523354
-Bandwidth (GB/s): 7.64301
-```
-
-I have seen some codes using blocking `MPI_Send` instead of `MPI_Isend` for ping pong program, so I changed 
-my `SendBall()` to use `MPI_Send` for one test. The results are almost the same as the previous test:
 
 ```cpp
 BallSize = 1000,000
