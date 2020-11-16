@@ -18,7 +18,7 @@ There are different modes of *MPI send*. They can be local or non-local, blockin
 
 This is the **standard** mode. When it is called, (1) the message can be directly passed to the receive buffer, (2) the data is buffered (in temporary memory in the MPI implementation) or (3) the function waits for a receiving process to appear. See the picture below.
 Therefore, It can return quickly (1)(2) or block the process for a while. MPI decides which scenario is the best in terms of performance, memory, and so on. 
-In either case, the data can be safely modified after the function returns. 
+In any case, the data can be safely modified after the function returns. 
 
 {{< rawhtml >}}
 <div style="text-align:center;">
@@ -95,8 +95,8 @@ The same as `MPI_Rsend`, but non-blocking.
 
 It's hard to give a recipe for all the problems. However, some points can help to choose:
 
-- When there is a **deadlock** - non-blocking communication can help.
-- When there is a [**race condition**](https://iamsorush.com/posts/mpi-race-condition/) - blocking communication can help.
+- When there is a **deadlock**, non-blocking communication can help.
+- When there is a [**race condition**](https://iamsorush.com/posts/mpi-race-condition/), blocking communication can help.
 - When there is a **computationally expensive** task, a non-blocking communication, posted before the task, may improve the performance.
 - `MPI_Send` and `MPI_Isend`, are **top** in the priority list as MPI decides what is best.
 - `MPI_Ssend` and `MPI_Issend`, when the sender needs to know **when** the message is received and to avoid local buffering.
