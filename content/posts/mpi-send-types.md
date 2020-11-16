@@ -16,20 +16,40 @@ There are different modes of *MPI send*. They can be local or non-local, blockin
 
 ## MPI_Send
 
-This is the **standard** mode. When it is called, either the data is buffered (somewhere in the MPI implementation) or the function waits for a receiving process to appear. 
-Therefore, It can return quickly or block the process from moving to the next line of the code. MPI decides which scenario is the best in terms of performance, memory, and so on. 
+This is the **standard** mode. When it is called, (1) the message can be directly passed to the receive buffer, (2) the data is buffered (in temporary memory in the MPI implementation) or (3) the function waits for a receiving process to appear. See the picture below.
+Therefore, It can return quickly (1)(2) or block the process for a while. MPI decides which scenario is the best in terms of performance, memory, and so on. 
 In either case, the data can be safely modified after the function returns. 
+
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/mpi_send.png" />
+</div>
+{{< /rawhtml >}}
 
 
 ## MPI_Ssend
 
 It is the **synchronized** blocking function. When this function returns, the destination has started receiving the message. The moment the destination starts receiving, it signals an *ACK* to the source.
 
+
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/mpi_ssend.png" />
+</div>
+{{< /rawhtml >}}
+
 Note, the signal of receiving the message is the difference between `MPI_Ssend` and `MPI_Send`. 
+
 
 ## MPI_Bsend
 
 It is the local blocking send. The programmer defines a **local buffer** that when this function is called. If there is not a matching receive available, the process is blocked until the message is copied into the buffer. Therefore, the coder can immediately modify the source data after the function returns. 
+
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/mpi_bsend.png" />
+</div>
+{{< /rawhtml >}}
 
 Note, when the function returns the message is probably not sent yet, it will happen concurrently in the background of the process when a matched receive is found.
 
@@ -41,9 +61,21 @@ It is a blocking function the same as MPI_Send, but, it expects a **ready destin
 
 It is the non-blocking version of `MPI_Send`. When this function is called the function returns immediately but runs `MPI_Send` actions in the background of the process.  Therefore, After the function returns, the data **must not** be modified unless `MPI_Test` and `MPI_Wait` confirm `MPI_Isend` is completed. After the completion, the data is reusable because it either is buffered in MPI or sent to the destination.   
 
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/mpi_isend.png" />
+</div>
+{{< /rawhtml >}}
+
 ## MPI_Issend
 
 It is the non-blocking version of `MPI_Ssend`. It returns immediately, but runs `MPI_Ssend` actions in the background.  `MPI_Test` or `MPI_Wait` **must** be used to assess if the function is completed in the background. At that point, not only the message has been sent but also the destination has started to receive the message.
+
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/mpi_issend.png" />
+</div>
+{{< /rawhtml >}}
 
 ## MPI_Ibsend
 
