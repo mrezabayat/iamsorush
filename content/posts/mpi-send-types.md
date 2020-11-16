@@ -22,7 +22,7 @@ In any case, the data can be safely modified after the function returns.
 
 {{< rawhtml >}}
 <div style="text-align:center;">
-<img src="/images/mpi_send.png" />
+<img src="/images/mpi_send.png" style="max-width:100%;" />
 </div>
 {{< /rawhtml >}}
 
@@ -34,7 +34,7 @@ It is the **synchronized** blocking function. When this function returns, the de
 
 {{< rawhtml >}}
 <div style="text-align:center;">
-<img src="/images/mpi_ssend.png" />
+<img src="/images/mpi_ssend.png" style="max-width:100%;" />
 </div>
 {{< /rawhtml >}}
 
@@ -47,7 +47,7 @@ It is the local blocking send. The programmer defines a **local buffer** that wh
 
 {{< rawhtml >}}
 <div style="text-align:center;">
-<img src="/images/mpi_bsend.png" />
+<img src="/images/mpi_bsend.png" style="max-width:100%;" />
 </div>
 {{< /rawhtml >}}
 
@@ -63,7 +63,7 @@ It is the non-blocking version of `MPI_Send`. When this function is called the f
 
 {{< rawhtml >}}
 <div style="text-align:center;">
-<img src="/images/mpi_isend.png" />
+<img src="/images/mpi_isend.png" style="max-width:100%;" />
 </div>
 {{< /rawhtml >}}
 
@@ -73,7 +73,7 @@ It is the non-blocking version of `MPI_Ssend`. It returns immediately, but runs 
 
 {{< rawhtml >}}
 <div style="text-align:center;">
-<img src="/images/mpi_issend.png" />
+<img src="/images/mpi_issend.png" style="max-width:100%;" />
 </div>
 {{< /rawhtml >}}
 
@@ -83,7 +83,7 @@ It is the non-blocking version of `MPI_Ssend`. It returns immediately, but runs 
 
  {{< rawhtml >}}
 <div style="text-align:center;">
-<img src="/images/mpi_ibsend.png" />
+<img src="/images/mpi_ibsend.png" style="max-width:100%;" />
 </div>
 {{< /rawhtml >}}
 
