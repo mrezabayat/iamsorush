@@ -6,55 +6,64 @@ image_v: /images/envelop_v.webp
 thumbnail: /images/envelop_tn.webp
 tags: ["MPI"]
 categories: "Diverse"
-summary: "There are different modes of MPI send which are explained here. Firstly, MPI_Send, MPI_Isend and MPI_Ssend
-are described which are popular ones, then the others. "
+summary: "There are different modes of *MPI send*. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. They are explained here in detail. "
 ---
 
 ## Introduction
 
-There are different modes of *MPI send* which are explained here. Firstly, `MPI_Send`, `MPI_Isend` and `MPI_Ssend`
-are described which are popular ones, then the others. 
+There are different modes of *MPI send*. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. They are explained here in detail.
 
 
 ## MPI_Send
 
-When this function is called, either the data is buffered (in the sender or receiver process) or the function waits for a receiving process to appear. 
-Therefore, It can return quickly or block the program from moving to the next line of the code. MPI decides what scenario is the best in terms of performance, memory, and so on. 
-In either case, the data can be safely changed or reused after the function returns. 
+This is the **standard** mode. When it is called, either the data is buffered (somewhere in the MPI implementation) or the function waits for a receiving process to appear. 
+Therefore, It can return quickly or block the process from moving to the next line of the code. MPI decides which scenario is the best in terms of performance, memory, and so on. 
+In either case, the data can be safely modified after the function returns. 
 
-
-## MPI_Isend
-
-When this function is called, the message is not buffered, the function returns immediately and Program runs the next line of code. However, the function continues running in the background waiting for a matching receive. When found, it passes the source data. Therefore, After the function returns, the data must not be reused or changed unless we are sure the message is received.
-`MPI_Test` and `MPI_Wait` are usually used with `MPI_Isend`. 
 
 ## MPI_Ssend
 
-It is the synchronized blocking function. It means when this function returns, the destination has received the message. 
+It is the **synchronized** blocking function. When this function returns, the destination has started receiving the message. The moment the destination starts receiving, it signals an ACK to the source.
 
-Note, a guarantee of receiving the message is the difference between `MPI_Ssend` and `MPI_Send`. Because when `MPI_send` returns there is a chance the message is only buffered and the destination has not received the message yet.
+Note, the signal of receiving the message is the difference between `MPI_Ssend` and `MPI_Send`. 
 
 ## MPI_Bsend
 
-It is the asynchronous blocking send. The programmer defines a buffer that when this function is called, the program is blocked until the message is copied into the buffer. Therefore, the coder can immediately reuse or change the source data after the function returns. 
+It is the local blocking send. The programmer defines a **local buffer** that when this function is called. If there is not a matching receive availalbe, the process is blocked until the message is copied into the buffer. Therefore, the coder can immediately modify the source data after the function returns. 
 
-Note, when the function returns the message is not sent yet, it will happen in the background when a matched receiver is found.
+Note, when the function returns the message is probably not sent yet, it will happen concurrently in the background of the process when a matched receive is found.
 
 ## MPI_Rsend
 
-It is a blocking function the same as MPI_Send, but, it expects the destination process has been ready to receive the message. 
+It is a blocking function the same as MPI_Send, but, it expects a **ready destination** to receive the message. This can increase the MPI performance if the programmer is sure there is a receive function waiting for this. If no receive posted before, it is erroneous.
 
-## MPI_Ibsend
+## MPI_Isend
 
- This is the asynchronous non-blocking send. It blocks for neither copying the message to the buffer nor sending the message.
+It is the non-blocking version of `MPI_Send`. When this function is called the function returns immediately but runs `MPI_Send` actions in the background of the process.  Therefore, After the function returns, the data must not be modified unless `MPI_Test` and `MPI_Wait` confirm `MPI_Isend` is completed. After the completion, the data is reusable because it either is buffered in MPI or sent to the destination.   
 
 ## MPI_Issend
 
-It is the synchronous non-blocking send. It returns immediately regardless of the message being sent.
+It is the non-blocking version of `MPI_Ssend`. It returns immediately, but runs `MPI_Ssend` actions in the background.  `MPI_Test` or `MPI_Wait` can be used to assess if the function is completed in the background. At that point, not only the message has been sent but also the destination has started to receive the message.
+
+## MPI_Ibsend
+
+ This is the local non-blocking send. It blocks for neither copying the message to the buffer nor sending the message. After test positive or wait, we can modify the source data because if it is not sent, it is locally copied to the allocated buffer.
 
 ## MPI_Irsend
 
 The same as `MPI_Rsend`, but non-blocking.
+
+## Priority list
+
+It's hard to give a recipe for all the problems. However, some points can help to choose:
+
+- When there is a **deadlock** - non-blocking communication can help.
+- When there is a [**race condition**](https://iamsorush.com/posts/mpi-race-condition/) - blocking communication can help.
+- When there is a **computationally expensive** task, a non-blocking communication, posted before the task, may improve the performance.
+- `MPI_Send` and `MPI_Isend`, are **top** in the priority list due to the good performance.
+- `MPI_Send` and `MPI_Issend`, when the sender needs to know **when** the message is received.
+- MPI_Bsend, MPI_Ibsend, MPI_Rsend, MPI_Irsend are for **fine-tuning** the performance.
+
 
 ## References
 
