@@ -81,6 +81,12 @@ It is the non-blocking version of `MPI_Ssend`. It returns immediately, but runs 
 
  This is the local non-blocking send. It blocks for neither copying the message to the buffer nor sending the message. After the test positive or wait, we can modify the source data because, if it is not sent, it is locally copied to the allocated buffer.
 
+ {{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/mpi_ibsend.png" />
+</div>
+{{< /rawhtml >}}
+
 ## MPI_Irsend
 
 The same as `MPI_Rsend`, but non-blocking. 
@@ -101,6 +107,6 @@ It's hard to give a recipe for all the problems. However, some points can help t
 
 I got ideas and codes from the below website(s)
 
-[MPI 3.1 Report - section 3.4](https://www.mpi-forum.org/docs/mpi-3.1/mpi31-report.pdf)
+[MPI 3.1 Report - section 3.4, 3.7](https://www.mpi-forum.org/docs/mpi-3.1/mpi31-report.pdf)
 
 
