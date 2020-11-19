@@ -19,7 +19,7 @@ In the example below, process 0 sends `buff0` in a non-blocking way to another p
 
 {{< rawhtml >}}
 <div style="text-align:center;">
-<img src="/images/mpi-race.png" />
+<img src="/images/mpi-race.png" alt="MPI_Isend and MPI_Recv use same buffer" />
 </div>
 {{< /rawhtml >}}
 
@@ -32,7 +32,7 @@ Let’s modify the previous example in a way that after `MPI_Isend` a very time-
 
 {{< rawhtml >}}
 <div style="text-align:center;">
-<img src="/images/mpi-race2.png" />
+<img src="/images/mpi-race2.png" alt="MPI_Isend runs during high computational task" />
 </div>
 {{< /rawhtml >}}
 

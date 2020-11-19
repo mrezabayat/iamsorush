@@ -4,6 +4,7 @@ title = "Sorush Khajepor - Numerical programming and app development"
 theme = "blank"
 RemovePathAccents = true
 summaryLength = 25
+pygmentsstyle = "monokai"
 [Author]
   name = "Sorush Khajepor"
 [params]
