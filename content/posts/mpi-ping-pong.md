@@ -1,9 +1,9 @@
 ---
 title: "MPI ping pong program using C++"
 date: 2020-11-14T10:30:30+01:00
-image: /images/pingpong.webp
-image_v: /images/pingpong_v.webp
-thumbnail: /images/pingpong_tn.webp
+image: /images/pingpong.jpg
+imageQuality: "q65"
+imageAnchor: "Center"
 tags: ["MPI", "C++"]
 categories: "Algorithms"
 summary: "I want to write an MPI ping pong program where two processes send a piece of data back and forth to each other."

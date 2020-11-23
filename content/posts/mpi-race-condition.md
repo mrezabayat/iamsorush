@@ -1,9 +1,7 @@
 ---
 title: "MPI race condition"
 date: 2020-11-15T19:22:30+01:00
-image: /images/race.webp
-image_v: /images/race_v.webp
-thumbnail: /images/race_tn.webp
+image: /images/race.jpg
 tags: ["MPI", "C++"]
 categories: "Diverse"
 summary: "When a buffer, which is involved in an uncompleted non-blocking communication, is used in another communication, there will be a race to read and write the buffer."

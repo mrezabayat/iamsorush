@@ -2,8 +2,8 @@
 title: 'How to create a simple component, using Blazor, HTML, and CSS: Word Block'
 date: 2020-02-02T22:24:39Z
 draft: false
-image: /images/cactus.webp
-thumbnail: /images/cactus_tn.webp
+image: /images/cactus.jpg
+imageAnchor: "CenterLeft"
 tags: ['Front-End Web']
 categories: "⋅Net"
 summary: "Using .Net Blazor, I want to create a simple word-block which is a rectangle that contains a word with an X button at its right side. Clicking on X the word-block disappears."

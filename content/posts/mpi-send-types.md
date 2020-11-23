@@ -1,9 +1,8 @@
 ---
 title: "The difference between modes of MPI send"
 date: 2020-11-09T21:46:00+01:00
-image: /images/envelop.webp
-image_v: /images/envelop_v.webp
-thumbnail: /images/envelop_tn.webp
+image: /images/message.jpg
+imageAnchor: "Center"
 tags: ["MPI"]
 categories: "Diverse"
 summary: "There are different modes of *MPI send*. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. They are explained here in detail. "

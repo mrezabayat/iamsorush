@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Template on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/template/</link>
+    <description>Recent content in Template on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Oct 2020 19:34:31 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/template/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; template crash course</title>
+      <link>https://iamsorush.com/posts/all-about-template/</link>
+      <pubDate>Fri, 30 Oct 2020 19:34:31 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/all-about-template/</guid>
+      <description>Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples.</description>
+    </item>
+    
+  </channel>
+</rss>

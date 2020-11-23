@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>⋅Net on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/categories/net/</link>
+    <description>Recent content in ⋅Net on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 22 Oct 2020 20:22:31 +0100</lastBuildDate><atom:link href="https://iamsorush.com/categories/net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to use Bookmark in Visual Studio</title>
+      <link>https://iamsorush.com/posts/visual-studio-bookmark/</link>
+      <pubDate>Thu, 22 Oct 2020 20:22:31 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/visual-studio-bookmark/</guid>
+      <description>Shortcuts Show Bookmarks window: Ctrl + k, Ctrl + w
+Toggle bookmark of a code line: Ctrl + k, Ctrl k
+Skip to the next bookmark: Ctrl + k, Ctrl + n</description>
+    </item>
+    
+    <item>
+      <title>Connect to Microsoft Access with C# .Net core </title>
+      <link>https://iamsorush.com/posts/connect-access-db-net-core/</link>
+      <pubDate>Thu, 22 Oct 2020 18:34:21 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/connect-access-db-net-core/</guid>
+      <description>I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records.</description>
+    </item>
+    
+    <item>
+      <title>Lockout user after multiple failed authentication via .Net core Identity</title>
+      <link>https://iamsorush.com/posts/lockout-user-razor-pages/</link>
+      <pubDate>Mon, 19 Oct 2020 19:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/lockout-user-razor-pages/</guid>
+      <description>Goal I want to configure .Net core Identity in a way that when a user inserts wrong passwords several times the account gets locked for 5 minutes.</description>
+    </item>
+    
+    <item>
+      <title>Add Identity pages to .Net core web app</title>
+      <link>https://iamsorush.com/posts/add-identity-pages-net-core/</link>
+      <pubDate>Mon, 19 Oct 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/add-identity-pages-net-core/</guid>
+      <description>By default, the identity pages are pre-compiled in .Net core 3.1 and not available to be modified. I want to bring them back so they can be edited.</description>
+    </item>
+    
+    <item>
+      <title>Tutorial: Setup of Entity Framework (EF) core for CRUD and authentication with Razor pages</title>
+      <link>https://iamsorush.com/posts/setup-ef-core-for-crud-and-identity/</link>
+      <pubDate>Sat, 10 Oct 2020 21:27:00 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/setup-ef-core-for-crud-and-identity/</guid>
+      <description>Goal In this post, step by step I create a web app using Entity Framework core and razor pages. The app is a library that admin can CRUD books info on a database and authenticated users can browse the records.</description>
+    </item>
+    
+    <item>
+      <title>How to create a simple component, using Blazor, HTML, and CSS: Word Block</title>
+      <link>https://iamsorush.com/posts/how-to-create-a-simple-component-using-blazor-html-and-css-word-block/</link>
+      <pubDate>Sun, 02 Feb 2020 22:24:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/how-to-create-a-simple-component-using-blazor-html-and-css-word-block/</guid>
+      <description>Using .Net Blazor, I want to create a simple word-block which is a rectangle that contains a word with an X button at its right side. Clicking on X the word-block disappears.</description>
+    </item>
+    
+  </channel>
+</rss>

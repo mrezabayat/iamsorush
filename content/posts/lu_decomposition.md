@@ -1,21 +1,19 @@
 ---
-title: "Code LU decomposition step by step in object oriented way in C#"
+title: "Code LU decomposition step by step in object-oriented way in C#"
 date: 2020-06-28T22:06:30+01:00
 draft: false
-image: /images/matrix.webp
-image_v: /images/matrix_v.webp
-thumbnail: /images/matrix_tn.webp
+image: /images/matrix.jpg
 jqmath: true
 tags: ['Numerical Code', 'C Sharp']
 categories: "Algorithms"
 ---
 ## Introduction
 
-In this post I want to revisit PLU or LU decomposition or factorisation, which is used to find unknowns of a system of linear equations, for two reasons. Firstly to recode it in an object oriented way to use it in my C# projects and secondly to refresh myself on the topic. The library can be useful for you too as it is light and contains only LU decomposition not a whole math library of everything. I may only add a few solvers of linear system to it in future but nothing else.  
+In this post I want to revisit PLU or LU decomposition or factorisation, which is used to find unknowns of a system of linear equations, for two reasons. Firstly to recode it in an object-oriented way to use it in my C# projects and secondly to refresh myself on the topic. The library can be useful for you too as it is light and contains only LU decomposition not a whole math library of everything. I may only add a few solvers of a linear system to it in the future but nothing else.  
 
-LU decomposition solves of a system of linear equations exactly (versus iteratively). It is similar to Gauss elimination technique with time complexity of $O(N^3)$. One advantage of LU decomposition over Gauss elimination is that decomposed matrices can be reused in cases that only matrix of constants changes.
+LU decomposition solves of a system of linear equations exactly (versus iteratively). It is similar to the Gauss elimination technique with a time complexity of $O(N^3)$. One advantage of LU decomposition over Gauss elimination is that decomposed matrices can be reused in cases that only the matrix of constants changes.
 
-If you search on the internet you will probably see many codes written in a procedural way. Unless you are very familiar with the topic, the codes needs a good amount of time to be understood. Here, I want to code LU decomposition in an object oriented and clean way. I use some classes to encapsulate data, they can be extended, and an API will be exposed to user of the library. But for the sake of KISS principle, I won’t fit everything there. I try to have a clean code too, the functions will be short for readability and single responsibility.   Unfortunately, there is a trade-off between object oriented style and code speed which I talk about it in the summary section.
+If you search on the internet you will probably see many codes written in a procedural way. Unless you are very familiar with the topic, the codes needs a good amount of time to be understood. Here, I want to code LU decomposition in an object-oriented and clean way. I use some classes to encapsulate data, they can be extended, and an API will be exposed to the user of the library. But for the sake of the KISS principle, I won’t fit everything there. I try to have a clean code too, the functions will be short for readability and single responsibility.   Unfortunately, there is a trade-off between object-oriented style and code speed which I talk about it in the summary section.
 
 ## Background  
 
@@ -28,7 +26,7 @@ where $A$ is the coefficient matrix, $X$ is the unknown matrix, and $B$ is the c
 
 $A = L U$         
 
-where $L$ is lower matrix with all elements above diagonal zero and $U$ is upper matrix with all elements under diagonal zero. This way the system can be solved faster because we have
+where $L$ is a lower matrix with all elements above diagonal zero and $U$ is upper matrix with all elements under diagonal zero. This way the system can be solved faster because we have
 
 $L U X = B$                
 
@@ -69,7 +67,7 @@ therefore, $A$ is updated as row1 = row1 – 3/4 × row0
 $$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;1,3,1]$$
 
 
-* Store the multiplier, as it is the element of lower matrix, $L$. It is shown in parenthesis in front of zero elements.  
+* Store the multiplier, as it is the element of the lower matrix, $L$. It is shown in parenthesis in front of zero elements.  
 * Do the same for the next element in the same column
 
 $$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;0 (1 /4),2,-1 /4]$$
@@ -77,9 +75,9 @@ $$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;0 (1 /4),2,-1 /4]$$
 
 I put emphasis again the numbers in parenthesis are negative of multipliers which are used to make those elements zero.
 
-* When in this column, all lower elements are zero, go to next column, so column 1 is focused now.
+* When in this column, all lower elements are zero, go to the next column, so column 1 is focused now.
 
-* Before we continue, there is permutation step. The diagonal element, -1, is checked to make sure is the maximum absolute value compared to the rows below. If not, swap diagonal row with row of maximum of value. Here $|2|>|-1|$, so we swap row1 and row2
+* Before we continue, there is a permutation step. The diagonal element, -1, is checked to make sure is the maximum absolute value compared to the rows below. If not, swap the diagonal row with the row of maximum of value. Here $|2|>|-1|$, so we swap row1 and row2
 
 $$A=[\table 4,4,5;0 (1 /4),2,-1 /4;0 (3 /4),-1,-7 /4]$$
 

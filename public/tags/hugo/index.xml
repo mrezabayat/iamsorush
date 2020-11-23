@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/hugo/</link>
+    <description>Recent content in Hugo on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Oct 2020 19:20:06 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create a table of content from headings of a Hugo post</title>
+      <link>https://iamsorush.com/posts/table-of-content-blog/</link>
+      <pubDate>Sat, 17 Oct 2020 19:20:06 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/table-of-content-blog/</guid>
+      <description>Goal I want to write code to get a table of content (ToC) for each blog post automatically. It is created and shown on the right-hand side of the content of a post.</description>
+    </item>
+    
+    <item>
+      <title>How to add a video to a Hugo post</title>
+      <link>https://iamsorush.com/posts/add-video-to-hugo-post/</link>
+      <pubDate>Fri, 16 Oct 2020 18:30:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/add-video-to-hugo-post/</guid>
+      <description>I want to add a video to a Hugo blog post. The video is hosted on my website, so it is not a Youtube or Vimeo.</description>
+    </item>
+    
+  </channel>
+</rss>

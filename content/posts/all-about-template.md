@@ -1,8 +1,7 @@
 ---
 title: "C++ template crash course"
 date: 2020-10-30T19:34:31+01:00
-image: /images/scissors.webp
-thumbnail: /images/scissors_tn.webp
+image: /images/hive.jpg
 tags: ["C++", "Template"]
 categories: "C++"
 summary: "Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples."

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C Sharp on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/c-sharp/</link>
+    <description>Recent content in C Sharp on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 22 Oct 2020 18:34:21 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/c-sharp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Connect to Microsoft Access with C# .Net core </title>
+      <link>https://iamsorush.com/posts/connect-access-db-net-core/</link>
+      <pubDate>Thu, 22 Oct 2020 18:34:21 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/connect-access-db-net-core/</guid>
+      <description>I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records.</description>
+    </item>
+    
+    <item>
+      <title>Lockout user after multiple failed authentication via .Net core Identity</title>
+      <link>https://iamsorush.com/posts/lockout-user-razor-pages/</link>
+      <pubDate>Mon, 19 Oct 2020 19:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/lockout-user-razor-pages/</guid>
+      <description>Goal I want to configure .Net core Identity in a way that when a user inserts wrong passwords several times the account gets locked for 5 minutes.</description>
+    </item>
+    
+    <item>
+      <title>Add Identity pages to .Net core web app</title>
+      <link>https://iamsorush.com/posts/add-identity-pages-net-core/</link>
+      <pubDate>Mon, 19 Oct 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/add-identity-pages-net-core/</guid>
+      <description>By default, the identity pages are pre-compiled in .Net core 3.1 and not available to be modified. I want to bring them back so they can be edited.</description>
+    </item>
+    
+    <item>
+      <title>Tutorial: Setup of Entity Framework (EF) core for CRUD and authentication with Razor pages</title>
+      <link>https://iamsorush.com/posts/setup-ef-core-for-crud-and-identity/</link>
+      <pubDate>Sat, 10 Oct 2020 21:27:00 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/setup-ef-core-for-crud-and-identity/</guid>
+      <description>Goal In this post, step by step I create a web app using Entity Framework core and razor pages. The app is a library that admin can CRUD books info on a database and authenticated users can browse the records.</description>
+    </item>
+    
+    <item>
+      <title>Code LU decomposition step by step in object oriented way in C#</title>
+      <link>https://iamsorush.com/posts/lu_decomposition/</link>
+      <pubDate>Sun, 28 Jun 2020 22:06:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/lu_decomposition/</guid>
+      <description>Introduction In this post I want to revisit PLU or LU decomposition or factorisation, which is used to find unknowns of a system of linear equations, for two reasons.</description>
+    </item>
+    
+    <item>
+      <title>How Inversion of Control improves flexebility of numerical codes?</title>
+      <link>https://iamsorush.com/posts/ioc-and-numerical-programming/</link>
+      <pubDate>Sat, 14 Mar 2020 22:00:00 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/ioc-and-numerical-programming/</guid>
+      <description>Introduction When programming it&amp;rsquo;s very convenient to create class A which has a concrete member class B. However, this creates a tightly-coupled system since any change in B should be reflected in A.</description>
+    </item>
+    
+  </channel>
+</rss>

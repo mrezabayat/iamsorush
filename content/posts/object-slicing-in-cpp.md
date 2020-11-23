@@ -2,8 +2,7 @@
 title: 'What is "object slicing" trap in C++?'
 date: 2020-02-26T20:05:39Z
 draft: false
-image: /images/avocado.webp
-thumbnail: /images/avocado_tn.webp
+image: /images/lemon.jpg
 tags: ['C++']
 categories: "C++"
 ---

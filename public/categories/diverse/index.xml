@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diverse on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/categories/diverse/</link>
+    <description>Recent content in Diverse on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Nov 2020 19:22:30 +0100</lastBuildDate><atom:link href="https://iamsorush.com/categories/diverse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MPI race condition</title>
+      <link>https://iamsorush.com/posts/mpi-race-condition/</link>
+      <pubDate>Sun, 15 Nov 2020 19:22:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-race-condition/</guid>
+      <description>When a buffer, which is involved in an uncompleted non-blocking communication, is used in another communication, there will be a race to read and write the buffer.</description>
+    </item>
+    
+    <item>
+      <title>Handy free Windows packages to connect to a remote Linux server</title>
+      <link>https://iamsorush.com/posts/linux-connection-packages/</link>
+      <pubDate>Wed, 11 Nov 2020 21:30:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/linux-connection-packages/</guid>
+      <description>To download or upload files from/into a Linux server, or work with a remote desktop, some free Windows packages can be really helpful.</description>
+    </item>
+    
+    <item>
+      <title>The difference between modes of MPI send</title>
+      <link>https://iamsorush.com/posts/mpi-send-types/</link>
+      <pubDate>Mon, 09 Nov 2020 21:46:00 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-send-types/</guid>
+      <description>There are different modes of &lt;em&gt;MPI send&lt;/em&gt;. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. They are explained here in detail.</description>
+    </item>
+    
+    <item>
+      <title>Host a .Net core web application for less than $5 a month</title>
+      <link>https://iamsorush.com/posts/gcp-azure-budget-vm/</link>
+      <pubDate>Fri, 02 Oct 2020 18:50:47 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/gcp-azure-budget-vm/</guid>
+      <description>I talk about Google Cloud Platform (GCP), Microsoft Azure and Heroku. You can register with them and try their services for free or very low prices.</description>
+    </item>
+    
+  </channel>
+</rss>

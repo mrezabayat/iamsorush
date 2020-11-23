@@ -2,21 +2,20 @@
 title: 'How visitor design pattern is useful for numerical programming?'
 date: 2020-03-09T23:05:39Z
 draft: false
-image: /images/weopen.webp
-image_v: /images/weopen_v.webp
-thumbnail: /images/weopen_tn.webp
+image: /images/welcome.jpg
+imageAnchor: "Center"
 tags: ['Design Pattern']
 categories: "Design"
 ---
 
 ## Introduction  
 
-Visitor design pattern is separating operations from data storage. When the efficiency and memory consumption is not of concern this design pattern is not common. However, in numerical programming
+The visitor design pattern separates operations from data storage. When the efficiency and memory consumption is not of concern this design pattern is not common. However, in numerical programming
 it can be a game-changer.   
 
 ## Numerical Example
 
-In most of numerical programs, we face a huge amount of data stored in arrays. For example, on a Cartesian grid we have 10⁶ points where each point contains below properties:
+In most of the numerical programs, we face a huge amount of data stored in arrays. For example, on a Cartesian grid we have 10⁶ points where each point contains below properties:
 
 ```cpp
 class Point{

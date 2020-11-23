@@ -1,7 +1,7 @@
 ---
 title: "Connect to Microsoft Access with C# .Net core "
 date: 2020-10-22T18:34:21+01:00
-image: /images/doorlock.webp
+image: /images/bridge.jpg
 thumbnail: /images/doorlock_tn.webp
 tags: [".Net Core", "C Sharp", "Database"]
 categories: "⋅Net"

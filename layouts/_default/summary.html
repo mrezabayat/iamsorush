@@ -1,8 +1,27 @@
-<div class="pure-u-1 pure-u-md-1-2 pure-u-xl-1-3">
+
+{{ $path := .Params.image}}
+{{ $img := resources.GetMatch $path}}
+{{ if not $img  }}
+	{{$img =  resources.GetMatch "images/bird.jpg" }}
+{{end}}
+{{$imageQuality:= "q70"}}
+{{$imagAnchor := "Smart"}}
+{{if .Params.imageQuality}}
+	{{$imageQuality = .Params.imageQuality}}	
+{{end}}
+{{if .Params.imageAnchor}}
+		{{$imagAnchor = .Params.imageAnchor}}
+{{end}}
+{{$options := printf "%s%s" "350x200 " $imageQuality}}
+{{$img = $img.Fill $options}}
+
+
+
+<div>
 	<div class="card shadow">
 		<div class="card-image-container">
 			<a href="{{ .Permalink }}" class="border-bottom-0">
-				<img src="{{.Params.thumbnail}}" class="thumbnail-post" />
+				<img src="{{$img.Permalink}}" class="thumbnail-post" />
 			</a>
 		</div>
 		<div class="card-content">

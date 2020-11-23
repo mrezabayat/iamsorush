@@ -2,8 +2,8 @@
 title: 'Create a lightweight weblog homepage with Bootstrap and Html'
 date: 2020-02-15T20:05:39Z
 draft: false
-image: /images/bird.webp
-thumbnail: /images/bird_tn.webp
+image: /images/bird.jpg
+imageAnchor: "Center"
 tags: ['Front-End Web']
 categories: "Html"
 summary: "I want to create a lightweight homepage of a weblog with HTML, Bootstrap and a bit of custom CSS. No javascript, no database, no WordPress is used. It should be a lightweight and fast static website. "

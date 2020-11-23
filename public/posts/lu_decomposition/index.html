@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179561110-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-179561110-1');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
+    <link rel="icon" href="/images/me.gif" type="image/gif">
+    <title>Code LU decomposition step by step in object oriented way in C#</title>
+     
+    
+    <meta name="author" content="map[name:Sorush Khajepor]">
+    
+    
+    
+    <link rel="stylesheet" href="https://iamsorush.com/css/style.min.css">
+     
+
+</head>
+
+<body>
+    
+<div class="read-progress-container">
+	<div class="progress-bar" id="myBar"></div>
+</div>
+<header class="header-black">
+	<div class="container">
+
+	<div>
+		<div class="display-flex flex-column left-horizontal">
+			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
+			<span class="text-shadow-1">Numerical programming and app development</span>
+		</div>
+		<div class="display-flex align-center justify-start justify-md-end">	
+			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
+				<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M512 0C229.25 0 0 229.25 0 512c0 226.25 146.688 418.125 350.156 485.812 25.594 4.688 34.938-11.125 34.938-24.625 0-12.188-0.469-52.562-0.719-95.312C242 908.812 211.906 817.5 211.906 817.5c-23.312-59.125-56.844-74.875-56.844-74.875-46.531-31.75 3.53-31.125 3.53-31.125 51.406 3.562 78.47 52.75 78.47 52.75 45.688 78.25 119.875 55.625 149 42.5 4.654-33 17.904-55.625 32.5-68.375C304.906 725.438 185.344 681.5 185.344 485.312c0-55.938 19.969-101.562 52.656-137.406-5.219-13-22.844-65.094 5.062-135.562 0 0 42.938-13.75 140.812 52.5 40.812-11.406 84.594-17.031 128.125-17.219 43.5 0.188 87.312 5.875 128.188 17.281 97.688-66.312 140.688-52.5 140.688-52.5 28 70.531 10.375 122.562 5.125 135.5 32.812 35.844 52.625 81.469 52.625 137.406 0 196.688-119.75 240-233.812 252.688 18.438 15.875 34.75 47 34.75 94.75 0 68.438-0.688 123.625-0.688 140.5 0 13.625 9.312 29.562 35.25 24.562C877.438 930 1024 738.125 1024 512 1024 229.25 794.75 0 512 0z"/></svg>
+			</a>
+			<a href="https://twitter.com/KhSorush" class="mr-1 icon" aria-label="Twitter">
+				<svg id="Logo_FIXED" data-name="Logo â€” FIXED" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><title>Twitter_Logo_Blue</title><rect class="cls-1" width="400" height="400"/><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>
+			</a>
+			<a href="https://scholar.google.co.uk/citations?user=16Y7-NsAAAAJ&hl=en" class="mr-1 icon" aria-label="Google Scholar">
+				<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2" id="Layer_2"><polygon fill="white" points="0.54 9 5 10.98 7 11.87 12 14.09 17 11.87 19 10.98 20 10.54 20 16 22 16 22 9.65 23.46 9 12 3.91 0.54 9"/><path fill="white" d="M18.45,18.89l.55-.27V13.17l-7,3.11L5,13.17v5.45l.55.27a14.45,14.45,0,0,0,12.9,0Z"/></g></svg>
+			</a>
+			<a href="https://stackoverflow.com/users/2543510/sorush" class="mr-1 icon" aria-label="Stackoverflow">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><style>.st0{fill:#bcbbbb}.st1{fill:#f48023}</style><path class="st0" d="M84.4 93.8V70.6h7.7v30.9H22.6V70.6h7.7v23.2z"/><path class="st1" d="M38.8 68.4l37.8 7.9 1.6-7.6-37.8-7.9-1.6 7.6zm5-18l35 16.3 3.2-7-35-16.4-3.2 7.1zm9.7-17.2l29.7 24.7 4.9-5.9-29.7-24.7-4.9 5.9zm19.2-18.3l-6.2 4.6 23 31 6.2-4.6-23-31zM38 86h38.6v-7.7H38V86z"/></svg>
+			</a>
+			<a href="https://www.linkedin.com/in/sorushkh/" class="mr-1 icon" aria-label="Linkedin">
+				<svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.0" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M32,30c0,1.104-0.896,2-2,2H2c-1.104,0-2-0.896-2-2V2c0-1.104,0.896-2,2-2h28c1.104,0,2,0.896,2,2V30z" fill="#007BB5"/><g><rect fill="#FFFFFF" height="14" width="4" x="7" y="11"/><path d="M20.499,11c-2.791,0-3.271,1.018-3.499,2v-2h-4v14h4v-8c0-1.297,0.703-2,2-2c1.266,0,2,0.688,2,2v8h4v-7    C25,14,24.479,11,20.499,11z" fill="#FFFFFF"/><circle cx="9" cy="8" fill="#FFFFFF" r="2"/></g></g><g/><g/><g/><g/><g/><g/></svg>
+			</a>
+		</div>
+	
+	
+	
+    </div>
+	</div>
+</header>
+
+<main>
+	<article>
+		<h1>Code LU decomposition step by step in object oriented way in C#</h1>
+		<time>28 Jun 2020</time>
+	</article>
+	
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .post__hero{
+        background-image: url('https://iamsorush.com/images/bird_hu3d03a01dcc18bc5be0e67db3d8d209a6_89602_430x250_fill_q70_box_smart1.jpg');
+        height: 250px;
+    }
+    @media (min-width: 430px) {
+        .post__hero{
+        background-image: url('https://iamsorush.com/images/bird_hu3d03a01dcc18bc5be0e67db3d8d209a6_89602_768x400_fill_q70_box_smart1.jpg');
+        height: 400px;
+    }
+    @media (min-width: 768px) {
+        .post__hero{
+        background-image: url('https://iamsorush.com/images/bird_hu3d03a01dcc18bc5be0e67db3d8d209a6_89602_1024x400_fill_q70_box_smart1.jpg');
+        height: 400px;
+    }
+    }
+    @media (min-width: 1024px) {
+        .post__hero{
+        background-image: url('https://iamsorush.com/images/bird_hu3d03a01dcc18bc5be0e67db3d8d209a6_89602_1280x400_fill_q70_box_smart1.jpg');
+        height: 400px;
+    }
+    }
+        
+</style>
+<div class="single-image post__hero"></div>
+	<div class="article-nav" id="article-nav-id">
+		<article class="overlay-top">
+			<h2 id="introduction">Introduction</h2>
+<p>In this post I want to revisit PLU or LU decomposition or factorisation, which is used to find unknowns of a system of linear equations, for two reasons. Firstly to recode it in an object oriented way to use it in my C# projects and secondly to refresh myself on the topic. The library can be useful for you too as it is light and contains only LU decomposition not a whole math library of everything. I may only add a few solvers of linear system to it in future but nothing else.</p>
+<p>LU decomposition solves of a system of linear equations exactly (versus iteratively). It is similar to Gauss elimination technique with time complexity of $O(N^3)$. One advantage of LU decomposition over Gauss elimination is that decomposed matrices can be reused in cases that only matrix of constants changes.</p>
+<p>If you search on the internet you will probably see many codes written in a procedural way. Unless you are very familiar with the topic, the codes needs a good amount of time to be understood. Here, I want to code LU decomposition in an object oriented and clean way. I use some classes to encapsulate data, they can be extended, and an API will be exposed to user of the library. But for the sake of KISS principle, I won’t fit everything there. I try to have a clean code too, the functions will be short for readability and single responsibility.   Unfortunately, there is a trade-off between object oriented style and code speed which I talk about it in the summary section.</p>
+<h2 id="background">Background</h2>
+<p>Before going to coding, let’s refresh ourselves briefly on PLU decomposition.  A system of linear equations is defined as</p>
+<p>$A X = B$</p>
+<p>where $A$ is the coefficient matrix, $X$ is the unknown matrix, and $B$ is the constants matrix. This system can be solved using LU decomposition method. Matrix $A$ can be factorised as</p>
+<p>$A = L U$</p>
+<p>where $L$ is lower matrix with all elements above diagonal zero and $U$ is upper matrix with all elements under diagonal zero. This way the system can be solved faster because we have</p>
+<p>$L U X = B$</p>
+<p>we can first solve</p>
+<p>$L Y = B$</p>
+<p>and then solve</p>
+<p>$U X = Y$</p>
+<p>to find $X$. But what is $P$? In the first step of decomposition $A = LU$, most of the time we have to juggle lines to make sure diagonals are not zero. We record the final order of rows in $P$, permutation matrix. Then we can apply that to $B$ before solving $LY=B$. To make the code a little bit more memory efficient I will save both $L$ and $U$ matrices in $A$. I will explain it in detail in the example below.</p>
+<h2 id="linear-system-example">Linear System Example</h2>
+<p>Here I solve an example step by step which help me to identify classes, functions and their relations.</p>
+<p>$$[\table 4,4,5;3,2,2;1,3,1] [\table x_0;x_1;x_2] = [\table 27; 13;10]$$</p>
+<h3 id="1only-matrix-a-is-focused-to-be-decomposed">1)	Only matrix $A$ is focused to be decomposed.</h3>
+<p>$$\table col0,col1,col2$$</p>
+<p>$$A=[\table 4,4,5;3,2,2;1,3,1] \table row0;row1;row2$$</p>
+<ul>
+<li>Make lower triangle zero to find $U$ matrix.</li>
+<li>Inside the triangle, move column by column from left to right and from top to bottom.</li>
+<li>First element, (row=1, col=0)=3, is focused.</li>
+<li>Find diagonal element in the same column=&gt;  Element(0,0)=4.</li>
+<li>Find a multiplier that<br>
+Focused element + multiplier × diagonal element = 0, so multiplier = - 3/4.</li>
+<li>The multiplier is used to modify $A$ matrix as:<br>
+Row of focused element = Row of focused element + multiplier × row of diagonal element,
+therefore, $A$ is updated as row1 = row1 – 3/4 × row0</li>
+</ul>
+<p>$$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;1,3,1]$$</p>
+<ul>
+<li>Store the multiplier, as it is the element of lower matrix, $L$. It is shown in parenthesis in front of zero elements.</li>
+<li>Do the same for the next element in the same column</li>
+</ul>
+<p>$$A=[\table 4,4,5;0 (3 /4),-1,-7 /4;0 (1 /4),2,-1 /4]$$</p>
+<p>I put emphasis again the numbers in parenthesis are negative of multipliers which are used to make those elements zero.</p>
+<ul>
+<li>
+<p>When in this column, all lower elements are zero, go to next column, so column 1 is focused now.</p>
+</li>
+<li>
+<p>Before we continue, there is permutation step. The diagonal element, -1, is checked to make sure is the maximum absolute value compared to the rows below. If not, swap diagonal row with row of maximum of value. Here $|2|&gt;|-1|$, so we swap row1 and row2</p>
+</li>
+</ul>
+<p>$$A=[\table 4,4,5;0 (1 /4),2,-1 /4;0 (3 /4),-1,-7 /4]$$</p>
+<ul>
+<li>Record the change in a permutation matrix. For the sake of saving memory I record order of rows in a vector</li>
+</ul>
+<p>$$P=[\table 0;2;1]$$</p>
+<p>row0 didn’t change but row1 and row2 are swapped which are captured in $P$.</p>
+<p>Now we can move on and make element(2,1) = -1 zero. With the same procedure explained above, row2 = row2 + 0.5 row1</p>
+<p>$$A=[\table 4,4,5;0 (1 /4),2,-1 /4;0 (3 /4),0 (-1 /2),-15 /8]⇒ U$$</p>
+<p>So now officially, $A$ is converted to $U$ matrix.</p>
+<p>$$U=[\table 4,4,5;0,2,-1 /4;0,0,-15 /8]$$</p>
+<p>And all the multipliers make $L$ matrix. Note $L$ matrix diagonals are one:</p>
+<p>$$L=[\table 1,0,0;1 /4,1,0;3 /4,-1 /2,1]$$</p>
+<h3 id="2system-is-solved-with-forward-and-backward-substitution">2)	System is solved with forward and backward substitution.</h3>
+<p>Apply row permutations, $P$, to $B$</p>
+<p>$$B= [\table 27;10;13]$$</p>
+<p>Forward Substitution $LY=B$</p>
+<p>$$L=[\table 1,0,0;1 /4,1,0;3 /4,-1 /2,1] [\table y_0;y_1;y2] = [\table 27;10;13]$$</p>
+<p>$y_0 = 27$</p>
+<p>$ 1 /4 (27) + y_1 = 10  ⇒ y_1 = 3.25 $</p>
+<p>$3 /4 (27) - 0.5 (3.25) + y_2 = 13    ⇒  y_2 = -5.625$</p>
+<p>And a backward substitution $UX=Y$</p>
+<p>$$[\table 4,4,5;0,2,-1 /4;0,0,-15 /8] [\table x_0;x_1;x_2]=[\table 27 ;3.25 ;-5.625]$$</p>
+<p>$x_2 = -5.625 × (-8 /15) = 3$<br>
+$2  x_1   –  1 /4 × 3 = 3.25    ⇒ x_1 = 2$<br>
+$4 x_0 + 4×2 + 5 × 3 = 27   ⇒ x_0 = 1$</p>
+<h2 id="code">Code</h2>
+<p>Now we know the method, let’s write the code and start from bottom to top. From previous section, decomposition and substitution stages are two independent steps. So we can associate each with a class. The decomposition class is</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PluDecomposer</span>
+{
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span>[,] A;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span>[] P;
+
+
+  <span style="color:#66d9ef">private</span> SubMatrixBoundariess LowerTriangleBounds;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> numberOfColumns;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> numberOfRows;
+<span style="color:#960050;background-color:#1e0010">…</span>
+}
+</code></pre></div><p><code>LowerTriangleBounds</code>, <code>numberOfColumns</code>, <code>numberOfRows</code> are variables to make the code readable so I don’t need to write comments about them.
+The constructor is as below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> PluDecomposer(<span style="color:#66d9ef">double</span>[,] A)
+{
+  <span style="color:#66d9ef">this</span>.A = A;
+
+  numberOfRows = A.GetLength(<span style="color:#ae81ff">0</span>);
+  numberOfColumns = A.GetLength(<span style="color:#ae81ff">1</span>);
+
+  InitializePWithRowNumbers();
+
+  LowerTriangleBounds = <span style="color:#66d9ef">new</span> SubMatrixBoundariess()
+  {
+      StartColumn = <span style="color:#ae81ff">0</span>,
+      EndColumn = A.GetLength(<span style="color:#ae81ff">1</span>) - <span style="color:#ae81ff">1</span>,
+      StartRow = <span style="color:#ae81ff">1</span>,
+      EndRow = A.GetLength(<span style="color:#ae81ff">0</span>)
+
+  };
+}
+</code></pre></div><p>$A$ is injected and all the related parameters are set. $P$ is initialized as no row is permuted.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> InitializePWithRowNumbers()
+{
+  P = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[numberOfRows];
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row = <span style="color:#ae81ff">0</span>; row &lt; numberOfRows; row++)
+  {
+    P[row] = row;
+  }
+}
+</code></pre></div><p>Here, is the what want from this class: find $P$ and combined $LU$ matrix.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> (<span style="color:#66d9ef">int</span>[], <span style="color:#66d9ef">double</span>[,]) FindPAndCombinedLU()
+{
+    ConvertAtoLU();
+    <span style="color:#66d9ef">return</span> (P, A);
+}
+</code></pre></div><p>As you can see, I don’t need to put comment as everything is clear: first convert $A$ to $LU$ then return $P$ and $LU$ (formerly $A$).</p>
+<p>How the conversion done? The lower triangle should become zero so we have $U$ matrix. And because we want to have a compact matrix, the zeros of $U$ filled with $L$.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> ConvertAtoLU()
+{
+  MakeLowerTriangleZeroAndFillWithL();
+}
+</code></pre></div><p>To do so, we iterate over columns of lower triangle. First we make sure, the diagonal element is the maximum in the focused column then make the column zero.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> MakeLowerTriangleZeroAndFillWithL()
+{
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> column = LowerTriangleBounds.StartColumn; column &lt; LowerTriangleBounds.EndColumn; column++)
+  {
+      MakeSureDiagonalElementIsMaximum (column);
+      MakeColumnZero(column);
+  }
+}
+</code></pre></div><p>In each column first, we swap the row of diagonal element with the row which has the maximum element.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> MakeSureDiagonalElementIsMaximum (<span style="color:#66d9ef">int</span> focusedColumn)
+{
+
+  <span style="color:#66d9ef">var</span> rowOfDiagonal = focusedColumn;
+  <span style="color:#66d9ef">var</span> rowOfMaxElement = GetRowOfMaxElementUnderDiagonal(focusedColumn);
+
+  <span style="color:#66d9ef">if</span> (rowOfMaxElement != rowOfDiagonal)
+  {
+      SwapRows(rowOfMaxElement, rowOfDiagonal);
+  };
+
+}
+</code></pre></div><p>Details of how we find the row which has maximum element under diagonal element is shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> GetRowOfMaxElementUnderDiagonal(<span style="color:#66d9ef">int</span> focusedColumn)
+{
+  <span style="color:#66d9ef">var</span> rowOfDiagonal = focusedColumn;
+  <span style="color:#66d9ef">var</span> columnOfDiagonal = focusedColumn;
+  <span style="color:#66d9ef">var</span> rowAfterDiagonal = rowOfDiagonal + <span style="color:#ae81ff">1</span>;
+
+  <span style="color:#66d9ef">double</span> maxElement = A[rowOfDiagonal, columnOfDiagonal];
+  <span style="color:#66d9ef">int</span> rowOfMaxElement = rowOfDiagonal;
+
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row = rowAfterDiagonal; row &lt; numberOfRows; row++)
+  {
+    <span style="color:#66d9ef">if</span> (Math.Abs(A[row, focusedColumn]) &gt; maxElement)
+    {
+        maxElement = Math.Abs(A[row, focusedColumn]);
+        rowOfMaxElement = row;
+    }
+  }
+  <span style="color:#66d9ef">return</span> rowOfMaxElement;
+}
+</code></pre></div><p>If we have to swap rows, we use below method, and record it in $P$.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> SwapRows(<span style="color:#66d9ef">int</span> row1, <span style="color:#66d9ef">int</span> row2)
+{
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> column = <span style="color:#ae81ff">0</span>; column &lt; numberOfColumns; column++)
+  {
+    <span style="color:#66d9ef">var</span> tmp = A[row1, column];
+    A[row1, column] = A[row2, column];
+    A[row2, column] = tmp;
+  }
+  RecordSwap(row1, row2);
+}
+</code></pre></div><p>We record the swap in $P$.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> RecordSwap(<span style="color:#66d9ef">int</span> row1, <span style="color:#66d9ef">int</span> row2)
+{
+    <span style="color:#66d9ef">var</span> tmp = P[row1];
+    P[row1] = P[row2];
+    P[row2] = tmp;
+}
+</code></pre></div><p>Now how we can make the column zero. Remember, we make only lower triangle zero, so we focus on rows under diagonal element. All the rows are iterated and the corresponding element made zero and then replaced with $L$ matrix value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> MakeColumnZero(<span style="color:#66d9ef">int</span> column)
+{
+  <span style="color:#66d9ef">int</span> rowUnderDiagonalElement = column + <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row = rowUnderDiagonalElement; row &lt; LowerTriangleBounds.EndRow; row++)
+  {
+    MakeElementZeroAndFillWithLowerMatrixElement(row, column);
+  }
+}
+</code></pre></div><p>So we broke the whole process into separate steps to reach a point we focus only on one element. The process is exactly the same as what I explained in the previous section.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> MakeElementZeroAndFillWithLowerMatrixElement(<span style="color:#66d9ef">int</span> elementRow, <span style="color:#66d9ef">int</span> elementColumn)
+{
+  <span style="color:#66d9ef">var</span> element = A[elementRow, elementColumn];
+  <span style="color:#66d9ef">var</span> sameColumnDiagonalElement = A[elementColumn, elementColumn];
+
+  <span style="color:#66d9ef">var</span> rowMultiplier = -element / sameColumnDiagonalElement;
+
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> col = elementColumn; col &lt; numberOfColumns; col++)
+  {
+    A[elementRow, col] += rowMultiplier * A[elementColumn, col];
+  }
+
+  <span style="color:#66d9ef">var</span> lowerMatrixElement = - rowMultiplier;
+  A[elementRow, elementColumn] = lowerMatrixElement;
+}
+</code></pre></div><p>I used dummy variables like <code> sameColumnDiagonalElement</code> and <code> lowerMatrixElement</code> so the code be easily readable without comments. Since I don’t assume the reader of this code has knowledge of legacy codes, I do not implement i, j, or k variables as iterators but use meaningful words like row and column. The loop boundaries are set by variables which exactly explain what they are rather than being puzzles to be discovered.
+Now, the class for finding $X$ is defined as below</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XFinder</span>
+{
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span>[,] lu;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span>[] b;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span>[] y;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span>[] x;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#66d9ef">int</span>[] p;
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#66d9ef">int</span> numberOfRows;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> <span style="color:#66d9ef">int</span> numberOfColumns;
+<span style="color:#960050;background-color:#1e0010">…</span>
+}
+</code></pre></div><p>The constructor accepts compact $LU$, $P$ and $B$. Their reference is stored in this class. <code>numberOfRows</code> and <code>numberOfColumns</code> are helper variables for readability. $X$ is the matrix of unknowns, $Y$ is the helper matrix defined in the previous section.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> XFinder(<span style="color:#66d9ef">double</span>[,] lu, <span style="color:#66d9ef">int</span>[] p, <span style="color:#66d9ef">double</span>[] b)
+{
+  <span style="color:#66d9ef">this</span>.lu = lu;
+  <span style="color:#66d9ef">this</span>.p = p;
+  <span style="color:#66d9ef">this</span>.b = b;
+
+  numberOfRows = lu.GetLength(<span style="color:#ae81ff">0</span>);
+  numberOfColumns = lu.GetLength(<span style="color:#ae81ff">1</span>);
+
+  y = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">double</span>[numberOfRows];
+  x = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">double</span>[numberOfRows];
+}
+</code></pre></div><p>Users have access to <code>Solve</code> method which returns the solutions, $X$. I created functions in the order we need to solve the problem.$B$is reoredered, $Y$ is found from $LY=B$, $X$ is found from UX=Y, and finally $X$ is checked to see if it is valid. What I wrote is in this paragraph are exactly the name of methods. Because of that no comments added to the code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span>[] Solve()
+{
+  ReorderB();
+  SolveYfromLYequalB();
+  SolveXfromUXequalY();
+  CheckXIsValid();
+  <span style="color:#66d9ef">return</span> x;
+}
+</code></pre></div><p>$B$ is reordered according to $P$.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> ReorderB()
+{
+  <span style="color:#66d9ef">double</span>[] reorderedB = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">double</span>[b.Length];
+
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row = <span style="color:#ae81ff">0</span>; row &lt; numberOfRows; row++)
+  {
+    reorderedB[row] = b[p[row]];
+  }
+
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row = <span style="color:#ae81ff">0</span>; row &lt; numberOfRows; row++)
+  {
+    b[row] = reorderedB[row];
+  }
+}
+</code></pre></div><p>$Y$ is found using forward substitution mentioned in the previous section.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">void</span> SolveYfromLYequalB()
+{
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row = <span style="color:#ae81ff">0</span>; row &lt; b.Length; row++)
+  {
+    <span style="color:#66d9ef">double</span> sum = <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">var</span> columnOfDiagonal = row;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> column = <span style="color:#ae81ff">0</span>; column &lt; columnOfDiagonal; column++)
+    {
+      sum += y[column] * lu[row, column];
+    }
+    y[row] = b[row] - sum;
+  }
+}
+</code></pre></div><p>And a backward substitution to find $X$.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">void</span> SolveXfromUXequalY()
+{
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row = y.Length - <span style="color:#ae81ff">1</span>; row &gt; -<span style="color:#ae81ff">1</span>; row--)
+  {
+    <span style="color:#66d9ef">double</span> sum = <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">var</span> columnOfDiagonal = row;
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> column = columnOfDiagonal + <span style="color:#ae81ff">1</span>; column &lt; x.Length; column++)
+    {
+      sum += x[column] * lu[row, column];
+    }
+    x[row] = (y[row] - sum) / lu[row, row];
+  }
+}
+</code></pre></div><p>Here I check if $X$ is a valid solution by checking there is not a <code>Nan</code> in it. You can add more conditions inside this function without effecting other part of the code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> CheckXIsValid()
+{
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> row = <span style="color:#ae81ff">0</span>; row &lt; x.Length; row++)
+  {
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">double</span>.IsNaN(x[row]))
+    {
+      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Exception(<span style="color:#e6db74">&#34;Error: No solution for this, AX=B, system found.&#34;</span>);
+    }
+  }
+}
+</code></pre></div><p>And lastly the API which is exposed to users of this library. It contains $A$, $B$, and the instances of decomposer and <code>XFinder</code>. Users only need to inject $A$ and $B$ in the constructor. The decomposer needs only $A$ to be initialized.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solver</span>
+{
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span>[,] A;
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span>[] B;
+  <span style="color:#66d9ef">private</span> PluDecomposer pluDecomposer;
+  <span style="color:#66d9ef">private</span> XFinder xFinder;
+
+  <span style="color:#66d9ef">public</span> Solver(<span style="color:#66d9ef">double</span>[,] A, <span style="color:#66d9ef">double</span>[] B)
+  {
+    <span style="color:#66d9ef">this</span>.A = A;
+    <span style="color:#66d9ef">this</span>.B = B;
+
+    pluDecomposer = <span style="color:#66d9ef">new</span> PluDecomposer(A);
+  }
+<span style="color:#960050;background-color:#1e0010">…</span>}
+</code></pre></div><p>The second method which users are interested is <code>SolveX</code> to get the solution. First we ask the decomposer to find $P$ and compact $LU$. Then they along $B$ are injected to <code>XFinder</code>. <code>XFinder</code> returns the solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span>[] SolveX()
+{
+  (<span style="color:#66d9ef">var</span> p, <span style="color:#66d9ef">var</span> lu)=pluDecomposer.FindPAndCombinedLU();
+  xFinder = <span style="color:#66d9ef">new</span> XFinder(lu, p, B);
+
+  <span style="color:#66d9ef">return</span> xFinder.Solve();
+}
+</code></pre></div><h2 id="summary">Summary</h2>
+<p>In this post, I coded LU decomposition in C# to have a stand-alone library. It is lightweight because it doesn’t include other non-related math stuff. You can implement it in lightweight projects like Blazor client side app.</p>
+<p>I tried to make it more readable: small methods are created and their names explain what they do. Dummy variables are used to clear up ambiguous parts of the code.</p>
+<p>The code has a simple API which accepts $A$ and $B$ matrices and returns the solution.</p>
+<p>I should note breaking numerical stages into small functions usually decreases speed of the code. Because function calls carry computational overheads. Moreover, functions usually hide the details which can help compilers to optimise the executables. Of course, these points depend on the language and compilers.</p>
+
+			
+			<script>
+				window.onscroll = function () {
+					myFunction();
+				};
+				function myFunction() {
+					var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+					var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+					var scrolled = (winScroll / height) * 100;
+					document.getElementById("myBar").style.width = scrolled + "%";
+				}
+			</script>
+			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
+			border-radius: 5px;">
+			
+
+
+  <h3>Related Tags</h3>
+    <div id="tags">
+        
+        <span><a href="/tags/numerical-code">Numerical Code</a> </span>
+        
+        <span><a href="/tags/c-sharp">C Sharp</a> </span>
+        
+    </div>
+
+
+
+			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
+			border-radius: 5px;">
+			
+<div>
+	<h3>Latest Posts</h3>
+</div>
+<div>
+	<ul>
+		
+		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		
+		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		
+		<li><a href="/posts/linux-connection-packages/">Handy free Windows packages to connect to a remote Linux server</a></li>
+		
+		<li><a href="/posts/mpi-send-types/">The difference between modes of MPI send</a></li>
+		
+		<li><a href="/posts/all-about-template/">C&#43;&#43; template crash course</a></li>
+		
+	</ul>
+</div>
+	
+		</article>
+		<nav class="hide-on-mobile section-nav">
+			<h3 class="ml-1">Table of contents</h3>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#linear-system-example">Linear System Example</a>
+      <ul>
+        <li><a href="#1only-matrix-a-is-focused-to-be-decomposed">1)	Only matrix $A$ is focused to be decomposed.</a></li>
+        <li><a href="#2system-is-solved-with-forward-and-backward-substitution">2)	System is solved with forward and backward substitution.</a></li>
+      </ul>
+    </li>
+    <li><a href="#code">Code</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
+		</nav>		
+	</div>
+</main>
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {					
+					clearActiveStatesInTableOfContents();				
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+</script>
+ <footer>
+    <div class="container">
+	<div class="my-2">
+	<form name="Subscription" method="POST" data-netlify="true" netlify-honeypot="ahani" action="/pages/sub-success">
+		<p class="nedia">
+		  <label> Name <input name="ahani" /></label>
+		</p>
+		<p><label for="emailinput">Subscribe so I notify you of new posts</label></p>
+		<p class="display-flex">
+		  <input id="emailinput" style="width: 18em;" class="mr-1" type="email" name="email" placeholder=" Email"/>
+		  <button type="submit">Subscribe</button>
+		</p>
+	</form>
+</div>
+<div class="my-1 display-flex justify-start justify-md-end align-center">
+	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+</div>
+</div>
+</footer>
+
+
+
+  <meta charset="utf-8">
+
+<link rel="stylesheet" href="/css/jqmath-0.4.3.css">
+<script src="/js/jquery-1.4.3.min.js"></script>
+<script src="/js/jqmath-etc-0.4.6.min.js" charset="utf-8"></script>
+
+
+
+
+</body>
+
+</html>

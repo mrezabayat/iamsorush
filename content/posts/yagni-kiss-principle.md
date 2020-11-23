@@ -2,8 +2,7 @@
 title: "Implementing YAGNI and KISS principle to have maintainable code"
 date: 2020-05-03T21:04:57+01:00
 draft: false
-image: /images/chair.webp
-thumbnail: /images/chair_tn.webp
+image: /images/chair.jpg
 tags: ['Design Pattern']
 categories: "Design"
 ---

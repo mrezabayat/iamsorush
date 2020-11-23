@@ -1,0 +1,38 @@
+{{ $path := .Params.image}}
+{{ $img := resources.GetMatch $path}}
+{{ if not $img  }}
+    {{$img =  resources.GetMatch "images/bird.jpg" }}
+{{end}}
+{{$imageQuality:= "q70"}}
+{{$imagAnchor := "Smart"}}
+{{if .Params.imageQuality}}
+    {{$imageQuality = .Params.imageQuality}}	
+{{end}}
+
+{{if .Params.imageAnchor}}
+    {{$imagAnchor = .Params.imageAnchor}}
+{{end}}
+
+
+{{/*
+{{$options_sm := printf "%s%s%s%s" "768x400 " $imageQuality " " $imagAnchor}}
+{{$options_md := printf "%s%s%s%s" "1024x400 " $imageQuality " " $imagAnchor}}
+{{$hero_sm := $img.Fill $options_sm}}
+{{$hero_md := $img.Fill $options_md}}
+*/}}
+{{$options := printf "%s%s%s%s" "430x250 " $imageQuality " " $imagAnchor}}
+{{$options_lg := printf "%s%s%s%s" "1280x400 " $imageQuality " " $imagAnchor}}
+{{$hero := $img.Fill $options}}
+{{$hero_lg := $img.Fill $options_lg}}
+<style>
+    .post__hero{
+        background-image: url('{{ $hero.Permalink }}');
+        height: 250px;
+    }
+    @media (min-width: 430px) {
+        .post__hero{
+        background-image: url('{{ $hero_lg.Permalink }}');
+        height: 400px;
+    }   
+</style>
+<div class="single-image post__hero"></div>

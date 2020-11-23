@@ -1,3 +1,5 @@
+
+
 {{ define "main" }}
 <div class="read-progress-container">
 	<div class="progress-bar" id="myBar"></div>
@@ -8,8 +10,7 @@
 		<h1>{{ .Title }}</h1>
 		<time>{{ .Date.Format "02 Jan 2006" }}</time>
 	</article>
-	<div class="single-image" style="background-image: url('{{ .Params.image }}');">
-	</div>
+	{{ partial "posthero" .}}
 	<div class="article-nav" id="article-nav-id">
 		<article class="overlay-top">
 			{{ .Content }}
@@ -42,10 +43,6 @@
 		</nav>		
 	</div>
 </main>
-
-
-
-
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {

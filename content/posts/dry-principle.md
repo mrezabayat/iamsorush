@@ -2,9 +2,7 @@
 title: "How Dry principle leads to clean and easy to debug code?"
 date: 2020-06-17T18:54:08+01:00
 draft: false
-image: /images/flower.webp
-image_v: /images/flower_v.webp
-thumbnail: /images/flower_tn.webp
+image: /images/dry.jpg
 tags: ['Design Pattern']
 categories: "Design"
 summary: "Dry is short for “Don’t repeat yourself”.

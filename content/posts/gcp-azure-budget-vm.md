@@ -1,8 +1,8 @@
 ---
 title: "Host a .Net core web application for less than $5 a month"
 date: 2020-10-02T18:50:47+01:00
-image: /images/azure.webp
-thumbnail: /images/azure_tn.webp
+image: /images/beach.jpg
+imageAnchor: "Center"
 tags: ["Back-End Web"]
 categories: "Diverse"
 summary: "I talk about Google Cloud Platform (GCP), Microsoft Azure and Heroku.

@@ -1,8 +1,7 @@
 ---
 title: "How to use Bookmark in Visual Studio"
 date: 2020-10-22T20:22:31+01:00
-image: /images/bookmark.webp
-thumbnail: /images/bookmark_tn.webp
+image: /images/bookmark.jpg
 tags: ["Visual Studio"]
 categories: "⋅Net"
 ---

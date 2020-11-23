@@ -1,9 +1,7 @@
 ---
 title: "Handy free Windows packages to connect to a remote Linux server"
 date: 2020-11-11T21:30:30+01:00
-image: /images/tools.webp
-image_v: /images/tools_v.webp
-thumbnail: /images/tools_tn.webp
+image: /images/tools.jpg
 tags: ["Linux", "Ubuntu"]
 categories: "Diverse"
 summary: "To download or upload files from/into a Linux server, or work with a remote desktop, some free Windows packages can be really helpful."
