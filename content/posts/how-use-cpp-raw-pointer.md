@@ -113,7 +113,7 @@ delete p; // error or undefined behaviour
 
 
 
-I prefer to point the pointer to `nullptr` (or NULL for C and older than c++11 compilers) when there is nothing to point to: declaration and deletion. In this way, I avoid undefined behaviour.    
+I prefer to point the pointer to `nullptr` (or `NULL` for C and older than c++11 compilers) when there is nothing to point to: declaration and deletion. In this way, I avoid undefined behaviour.    
 
 
 
@@ -268,7 +268,7 @@ struct A{
 ##  Dereference class members
 
 
-A class member, method or variable, can be accessed via `-&gt;` operator:   
+A class member, method or variable, can be accessed via `->` operator:   
 
 
 ```cpp
@@ -368,7 +368,7 @@ A reference member of a class must be initialised in the constructor and it cann
 
 
 
-## Array and vector
+## Arrays and vectors
 
 
 
