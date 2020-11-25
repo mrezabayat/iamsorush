@@ -196,9 +196,20 @@ Again we have to remember to delete it ourself
 }
 ```
 
+There is another situation that memory leaks:   
 
 
-However,  in practice, it is not that straightforward. The things get complicated fast when an object is pointed by many different pointers:   
+```cpp
+int* p = new int;
+... an exception is thrown here..
+delete p; // this is not reached.
+```
+
+
+A raw pointer cannot handle this, you need to use smart pointers (see this [discussion](https://stackoverflow.com/questions/24150472/c-avoiding-memory-leak-with-exceptions) ).   
+
+
+For deleting a memory, the situation gets complicated fast when it is pointed by many different pointers:   
 
 
 
@@ -225,21 +236,34 @@ CourseB* B= new CourseB(Jack);
 }
 ```
 
-In the above example, three pointers target the same memory location, thus we cannot run delete on all of them we face double-delete problems explained in the Delete section. Here, we have to decide which one is the owner or which one needs to outlive others, so we run `delete` command on that one, so the rest are observers. Because of these complexities, smart pointers are introduced in C++11.    
+In the above example, three pointers target the same memory location, thus we cannot run delete on all of them we face double-delete problems explained in the Delete section. 
 
+## Owner Convention
 
-There is another situation that memory leaks:   
+In the previous example, we have to decide which one is the owner or which one 
+needs to outlive others, so we run `delete` command on that one and leave the rest as observers.
 
+We can have `owner` as a type alias for `T`.
 
 ```cpp
-int* p = new int;
-... an exception is thrown here..
-delete p; // this is not reached.
+template<class T>
+using owner = T;
+```
+
+Now we can have a convention for our code that pointers are defined by `owner` only when the class containing them is responsible for deleting them.
+
+A simple example that owner acts as a raw pointer:
+
+```cpp
+struct A{
+    owner<int*> p;
+    ~A(){delete p;}
+};
 ```
 
 
 
-A raw pointer cannot handle this, you need to use smart pointers (see this [discussion](https://stackoverflow.com/questions/24150472/c-avoiding-memory-leak-with-exceptions) ).   
+ Note that smart pointers, which are introduced in C++11, elegantly address this problem.    
 
 
 
