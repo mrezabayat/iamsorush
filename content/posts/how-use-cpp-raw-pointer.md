@@ -90,11 +90,9 @@ Do not delete a stack memory that a pointer points to
 
 
 ```cpp
-void main(){
 int x;
 int* p=&x;
 delete p; // Undefined Behaviour: deleting a memory on stack!
-}
 ```
 
 
