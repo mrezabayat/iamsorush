@@ -36,17 +36,25 @@ In the above example, p at the beginning is declared but undefined (it points to
 
 
 
-## Delete
+## Memory Allocation
 
 
 
-A pointer is usually pointed to dynamically allocated memory on the heap   
+A pointer is usually pointed to dynamically allocated memory on the heap, a scalar   
 
 
 
 ```cpp
 int* p = new int;
 ```
+
+or an array 
+
+``` cpp
+int* q = new int[5];
+```
+
+## Delete
 
  the allocated memory can be deleted (not the pointer itself)   
 
@@ -55,10 +63,25 @@ int* p = new int;
 ```cpp
 delete p; // new int memory now deleted
 ```
+To delete all elements of the array 
+
+```cpp
+delete[] q; // All elements of array deleted
+```
+Note that they are not literally deleted, the memory marked as free to be overwritten.    
+
+
+Note that `new` ends with `delete`, `new[]` ends with `delete[]`. The compiler nows the number of elements of the array created using `new[]` so `delete[]` doesn't need number of elements.
+
+
+Do not, delete the dynamically created array using `delete`
+
+```cpp
+delete q; // Error: only one element is deleted
+```
 
 
 
-Note it is not literally deleted, the memory marked as free to be overwritten.    
 
 
 
@@ -105,7 +128,7 @@ q = nullptr;
 
 
 
-nullptr is type-safe in comparison with NULL. In some <a href="https://stackoverflow.com/questions/20509734/null-vs-nullptr-why-was-it-replaced">scenarios</a>, compilers confuse the type of NULL with int. We can check if a pointer is null like below   
+nullptr is type-safe in comparison with NULL. In some [cases](https://stackoverflow.com/questions/20509734/null-vs-nullptr-why-was-it-replaced), compilers confuse the type of NULL with int. We can check if a pointer is null like below   
 
 
 
@@ -116,7 +139,7 @@ if(p!=NULL) {...} // C and older C++ compilers
 
 
 
-It should be noted that making pointer null after delete hides the double-delete problem explained in the previous section. And it has no effect on other pointers pointing to the same deleted memory. Some people don't like this convention read <a href="https://stackoverflow.com/questions/4190703/is-it-safe-to-delete-a-null-pointer">here</a>.    
+It should be noted that making a pointer null after delete hides the double-delete problem explained in the previous section. And it does not affect other pointers pointing to the same deleted memory. Some people don't like this convention read [here](https://stackoverflow.com/questions/4190703/is-it-safe-to-delete-a-null-pointer).    
 
 
 
@@ -134,7 +157,7 @@ int* p = new int;
 p = &x;  // re-pointed but "new int" not deleted
 ```
 
-<p class="has-normal-font-size">In the above example, new int memory is an island in the sea of computer memory. We could only find it via p but, in the last line, p is pointed to another place, x. So we have a memory leak! We have to remember to delete allocated memory and then point the pointer to another variable/new allocated memory:   
+In the above example, new int memory is an island in the sea of computer memory. We could only find it via p but, in the last line, p is pointed to another place, x. So we have a memory leak! We have to remember to delete allocated memory and then point the pointer to another variable/new allocated memory:   
 
 
 
@@ -202,7 +225,7 @@ CourseB* B= new CourseB(Jack);
 }
 ```
 
-In the above example, three pointers target the same memory location, thus we cannot run delete on all of them we face double-delete problems explained in the Delete section. Here, we have to decide which one is the owner or which one needs to outlive others, so we run delete command on that one, so the rest are observers. Because of these complexities, smart pointers are introduced in C++11.    
+In the above example, three pointers target the same memory location, thus we cannot run delete on all of them we face double-delete problems explained in the Delete section. Here, we have to decide which one is the owner or which one needs to outlive others, so we run `delete` command on that one, so the rest are observers. Because of these complexities, smart pointers are introduced in C++11.    
 
 
 There is another situation that memory leaks:   
@@ -216,7 +239,7 @@ delete p; // this is not reached.
 
 
 
-A raw pointer cannot handle this, you need to use smart pointers (see this <a href="https://stackoverflow.com/questions/24150472/c-avoiding-memory-leak-with-exceptions">discussion</a>).   
+A raw pointer cannot handle this, you need to use smart pointers (see this [discussion](https://stackoverflow.com/questions/24150472/c-avoiding-memory-leak-with-exceptions) ).   
 
 
 
@@ -254,7 +277,7 @@ DoSomething(a);
 
 
 
-I mostly prefer pass by pointer than by reference, both methods have the same efficiency but a pointer can be null while reference cannot. But you may want to use reference because you are not handling null in the function.    
+I mostly prefer pass by pointer than by reference, both methods have the same efficiency but a pointer can be null while a reference cannot. But you may want to use reference because you are not handling null in the function.    
 
 
 
@@ -295,7 +318,7 @@ const int* const p // both above constraints
 
 
 
-Too many options hah? Basically, they are there to constrain the usage of a pointer, so, when other developers read your code they quickly understand the purpose of variables. For example, if the target must not be changed in specific scope then use constant-target pointer and other developers do not mistakenly change them.    
+Too many options hah? Basically, they are there to constrain the usage of a pointer, so, when other developers read your code they quickly understand the purpose of variables. For example, if the target must not be changed in specific scope then use a constant-target pointer and other developers do not mistakenly change them.    
 
 
 
@@ -340,7 +363,7 @@ cout<< *(q+2) << endl; // shows third element of array
 
 
 
-In C++, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array (<a href="https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays">see here</a>).  So it's better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:   
+In C++, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array [see here](https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays).  So it's better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:   
 
 ```cpp
 vector<int> *v = new vector<int>(10);
@@ -355,7 +378,7 @@ r[2]; // index reference
 
 ## Void pointer 
 
-All the pointers (int*, double*, string*, custom_class*) have the same datatype holding the memory address of different targets. So, `void*` pointer is a pointer the same as others pointing to some memory address but the datatype of target is unknown. 
+All the pointers (int*, double*, string*, custom_class*) have the same datatype holding the memory address of different targets. So, `void*` pointer is a pointer the same as others pointing to some memory address but the datatype of the target is unknown. 
 
 ```cpp
 void* p;
