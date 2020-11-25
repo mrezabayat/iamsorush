@@ -152,7 +152,7 @@ There is no memory management system for raw pointers. Therefore, not deleting t
 
 
 ```cpp
- int x;
+int x;
 int* p = new int;
 p = &x;  // re-pointed but "new int" not deleted
 ```
