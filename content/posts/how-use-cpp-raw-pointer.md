@@ -355,12 +355,33 @@ In C language, it is common to define an array using a pointer
 
 
 ```cpp
-int (*p)[5]; // array of 5 integer using pointer  
-int arr[5];  // array of 5 integer
-int* q = arr;  // pointer points to first element of array
-cout<< *(q+2) << endl; // shows third element of array
+int *p = new int[5]; // dynamically allocated array
+cout<< p[2]; // prints 3rd element
+
+int *q[5]; // array of 5 integer pointers  
+
+int arr[5];  // array of 5 integers
+int* r = arr;  // pointer points to first element of array
+cout<< *(r+2); // shows 3rd element of arr
 ```
 
+A dynamic 2D array can be created with a pointer to pointer type
+
+```cpp
+int **p;
+p = new int*[5]; // dynamic array of pointers
+
+for (int i = 0; i < 5; ++i) {
+  p[i] = new int[5];
+  // p[i] points to dynamic array of int values
+}
+```
+The elements can be accessed via `[]` operators
+
+```cpp
+int row=1, column=2;
+p[row][column]=3; // 
+```
 
 
 In C++, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array [see here](https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays).  So it's better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:   
