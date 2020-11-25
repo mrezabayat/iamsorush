@@ -74,7 +74,7 @@ Note that they are not literally deleted, the memory marked as free to be overwr
 Note that `new` ends with `delete`, `new[]` ends with `delete[]`. The compiler nows the number of elements of the array created using `new[]` so `delete[]` doesn't need number of elements.
 
 
-Do not, delete the dynamically created array using `delete`
+Do not delete the dynamically created array using `delete`
 
 ```cpp
 delete q; // Error: only one element is deleted
@@ -115,7 +115,7 @@ delete p; // error or undefined behaviour
 
 
 
-I prefer to point the pointer to nullptr (or NULL for C and older than c++11 compilers) when there is nothing to point to: declaration and deletion. In this way, I avoid undefined behaviour.    
+I prefer to point the pointer to `nullptr` (or NULL for C and older than c++11 compilers) when there is nothing to point to: declaration and deletion. In this way, I avoid undefined behaviour.    
 
 
 
@@ -128,7 +128,7 @@ q = nullptr;
 
 
 
-nullptr is type-safe in comparison with NULL. In some [cases](https://stackoverflow.com/questions/20509734/null-vs-nullptr-why-was-it-replaced), compilers confuse the type of NULL with int. We can check if a pointer is null like below   
+`nullptr` is type-safe in comparison with `NULL`. In some [cases](https://stackoverflow.com/questions/20509734/null-vs-nullptr-why-was-it-replaced), compilers confuse the type of `NULL` with `int`. We can check if a pointer is null like below   
 
 
 
@@ -246,7 +246,7 @@ A raw pointer cannot handle this, you need to use smart pointers (see this [disc
 ##  Dereference class members
 
 
-A class member, method or variable, can be accessed via -&gt; operator:   
+A class member, method or variable, can be accessed via `-&gt;` operator:   
 
 
 ```cpp
@@ -346,7 +346,7 @@ A reference member of a class must be initialised in the constructor and it cann
 
 
 
-## Pointer, array, vector
+## Array and vector
 
 
 
