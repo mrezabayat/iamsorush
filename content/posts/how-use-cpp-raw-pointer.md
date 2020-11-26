@@ -72,7 +72,7 @@ delete[] q; // All elements of array deleted
 Note that they are not literally deleted, the memory is marked as free to be overwritten.    
 
 
-Note that `new` ends with `delete`, `new[]` ends with `delete[]`. The compiler nows the number of elements of the array created using `new[]` so `delete[]` doesn't need the number of elements.
+Note that `new` ends with `delete`, `new[]` ends with `delete[]`. The compiler nows the number of elements of the array created via `new[]`, so `delete[]` doesn't need the number of elements.
 
 
 Do not delete the dynamically created array using `delete`
