@@ -4,7 +4,7 @@ date: 2020-11-11T21:30:30+01:00
 image: /images/tools.jpg
 tags: ["Linux", "Ubuntu"]
 categories: "Diverse"
-summary: "To download or upload files from/into a Linux server, or work with a remote desktop, some free Windows packages can be really helpful."
+summary: "Interaction with a remote Linux server like transferring files, editing code, or accessing the remote desktop can be much easier with these free Windows packages."
 ---
 
 ## Intro
@@ -39,6 +39,14 @@ This is another remote desktop solution which uses NX protocol. [NoMachine](http
 
 NoMachine is only free for one user using one server. Moreover, it cannot create multiple independent desktops for different users, in contrast to X2Go. I think it is a hardware issue that unlike CPU, GPU can not be easily shared among multiple users. Therefore, even you buy an enterprise license of NoMachine, multiple users can access only one shared desktop on the server.
 
+
+## Visual Studio Code
+
+If you aim to develop code on a remote Linux machine, [Visual Studio Code] (https://code.visualstudio.com/) (VS Code) is a swiss army knife. It is a free open-source code editor that supports syntax highlighting, intelligent code completion (IntelliSense), debugging, Git, and many more features. VS Code can connect to a remote machine via SSH and open a remote folder as a workspace, [see the instruction here](https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host). After a successful connection, the whole experience is  more enjoyable and productive in comparison with terminal editors like Vim and nano. Moreover, if you are a Vim lover, you can install a Vim extension on VS Code.
+
+## Vim or nano
+
+If you just one to edit some files containing text or code on a remote machine, Vim and nano are your best friends. They both have syntax highlighting, search-and-replace capabilities, and so on. Vim takes more time to learn, but when you master it probably you cannot live without it. **These two are installed on the remote Linux**. I brought them to this post because they shine when you want to edit a file in the terminal and accessing a remote machine terminal is the easiest type of connection.
 
 
 
