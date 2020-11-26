@@ -3,7 +3,6 @@ title: 'How to use C/C++ raw pointers properly?'
 date: 2020-02-22T20:05:39Z
 draft: false
 image: /images/pointer.jpg
-thumbnail: /images/pointer_tn.webp
 tags: ['C++']
 categories: "C++"
 summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target. Here, I  mention the most useful characteristics of pointers with examples."
@@ -114,7 +113,7 @@ delete p; // error or undefined behaviour
 
 
 
-I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, I avoid undefined behavior.    
+I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, we avoid undefined behavior.    
 
 
 
