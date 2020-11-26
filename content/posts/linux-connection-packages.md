@@ -44,7 +44,7 @@ NoMachine is only free for one user using one server. Moreover, it cannot create
 
 ## Visual Studio Code
 
-If you aim to develop code on a remote Linux machine, [Visual Studio Code] (https://code.visualstudio.com/) (VS Code) is a swiss army knife. It is a free open-source code editor that supports syntax highlighting, intelligent code completion (IntelliSense), debugging, Git, and many more features. VS Code can connect to a remote machine via SSH and open a remote folder as a workspace, [see the instruction here](https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host). After a successful connection, the whole experience is  more enjoyable and productive in comparison with terminal editors like Vim and nano. Moreover, if you are a Vim lover, you can install a Vim extension on VS Code.
+If you aim to develop code on a remote Linux machine, [Visual Studio Code](https://code.visualstudio.com/) (VS Code) is a swiss army knife. It is a free open-source code editor that supports syntax highlighting, intelligent code completion (IntelliSense), debugging, Git, and many more features. VS Code can connect to a remote machine via SSH and open a remote folder as a workspace, [see the instruction here](https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host). After a successful connection, the whole experience is  more enjoyable and productive in comparison with terminal editors like Vim and nano. Moreover, if you are a Vim lover, you can install a Vim extension on VS Code.
 
 
 
