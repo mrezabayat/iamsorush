@@ -30,11 +30,11 @@
     {{ $style := $css | resources.Minify }}
     <link rel="stylesheet" href="{{ $style.Permalink }}">
     
-    {{/* 
-    {{ with resources.Get "css/style.css" | minify }}
-<style>{{ .Content | safeCSS }}</style>
-{{ end }}
-*/}}
+    
+    {{ with resources.Get "css/inline.css" | minify }}
+    <style>{{ .Content | safeCSS }}</style>
+    {{ end }}
+
 </head>
 
 <body>
