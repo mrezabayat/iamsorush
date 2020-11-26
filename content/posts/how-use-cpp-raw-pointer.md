@@ -392,10 +392,13 @@ A dynamic 2D array can be created with a pointer-to-pointer type
 
 ```cpp
 int **p;
-p = new int*[5]; // dynamic array of pointers
+// dynamic array of pointers
+// each pointer is a row
+p = new int*[5]; 
 
+// loop over rows
 for (int i = 0; i < 5; ++i) {
-  p[i] = new int[5];
+  p[i] = new int[6]; // each row has 6 columns
   // p[i] points to dynamic array of int values
 }
 ```
