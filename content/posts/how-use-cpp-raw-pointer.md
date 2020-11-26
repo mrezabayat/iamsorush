@@ -8,11 +8,12 @@ tags: ['C++']
 categories: "C++"
 summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target. Here, I  mention the most useful characteristics of pointers with examples."
 ---
+
+
 ## Introduction
 
 
-
-C/C++ is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. Here, I  mention the most useful characteristics of pointers with examples.   
+*C/C++* is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. Here, I  mention the most useful characteristics of pointers with examples.   
 
 I call them here pointers but nowadays they are called raw pointers to separate them from smart pointers. I will write on smart pointers separately.    
 
@@ -32,7 +33,7 @@ cout<< *p <<endl; // 20
 
 
 
-In the above example, p at the beginning is declared but undefined (it points to somewhere we don't know); then pointed to x. The pointer holds the memory address of x.  Using * operator, the pointer can be dereferenced to get the value of its target.     
+In the above example, `p` at the beginning is declared but undefined (it points to somewhere we don't know); then pointed to `x`. The pointer holds the memory address of x.  Using `*` operator, the pointer can be dereferenced to get the value of its target.     
 
 
 
@@ -68,10 +69,10 @@ To delete all elements of the array
 ```cpp
 delete[] q; // All elements of array deleted
 ```
-Note that they are not literally deleted, the memory marked as free to be overwritten.    
+Note that they are not literally deleted, the memory is marked as free to be overwritten.    
 
 
-Note that `new` ends with `delete`, `new[]` ends with `delete[]`. The compiler nows the number of elements of the array created using `new[]` so `delete[]` doesn't need number of elements.
+Note that `new` ends with `delete`, `new[]` ends with `delete[]`. The compiler nows the number of elements of the array created using `new[]` so `delete[]` doesn't need the number of elements.
 
 
 Do not delete the dynamically created array using `delete`
@@ -113,7 +114,7 @@ delete p; // error or undefined behaviour
 
 
 
-I prefer to point the pointer to `nullptr` (or `NULL` for C and older than c++11 compilers) when there is nothing to point to: declaration and deletion. In this way, I avoid undefined behaviour.    
+I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *c++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, I avoid undefined behavior.    
 
 
 
@@ -155,7 +156,7 @@ int* p = new int;
 p = &x;  // re-pointed but "new int" not deleted
 ```
 
-In the above example, new int memory is an island in the sea of computer memory. We could only find it via p but, in the last line, p is pointed to another place, x. So we have a memory leak! We have to remember to delete allocated memory and then point the pointer to another variable/new allocated memory:   
+In the above example, new int memory is an island in the sea of computer memory. We could only find it via `p` but, in the last line, `p` is pointed to another place, `x`. So we have a memory leak! We have to remember to delete allocated memory and then point the pointer to another variable/new allocated memory:   
 
 
 
@@ -182,7 +183,7 @@ The same happens if the pointer goes out of scope
 
 
 
-Again we have to remember to delete it ourself   
+Again we have to remember to delete it ourself:
 
 
 
@@ -261,7 +262,7 @@ struct A{
 
 
 
- Note that smart pointers, which are introduced in C++11, elegantly address this problem.    
+ Note that smart pointers, which are introduced in *C++11*, elegantly address this problem.    
 
 
 
@@ -340,7 +341,7 @@ const int* const p // both above constraints
 
 
 
-Too many options hah? Basically, they are there to constrain the usage of a pointer, so, when other developers read your code they quickly understand the purpose of variables. For example, if the target must not be changed in specific scope then use a constant-target pointer and other developers do not mistakenly change them.    
+Too many options? Well, they are there to constrain the usage of a pointer, so, when other developers read your code they quickly understand the purpose of variables. For example, if the target must not be changed in specific scope then use a constant-target pointer and other developers do not mistakenly change them.    
 
 
 
@@ -372,7 +373,7 @@ A reference member of a class must be initialised in the constructor and it cann
 
 
 
-In C language, it is common to define an array using a pointer   
+In *C* language, it is common to define an array using a pointer   
 
 
 
@@ -387,7 +388,7 @@ int* r = arr;  // pointer points to first element of array
 cout<< *(r+2); // shows 3rd element of arr
 ```
 
-A dynamic 2D array can be created with a pointer to pointer type
+A dynamic 2D array can be created with a pointer-to-pointer type
 
 ```cpp
 int **p;
@@ -406,7 +407,7 @@ p[row][column]=3; //
 ```
 
 
-In C++, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array [see here](https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays).  So it's better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:   
+In *C++*, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array [see here](https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays).  So it's better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:   
 
 ```cpp
 vector<int> *v = new vector<int>(10);
@@ -432,4 +433,4 @@ p = &d;
 cout<<*(double*)p; // cast when dereferenced
 ```
 
-It is a C language feature to write generic functions. But in C++, knowing `void*` tricks are not necessary since generic code can be elegantly written with templates, functors and interfaces.  
+It is a *C* language feature to write generic functions. But in *C++*, knowing `void*` tricks are not necessary since generic code can be elegantly written with templates, functors and interfaces.  
