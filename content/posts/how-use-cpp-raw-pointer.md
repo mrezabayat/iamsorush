@@ -235,7 +235,7 @@ CourseB* B= new CourseB(Jack);
 }
 ```
 
-In the above example, three pointers target the same memory location, thus we cannot run delete on all of them we face double-delete problems explained in the Delete section. 
+In the above example, three pointers target the same memory location, thus we cannot run `delete` for all of them as we face double-delete problems explained in the Delete section. 
 
 ## Owner Convention
 
