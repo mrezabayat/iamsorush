@@ -16,6 +16,8 @@ To download or upload files from/into a Linux server, work with desktop, or inst
 
 [PuTTy](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) can connect via SSH to a remote system. You just need to insert the IP of the remote computer and your credentials to have access to a Linux terminal. It can also be used for port forwarding. 
 
+If you just one to edit some files containing text or code on the remote machine, make sure **Vim** or **nano** are installed on the remote machine. They both are terminal code editors which have syntax highlighting, search-and-replace capabilities, and so on. Vim takes more time to learn, but when you master it probably you cannot live without it. 
+
 
 ## X2Go 
 
@@ -44,9 +46,7 @@ NoMachine is only free for one user using one server. Moreover, it cannot create
 
 If you aim to develop code on a remote Linux machine, [Visual Studio Code] (https://code.visualstudio.com/) (VS Code) is a swiss army knife. It is a free open-source code editor that supports syntax highlighting, intelligent code completion (IntelliSense), debugging, Git, and many more features. VS Code can connect to a remote machine via SSH and open a remote folder as a workspace, [see the instruction here](https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host). After a successful connection, the whole experience is  more enjoyable and productive in comparison with terminal editors like Vim and nano. Moreover, if you are a Vim lover, you can install a Vim extension on VS Code.
 
-## Vim or nano
 
-If you just one to edit some files containing text or code on a remote machine, Vim and nano are your best friends. They both have syntax highlighting, search-and-replace capabilities, and so on. Vim takes more time to learn, but when you master it probably you cannot live without it. **These two are installed on the remote Linux**. I brought them to this post because they shine when you want to edit a file in the terminal and accessing a remote machine terminal is the easiest type of connection.
 
 
 
