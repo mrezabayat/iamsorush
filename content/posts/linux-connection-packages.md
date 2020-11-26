@@ -1,15 +1,15 @@
 ---
-title: "Handy free Windows packages to connect to a remote Linux server"
+title: "Handy cross-platform packages to connect to a remote Linux server"
 date: 2020-11-11T21:30:30+01:00
 image: /images/tools.jpg
 tags: ["Linux", "Ubuntu"]
 categories: "Diverse"
-summary: "Interaction with a remote Linux server like transferring files, editing code, or accessing the remote desktop can be much easier with these free Windows packages."
+summary: "Interaction with a remote Linux server like transferring files, editing code, or accessing the remote desktop can be much easier with these free cross-platform packages."
 ---
 
 ## Intro
 
-To download or upload files from/into a Linux server, edit code, work with desktop, or install applications remotely, some free packages can be really helpful. Here, I talk about my favorites. I assume the Linux system has an SSH server like [OpenSSH](https://www.openssh.com/) installed.
+To download or upload files from/into a Linux server, edit code, work with desktop, or install applications remotely, some cross-platform - *Windows, Mac, Linux* - packages can be really helpful. Here, I talk about my favorites. I assume the Linux system has an SSH server like [OpenSSH](https://www.openssh.com/) installed.
 
 
 ## PuTTy
@@ -21,7 +21,7 @@ If you just one to edit some files containing text or code on the remote machine
 
 ## X2Go 
 
-If you like to visually see the desktop of a remote Linux system, [X2Go](https://wiki.x2go.org/doku.php) is the solution. It has server and client packages. You have to install the server package on the remote computer and client one on your Windows system. 
+If you like to visually see the desktop of a remote Linux system, [X2Go](https://wiki.x2go.org/doku.php) is the solution. It has server and client packages. You have to install the server package on the remote computer and client one on your local system. 
 
 From my experience, the *Unity* desktop of Ubuntu doesn't work with X2Go. However, *Mate* desktop works flawlessly. So, if you have Ubuntu install *Mate* for X2Go.
 
@@ -33,7 +33,7 @@ Using X2Go, many users can connect to a Linux server having independent desktops
 
 ## FileZilla
 
-If you are interested to see directories and files visually, create, copy, cut, delete, drag and drop them, FileZilla is the best. It is used mainly to connect to FTP servers. But by creating an SFTP profile, you can see the content of a remote Linux storage from a Windows system.
+If you are interested to see directories and files visually, create, copy, cut, delete, drag and drop them, FileZilla is the best. It is used mainly to connect to FTP servers. But by creating an SFTP profile, you can see the content of a remote Linux storage from a local system.
 
 ## NoMachine
 
