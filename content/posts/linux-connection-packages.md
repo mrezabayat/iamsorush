@@ -9,7 +9,7 @@ summary: "Interaction with a remote Linux server like transferring files, editin
 
 ## Intro
 
-To download or upload files from/into a Linux server, work with desktop, or install applications remotely, some free packages can be really helpful. Here, I talk about my favorites. I assume the Linux system has an SSH server like [OpenSSH](https://www.openssh.com/) installed.
+To download or upload files from/into a Linux server, edit code, work with desktop, or install applications remotely, some free packages can be really helpful. Here, I talk about my favorites. I assume the Linux system has an SSH server like [OpenSSH](https://www.openssh.com/) installed.
 
 
 ## PuTTy
