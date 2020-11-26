@@ -33,7 +33,7 @@ Using X2Go, many users can connect to a Linux server having independent desktops
 
 ## FileZilla
 
-If you are interested to see directories and files visually, delete, drag and drop them, FileZilla is the best. It is used mainly to connect to FTP servers. But by creating an SFTP profile, you can see the content of a remote Linux storage from a Windows system.
+If you are interested to see directories and files visually, create, copy, cut, delete, drag and drop them, FileZilla is the best. It is used mainly to connect to FTP servers. But by creating an SFTP profile, you can see the content of a remote Linux storage from a Windows system.
 
 ## NoMachine
 
