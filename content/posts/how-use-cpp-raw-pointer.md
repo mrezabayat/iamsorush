@@ -114,7 +114,7 @@ delete p; // error or undefined behaviour
 
 
 
-I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *c++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, I avoid undefined behavior.    
+I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, I avoid undefined behavior.    
 
 
 
