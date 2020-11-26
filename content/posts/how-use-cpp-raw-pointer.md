@@ -57,7 +57,7 @@ int* q = new int[5];
 
 ## Delete
 
- the allocated memory can be deleted (not the pointer itself)   
+ The allocated memory can be deleted (not the pointer itself)   
 
 
 
