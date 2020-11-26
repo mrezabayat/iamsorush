@@ -33,7 +33,7 @@ cout<< *p <<endl; // 20
 
 
 
-In the above example, `p` at the beginning is declared but undefined (it points to somewhere we don't know); then pointed to `x`. The pointer holds the memory address of x.  Using `*` operator, the pointer can be dereferenced to get the value of its target.     
+In the above example, `p` at the beginning is declared but undefined (it points to somewhere we don't know); then pointed to `x`. The pointer holds the memory address of `x`.  Using `*` operator, the pointer can be dereferenced to get the value of its target.     
 
 
 
