@@ -11,12 +11,12 @@ summary: "In C++, *auto* keyword can speed up coding and improve maintainablity 
 
 ## Introduction
 
-Since *C++11*, a compiler can deduce the type of a variable, being declared, from its initializer using `auto` keyword. 
+Since *C++11*, a compiler can deduce the type of a variable being declared from its initializer using `auto` keyword. 
 
 
 ## General Behavior
 
-`auto` can infer the type of a variable from its initializer. The variable gets a copy of the initializer
+`auto` infers the type of a variable from its initializer. The variable gets a copy of the initializer
 
 ```cpp
 int i;
@@ -41,7 +41,7 @@ const auto k = m; // k is const int
 const auto l = i; // l is const int, holds a copy of i
 ```
 
-`auto&` can infer `const` qualifier
+`auto&` infers `const` qualifier
 
 ```cpp
 const int i =0;
@@ -52,7 +52,7 @@ auto& j = i; // const int&, alias for i
 
 ## Primitive types
 
-`auto` can figure out the below types 
+`auto` figures out the below types: 
 
 ```cpp
 auto i = 1; // int
@@ -71,20 +71,20 @@ auto s = "hellow"s // std::string, note the s operator.
 
 ## Classes
 
-Custom classes are also inferred 
+Custom classes are also inferred:
 
 ```cpp
 class LongNameClass {};
 auto a = new LongNameClass(); // a is LongNameClass*
 ```
 
-List initializer 
+List initializer:
 
 ```cpp
 auto l = {1,2,3}; // l is std::initializer_list<int>
 ```
 
-Long name types can be easily replaced by `auto`
+Long name types can be easily replaced by `auto`:
 
 ```cpp
 std::map<std::string, std::string> m;
@@ -113,10 +113,9 @@ for (auto& x : vec)
 ```
 
 
-
 ## Pointers
 
-A pointer type is also deduced 
+A pointer type is also deduced:
 
 ```cpp
 int i;
@@ -125,7 +124,7 @@ auto q = p; //int*
 auto r = new int[5]; // int*
 ```
 
-We can emphasize it with `*` just for readability. The outcome of the example below is the same as the previous one:
+We can emphasize pointer with `*` just for readability. The outcome of the example below is the same as the previous one:
 
 ```cpp
 int i;
@@ -135,7 +134,7 @@ auto *q = p; // int*
 
 ## References
 
-By default, `auto` deduce reference to the value type 
+By default, `auto` deduce reference as the value type 
 
 ```cpp
 int y;
