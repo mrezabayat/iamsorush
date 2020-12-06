@@ -205,14 +205,12 @@ auto i = 1; // int
 a template
 
 ```cpp
-
 int f(){return 0;}
 decltype(f()) i; // i is integer
-
 vector<decltype(f())> v; // vector<int>, cannot be done with auto
-
 ```
 
+Note that `f()` within `decltype(f())` is not called. In fact during compilation and before the program is run, the declarations are concluded to be `int i`, `vector<int> v`. 
 
 ## Test 
 
