@@ -17,6 +17,15 @@ Debugging an MPI program can be a nightmare. I explain how easily you can debug 
 
 {{< youtube lTt02xuD51w >}}
 
+## Superuser password
+
+To get rid of Linux asking for Superuser password try below command
+
+```bash
+echo 0| sudo tee /proc/sys/kernel/yama/ptrace_scope
+```
+For more info, see [here](https://github.com/Microsoft/MIEngine/wiki/Troubleshoot-attaching-to-processes-using-GDB).
+
 ## Settings
 
 VS Code creates folder *.vscode* which contains settings files:
