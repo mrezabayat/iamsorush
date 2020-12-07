@@ -93,8 +93,8 @@ Each processore is going to solve a `RoadSection`. Each `RoadSection` is allocat
 
 
 
-## Why Vector<char> not vector<bool>
+## Why Vector\<char> ?
 
-`vector<bool>` is a special case of `vector<>` container where each element is a stored as a bit in contrast with a normal `bool` takes. For more info, [read here](https://stackoverflow.com/questions/17794569/why-isnt-vectorbool-a-stl-container). Therefore, I use `vector<char>` with `t` and `f` values as *true* and *false*.
+Each point either has a car or is empty. I needed a boolean type. But, unfortunately, `vector<bool>` is a special case of `vector<>` container where each element is a stored as a bit in contrast with a normal `bool` takes. For more info, [read here](https://stackoverflow.com/questions/17794569/why-isnt-vectorbool-a-stl-container). Therefore, I used `vector<char>` with `t` and `f` values as *true* and *false* to be MPI friendly. 
 
 
