@@ -436,3 +436,17 @@ cout<<*(double*)p; // cast when dereferenced
 ```
 
 It is a *C* language feature to write generic functions. But in *C++*, knowing `void*` tricks are not necessary since generic code can be elegantly written with templates, functors and interfaces.  
+
+## Read Pointers
+
+Pointers are printed in hexadecimal (hex) system which includes {0-9,a-f} characters.
+
+```cpp
+    int* p = new int;
+    cout << p   << endl; // 0x10dbc20 
+    cout << p+1 << endl; // 0x10dbc24
+    cout << p+2 << endl; // 0x10dbc28
+    cout << p+3 << endl; // 0x10dbc2c
+```
+
+"0x" represents hex system. Focusing on the last numbers, {0, 4, 8, c}, they increase by 4 unit because an integer on the target machine was 4 bytes. Note in hex system, 8+4=c.   
