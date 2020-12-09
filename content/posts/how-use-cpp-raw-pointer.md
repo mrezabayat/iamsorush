@@ -443,7 +443,7 @@ Pointers are printed in hexadecimal (hex) system which includes 16 (or 2⁴) cha
 
 ```cpp
     int* p = new int[5];
-    cout << p  << endl; // 0x55b3ec05beb0 
+    cout << p   << endl; // 0x55b3ec05beb0 
     cout << p+1 << endl; // 0x55b3ec05beb4
     cout << p+2 << endl; // 0x55b3ec05beb8
     cout << p+3 << endl; // 0x55b3ec05bebc
