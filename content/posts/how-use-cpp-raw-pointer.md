@@ -442,11 +442,13 @@ It is a *C* language feature to write generic functions. But in *C++*, knowing `
 Pointers are printed in hexadecimal (hex) system which includes 16 (or 2⁴) characters {0-9,a-f} .
 
 ```cpp
-    int* p = new int;
-    cout << p   << endl; // 0x10dbc20 
-    cout << p+1 << endl; // 0x10dbc24
-    cout << p+2 << endl; // 0x10dbc28
-    cout << p+3 << endl; // 0x10dbc2c
+    int* p = new int[5];
+    cout << p   << endl; // 0x55b3ec05beb0 
+    cout << p+1 << endl; // 0x55b3ec05beb4
+    cout << p+2 << endl; // 0x55b3ec05beb8
+    cout << p+3 << endl; // 0x55b3ec05bebc
+    cout << p+4 << endl; // 0x55b3ec05bec0
 ```
 
-"0x" represents hex system. Focusing on the last numbers, {0, 4, 8, c}, they increase by 4 units because an integer on the target machine was 4 bytes. Note, in hex system, 8+4=c.   
+
+"0x" represents hex system. Focusing on the last numbers, {b0, b4, b8, bc, c0}, they increase by 4 units because an integer on the target machine was 4 bytes. Note, in hex system, b8+4=bc and b0+16=c0. Therefore, every 4 integers (or 2 doubles), one added to the second last digit (b0 → c0). 
