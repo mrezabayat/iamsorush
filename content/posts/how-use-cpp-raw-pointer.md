@@ -437,9 +437,9 @@ cout<<*(double*)p; // cast when dereferenced
 
 It is a *C* language feature to write generic functions. But in *C++*, knowing `void*` tricks are not necessary since generic code can be elegantly written with templates, functors and interfaces.  
 
-## Read Pointers
+## Reading Pointers
 
-Pointers are printed in hexadecimal (hex) system which includes 16 (or 2⁴) characters {0-9,a-f} .
+Reading pointers, we can understand how data are spread in the memory. We can also check the contiguity of objects. Pointers are printed in hexadecimal (hex) system which includes 16 (or 2⁴) characters {0-9,a-f} .
 
 ```cpp
     int* p = new int[5];
