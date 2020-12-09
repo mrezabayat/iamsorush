@@ -98,7 +98,7 @@ It's hard to give a recipe for all the problems. However, some points can help t
 - When there is a [**race condition**](https://iamsorush.com/posts/mpi-race-condition/), blocking communication can help.
 - When there is a **computationally expensive** task, a non-blocking communication, posted before the task, may improve the performance.
 - `MPI_Send` and `MPI_Isend`, are **top** in the priority list as MPI decides what is best.
-- `MPI_Ssend` and `MPI_Issend`, when the sender needs to know **when** the message is received and to avoid local buffering.
+- `MPI_Ssend` and `MPI_Issend`, when the sender needs to know **when** the message is received and to avoid local buffering. `MPI_Ssend` can be useful for debugging.
 - `MPI_Bsend`, `MPI_Ibsend`, `MPI_Rsend`, `MPI_Irsend` are for **fine-tuning** the performance.
 
 
