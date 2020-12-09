@@ -5,12 +5,12 @@ image: /images/message.jpg
 imageAnchor: "Center"
 tags: ["MPI"]
 categories: "Diverse"
-summary: "There are different modes of *MPI send*. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. They are explained here in detail. "
+summary: "There are different modes of *MPI send*: MPI_Send, MPI_Isend, MPI_Ssend, MPI_Bsend, and so on. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. Their definition and differences are explained here in detail. "
 ---
 
 ## Introduction
 
-There are different modes of *MPI send*. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. They are explained here in detail.
+There are different modes of *MPI send*: MPI_Send, MPI_Isend, MPI_Ssend, MPI_Bsend, and so on. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. Their definition and differences are explained here in detail.
 
 
 ## MPI_Send
