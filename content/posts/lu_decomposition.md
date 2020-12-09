@@ -15,6 +15,11 @@ LU decomposition solves of a system of linear equations exactly (versus iterativ
 
 If you search on the internet you will probably see many codes written in a procedural way. Unless you are very familiar with the topic, the codes needs a good amount of time to be understood. Here, I want to code LU decomposition in an object-oriented and clean way. I use some classes to encapsulate data, they can be extended, and an API will be exposed to the user of the library. But for the sake of the KISS principle, I won’t fit everything there. I try to have a clean code too, the functions will be short for readability and single responsibility.   Unfortunately, there is a trade-off between object-oriented style and code speed which I talk about it in the summary section.
 
+## Final code
+
+The final C# code is in [GitHub](https://github.com/sorush-khajepor/PluSolver).
+
+
 ## Background  
 
 
