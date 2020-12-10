@@ -1,0 +1,7 @@
+{{ $img := $.Page.Resources.GetMatch (.Get 0)}}
+<div style="text-align:center;">
+	<img src="{{ $img.RelPermalink }}" alt="(.Get 1)" style="max-width:100%;" />
+	
+</div>
+
+

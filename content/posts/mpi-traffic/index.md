@@ -64,6 +64,13 @@ In the first condition `P[i]` needs to be empty, in the second one `P[i]` must h
 
 ## Design
 
+Let's say the road has 12 points, and is modeled by 3 processors. We have 3 `RoadSections` shown below.
+
+{{< img "*roadsections*" "road sections" >}}
+
+
+Each processor has 4 points plus 2 ghost (G) points. The right ghost point of RoadSection 1, represents point 0 of RoadSection 2 and the left ghost point of RoadSection 1 is an image of point 3 of RoadSection 0. 
+
 My approach to the problem can be simply shown in this code:
 
 ```cpp
@@ -82,10 +89,10 @@ struct RoadSection{
 };
 ```
 
-Each processor is going to solve a `RoadSection`. Each `RoadSection` is allocated some `points`. When run is called, each processor run these tasks:
+Each `RoadSection` is allocated some `points`. When run is called, each processor run these tasks:
 
-- `ISendBoundaryPoints()`: In a non-blocking way, send  boundary points to neighboring road sections. 
-- `MoveInternalPoints()`: Move cars which are not on boundaries, i.e. defer solving boundaries.  
+- `ISendBoundaryPoints()`: In a non-blocking way, send  boundary points (0,3) to neighboring road sections. 
+- `MoveInternalPoints()`: Move cars that are not on boundaries (1,2), i.e. defer solving boundaries.  
 - `RecvGhosts()`: Receive boundary of neighbors which are ghosts in this `RoadSection. 
 - ` MoveBoundaryPoints()`: A boundary point, now, knows its left and right points, its dependencies, so it can be moved.
 
