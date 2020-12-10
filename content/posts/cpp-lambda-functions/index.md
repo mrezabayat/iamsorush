@@ -12,12 +12,12 @@ draft: true
 
 ## Goal
 
-I want to solve a traffice problem (see references) with MPI. 
+I want to solve a traffic problem (see references) with MPI. 
 
 - We have a road comprised of n points. 
 - Cars move over these points.
-- At each time step, each car may move to next point.
-- A car moves only if next point is empty.
+- At each time step, each car may move to the next point.
+- A car moves only if the next point is empty.
 - The road has periodic boundaries.
 
 
@@ -40,7 +40,7 @@ step=3:  o - - o - o -
 
 ## Dependency
 
-State of each point at next time step depends on current state of itself and its nearest points:
+The state of each point at the next time step depends on the current state of itself and its nearest points:
 
 ```
 P = A point
@@ -60,7 +60,7 @@ The function can be divided into two steps:
         P[i] will be empty @t+1
 ```
 
-In the first condition `P[i]` needs to be empty, in the second one `P[i]` must have a car. They cannot happen at the same time for a point. Either (1) happens or (2). Therefore, we can separate or reorder them and still we get same result for 'P[i] @t+1' .    
+In the first condition `P[i]` needs to be empty, in the second one `P[i]` must have a car. They cannot happen at the same time for a point. Either (1) happens or (2). Therefore, we can separate or reorder them and still we get the same result for 'P[i] @t+1' .    
 
 ## Design
 
@@ -77,19 +77,17 @@ struct RoadSection{
         RecvGhosts();
         MoveBoundaryPoints();
     }
-
     
     // The rest ...
-    
 };
 ```
 
-Each processore is going to solve a `RoadSection`. Each `RoadSection` is allocated some `points`. When run is called, each processor run these tasks:
+Each processor is going to solve a `RoadSection`. Each `RoadSection` is allocated some `points`. When run is called, each processor run these tasks:
 
 - `ISendBoundaryPoints()`: In a non-blocking way, send  boundary points to neighboring road sections. 
 - `MoveInternalPoints()`: Move cars which are not on boundaries, i.e. defer solving boundaries.  
 - `RecvGhosts()`: Receive boundary of neighbors which are ghosts in this `RoadSection. 
-- ` MoveBoundaryPoints()`: A boundary points, now, knows its left and right points, its dependencies, so it can be moved.
+- ` MoveBoundaryPoints()`: A boundary point, now, knows its left and right points, its dependencies, so it can be moved.
 
 
 

@@ -6,7 +6,7 @@ imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["C++"]
 categories: "C++" 
-summary: "In C++, *auto* keyword can speed up coding and improve maintainablity of code. Here, I show cases that *auto* can make a difference."
+summary: "In C++, *auto* keyword can speed up coding and improve the maintainability of code. Here, I show cases that *auto* can make a difference."
 ---
 
 ## Introduction
@@ -23,7 +23,7 @@ int i;
 auto j = i; // j is int contains a copy of i
 ```
 
-`auto` deduce reference type as a value type. To enforce being a reference, use `auto&`
+`auto` deduces reference type as a value type. To enforce being a reference, use `auto&`
 
 ```cpp
 int m = 0;
@@ -62,7 +62,7 @@ auto c = 'A'; // char
 auto b = true; // bool
 ```
 
-From C++14, we can have string-literals, so compiler deduce `std::string`:
+From C++14, we can have string-literals, so the compiler deduces `std::string`:
 
 ```cpp
 using namespace std; // This is necessary
@@ -134,7 +134,7 @@ auto *q = p; // int*
 
 ## References
 
-By default, `auto` deduce reference as the value type 
+By default, `auto` deduces reference as the value type 
 
 ```cpp
 int y;

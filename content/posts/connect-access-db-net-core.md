@@ -12,6 +12,10 @@ summary: "I want to connect to an MS Access database with C# in .Net core. There
 
 I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records.
 
+## OS driver
+
+From experience, I would recommend run the web app on Windows rather than Linux. On Windows, the only driver needed to be installed is [MS Access Database Engine 2010](https://www.microsoft.com/en-gb/download/details.aspx?id=13255) or [MS Access Database Engine 2016](https://www.microsoft.com/en-us/download/details.aspx?id=54920). But for Linux, I couldn't find a free driver.
+
 ## Install Odbc connection
 
 In visual studio, while your project is open, go to NuGet package manager:
