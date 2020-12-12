@@ -4,7 +4,12 @@ date: 2020-10-22T20:22:31+01:00
 image: /images/bookmark.jpg
 tags: ["Visual Studio"]
 categories: "⋅Net"
+summary: "Visual Studio bookmark speeds up code development in big projects. Here, I mention the keyboard shortcuts."
 ---
+
+## Introduction
+
+Visual Studio bookmark speeds up code development in big projects. Here, I mention the keyboard shortcuts.
 
 ## Shortcuts
 
