@@ -16,7 +16,7 @@ There are different modes of *MPI send*: `MPI_Send`, `MPI_Isend`, `MPI_Ssend`, `
 ## MPI_Send
 
 This is the **standard** mode. When it is called, (1) the message can be directly passed to the receive buffer, (2) the data is buffered (in temporary memory in the MPI implementation) or (3) the function waits for a receiving process to appear. See the picture below.
-Therefore, It can return quickly (1)(2) or block the process for a while. MPI decides which scenario is the best in terms of performance, memory, and so on. 
+Therefore, It can return quickly (1)(2) or block the process for a while(3). MPI decides which scenario is the best in terms of performance, memory, and so on. 
 In any case, the data can be safely modified after the function returns. 
 
 {{< rawhtml >}}
@@ -42,7 +42,7 @@ Note, the signal of receiving the message is the difference between `MPI_Ssend` 
 
 ## MPI_Bsend
 
-It is the local blocking send. The programmer defines a **local buffer** that when this function is called. If there is not a matching receive available, the process is blocked until the message is copied into the buffer. Therefore, the coder can immediately modify the source data after the function returns. 
+It is the local blocking send. The programmer defines a **local buffer** when this function is called. If there is not a matching receive available, the process is blocked until the message is copied into the buffer. Therefore, the programmer can immediately modify the source data after the function returns. 
 
 {{< rawhtml >}}
 <div style="text-align:center;">
@@ -54,7 +54,7 @@ Note, when the function returns the message is probably not sent yet, it will ha
 
 ## MPI_Rsend
 
-It is a blocking function the same as MPI_Send, but, it expects a **ready destination** to receive the message. This can increase the MPI performance if the programmer is sure there is a receive function waiting for this. If no receive posted before, it is erroneous.
+It is a blocking function the same as `MPI_Send`, but, it expects a **ready destination** to receive the message. This can increase the MPI performance if the programmer is sure there is a receive function waiting for this. If no receive posted before, it is erroneous.
 
 ## MPI_Isend
 
@@ -92,7 +92,7 @@ The same as `MPI_Rsend`, but non-blocking.
 
 ## Priority list
 
-It's hard to give a recipe for all the problems. However, some points can help to choose:
+It's hard to give a recipe for all the problems. However, some points can help to choose the right mode:
 
 - When there is a **deadlock**, non-blocking communication can help.
 - When there is a [**race condition**](https://iamsorush.com/posts/mpi-race-condition/), blocking communication can help.
