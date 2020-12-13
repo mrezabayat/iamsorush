@@ -27,6 +27,7 @@ struct Ball
         Data[0] = 0;
         Size = size;
     }
+    ~Ball() {delete[] Data;}
     int* Data;
     int Size;
 };
@@ -122,6 +123,7 @@ struct Ball
         Data[0] = 0;
         Size = size;
     }
+    ~Ball() {delete[] Data;}
     int* Data;
     int Size;
 };
