@@ -522,7 +522,7 @@ t.i = 1; // works fine :)
      
 ## Hiding rule
 
-A method in derived class aims to overload a method of base class does not happen automatically. The compiler only looks in the scope of derived class for overloading. In this case the base method should be explicitely mentioned in the derived class, see below example:
+A method in a derived class cannot implicitly overload a method of the base class. The compiler only looks in the scope of the derived class for function overloading. In this case the base method should be explicitly mentioned in the derived class, see example below:
 
 ```cpp
 struct Base
