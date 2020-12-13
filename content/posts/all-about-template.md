@@ -48,7 +48,7 @@ int main()
 
 ## Function template
 
-A function can be dependent to a generic type
+A function can be dependent on a generic type
 
 ```cpp
 template<class T>
@@ -212,11 +212,11 @@ template class Sample<int>;
 
 ```
 
-Now compiling *sample.cpp* we get a *sample.obj* (*sample.o* on linux) containing `Sample<int>` class.
+Now compiling *sample.cpp*, we get a *sample.obj* (*sample.o* on linux) containing `Sample<int>` class.
 
 ## Type Constraints
 
-We can limit the types a template can take using `static_assert`, `std::is_same`, and `std::is_base_of` :
+We can limit the types that a template can take using `static_assert`, `std::is_same`, and `std::is_base_of` :
 
 ```cpp
 #include <type_traits>
