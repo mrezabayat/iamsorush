@@ -24,6 +24,7 @@ class Array{
     {
         data = new T[size];
     }
+    ~Array(){delete[] data;}
     T& operator[] (size_t i)
     {
         return data[i];
