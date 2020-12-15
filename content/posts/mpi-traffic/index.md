@@ -21,16 +21,15 @@ I want to solve a traffic problem with MPI.
 
 ## Example
 
-"-" an empty point, 
-"o" a car
+"-" is an empty point and "o" is  a car:
 
-step=0:  -  o  o  -  o  -   - 
+step = 0:  -  o  o  -  o  -   - 
 
-step=1:  - o - o - o -  
+step = 1:  - o - o - o -  
 
-setp=2:  - - o - o - o  
+setp = 2:  - - o - o - o  
 
-step=3:  o - - o - o - 
+step = 3:  o - - o - o - 
 
 ## Code
 
