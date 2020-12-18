@@ -158,7 +158,7 @@ void RecvGhosts(){
 
 ## Move Boundary Points
 
-The final step is to move boundary points using their backed-up values and ghost points. Note that Point[0] and Point [last] may have changed during internal movement because of that we use their backed-up value. Moreover, as we explained in the dependency section if boundary points are updated by this method, they certainly didn't change during internal movement.
+The final step is to move boundary points using their backed-up values and ghost points. Note that Point[0] and Point[last] (=Point[3] in the picture) may have changed during internal movement because of that we use their backed-up value. Moreover, as we explained in the dependency section if boundary points are updated by this method, they certainly didn't change during internal movement.
 
 ```cpp
 void MoveBoundaryPoints(){
