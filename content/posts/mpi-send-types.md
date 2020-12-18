@@ -16,7 +16,7 @@ There are different modes of *MPI send*: `MPI_Send`, `MPI_Isend`, `MPI_Ssend`, `
 ## MPI_Send
 
 This is the **standard** mode. When it is called, (1) the message can be directly passed to the receive buffer, (2) the data is buffered (in temporary memory in the MPI implementation) or (3) the function waits for a receiving process to appear. See the picture below.
-Therefore, It can return quickly (1)(2) or block the process for a while(3). MPI decides which scenario is the best in terms of performance, memory, and so on. 
+Therefore, It can return quickly (1)(2) or block the process for a while (3). MPI decides which scenario is the best in terms of performance, memory, and so on. 
 In any case, the data can be safely modified after the function returns. 
 
 {{< rawhtml >}}
