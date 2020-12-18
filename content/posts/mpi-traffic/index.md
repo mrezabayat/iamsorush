@@ -116,7 +116,6 @@ We send the first node of a road section to its left neighbor and the last node 
 ```cpp
 void ISendBoundaryPoints()
 {
-    // l
     tmpLeftPoint = points.front();
     tmpRightPoint = points.back();
     MPI_Isend(&tmpLeftPoint, 1, MPI_CHAR, leftRank, 0, MPI_COMM_WORLD, &leftReq);
