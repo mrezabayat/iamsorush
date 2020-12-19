@@ -23,6 +23,7 @@ draft: true
 ## std::array
 
 ## std::vector
+Creates an array of objects on the heap. The array is dynamic: objects can be added or removed during runtime. The memory of a vector is managed by C++, when it goes out of scope all the elements are automatically destructed. Note that if the elements are raw pointers, only raw pointers are removed but their target is untouched. 
 
 ## Boost::multiarray
 
