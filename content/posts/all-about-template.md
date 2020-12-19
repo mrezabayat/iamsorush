@@ -255,14 +255,14 @@ struct Dog: Animal<T>{
 };
 ```cpp
 
-In the example above, when Dog is compiled, the compiler does not look into `Animal` because it is 
-dependent to `T`. Therefore, it has no idea of `Move()` coming from `Animal`. To fix that call the method as below to defer the check until template instantiation:
+In the example above, when Dog is compiled, the compiler does overlooks the content of `Animal` because it is 
+dependent to `T`. Therefore, it has no idea of `Move()` coming from `Animal`. To fix that, call the method as below to defer the check until template instantiation:
 
 ```cpp
 this->Move();
 ```
 
-Another fix is to declare the method
+Another fix is to declare the method:
 
 ```cpp
 template<T>
