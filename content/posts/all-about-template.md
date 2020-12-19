@@ -1,5 +1,5 @@
 ---
-title: "C++ template crash course"
+title: "How and where to use C++ templates"
 date: 2020-10-30T19:34:31+01:00
 image: /images/hive.jpg
 tags: ["C++", "Template"]
@@ -271,6 +271,128 @@ struct Dog: Animal{
 // rest...
 }
 ```
+## Type Alias
+
+Since *C++11*, we can define a type alias for  and hard to read names
+
+```cpp
+template<T>
+using VecPoint = vector<Point<T>>
+```
+See [here](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#owner-convention), I created an alias for pointers to have an ownership convention.
+
+## Meta-Programming
+
+Metaprogramming is to write a program targeting compile-time values and types. For values, 
+I recommend where possible, instead of templates, use `constexpr` of *C++11*  which is cleaner and easier to read. 
+
+We can assess and conclude types using templates, for example, `const` qualifier can be dropped by
+
+```cpp
+// General type
+template<typename T> 
+struct RemoveConst{ 
+    typedef T type;             
+};
+
+// const specialization
+template<typename T> 
+struct RemoveConst<const T> { 
+    typedef T type;               
+};
+
+int main(){    
+    std::is_same<int, removeConst<double>::type>::value; // true
+    std::is_same<int, removeConst<double int>::type>::value;  // true
+}
+```
+The function above is defined in the standard library as `std::remove_const`. In most cases, standard functions defined in  `<type_traits>` header such as `add_const`, `remove_pointer`, `add_pointer`, `is_same` along with `static_assert`  meet our needs. 
+
+## Practical Cases
+
+### Customize STL Containers
+
+Templates are mostly used for creating custom containers. In the below example,  a vector is created that can print its items on the screen.
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+template<class T>
+class PrintableVector{
+    vector<T> data;
+    public:
+    PrintableVector(std::initializer_list<T> list)
+    {
+        data.assign(list);
+    }
+    void Print(){
+      for (auto& item: data)
+        cout<< item<<" ";
+    }
+};
+int main() {
+   PrintableVector<int> a({1,3,5,7});
+   a.Print(); // 1 3 5 7
+return 0;
+}
+```
+### Multidimensional space
+
+Templates can helps us design a program with different dimensions with the same code. The below code, defines `Point` in 1D, 2D, ..., and nD dimensions:
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+template<class T, size_t size>
+class Point{
+    T data[size];
+    public:
+    Point(){
+        for (auto& item: data)
+            item = T();
+    }
+    Point(std::initializer_list<T> list){
+        size_t i=0;
+        for (auto& item: list){
+            data[i] = item;
+            i++;
+            if (i>=size) break;
+        }
+    }
+    Point<T,size> GetDistanceTo(Point<T,size>& point){
+        Point<T,size> distance;
+        for (auto i=0;i<size;i++){
+            distance[i] = data[i] - point[i];
+        }
+        return distance;
+    }
+    T& operator[] (size_t i)
+    {
+        return data[i];
+    }
+    void Print(){
+      for (auto& item: data)
+        cout<< item<<" ";
+    }
+};
+int main() {
+  
+   Point<int,3> a({2,2,2}); // 3D point
+   Point<int,3> origin({0,0,0}); // 3D point
+   
+   Point<int,2> m({5,5}); // 2D point
+   Point<int,2> n({4,4}); // 2D point
+   
+   a.GetDistanceTo(origin).Print(); // 2 2 2
+   m.GetDistanceTo(n).Print();// 1 1
+return 0;
+}
+```
+
 
 ## References
 
