@@ -253,7 +253,7 @@ struct Dog: Animal<T>{
     Move(); // Error: Move() no defined!
   }
 };
-```cpp
+```
 
 In the example above, when Dog is compiled, the compiler does overlooks the content of `Animal` because it is 
 dependent to `T`. Therefore, it has no idea of `Move()` coming from `Animal`. To fix that, call the method as below to defer the check until template instantiation:
