@@ -237,6 +237,40 @@ int main()
 	return 0;
 }
 ```
+## Enforcing inheritance
+
+When inheriting from a template class, the compiler overlooks what is inherited.
+
+```cpp
+template<class T>
+struct Animal{
+  void Move(){}
+};
+
+template<class T>
+struct Dog: Animal<T>{
+  void Run(){
+    Move(); // Error: Move() no defined!
+  }
+};
+```cpp
+
+In the example above, when Dog is compiled, the compiler does not look into `Animal` because it is 
+dependent to `T`. Therefore, it has no idea of `Move()` coming from `Animal`. To fix that call the method as below to defer the check until template instantiation:
+
+```cpp
+this->Move();
+```
+
+Another fix is to declare the method
+
+```cpp
+template<T>
+struct Dog: Animal{
+  using Animal<T>::Move;
+// rest...
+}
+```
 
 ## References
 
