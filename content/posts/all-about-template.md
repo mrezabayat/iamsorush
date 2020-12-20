@@ -392,7 +392,75 @@ int main() {
 return 0;
 }
 ```
+### Interface
 
+Sometimes, we know the general behavior of a class and we want that behavior to be implemented. A rough example is shown below. We have a set of solver classes that inherit from `ISolver` interface. They are always run with that interface. The outcome of these solvers needs to be visualized with `Visualizer` class. However, their outcomes are different from each other: string, double, vector<int>, and so on. 
+
+To connect visualizers and solvers, we define `Message` template class that represents the outcome of solvers. `Visualizer` class template is also created which is specialized concerning message types. Finally, the execution and visualization of different types are handled within a simple and generic function, `RunAndDisplay()`.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+template<class T>
+struct Message{
+    Message(T _content):content(_content){}
+    virtual T GetContent() {return content;}
+    private:
+    T content;
+};
+
+template<class T>
+struct ISolver{
+    virtual Message<T> Run()=0;
+};
+
+template<class T>
+struct Visualizer{
+    void Show(Message<T> message){};
+};
+template<>
+struct Visualizer<string>{
+    void Show(Message<string>& message){
+        cout<<"String Message: "<<message.GetContent()<<endl;
+    };
+};
+template<>
+struct Visualizer<double>{
+    void Show(Message<double> message){
+        cout<<"Number Message: "<<message.GetContent()<<endl;
+    };
+};
+
+struct SolverA: ISolver<string>{
+    Message<string> Run() override{
+        Message<string> m("Solver A is Run.");
+        return m;
+    }
+};
+struct SolverB: ISolver<double>{
+    Message<double> Run() override{
+        Message<double> m(3.14);
+        return m;
+    }
+};
+template<class T>
+void RunAndDisplay(ISolver<T>* solver){
+    auto m = solver->Run();
+    Visualizer<T> v;
+    v.Show(m);
+}
+int main() {
+   
+   ISolver<string>* solverA = new SolverA();
+   ISolver<double>* solverB = new SolverB();
+   
+   RunAndDisplay(solverA);
+   RunAndDisplay(solverB);
+return 0;
+}
+
+```
 
 ## References
 
