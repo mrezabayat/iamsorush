@@ -338,6 +338,9 @@ int main() {
 return 0;
 }
 ```
+
+A more intricate example can be found [on GitHub](https://github.com/sorush-khajepor/Sarray), where I created a generic array that supports: +, -, *, /, dot product and so on.
+
 ### Multidimensional space
 
 Templates can helps us design a program with different dimensions with the same code. The below code, defines `Point` in 1D, 2D, ..., and nD dimensions:
