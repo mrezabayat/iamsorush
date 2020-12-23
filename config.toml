@@ -15,3 +15,5 @@ pygmentsstyle = "monokai"
 [taxonomies]
     category = "categories"
     tag = "tags"
+[markup.goldmark.renderer]
+  unsafe= true

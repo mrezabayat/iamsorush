@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179561110-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-179561110-1');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
+    <link rel="icon" href="/images/me.gif" type="image/gif">
+    <title>MPI race condition</title>
+    
+    <meta name="description" content="When a buffer, which is involved in an uncompleted non-blocking communication, is used in another communication, there will be a race to read and write the buffer."> 
+    
+    <meta name="author" content="map[name:Sorush Khajepor]">
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://iamsorush.com/css/style.min.css">
+    
+    
+    
+    <style>.icon{width:32px}.mr-1{margin-right:.5em}.mb-1{margin-bottom:.5em}.single-image{display:block;background-repeat:no-repeat;background-position:50%;margin-left:auto;margin-right:auto}.banner{width:100%;min-height:180px;background-image:url(/images/banner_430.jpg);padding:1em 0 2em 0}@media(min-width:430px){.banner{background-image:url(/images/banner.jpg)}}</style>
+    
+
+</head>
+
+<body>
+    
+<div class="read-progress-container">
+	<div class="progress-bar" id="myBar"></div>
+</div>
+<header class="header-black">
+	<div class="container">
+
+	<div class="home__header-grid"> 
+		<div class="display-flex flex-column left-horizontal">
+			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
+			<span class="text-shadow-1">Numerical programming and app development</span>
+		</div>
+		<div class="center justify-md-end">	
+			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
+				<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M512 0C229.25 0 0 229.25 0 512c0 226.25 146.688 418.125 350.156 485.812 25.594 4.688 34.938-11.125 34.938-24.625 0-12.188-0.469-52.562-0.719-95.312C242 908.812 211.906 817.5 211.906 817.5c-23.312-59.125-56.844-74.875-56.844-74.875-46.531-31.75 3.53-31.125 3.53-31.125 51.406 3.562 78.47 52.75 78.47 52.75 45.688 78.25 119.875 55.625 149 42.5 4.654-33 17.904-55.625 32.5-68.375C304.906 725.438 185.344 681.5 185.344 485.312c0-55.938 19.969-101.562 52.656-137.406-5.219-13-22.844-65.094 5.062-135.562 0 0 42.938-13.75 140.812 52.5 40.812-11.406 84.594-17.031 128.125-17.219 43.5 0.188 87.312 5.875 128.188 17.281 97.688-66.312 140.688-52.5 140.688-52.5 28 70.531 10.375 122.562 5.125 135.5 32.812 35.844 52.625 81.469 52.625 137.406 0 196.688-119.75 240-233.812 252.688 18.438 15.875 34.75 47 34.75 94.75 0 68.438-0.688 123.625-0.688 140.5 0 13.625 9.312 29.562 35.25 24.562C877.438 930 1024 738.125 1024 512 1024 229.25 794.75 0 512 0z"/></svg>
+			</a>
+			<a href="https://twitter.com/KhSorush" class="mr-1 icon" aria-label="Twitter">
+				<svg id="Logo_FIXED" data-name="Logo â€” FIXED" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><title>Twitter_Logo_Blue</title><rect class="cls-1" width="400" height="400"/><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>
+			</a>
+			<a href="https://scholar.google.co.uk/citations?user=16Y7-NsAAAAJ&hl=en" class="mr-1 icon" aria-label="Google Scholar">
+				<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2" id="Layer_2"><polygon fill="white" points="0.54 9 5 10.98 7 11.87 12 14.09 17 11.87 19 10.98 20 10.54 20 16 22 16 22 9.65 23.46 9 12 3.91 0.54 9"/><path fill="white" d="M18.45,18.89l.55-.27V13.17l-7,3.11L5,13.17v5.45l.55.27a14.45,14.45,0,0,0,12.9,0Z"/></g></svg>
+			</a>
+			<a href="https://stackoverflow.com/users/2543510/sorush" class="mr-1 icon" aria-label="Stackoverflow">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><style>.st0{fill:#bcbbbb}.st1{fill:#f48023}</style><path class="st0" d="M84.4 93.8V70.6h7.7v30.9H22.6V70.6h7.7v23.2z"/><path class="st1" d="M38.8 68.4l37.8 7.9 1.6-7.6-37.8-7.9-1.6 7.6zm5-18l35 16.3 3.2-7-35-16.4-3.2 7.1zm9.7-17.2l29.7 24.7 4.9-5.9-29.7-24.7-4.9 5.9zm19.2-18.3l-6.2 4.6 23 31 6.2-4.6-23-31zM38 86h38.6v-7.7H38V86z"/></svg>
+			</a>
+			<a href="https://www.linkedin.com/in/sorushkh/" class="mr-1 icon" aria-label="Linkedin">
+				<svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.0" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M32,30c0,1.104-0.896,2-2,2H2c-1.104,0-2-0.896-2-2V2c0-1.104,0.896-2,2-2h28c1.104,0,2,0.896,2,2V30z" fill="#007BB5"/><g><rect fill="#FFFFFF" height="14" width="4" x="7" y="11"/><path d="M20.499,11c-2.791,0-3.271,1.018-3.499,2v-2h-4v14h4v-8c0-1.297,0.703-2,2-2c1.266,0,2,0.688,2,2v8h4v-7    C25,14,24.479,11,20.499,11z" fill="#FFFFFF"/><circle cx="9" cy="8" fill="#FFFFFF" r="2"/></g></g><g/><g/><g/><g/><g/><g/></svg>
+			</a>
+		</div>
+    </div>
+	</div>
+</header>
+
+<main>
+	<article>
+		<h1>MPI race condition</h1>
+		<time>15 Nov 2020</time>
+	</article>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .post__hero{
+        background-image: url('https://iamsorush.com/images/race_hu3d03a01dcc18bc5be0e67db3d8d209a6_166365_430x250_fill_q70_box_smart1.jpg');
+        height: 250px;
+    }
+    @media (min-width: 430px) {
+        .post__hero{
+        background-image: url('https://iamsorush.com/images/race_hu3d03a01dcc18bc5be0e67db3d8d209a6_166365_1280x400_fill_q70_box_smart1.jpg');
+        height: 400px;
+        }
+    }   
+</style>
+<div class="single-image post__hero"></div>
+	<div class="article-nav" id="article-nav-id">
+		<article class="overlay-top">
+			<h2 id="definition">Definition</h2>
+<p>When a buffer, which is involved in an uncompleted non-blocking communication, is used in another communication, there will be a race to read and write the buffer. The outcome of this situation is undefined. That is why the MPI standard states that a buffer must not be reused unless its communication is completed. It might look acceptable that multiple communications only read a buffer, however, it is still illegal in the MPI.</p>
+<h2 id="example">Example</h2>
+<p>In the example below, process 0 sends <code>buff0</code> in a non-blocking way to another process, it immediately moves forward to fill the buffer with data coming from another process. <code>MPI_Isend</code> can complete before, during or after the MPI_recv, therefore there is a race of reading and writing on <code>buff0</code>. To avoid this, we have two solutions: first using different buffers for <code>MPI_Isend</code> and <code>MPI_Recv</code>, and second, waiting for <code>MPI_Isend</code> to complete with the aid of <code>MPI_Wait</code>.</p>
+
+
+<div style="text-align:center;">
+<img src="/images/mpi-race.png" alt="MPI_Isend and MPI_Recv use same buffer" />
+</div>
+
+<h2 id="always-check-non-blocking-communication">Always check non-blocking communication</h2>
+<p>Let’s modify the previous example in a way that after <code>MPI_Isend</code> a very time-consuming task happens. Let’s say we are sure that <code>MPI_Isend</code> has time to  complete during the task, is it OK to reuse the buffer in another communication afterward? Nope, we <strong>Must</strong> check the completion of <code>MPI_Isend</code> using MPI_Wait or MPI_Test.</p>
+
+
+<div style="text-align:center;">
+<img src="/images/mpi-race2.png" alt="MPI_Isend runs during high computational task" />
+</div>
+
+<h2 id="code">Code</h2>
+<p>Let’s create a code to examine the previous rule. Rank 0 sends <code>buffer=2</code> to rank 1 which receives it using <code>MPI_Irecv</code>. Then the threads are put in sleep for 2 seconds to mimic a time-consuming task.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;mpi.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;chrono&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;thread&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+   MPI_Init(NULL, NULL);
+  
+   <span style="color:#66d9ef">int</span> rank;
+   MPI_Comm_rank(MPI_COMM_WORLD, <span style="color:#f92672">&amp;</span>rank);
+ 
+   MPI_Request req;
+   MPI_Status stat;
+ 
+   <span style="color:#66d9ef">int</span> sendbuf <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+   <span style="color:#66d9ef">int</span> recvbuf <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+ 
+   <span style="color:#66d9ef">if</span> (rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+       MPI_Isend( <span style="color:#f92672">&amp;</span>sendbuf, <span style="color:#ae81ff">1</span>, MPI_INT, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, MPI_COMM_WORLD, <span style="color:#f92672">&amp;</span>req);
+       std<span style="color:#f92672">::</span>this_thread<span style="color:#f92672">::</span>sleep_for(std<span style="color:#f92672">::</span>chrono<span style="color:#f92672">::</span>milliseconds(<span style="color:#ae81ff">2000</span>));
+       cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Rank&#34;</span><span style="color:#f92672">&lt;&lt;</span> rank<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; sendbuf=&#34;</span><span style="color:#f92672">&lt;&lt;</span> sendbuf<span style="color:#f92672">&lt;&lt;</span> endl;
+   }
+   <span style="color:#66d9ef">if</span> (rank<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>){
+       MPI_Irecv( <span style="color:#f92672">&amp;</span>recvbuf, <span style="color:#ae81ff">1</span>, MPI_INT, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, MPI_COMM_WORLD, <span style="color:#f92672">&amp;</span>req);
+       std<span style="color:#f92672">::</span>this_thread<span style="color:#f92672">::</span>sleep_for(std<span style="color:#f92672">::</span>chrono<span style="color:#f92672">::</span>milliseconds(<span style="color:#ae81ff">2000</span>));
+ 
+       <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#75715e">// MPI_Test( &amp;req, &amp;result , &amp;stat);
+</span><span style="color:#75715e"></span>       cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Rank&#34;</span><span style="color:#f92672">&lt;&lt;</span> rank <span style="color:#f92672">&lt;&lt;</span>
+           <span style="color:#e6db74">&#34; recvbuf=&#34;</span><span style="color:#f92672">&lt;&lt;</span> recvbuf <span style="color:#f92672">&lt;&lt;</span>
+           <span style="color:#e6db74">&#34; success:&#34;</span><span style="color:#f92672">&lt;&lt;</span> (result<span style="color:#f92672">?</span><span style="color:#e6db74">&#34;Yes&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;No&#34;</span>)
+           <span style="color:#f92672">&lt;&lt;</span>endl;
+   }
+  
+   MPI_Finalize();
+}
+ 
+</code></pre></div><p>We expect within two seconds the data transfer happens, and the content of <code>recvbuf</code> to be 2, but we see the below outcome:</p>
+<pre><code>Rank0 sendbuf=2 
+Rank1 recvbuf=3 success:No
+</code></pre><p>Now we uncomment the <code>MPI_Test</code> line, and run the code, we get</p>
+<pre><code>Rank0 sendbuf=2
+Rank1 recvbuf=2 success:Yes
+</code></pre><p>Therefore, always call <code>MPI_Test</code> or <code>MPI_Wait</code> before reusing the buffer of  non-blocking communications without any exception.</p>
+<h2 id="references">References</h2>
+<p>I got ideas and codes from the below website(s)</p>
+<p><a href="https://www.open-mpi.org/doc/v4.0/">OpenMPI</a>
+<a href="https://www.codingame.com/playgrounds/349/introduction-to-mpi/race-conditions">CodingGame</a>
+<a href="https://stackoverflow.com/questions/10017301/mpi-blocking-vs-non-blocking">Stackoverflow</a></p>
+
+			
+			<script>
+				window.onscroll = function () {
+					myFunction();
+				};
+				function myFunction() {
+					var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+					var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+					var scrolled = (winScroll / height) * 100;
+					document.getElementById("myBar").style.width = scrolled + "%";
+				}
+			</script>
+			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
+			border-radius: 5px;">
+			
+
+
+  <h3>Related Tags</h3>
+    <div id="tags">
+        
+        <span><a href="/tags/mpi">MPI</a> </span>
+        
+        <span><a href="/tags/c&#43;&#43;">C&#43;&#43;</a> </span>
+        
+    </div>
+
+
+
+			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
+			border-radius: 5px;">
+			
+<div>
+	<h3>Latest Posts</h3>
+</div>
+<div>
+	<ul>
+		
+		<li><a href="/posts/mpi-traffic/">MPI Traffic Program with C&#43;&#43;</a></li>
+		
+		<li><a href="/posts/debug-mpi-vs-code/">Debug MPI program with Visual Studio Code</a></li>
+		
+		<li><a href="/posts/auto-cpp/">C&#43;&#43; auto makes your life easier</a></li>
+		
+		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		
+		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		
+	</ul>
+</div>
+	
+		</article>
+		<nav class="hide-on-mobile section-nav">
+			<h3 class="ml-1">Table of contents</h3>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#definition">Definition</a></li>
+    <li><a href="#example">Example</a></li>
+    <li><a href="#always-check-non-blocking-communication">Always check non-blocking communication</a></li>
+    <li><a href="#code">Code</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+		</nav>		
+	</div>
+</main>
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {					
+					clearActiveStatesInTableOfContents();				
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+</script>
+ <footer>
+    <div class="container home__footer-grid">
+	<div class=" my-2">
+	<form name="Subscription" method="POST" data-netlify="true" netlify-honeypot="ahani" action="/pages/sub-success">
+		<p class="nedia">
+		  <label> Name <input name="ahani" /></label>
+		</p>
+		<p><label for="emailinput">Subscribe so I notify you of new posts</label></p>
+		<p class="display-flex">
+		  <input id="emailinput" style="width: 18em;" class="mr-1" type="email" name="email" placeholder=" Email"/>
+		  <button type="submit">Subscribe</button>
+		</p>
+	</form>
+</div>
+<div class="my-1 display-flex justify-start justify-md-end align-center">
+	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+</div>
+</div>
+</footer>
+
+
+
+  
+</body>
+
+</html>

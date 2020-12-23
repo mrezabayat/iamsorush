@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MPI on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/mpi/</link>
+    <description>Recent content in MPI on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Dec 2020 23:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/mpi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MPI Traffic Program with C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/mpi-traffic/</link>
+      <pubDate>Mon, 14 Dec 2020 23:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-traffic/</guid>
+      <description>I want to solve a traffic problem with MPI and C++. The road is divided into sections which send their boundaries and receive their ghost points.</description>
+    </item>
+    
+    <item>
+      <title>Debug MPI program with Visual Studio Code</title>
+      <link>https://iamsorush.com/posts/debug-mpi-vs-code/</link>
+      <pubDate>Fri, 04 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/debug-mpi-vs-code/</guid>
+      <description>Debugging MPI program can be a nightmare. I explain how easily you can  debug a parallel MPI program with visual studio (VS) code.</description>
+    </item>
+    
+    <item>
+      <title>MPI race condition</title>
+      <link>https://iamsorush.com/posts/mpi-race-condition/</link>
+      <pubDate>Sun, 15 Nov 2020 19:22:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-race-condition/</guid>
+      <description>When a buffer, which is involved in an uncompleted non-blocking communication, is used in another communication, there will be a race to read and write the buffer.</description>
+    </item>
+    
+    <item>
+      <title>MPI ping pong program using C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/mpi-ping-pong/</link>
+      <pubDate>Sat, 14 Nov 2020 10:30:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-ping-pong/</guid>
+      <description>I want to write an MPI ping pong program where two processes send a piece of data back and forth to each other.</description>
+    </item>
+    
+    <item>
+      <title>The difference between modes of MPI send</title>
+      <link>https://iamsorush.com/posts/mpi-send-types/</link>
+      <pubDate>Mon, 09 Nov 2020 21:46:00 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-send-types/</guid>
+      <description>There are different modes of &lt;em&gt;MPI send&lt;/em&gt;: MPI_Send, MPI_Isend, MPI_Ssend, MPI_Bsend, and so on. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. Their definition and differences are explained here in detail.</description>
+    </item>
+    
+  </channel>
+</rss>

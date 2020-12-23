@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Dec 2020 23:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MPI Traffic Program with C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/mpi-traffic/</link>
+      <pubDate>Mon, 14 Dec 2020 23:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-traffic/</guid>
+      <description>I want to solve a traffic problem with MPI and C++. The road is divided into sections which send their boundaries and receive their ghost points.</description>
+    </item>
+    
+    <item>
+      <title>Debug MPI program with Visual Studio Code</title>
+      <link>https://iamsorush.com/posts/debug-mpi-vs-code/</link>
+      <pubDate>Fri, 04 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/debug-mpi-vs-code/</guid>
+      <description>Debugging MPI program can be a nightmare. I explain how easily you can  debug a parallel MPI program with visual studio (VS) code.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; auto makes your life easier</title>
+      <link>https://iamsorush.com/posts/auto-cpp/</link>
+      <pubDate>Thu, 03 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/auto-cpp/</guid>
+      <description>In C++, &lt;em&gt;auto&lt;/em&gt; keyword can speed up coding and improve the maintainability of code. Here, I show cases that &lt;em&gt;auto&lt;/em&gt; can make a difference.</description>
+    </item>
+    
+    <item>
+      <title>MPI race condition</title>
+      <link>https://iamsorush.com/posts/mpi-race-condition/</link>
+      <pubDate>Sun, 15 Nov 2020 19:22:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-race-condition/</guid>
+      <description>When a buffer, which is involved in an uncompleted non-blocking communication, is used in another communication, there will be a race to read and write the buffer.</description>
+    </item>
+    
+    <item>
+      <title>MPI ping pong program using C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/mpi-ping-pong/</link>
+      <pubDate>Sat, 14 Nov 2020 10:30:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-ping-pong/</guid>
+      <description>I want to write an MPI ping pong program where two processes send a piece of data back and forth to each other.</description>
+    </item>
+    
+    <item>
+      <title>How and where to use C&#43;&#43; templates</title>
+      <link>https://iamsorush.com/posts/all-about-template/</link>
+      <pubDate>Fri, 30 Oct 2020 19:34:31 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/all-about-template/</guid>
+      <description>Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; inheritance crash course</title>
+      <link>https://iamsorush.com/posts/cpp-inheritance-cheat-sheet/</link>
+      <pubDate>Sat, 03 Oct 2020 19:37:36 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/cpp-inheritance-cheat-sheet/</guid>
+      <description>Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. Here, all useful details of C++ inheritance are mentioned with examples.</description>
+    </item>
+    
+    <item>
+      <title>What is a recursive function?</title>
+      <link>https://iamsorush.com/posts/recursive-function/</link>
+      <pubDate>Wed, 03 Jun 2020 20:04:00 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/recursive-function/</guid>
+      <description>Definition A recursive function is a function that calls itself with different arguments. Therefore, it is applied to a problem that each step of it is similar to the previous one.</description>
+    </item>
+    
+    <item>
+      <title>What is &#34;object slicing&#34; trap in C&#43;&#43;?</title>
+      <link>https://iamsorush.com/posts/object-slicing-in-cpp/</link>
+      <pubDate>Wed, 26 Feb 2020 20:05:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/object-slicing-in-cpp/</guid>
+      <description>Every now and then, I switch programming language from C# to C++, I fall in the trap of object slicing. It happens when a derived object is assigned by value to a base object where the extra information in the derived object is scrapped for worst.</description>
+    </item>
+    
+    <item>
+      <title>How to use C/C&#43;&#43; raw pointers properly?</title>
+      <link>https://iamsorush.com/posts/how-use-cpp-raw-pointer/</link>
+      <pubDate>Sat, 22 Feb 2020 20:05:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/how-use-cpp-raw-pointer/</guid>
+      <description>A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target. Here, I  mention the most useful characteristics of pointers with examples.</description>
+    </item>
+    
+  </channel>
+</rss>

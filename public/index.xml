@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sorush Khajepor - Numerical coding and app development on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/</link>
+    <description>Recent content in Sorush Khajepor - Numerical coding and app development on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2020 20:05:39 +0000</lastBuildDate><atom:link href="https://iamsorush.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MPI Traffic Program with C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/mpi-traffic/</link>
+      <pubDate>Mon, 14 Dec 2020 23:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-traffic/</guid>
+      <description>I want to solve a traffic problem with MPI and C++. The road is divided into sections which send their boundaries and receive their ghost points.</description>
+    </item>
+    
+    <item>
+      <title>Debug MPI program with Visual Studio Code</title>
+      <link>https://iamsorush.com/posts/debug-mpi-vs-code/</link>
+      <pubDate>Fri, 04 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/debug-mpi-vs-code/</guid>
+      <description>Debugging MPI program can be a nightmare. I explain how easily you can  debug a parallel MPI program with visual studio (VS) code.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; auto makes your life easier</title>
+      <link>https://iamsorush.com/posts/auto-cpp/</link>
+      <pubDate>Thu, 03 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/auto-cpp/</guid>
+      <description>In C++, &lt;em&gt;auto&lt;/em&gt; keyword can speed up coding and improve the maintainability of code. Here, I show cases that &lt;em&gt;auto&lt;/em&gt; can make a difference.</description>
+    </item>
+    
+    <item>
+      <title>MPI race condition</title>
+      <link>https://iamsorush.com/posts/mpi-race-condition/</link>
+      <pubDate>Sun, 15 Nov 2020 19:22:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-race-condition/</guid>
+      <description>When a buffer, which is involved in an uncompleted non-blocking communication, is used in another communication, there will be a race to read and write the buffer.</description>
+    </item>
+    
+    <item>
+      <title>MPI ping pong program using C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/mpi-ping-pong/</link>
+      <pubDate>Sat, 14 Nov 2020 10:30:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-ping-pong/</guid>
+      <description>I want to write an MPI ping pong program where two processes send a piece of data back and forth to each other.</description>
+    </item>
+    
+    <item>
+      <title>Handy cross-platform packages to connect to a remote Linux server</title>
+      <link>https://iamsorush.com/posts/linux-connection-packages/</link>
+      <pubDate>Wed, 11 Nov 2020 21:30:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/linux-connection-packages/</guid>
+      <description>Interaction with a remote Linux server like transferring files, editing code, or accessing the remote desktop can be much easier with these free cross-platform packages.</description>
+    </item>
+    
+    <item>
+      <title>The difference between modes of MPI send</title>
+      <link>https://iamsorush.com/posts/mpi-send-types/</link>
+      <pubDate>Mon, 09 Nov 2020 21:46:00 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/mpi-send-types/</guid>
+      <description>There are different modes of &lt;em&gt;MPI send&lt;/em&gt;: MPI_Send, MPI_Isend, MPI_Ssend, MPI_Bsend, and so on. They can be local or non-local, blocking or non-blocking, and synchronous or asynchronous. Their definition and differences are explained here in detail.</description>
+    </item>
+    
+    <item>
+      <title>How and where to use C&#43;&#43; templates</title>
+      <link>https://iamsorush.com/posts/all-about-template/</link>
+      <pubDate>Fri, 30 Oct 2020 19:34:31 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/all-about-template/</guid>
+      <description>Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples.</description>
+    </item>
+    
+    <item>
+      <title>How to use Bookmark in Visual Studio</title>
+      <link>https://iamsorush.com/posts/visual-studio-bookmark/</link>
+      <pubDate>Thu, 22 Oct 2020 20:22:31 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/visual-studio-bookmark/</guid>
+      <description>Visual Studio bookmark speeds up code development in big projects. Here, I mention the keyboard shortcuts.</description>
+    </item>
+    
+    <item>
+      <title>Connect to Microsoft Access with C# .Net core </title>
+      <link>https://iamsorush.com/posts/connect-access-db-net-core/</link>
+      <pubDate>Thu, 22 Oct 2020 18:34:21 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/connect-access-db-net-core/</guid>
+      <description>I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records.</description>
+    </item>
+    
+    <item>
+      <title>Lockout user after multiple failed authentication via .Net core Identity</title>
+      <link>https://iamsorush.com/posts/lockout-user-razor-pages/</link>
+      <pubDate>Mon, 19 Oct 2020 19:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/lockout-user-razor-pages/</guid>
+      <description>Goal I want to configure .Net core Identity in a way that when a user inserts wrong passwords several times the account gets locked for 5 minutes.</description>
+    </item>
+    
+    <item>
+      <title>Add Identity pages to .Net core web app</title>
+      <link>https://iamsorush.com/posts/add-identity-pages-net-core/</link>
+      <pubDate>Mon, 19 Oct 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/add-identity-pages-net-core/</guid>
+      <description>By default, the identity pages are pre-compiled in .Net core 3.1 and not available to be modified. I want to bring them back so they can be edited.</description>
+    </item>
+    
+    <item>
+      <title>Create a table of content from headings of a Hugo post</title>
+      <link>https://iamsorush.com/posts/table-of-content-blog/</link>
+      <pubDate>Sat, 17 Oct 2020 19:20:06 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/table-of-content-blog/</guid>
+      <description>Goal I want to write code to get a table of content (ToC) for each blog post automatically. It is created and shown on the right-hand side of the content of a post.</description>
+    </item>
+    
+    <item>
+      <title>How to add a video to a Hugo post</title>
+      <link>https://iamsorush.com/posts/add-video-to-hugo-post/</link>
+      <pubDate>Fri, 16 Oct 2020 18:30:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/add-video-to-hugo-post/</guid>
+      <description>I want to add a video to a Hugo blog post. The video is hosted on my website, so it is not a Youtube or Vimeo.</description>
+    </item>
+    
+    <item>
+      <title>Tutorial: Setup of Entity Framework (EF) core for CRUD and authentication with Razor pages</title>
+      <link>https://iamsorush.com/posts/setup-ef-core-for-crud-and-identity/</link>
+      <pubDate>Sat, 10 Oct 2020 21:27:00 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/setup-ef-core-for-crud-and-identity/</guid>
+      <description>Goal In this post, step by step I create a web app using Entity Framework core and razor pages. The app is a library that admin can CRUD books info on a database and authenticated users can browse the records.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; inheritance crash course</title>
+      <link>https://iamsorush.com/posts/cpp-inheritance-cheat-sheet/</link>
+      <pubDate>Sat, 03 Oct 2020 19:37:36 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/cpp-inheritance-cheat-sheet/</guid>
+      <description>Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. Here, all useful details of C++ inheritance are mentioned with examples.</description>
+    </item>
+    
+    <item>
+      <title>Host a .Net core web application for less than $5 a month</title>
+      <link>https://iamsorush.com/posts/gcp-azure-budget-vm/</link>
+      <pubDate>Fri, 02 Oct 2020 18:50:47 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/gcp-azure-budget-vm/</guid>
+      <description>I talk about Google Cloud Platform (GCP), Microsoft Azure and Heroku. You can register with them and try their services for free or very low prices.</description>
+    </item>
+    
+    <item>
+      <title>How to have math equations in your website</title>
+      <link>https://iamsorush.com/posts/math-equations-in-website/</link>
+      <pubDate>Fri, 17 Jul 2020 23:33:46 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/math-equations-in-website/</guid>
+      <description>If you want to write math equations in your website or blog, plain text becomes immediately illegible when writing something more complex than addition and subtraction.</description>
+    </item>
+    
+    <item>
+      <title>Code LU decomposition step by step in object-oriented way in C#</title>
+      <link>https://iamsorush.com/posts/lu_decomposition/</link>
+      <pubDate>Sun, 28 Jun 2020 22:06:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/lu_decomposition/</guid>
+      <description>Introduction In this post I want to revisit PLU or LU decomposition or factorisation, which is used to find unknowns of a system of linear equations, for two reasons.</description>
+    </item>
+    
+    <item>
+      <title>How Dry principle leads to clean and easy to debug code?</title>
+      <link>https://iamsorush.com/posts/dry-principle/</link>
+      <pubDate>Wed, 17 Jun 2020 18:54:08 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/dry-principle/</guid>
+      <description>Dry is short for “Don’t repeat yourself”. There are occasions that a piece of code is rewritten several times. It is better to define that as a specific method or class. I explain it with examples.</description>
+    </item>
+    
+    <item>
+      <title>What is a recursive function?</title>
+      <link>https://iamsorush.com/posts/recursive-function/</link>
+      <pubDate>Wed, 03 Jun 2020 20:04:00 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/recursive-function/</guid>
+      <description>Definition A recursive function is a function that calls itself with different arguments. Therefore, it is applied to a problem that each step of it is similar to the previous one.</description>
+    </item>
+    
+    <item>
+      <title>Implementing YAGNI and KISS principle to have maintainable code</title>
+      <link>https://iamsorush.com/posts/yagni-kiss-principle/</link>
+      <pubDate>Sun, 03 May 2020 21:04:57 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/yagni-kiss-principle/</guid>
+      <description>After reading a lot of design patterns, loose-coupling ideas, and so, you cannot wait to implement all of them in the first program you are making.</description>
+    </item>
+    
+    <item>
+      <title>How Inversion of Control improves flexibility of numerical codes?</title>
+      <link>https://iamsorush.com/posts/ioc-and-numerical-programming/</link>
+      <pubDate>Sat, 14 Mar 2020 22:00:00 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/ioc-and-numerical-programming/</guid>
+      <description>Introduction When programming it&amp;rsquo;s very convenient to create class A which has a concrete member class B. However, this creates a tightly-coupled system since any change in B should be reflected in A.</description>
+    </item>
+    
+    <item>
+      <title>How visitor design pattern is useful for numerical programming?</title>
+      <link>https://iamsorush.com/posts/visitor-design-pattern/</link>
+      <pubDate>Mon, 09 Mar 2020 23:05:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/visitor-design-pattern/</guid>
+      <description>Introduction The visitor design pattern separates operations from data storage. When the efficiency and memory consumption is not of concern this design pattern is not common.</description>
+    </item>
+    
+    <item>
+      <title>What is &#34;object slicing&#34; trap in C&#43;&#43;?</title>
+      <link>https://iamsorush.com/posts/object-slicing-in-cpp/</link>
+      <pubDate>Wed, 26 Feb 2020 20:05:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/object-slicing-in-cpp/</guid>
+      <description>Every now and then, I switch programming language from C# to C++, I fall in the trap of object slicing. It happens when a derived object is assigned by value to a base object where the extra information in the derived object is scrapped for worst.</description>
+    </item>
+    
+    <item>
+      <title>How to use C/C&#43;&#43; raw pointers properly?</title>
+      <link>https://iamsorush.com/posts/how-use-cpp-raw-pointer/</link>
+      <pubDate>Sat, 22 Feb 2020 20:05:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/how-use-cpp-raw-pointer/</guid>
+      <description>A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target. Here, I  mention the most useful characteristics of pointers with examples.</description>
+    </item>
+    
+    <item>
+      <title>Create a lightweight weblog homepage with Bootstrap and Html</title>
+      <link>https://iamsorush.com/posts/create-lightweight-weblog-homepage-with-bootstrap/</link>
+      <pubDate>Sat, 15 Feb 2020 20:05:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/create-lightweight-weblog-homepage-with-bootstrap/</guid>
+      <description>I want to create a lightweight homepage of a weblog with HTML, Bootstrap and a bit of custom CSS. No javascript, no database, no WordPress is used. It should be a lightweight and fast static website.</description>
+    </item>
+    
+    <item>
+      <title>How to create a simple component, using Blazor, HTML, and CSS: Word Block</title>
+      <link>https://iamsorush.com/posts/how-to-create-a-simple-component-using-blazor-html-and-css-word-block/</link>
+      <pubDate>Sun, 02 Feb 2020 22:24:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/how-to-create-a-simple-component-using-blazor-html-and-css-word-block/</guid>
+      <description>Using .Net Blazor, I want to create a simple word-block which is a rectangle that contains a word with an X button at its right side. Clicking on X the word-block disappears.</description>
+    </item>
+    
+  </channel>
+</rss>

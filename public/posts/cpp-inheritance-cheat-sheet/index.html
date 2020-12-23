@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179561110-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-179561110-1');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
+    <link rel="icon" href="/images/me.gif" type="image/gif">
+    <title>C&#43;&#43; inheritance crash course</title>
+    
+    <meta name="description" content="Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. Here, all useful details of C&#43;&#43; inheritance are mentioned with examples. "> 
+    
+    <meta name="author" content="map[name:Sorush Khajepor]">
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://iamsorush.com/css/style.min.css">
+    
+    
+    
+    <style>.icon{width:32px}.mr-1{margin-right:.5em}.mb-1{margin-bottom:.5em}.single-image{display:block;background-repeat:no-repeat;background-position:50%;margin-left:auto;margin-right:auto}.banner{width:100%;min-height:180px;background-image:url(/images/banner_430.jpg);padding:1em 0 2em 0}@media(min-width:430px){.banner{background-image:url(/images/banner.jpg)}}</style>
+    
+
+</head>
+
+<body>
+    
+<div class="read-progress-container">
+	<div class="progress-bar" id="myBar"></div>
+</div>
+<header class="header-black">
+	<div class="container">
+
+	<div class="home__header-grid"> 
+		<div class="display-flex flex-column left-horizontal">
+			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
+			<span class="text-shadow-1">Numerical programming and app development</span>
+		</div>
+		<div class="center justify-md-end">	
+			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
+				<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M512 0C229.25 0 0 229.25 0 512c0 226.25 146.688 418.125 350.156 485.812 25.594 4.688 34.938-11.125 34.938-24.625 0-12.188-0.469-52.562-0.719-95.312C242 908.812 211.906 817.5 211.906 817.5c-23.312-59.125-56.844-74.875-56.844-74.875-46.531-31.75 3.53-31.125 3.53-31.125 51.406 3.562 78.47 52.75 78.47 52.75 45.688 78.25 119.875 55.625 149 42.5 4.654-33 17.904-55.625 32.5-68.375C304.906 725.438 185.344 681.5 185.344 485.312c0-55.938 19.969-101.562 52.656-137.406-5.219-13-22.844-65.094 5.062-135.562 0 0 42.938-13.75 140.812 52.5 40.812-11.406 84.594-17.031 128.125-17.219 43.5 0.188 87.312 5.875 128.188 17.281 97.688-66.312 140.688-52.5 140.688-52.5 28 70.531 10.375 122.562 5.125 135.5 32.812 35.844 52.625 81.469 52.625 137.406 0 196.688-119.75 240-233.812 252.688 18.438 15.875 34.75 47 34.75 94.75 0 68.438-0.688 123.625-0.688 140.5 0 13.625 9.312 29.562 35.25 24.562C877.438 930 1024 738.125 1024 512 1024 229.25 794.75 0 512 0z"/></svg>
+			</a>
+			<a href="https://twitter.com/KhSorush" class="mr-1 icon" aria-label="Twitter">
+				<svg id="Logo_FIXED" data-name="Logo â€” FIXED" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><title>Twitter_Logo_Blue</title><rect class="cls-1" width="400" height="400"/><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>
+			</a>
+			<a href="https://scholar.google.co.uk/citations?user=16Y7-NsAAAAJ&hl=en" class="mr-1 icon" aria-label="Google Scholar">
+				<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2" id="Layer_2"><polygon fill="white" points="0.54 9 5 10.98 7 11.87 12 14.09 17 11.87 19 10.98 20 10.54 20 16 22 16 22 9.65 23.46 9 12 3.91 0.54 9"/><path fill="white" d="M18.45,18.89l.55-.27V13.17l-7,3.11L5,13.17v5.45l.55.27a14.45,14.45,0,0,0,12.9,0Z"/></g></svg>
+			</a>
+			<a href="https://stackoverflow.com/users/2543510/sorush" class="mr-1 icon" aria-label="Stackoverflow">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><style>.st0{fill:#bcbbbb}.st1{fill:#f48023}</style><path class="st0" d="M84.4 93.8V70.6h7.7v30.9H22.6V70.6h7.7v23.2z"/><path class="st1" d="M38.8 68.4l37.8 7.9 1.6-7.6-37.8-7.9-1.6 7.6zm5-18l35 16.3 3.2-7-35-16.4-3.2 7.1zm9.7-17.2l29.7 24.7 4.9-5.9-29.7-24.7-4.9 5.9zm19.2-18.3l-6.2 4.6 23 31 6.2-4.6-23-31zM38 86h38.6v-7.7H38V86z"/></svg>
+			</a>
+			<a href="https://www.linkedin.com/in/sorushkh/" class="mr-1 icon" aria-label="Linkedin">
+				<svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.0" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M32,30c0,1.104-0.896,2-2,2H2c-1.104,0-2-0.896-2-2V2c0-1.104,0.896-2,2-2h28c1.104,0,2,0.896,2,2V30z" fill="#007BB5"/><g><rect fill="#FFFFFF" height="14" width="4" x="7" y="11"/><path d="M20.499,11c-2.791,0-3.271,1.018-3.499,2v-2h-4v14h4v-8c0-1.297,0.703-2,2-2c1.266,0,2,0.688,2,2v8h4v-7    C25,14,24.479,11,20.499,11z" fill="#FFFFFF"/><circle cx="9" cy="8" fill="#FFFFFF" r="2"/></g></g><g/><g/><g/><g/><g/><g/></svg>
+			</a>
+		</div>
+    </div>
+	</div>
+</header>
+
+<main>
+	<article>
+		<h1>C&#43;&#43; inheritance crash course</h1>
+		<time>03 Oct 2020</time>
+	</article>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .post__hero{
+        background-image: url('https://iamsorush.com/images/gold_hu3d03a01dcc18bc5be0e67db3d8d209a6_227636_430x250_fill_q70_box_smart1.jpg');
+        height: 250px;
+    }
+    @media (min-width: 430px) {
+        .post__hero{
+        background-image: url('https://iamsorush.com/images/gold_hu3d03a01dcc18bc5be0e67db3d8d209a6_227636_1280x400_fill_q70_box_smart1.jpg');
+        height: 400px;
+        }
+    }   
+</style>
+<div class="single-image post__hero"></div>
+	<div class="article-nav" id="article-nav-id">
+		<article class="overlay-top">
+			<h2 id="inheritance">Inheritance</h2>
+<p>Inheritance is the mechanism that the attributes and methods of a base class are passed to a derived class. Here, all useful details of C++ inheritance are mentioned with examples.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> i;
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSomething</span>(){};
+}
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Derived</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base{}
+
+Derived d;
+d.i <span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>;
+d.doSomething();
+</code></pre></div><p>In the above example, <code>Derived</code> inherits <code>i</code> and <code>doSomething</code> from base class;</p>
+<h2 id="public-protected-and-private-inheritance">Public, protected and private inheritance</h2>
+<p>These specifiers modify the accessibility of inherited members as below</p>
+<!-- raw HTML omitted -->
+<p><strong>Example</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  <span style="color:#66d9ef">int</span> x;
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+  <span style="color:#66d9ef">int</span> y;
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  <span style="color:#66d9ef">int</span> z;
+};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base{
+  <span style="color:#75715e">// Base members are accessible as
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// public x
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// protected y
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// no access to z
+</span><span style="color:#75715e"></span>};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">protected</span> Base{
+  <span style="color:#75715e">// Base members are accessible as
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// protected x
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// protected y
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// no access to z
+</span><span style="color:#75715e"></span>};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">private</span> Base{
+  <span style="color:#75715e">// Base members are accessible as
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// private x
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// private y
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// no access to z
+</span><span style="color:#75715e"></span>};
+</code></pre></div><ul>
+<li>Access specifiers can be relaxer or more restricted when a method overridden in the derived class:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>{
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> DoSomething(){}
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Derived</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base{
+Public:
+   <span style="color:#66d9ef">void</span> DoSomething() <span style="color:#66d9ef">override</span> {}
+}
+
+Base b;
+Derived d;
+b.DoSomething(); <span style="color:#75715e">// Error, not accessible
+</span><span style="color:#75715e"></span>d.DoSomething(); <span style="color:#75715e">// OK
+</span></code></pre></div><h2 id="struct-vs-class">Struct vs Class</h2>
+<p><code>struct</code> inheritance is public by default, and <code>class</code> inheritance is private:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>{};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Derived</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base{};
+</code></pre></div><p>is similar to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Base</span>{};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">derived</span><span style="color:#f92672">:</span> Base{};
+</code></pre></div><h2 id="virtual-method">Virtual Method</h2>
+<p>Use <code>virtual</code> keyword to let the compiler know the method can be overridden in a future derived class. To complete overriding, use the keyword <code>override</code> in the derived class method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Base</span>
+{
+   <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;I am Walking ...&#34;</span>;}
+};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Derived</span> <span style="color:#f92672">:</span> Base
+{
+   <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() <span style="color:#66d9ef">override</span>  {cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;I am running&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;}
+};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+   Base<span style="color:#f92672">*</span> b <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Derived();
+   Derived<span style="color:#f92672">*</span> d <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Derived();
+   b<span style="color:#f92672">-&gt;</span>Move(); <span style="color:#75715e">// I am running
+</span><span style="color:#75715e"></span>   d<span style="color:#f92672">-&gt;</span>Move(); <span style="color:#75715e">// I am running
+</span><span style="color:#75715e"></span>}
+</code></pre></div><ul>
+<li>If keyword <code>override</code> not used, no error will rise but polymorphic behaviour will be missing; in the above example, <code>b-&gt;Move()</code> would show <code>&quot;I am walking ...&quot;</code>.</li>
+</ul>
+<h2 id="interface-abstract-class">Interface (abstract class)</h2>
+<p>An interface mentions the methods of a class but not giving the details. In the example below, <code>ComputeArea</code> is a pure virtual function: no details of how it works is given, we only know its signature.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Shape</span>{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">double</span> ComputeArea()<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+}
+</code></pre></div><p>It expects derived classes define how they implement the methods.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Circle</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Shape{
+    <span style="color:#66d9ef">double</span> r;
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Circle(<span style="color:#66d9ef">double</span> _r)<span style="color:#f92672">:</span>r(_r){}
+    <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">ComputeArea</span>() <span style="color:#66d9ef">override</span> {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3.14</span><span style="color:#f92672">*</span>r<span style="color:#f92672">*</span>r}
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Square</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Shape{
+    <span style="color:#66d9ef">double</span> s;
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Square(<span style="color:#66d9ef">double</span> _s)<span style="color:#f92672">:</span>s(_s){}
+    <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">ComputeArea</span>() <span style="color:#66d9ef">override</span> {<span style="color:#66d9ef">return</span> s<span style="color:#f92672">*</span>s}
+}
+</code></pre></div><p>The interface cannot be used to create objects</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Shape s;  <span style="color:#75715e">//Error
+</span></code></pre></div><p>However, it can be used to create a generic piece of code that works with all different derived classes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">displayArea</span>(Shape<span style="color:#f92672">&amp;</span> shape){
+      cout<span style="color:#f92672">&lt;&lt;</span>shape.ComputeArea();
+}
+
+Circle <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1.0</span>);
+Square <span style="color:#a6e22e">s</span>(<span style="color:#ae81ff">1.0</span>);
+
+displayArea(c); <span style="color:#75715e">// 3.14
+</span><span style="color:#75715e"></span>displayArea(s); <span style="color:#75715e">// 1.0
+</span></code></pre></div><p>Interfaces can help to create loosely-coupled systems <a href="https://iamsorush.com/posts/ioc-and-numerical-programming/">see an example with C#</a>.</p>
+<h2 id="final-class-or-method">Final class or method</h2>
+<p>A final class cannot be derived and a final method cannot be overridden. Use <code>final</code> keyword for this purpose:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Base</span>
+{
+     <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>()  {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;I am Walking ...&#34;</span>;}
+};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Derived</span> <span style="color:#66d9ef">final</span> <span style="color:#f92672">:</span> Base
+{
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">override</span>{cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;I am running&#34;</span>;}
+};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Extended</span> <span style="color:#f92672">:</span> Derived <span style="color:#75715e">// Error
+</span><span style="color:#75715e"></span>{
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() <span style="color:#66d9ef">override</span> {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;...&#34;</span>;} <span style="color:#75715e">//Error 
+</span><span style="color:#75715e"></span>};
+</code></pre></div><p>Making classes final increases the efficiency and safety of the code.</p>
+<h2 id="order-of-constructors-call-in-inheritance-hierarchy">Order of constructors call in inheritance hierarchy</h2>
+<ul>
+<li>If derived class constructor called, base default constructor is called first automatically (implicitly):</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>{
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  Base(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Base called.&#34;</span>;}
+  Base(<span style="color:#66d9ef">int</span> j){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Parameter Base called.&#34;</span>;}
+};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Derived</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base{
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> Derived(<span style="color:#66d9ef">int</span> j){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Derived called.&#34;</span>;}
+};
+Derived <span style="color:#a6e22e">d</span>(<span style="color:#ae81ff">0</span>);
+<span style="color:#75715e">// Base called.  Derived called.
+</span></code></pre></div><ul>
+<li>To enforce call to parameterised constructor of the base class, it should be explicitly mentioned in
+derived class constructor:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>{
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  Base(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Base called.&#34;</span>;}
+  Base(<span style="color:#66d9ef">int</span> j){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Parameterised Base called.&#34;</span>;}
+};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Derived</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base{
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  Derived(<span style="color:#66d9ef">int</span> j)<span style="color:#f92672">:</span>Base(j){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Derived called.&#34;</span>;}
+};
+Derived <span style="color:#a6e22e">d</span>(<span style="color:#ae81ff">0</span>);
+<span style="color:#75715e">// Parameterised Base called.  Derived called.
+</span></code></pre></div><ul>
+<li>A virtual method, called in the constructor of the base class, will not be overridden when base constructor call is as a consequence of derived class construction.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>{
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  Base(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Base called.&#34;</span>; Do();}
+  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Do</span>(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Base does something.&#34;</span>;}
+};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Derived</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base{
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  Derived() {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Derived called.&#34;</span>;}
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Do</span>() <span style="color:#66d9ef">override</span> {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Derived does something.&#34;</span>;}
+};
+
+Derived d;
+
+<span style="color:#75715e">//Base called.  Base does something.  Derived called.
+</span></code></pre></div><ul>
+<li>In multiple inheritance, the base constructors are called in the order of appearance in class definition:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base1</span>{
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> Base1(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Base1 called.&#34;</span>;}
+};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base2</span>{
+  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> Base2(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Base2 called.&#34;</span>;}
+};
+
+<span style="color:#75715e">// The order below is important
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Derived</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Base1, <span style="color:#66d9ef">public</span> Base2 {
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Derived()<span style="color:#f92672">:</span>Base2(),Base1(){} <span style="color:#75715e">// Not here
+</span><span style="color:#75715e"></span>};
+
+Derived d; <span style="color:#75715e">// Base1 called. Base2 called.   
+</span></code></pre></div><h2 id="order-of-destructors-call-in-inheritance-hierarchy">Order of destructors call in inheritance hierarchy</h2>
+<p>The opposite of of constructors.</p>
+<h2 id="multiple-inheritance">Multiple inheritance</h2>
+<ul>
+<li>
+<p>It can be used for merge feature classes to create a complex system.</p>
+</li>
+<li>
+<p>It can be done with the aid of interfaces (abstract classes) or implementations.</p>
+</li>
+<li>
+<p>Note some programming languages like C# only support multiple inheritance of interfaces but Not multiple inheritance of class implementations and they are successful.</p>
+</li>
+<li>
+<p>Example of multiple inheritance of interfaces:</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">IMotion</span> {
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Walk</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ISpeech</span> {
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Talk</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Robot</span> <span style="color:#f92672">:</span> IMotion, ISpeech {
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Walk</span>() <span style="color:#66d9ef">override</span> {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Robot is walking... &#34;</span>;}
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Talk</span>() <span style="color:#66d9ef">override</span> {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Robot is talking... &#34;</span>;}
+};
+
+<span style="color:#75715e">// Anything with interface of ISpeech accepted
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SpeechPlayer</span>(ISpeech<span style="color:#f92672">&amp;</span> speech){
+  cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;playing the speech: &#34;</span>;
+  speech.Talk();
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+Robot robot;
+SpeechPlayer(robot);}
+
+</code></pre></div><ul>
+<li>An example of multiple inheritance of implementations:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Motion</span> {
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Walk</span>() {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Walking ...&#34;</span>;};
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Speech</span> {
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Talk</span>()  {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Talking ... </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;}
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Robot</span> <span style="color:#f92672">:</span> Motion, Speech { };
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+  Robot r;
+  r.Walk(); <span style="color:#75715e">// Walking ...
+</span><span style="color:#75715e"></span>  r.Talk(); <span style="color:#75715e">// Talking ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><ul>
+<li>An example of multiple inheritance of implementations with interface:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">IMotion</span> {
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Walk</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Motion</span><span style="color:#f92672">:</span> IMotion {
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Walk</span>() {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Walking ...&#34;</span>;};
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ISpeech</span> {
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Talk</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Speech</span> <span style="color:#f92672">:</span> ISpeech{
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Talk</span>()  {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Talking ... </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;}
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Robot</span> <span style="color:#f92672">:</span> Motion, Speech { };
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SpeechPlayer</span>(ISpeech<span style="color:#f92672">&amp;</span> speech){
+  cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;playing the speech: &#34;</span>;
+  speech.Talk();
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+  Robot robot;
+  SpeechPlayer(robot);
+}
+</code></pre></div><ul>
+<li>Multiple inheritance can be used instead of Bridge design pattern if fine grain control over mixing classes needed.
+Bridge Design:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">IMotion</span> {
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TwoLegs</span><span style="color:#f92672">:</span> IMotion {
+	 <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Two-leg robot moving ... </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;};
+};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FourLegs</span><span style="color:#f92672">:</span> IMotion {
+	 <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Four-leg robot moving ...&#34;</span>;};
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">CommunicatingRobot</span> {    
+    CommunicatingRobot(IMotion<span style="color:#f92672">*</span> motion)<span style="color:#f92672">:</span>_motion(motion){}
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>(){ _motion<span style="color:#f92672">-&gt;</span>Move();}
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Communicate</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+    IMotion<span style="color:#f92672">*</span> _motion;
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TalkingRobot</span><span style="color:#f92672">:</span> CommunicatingRobot{
+    TalkingRobot(IMotion<span style="color:#f92672">*</span> motion)<span style="color:#f92672">:</span>CommunicatingRobot(motion){}
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Communicate</span>(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Talking ...&#34;</span>;}
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">DisplayRobot</span><span style="color:#f92672">:</span> CommunicatingRobot{
+    DisplayRobot(IMotion<span style="color:#f92672">*</span> motion)<span style="color:#f92672">:</span>CommunicatingRobot(motion){}
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Communicate</span>(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Display ...&#34;</span>;}
+};
+
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+  TalkingRobot twoLegTalkingRobot(<span style="color:#66d9ef">new</span> TwoLegs());
+  TalkingRobot fourLegTalkingRobot(<span style="color:#66d9ef">new</span> FourLegs());
+  DisplayRobot twoLegDisplayRobot(<span style="color:#66d9ef">new</span> TwoLegs());
+  DisplayRobot fourLegDisplayRobot(<span style="color:#66d9ef">new</span> FourLegs());
+  twoLegTalkingRobot.Move();<span style="color:#75715e">//Two-leg robot moving ...
+</span><span style="color:#75715e"></span>  twoLegTalkingRobot.Communicate(); <span style="color:#75715e">// Talking ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Above example using multiple inheritance</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">IMotion</span> {
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TwoLegs</span><span style="color:#f92672">:</span> IMotion {
+	 <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Two-leg robot moving ... </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;};
+};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FourLegs</span><span style="color:#f92672">:</span> IMotion {
+	 <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Move</span>() {cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Four-leg robot moving ...&#34;</span>;};
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ICommunicatingRobot</span> {    
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Communicate</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TalkingRobot</span><span style="color:#f92672">:</span> ICommunicatingRobot{
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Communicate</span>(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Talking ...&#34;</span>;}
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">DisplayRobot</span><span style="color:#f92672">:</span> ICommunicatingRobot{
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Communicate</span>(){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Display ...&#34;</span>;}
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TwoLegTalkingRobot</span><span style="color:#f92672">:</span> TwoLegs, TalkingRobot {<span style="color:#75715e">/* specific methods for this composition */</span>};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FourLegTalkingRobot</span><span style="color:#f92672">:</span> FourLegs, TalkingRobot {<span style="color:#75715e">/* specific methods for this composition */</span>};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TwoLegDisplayRobot</span><span style="color:#f92672">:</span> TwoLegs, DisplayRobot {<span style="color:#75715e">/* specific methods for this composition */</span>};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FourLegDisplayRobot</span><span style="color:#f92672">:</span> FourLegs, DisplayRobot {<span style="color:#75715e">/* specific methods for this composition */</span>};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+  TwoLegTalkingRobot robo;
+  robo.Move();<span style="color:#75715e">//Two-leg robot moving ...
+</span><span style="color:#75715e"></span>  robo.Communicate(); <span style="color:#75715e">// Talking ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h2 id="dreaded-diamond">Dreaded diamond</h2>
+<p>To explain this, lets look at below example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Base</span>{ <span style="color:#66d9ef">int</span> i;};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">D1</span><span style="color:#f92672">:</span> Base {};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">D2</span><span style="color:#f92672">:</span> Base {};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Target</span><span style="color:#f92672">:</span> D1, D2 {};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+Target  t;
+t.i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// Error: request for member ‘i’ is ambiguous 
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>The multiple inhertance graph of the example above is shown below .</p>
+<pre><code>    Base    
+     /\
+    /  \
+ D1     D2
+    \  /
+     \/
+   Target
+</code></pre><p>D1 and D2 pass two copy of Base to target. So when <code>i</code> is called the compiler cannot figure out which copy to call. To avoid this, use keyword <code>virtual</code> in definition of D1 and D2, therefore, only one copy of Base is passed to Target:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Base</span>{ <span style="color:#66d9ef">int</span> i;};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">D1</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">virtual</span> Base {};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">D2</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">virtual</span> Base {};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Target</span><span style="color:#f92672">:</span> D1, D2 {};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+Target  t;
+t.i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// works fine :)
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h2 id="hiding-rule">Hiding rule</h2>
+<p>A method in a derived class cannot implicitly overload a method of the base class. The compiler only looks in the scope of the derived class for function overloading. In this case the base method should be explicitly mentioned in the derived class, see example below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Base</span>
+{
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">int</span> i){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;integer function called.&#34;</span>;}
+};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Derived</span> <span style="color:#f92672">:</span> Base
+{
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">double</span> x){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;double function called.&#34;</span>;}
+};
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">OverloadingDerived</span> <span style="color:#f92672">:</span> Base
+{
+    <span style="color:#66d9ef">using</span> Base<span style="color:#f92672">::</span>f; <span style="color:#75715e">// Let compiler consider base method for overloading
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">double</span> x){cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;double function called.&#34;</span>;}
+};
+ 
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    Derived d;
+    <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
+    d.f(j); <span style="color:#75715e">// double function called. :( 
+</span><span style="color:#75715e"></span>    d.f(x); <span style="color:#75715e">// double function called.
+</span><span style="color:#75715e"></span>
+    OverloadingDerived o;
+    o.f(j); <span style="color:#75715e">//integer function called.
+</span><span style="color:#75715e"></span>    o.f(x); <span style="color:#75715e">//double function called.
+</span><span style="color:#75715e"></span>}
+</code></pre></div>
+			
+			<script>
+				window.onscroll = function () {
+					myFunction();
+				};
+				function myFunction() {
+					var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+					var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+					var scrolled = (winScroll / height) * 100;
+					document.getElementById("myBar").style.width = scrolled + "%";
+				}
+			</script>
+			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
+			border-radius: 5px;">
+			
+
+
+  <h3>Related Tags</h3>
+    <div id="tags">
+        
+        <span><a href="/tags/c&#43;&#43;">C&#43;&#43;</a> </span>
+        
+    </div>
+
+
+
+			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
+			border-radius: 5px;">
+			
+<div>
+	<h3>Latest Posts</h3>
+</div>
+<div>
+	<ul>
+		
+		<li><a href="/posts/mpi-traffic/">MPI Traffic Program with C&#43;&#43;</a></li>
+		
+		<li><a href="/posts/debug-mpi-vs-code/">Debug MPI program with Visual Studio Code</a></li>
+		
+		<li><a href="/posts/auto-cpp/">C&#43;&#43; auto makes your life easier</a></li>
+		
+		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		
+		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		
+	</ul>
+</div>
+	
+		</article>
+		<nav class="hide-on-mobile section-nav">
+			<h3 class="ml-1">Table of contents</h3>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#inheritance">Inheritance</a></li>
+    <li><a href="#public-protected-and-private-inheritance">Public, protected and private inheritance</a></li>
+    <li><a href="#struct-vs-class">Struct vs Class</a></li>
+    <li><a href="#virtual-method">Virtual Method</a></li>
+    <li><a href="#interface-abstract-class">Interface (abstract class)</a></li>
+    <li><a href="#final-class-or-method">Final class or method</a></li>
+    <li><a href="#order-of-constructors-call-in-inheritance-hierarchy">Order of constructors call in inheritance hierarchy</a></li>
+    <li><a href="#order-of-destructors-call-in-inheritance-hierarchy">Order of destructors call in inheritance hierarchy</a></li>
+    <li><a href="#multiple-inheritance">Multiple inheritance</a></li>
+    <li><a href="#dreaded-diamond">Dreaded diamond</a></li>
+    <li><a href="#hiding-rule">Hiding rule</a></li>
+  </ul>
+</nav>
+		</nav>		
+	</div>
+</main>
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {					
+					clearActiveStatesInTableOfContents();				
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+</script>
+ <footer>
+    <div class="container home__footer-grid">
+	<div class=" my-2">
+	<form name="Subscription" method="POST" data-netlify="true" netlify-honeypot="ahani" action="/pages/sub-success">
+		<p class="nedia">
+		  <label> Name <input name="ahani" /></label>
+		</p>
+		<p><label for="emailinput">Subscribe so I notify you of new posts</label></p>
+		<p class="display-flex">
+		  <input id="emailinput" style="width: 18em;" class="mr-1" type="email" name="email" placeholder=" Email"/>
+		  <button type="submit">Subscribe</button>
+		</p>
+	</form>
+</div>
+<div class="my-1 display-flex justify-start justify-md-end align-center">
+	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+</div>
+</div>
+</footer>
+
+
+
+  
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Studio on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/visual-studio/</link>
+    <description>Recent content in Visual Studio on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 22 Oct 2020 20:22:31 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to use Bookmark in Visual Studio</title>
+      <link>https://iamsorush.com/posts/visual-studio-bookmark/</link>
+      <pubDate>Thu, 22 Oct 2020 20:22:31 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/visual-studio-bookmark/</guid>
+      <description>Visual Studio bookmark speeds up code development in big projects. Here, I mention the keyboard shortcuts.</description>
+    </item>
+    
+  </channel>
+</rss>

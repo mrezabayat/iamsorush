@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/linux/</link>
+    <description>Recent content in Linux on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Nov 2020 21:30:30 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Handy cross-platform packages to connect to a remote Linux server</title>
+      <link>https://iamsorush.com/posts/linux-connection-packages/</link>
+      <pubDate>Wed, 11 Nov 2020 21:30:30 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/linux-connection-packages/</guid>
+      <description>Interaction with a remote Linux server like transferring files, editing code, or accessing the remote desktop can be much easier with these free cross-platform packages.</description>
+    </item>
+    
+  </channel>
+</rss>

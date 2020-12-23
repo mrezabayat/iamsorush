@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design Pattern on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/design-pattern/</link>
+    <description>Recent content in Design Pattern on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Jun 2020 18:54:08 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Dry principle leads to clean and easy to debug code?</title>
+      <link>https://iamsorush.com/posts/dry-principle/</link>
+      <pubDate>Wed, 17 Jun 2020 18:54:08 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/dry-principle/</guid>
+      <description>Dry is short for “Don’t repeat yourself”. There are occasions that a piece of code is rewritten several times. It is better to define that as a specific method or class. I explain it with examples.</description>
+    </item>
+    
+    <item>
+      <title>Implementing YAGNI and KISS principle to have maintainable code</title>
+      <link>https://iamsorush.com/posts/yagni-kiss-principle/</link>
+      <pubDate>Sun, 03 May 2020 21:04:57 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/yagni-kiss-principle/</guid>
+      <description>After reading a lot of design patterns, loose-coupling ideas, and so, you cannot wait to implement all of them in the first program you are making.</description>
+    </item>
+    
+    <item>
+      <title>How Inversion of Control improves flexibility of numerical codes?</title>
+      <link>https://iamsorush.com/posts/ioc-and-numerical-programming/</link>
+      <pubDate>Sat, 14 Mar 2020 22:00:00 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/ioc-and-numerical-programming/</guid>
+      <description>Introduction When programming it&amp;rsquo;s very convenient to create class A which has a concrete member class B. However, this creates a tightly-coupled system since any change in B should be reflected in A.</description>
+    </item>
+    
+    <item>
+      <title>How visitor design pattern is useful for numerical programming?</title>
+      <link>https://iamsorush.com/posts/visitor-design-pattern/</link>
+      <pubDate>Mon, 09 Mar 2020 23:05:39 +0000</pubDate>
+      
+      <guid>https://iamsorush.com/posts/visitor-design-pattern/</guid>
+      <description>Introduction The visitor design pattern separates operations from data storage. When the efficiency and memory consumption is not of concern this design pattern is not common.</description>
+    </item>
+    
+  </channel>
+</rss>
