@@ -257,7 +257,7 @@ int main()
 ```
 
 
-## Custom array nD
+## Custom multidimensional (nD) array 
 
 We can create and customize our array based on the requirement of our program. Let's create a 2D array of points. Each point has a position (x,y), temperature, and velocity (Vx, Vy). The points and their data must be contiguous in memory.  
 
@@ -370,7 +370,7 @@ point 2,1
 ```
 Note the memory addresses are contiguous.
                                                                                                            
-## Which array best?
+## Which array is the best?
 
 If you are working with old legacy codes, there is not much flexibility; you are confined to C-style and pointer arrays. However, if you have options, use modern C++ features: 
 
