@@ -13,6 +13,8 @@ summary: "Different methods to create arrays in C++ are overviewed: c-style arra
 
 Different methods to create arrays in C++ are overviewed: c-style array, pointer array, std::vector, std::array, and boost multiarray. How the memory is managed by each style and also their practical usage is discussed. 
 
+Non-contiguous containers like list and deque are not studied here.
+
 ## C array
 
 A contiguous array can be created by `[]` operator. An array of five integers is defined as
@@ -57,8 +59,9 @@ for (auto i=0; i<3;i++)
 
 If the array is defined within a function, the memory is allocated on the stack which is on nowadays computers in the order of 1 MB. So, this definition should be used for small size arrays.
 
-For memory management, no action required by a coder, C++ automatically gets rid of the array when goes out of scope.
+For memory management, no action is required by a coder, C++ automatically gets rid of the array when goes out of scope.
 
+There are assignment situations that a C-style array decays to a pointer type (T*) so it loses the type and size information, see [this StackOverflow discussion](https://stackoverflow.com/questions/1461432/what-is-array-to-pointer-decay). 
 
 ## Pointer
 
@@ -108,7 +111,7 @@ for (auto i=1;i<row;j++)
 
 ## std::array
 
-It is the C++11 adaptation of C-array. It is as fast as C-array, and has the features of standard containers. The size of the array needs to be known at compilation. It will be allocated contiguously on the stack if defined within a function. The array's memory is managed by C++, it is destroyed automatically when it goes out of scope. 
+It is the C++11 adaptation of C-array. It is as fast as C-array, has the features of standard containers, and is not decayed to `T*`. The size of the array needs to be known at compilation. It will be allocated contiguously on the stack if defined within a function. The array's memory is managed by C++, it is destroyed automatically when it goes out of scope. 
 
 ```cpp
 #include <iostream>
@@ -367,4 +370,13 @@ point 2,1
 ```
 Note the memory addresses are contiguous.
                                                                                                            
-               
+## Which array best?
+
+If you are working with old legacy codes, there is not much flexibility; you are confined to C-style and pointer arrays. However, if you have options, use modern C++ features: 
+
+1- std::vector: If not sure, this one is the first pick. For any-size contiguous arrays whose size can be changed during runtime. 
+2- std::array: for small and fixed-size arrays and creating objects which contain the array data.
+3- Custom array: to create multidimensional full contiguous data using std::vector and std::array.
+4- vector of vectors: for row-column data structures with dynamic contiguous data in each row, but rows are not one after the other in memory. 
+5- Boost multiarray: if boost library available, this one is preferred than writing a custom multidimensional array.
+
