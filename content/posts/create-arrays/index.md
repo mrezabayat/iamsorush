@@ -6,12 +6,12 @@ imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["C++"]
 categories: "C++" 
-summary: "Different methods to create arrays in C++ are overviewed: c-style array, pointer array, std::vector, std::array, and boost multiarray. How the memory is managed by each style and also their practical usage is discussed."
+summary: "Different methods to create arrays in C++ are overviewed: c-style array, pointer array, std::vector, std::array, and Boost multiarray. How the memory is managed by each style and also their practical usage is discussed."
 ---
 
 ## Introduction
 
-Different methods to create arrays in C++ are overviewed: c-style array, pointer array, std::vector, std::array, and boost multiarray. How the memory is managed by each style and also their practical usage is discussed. 
+Different methods to create arrays in C++ are overviewed: c-style array, pointer array, std::vector, std::array, and Boost multiarray. How the memory is managed by each style and also their practical usage is discussed. 
 
 Non-contiguous containers like list and deque are not studied here.
 
@@ -374,9 +374,9 @@ Note the memory addresses are contiguous.
 
 If you are working with old legacy codes, there is not much flexibility; you are confined to C-style and pointer arrays. However, if you have options, use modern C++ features: 
 
-1. std::vector: If not sure, this one is the first pick. For any-size contiguous arrays whose size can be changed during runtime. 
-2. std::array: for small and fixed-size arrays and creating objects which contain the array data. 
-3. Custom array: to create multidimensional full contiguous data using std::vector and std::array. 
-4. vector of vectors: for row-column data structures with dynamic contiguous data in each row, but rows are not one after the other in memory. 
-5. Boost multiarray: if boost library available, this one is preferred than writing a custom multidimensional array. 
+* std::vector: If not sure, this one is the first pick. For any-size contiguous arrays whose size can be changed during runtime. 
+* std::array: for small and fixed-size arrays and creating objects which contain the array data. 
+* Custom array: to create multidimensional full contiguous data using std::vector and std::array. 
+* vector of vectors: for row-column data structures with dynamic contiguous data in each row, but rows are not one after the other in memory. 
+* Boost multiarray: if Boost library available, this one is preferred than writing a custom multidimensional array. 
 
