@@ -257,7 +257,7 @@ int main()
 ```
 
 
-## Custom multidimensional (nD) array 
+## Custom nD array 
 
 We can create and customize our array based on the requirement of our program. Let's create a 2D array of points. Each point has a position (x,y), temperature, and velocity (Vx, Vy). The points and their data must be contiguous in memory.  
 
