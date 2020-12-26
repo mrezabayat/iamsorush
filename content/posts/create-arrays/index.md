@@ -374,9 +374,9 @@ Note the memory addresses are contiguous.
 
 If you are working with old legacy codes, there is not much flexibility; you are confined to C-style and pointer arrays. However, if you have options, use modern C++ features: 
 
-1- std::vector: If not sure, this one is the first pick. For any-size contiguous arrays whose size can be changed during runtime. 
-2- std::array: for small and fixed-size arrays and creating objects which contain the array data.
-3- Custom array: to create multidimensional full contiguous data using std::vector and std::array.
-4- vector of vectors: for row-column data structures with dynamic contiguous data in each row, but rows are not one after the other in memory. 
-5- Boost multiarray: if boost library available, this one is preferred than writing a custom multidimensional array.
+1. std::vector: If not sure, this one is the first pick. For any-size contiguous arrays whose size can be changed during runtime. 
+2. std::array: for small and fixed-size arrays and creating objects which contain the array data. 
+3. Custom array: to create multidimensional full contiguous data using std::vector and std::array. 
+4. vector of vectors: for row-column data structures with dynamic contiguous data in each row, but rows are not one after the other in memory. 
+5. Boost multiarray: if boost library available, this one is preferred than writing a custom multidimensional array. 
 
