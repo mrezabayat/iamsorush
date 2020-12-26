@@ -22,7 +22,7 @@ A contiguous array can be created by `[]` operator. An array of five integers is
 ```cpp
 int a[5];
 ```
-The size of an array needs to be known during compilation. Therefore, a constant number or constant expression can be used to create the array. Note constant expressions are evaluated at compile time.
+The size of an array needs to be known during compilation. Therefore, a constant number or constant expression can be used to create the array.
 
 ```cpp
 constexpr int GetSize(int n){
