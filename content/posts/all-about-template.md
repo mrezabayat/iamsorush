@@ -273,7 +273,7 @@ struct Dog: Animal{
 ```
 ## Type Alias
 
-Since *C++11*, we can define a type alias for  and hard to read names
+Since *C++11*, we can define a type alias for hard to read names
 
 ```cpp
 template<T>
@@ -281,7 +281,7 @@ using VecPoint = vector<Point<T>>
 ```
 See [here](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#owner-convention), I created an alias for pointers to have an ownership convention.
 
-## Meta-Programming
+## Metaprogramming
 
 Metaprogramming is to write a program targeting compile-time values and types. For values, 
 I recommend where possible, instead of templates, use `constexpr` of *C++11*  which is cleaner and easier to read. 
@@ -289,7 +289,10 @@ I recommend where possible, instead of templates, use `constexpr` of *C++11*  wh
 We can assess and conclude types using templates, for example, `const` qualifier can be dropped by
 
 ```cpp
-// General type
+#include<iostream>
+#include <type_traits>
+
+// generic type
 template<typename T> 
 struct RemoveConst{ 
     typedef T type;             
@@ -302,11 +305,12 @@ struct RemoveConst<const T> {
 };
 
 int main(){    
-    std::is_same<int, removeConst<double>::type>::value; // true
-    std::is_same<int, removeConst<double int>::type>::value;  // true
+    std::cout<<std::is_same<int, RemoveConst<int>::type>::value; // true
+    std::cout<<std::is_same<int, RemoveConst<const int>::type>::value;  // true
+    return 0;
 }
 ```
-The function above is defined in the standard library as `std::remove_const`. In most cases, standard functions defined in  `<type_traits>` header such as `add_const`, `remove_pointer`, `add_pointer`, `is_same` along with `static_assert`  meet our needs. 
+The function above is defined in the standard library as `std::remove_const`. In most cases, standard functions defined in  `<type_traits>` header such as `add_const`, `remove_pointer`, `add_pointer`, `is_same` along with `static_assert`  meet our metaprogramming needs. 
 
 ## Practical Cases
 
@@ -323,8 +327,7 @@ template<class T>
 class PrintableVector{
     vector<T> data;
     public:
-    PrintableVector(std::initializer_list<T> list)
-    {
+    PrintableVector(std::initializer_list<T> list){
         data.assign(list);
     }
     void Print(){
@@ -335,7 +338,7 @@ class PrintableVector{
 int main() {
    PrintableVector<int> a({1,3,5,7});
    a.Print(); // 1 3 5 7
-return 0;
+   return 0;
 }
 ```
 
@@ -366,9 +369,9 @@ class Point{
             if (i>=size) break;
         }
     }
-    Point<T,size> GetDistanceTo(Point<T,size>& point){
-        Point<T,size> distance;
-        for (auto i=0;i<size;i++){
+    Point GetDistanceTo(Point& point){
+        Point distance;
+        for (size_t i=0;i<size;i++){
             distance[i] = data[i] - point[i];
         }
         return distance;
@@ -380,6 +383,7 @@ class Point{
     void Print(){
       for (auto& item: data)
         cout<< item<<" ";
+      cout<<endl;
     }
 };
 int main() {
@@ -397,7 +401,9 @@ return 0;
 ```
 ### Interface
 
-Sometimes, we know the general behavior of a class and we want that behavior to be implemented. A rough example is shown below. We have a set of solver classes that inherit from `ISolver` interface. They are always run with that interface. The outcome of these solvers needs to be visualized with `Visualizer` class. However, their outcomes are different from each other: string, double, vector<int>, and so on. 
+When we know the general behavior of a class and we want that behavior to be implemented, an interface can be useful. The interface becomes more flexible if it uses a template. 
+
+A rough example is shown below. We have a set of solver classes that inherit from `ISolver` interface. They are always run with that interface. The outcome of these solvers needs to be visualized with `Visualizer` class. However, their outcomes are different from each other: string, double, vector<int>, and so on. 
 
 To connect visualizers and solvers, we define `Message` template class that represents the outcome of solvers. `Visualizer` class template is also created which is specialized concerning message types. Finally, the execution and visualization of different types are handled within a simple and generic function, `RunAndDisplay()`.
 
@@ -468,4 +474,5 @@ return 0;
 ## References
 
 [isocpp.org](https://isocpp.org/wiki/faq/templates#fn-templates)
+[cppreference.com](https://en.cppreference.com/w/cpp/language/templates)
 
