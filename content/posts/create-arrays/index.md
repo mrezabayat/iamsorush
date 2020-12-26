@@ -232,7 +232,7 @@ The memory addresses shown in the example above were elements of the vector, but
 
 ## Boost::multiarray
 
-Boost multiarray creates a contiguous N-dimensional array which claims to be more efficient than a vector of vectors [see here](https://www.boost.org/doc/libs/1_75_0/libs/multi_array/doc/user.html).To use this, you need Boost library installed.  The data type and dimension (or rank) of the array needs to be known at compile-time,  however, the size of multiarray in each dimension can be changed at runtime. 
+Boost multiarray creates a contiguous N-dimensional array which claims to be more efficient than a vector of vectors [see here](https://www.boost.org/doc/libs/1_75_0/libs/multi_array/doc/user.html). To use this, you need Boost library installed.  The data type and dimension (or rank) of the array needs to be known at compile-time,  however, the size of multiarray in each dimension can be changed at runtime. 
 
 ```cpp
 #include <iostream>
