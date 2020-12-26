@@ -1,18 +1,18 @@
 ---
 title: "Various ways to create arrays and vectors and their differences in C++"
-date: 2020-12-08T18:10:20+01:00
-image: /images/pingpong.jpg
+date: 2020-12-20T18:10:20+01:00
+image: /images/berry.jpg
 imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["C++"]
 categories: "C++" 
-summary: "Summary of this page used in cards, and also in SEO description of the page."
-draft: true
+summary: "Different methods to create arrays in C++ are overviewed: c-style array, pointer array, std::vector, std::array, and boost multiarray. How the memory is managed by each style and also their practical usage is discussed."
 ---
 
 ## Introduction
 
-Different methods to create vectors and arrays in C++ are mentioned. How the memory is allocated and managed by each style is discussed. Finally, the practical usage of them is discussed. 
+Different methods to create arrays in C++ are overviewed: c-style array, pointer array, std::vector, std::array, and boost multiarray. How the memory is managed by each style and also their practical usage is discussed. 
+
 ## C array
 
 A contiguous array can be created by `[]` operator. An array of five integers is defined as
