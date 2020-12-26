@@ -225,9 +225,9 @@ return 0;
 
 As shown, the memory is contiguous in each row but there are gaps between rows. Each row is managed independently by its own vector. To clear that up, we added more items to the first row. Subsequently, `Row[0]` is allocated on a new memory location to accommodate the new elements. It happened without a change in memory locations of the other rows.
 
-Here we notice an important difference between a vector of vectors and an array of arrays. The former can hold data structures which are rows of different sizes.
+Here we notice an important difference between a vector of vectors and an std::array of std::arrays. The former can hold data structures which are rows of different sizes.
 
-The memory addresses shown in the example above were elements of the vector, but vector class contains a pointer to those elements along with other private members such as the capacity for vector management. So, if defined in a function, the vector object is created on the stack (see the output of `&v`) but the elements are allocated on the heap. And when we create a vector of n vectors, we create n vector objects on the heap each of which containing a pointer and private members.
+The memory addresses shown in the example above were elements of the vector, but the vector class contains a pointer to those elements along with other private members such as the capacity for vector management. So, if defined in a function, the vector object is created on the stack (see the output of `&v`) but the elements are allocated on the heap. And when we create a vector of n vectors, we create n vector objects on the heap each of which containing a pointer and private members.
 
 
 ## Boost::multiarray
