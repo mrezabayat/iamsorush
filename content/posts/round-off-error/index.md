@@ -30,12 +30,12 @@ $$0.000456 = (+1) \times 0.456 \times 10^{-3}$$
 
 Looking at this style of saving a floating number, we can conclude below points
 
-1. The precision is finite and dependent on the size of the mantissa. So, if mantissa can only store {{< rawhtml >}} \(3\) {{< /rawhtml >}} digits
+* The precision is finite and dependent on the size of the mantissa. So, if mantissa can only store {{< rawhtml >}} \(3\) {{< /rawhtml >}} digits
 
 $$x = 0.12345 \Rightarrow x = 0.123$$
 
 
-2. Multiplication happen by calculation of mantissa's and exponents separately and then round-off
+* Multiplication happen by calculation of mantissa's and exponents separately and then round-off
 
 {{< rawhtml >}}
 \[
@@ -50,7 +50,7 @@ x &= 0.0123 \times 567  \\
 \]
 {{< /rawhtml >}}
 
-3. Addition happens by bringing the small number to the same exponent as the large number then adding mantissa's
+* Addition happens by bringing the small number to the same exponent as the large number then adding mantissa's
 
 {{< rawhtml >}}
 \[
