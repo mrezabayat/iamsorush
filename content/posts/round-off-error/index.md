@@ -66,7 +66,7 @@ x &= 567 + 0.123 \\
 Note that in the above example, the whole small number disappeared in the result.
 
 
-## Implicationn in Physics
+## Implication in Physics
 
 {{< rawhtml >}}
 
