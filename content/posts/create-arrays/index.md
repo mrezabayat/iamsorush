@@ -227,7 +227,7 @@ As shown, the memory is contiguous in each row but there are gaps between rows. 
 
 Here we notice an important difference between a vector of vectors and an std::array of std::arrays. The former can hold data structures which are rows of different sizes.
 
-The memory addresses shown in the example above were elements of the vector, but the vector class contains a pointer to those elements along with other private members such as the capacity for vector management. So, if defined in a function, the vector object is created on the stack (see the output of `&v`) but the elements are allocated on the heap. And when we create a vector of n vectors, we create n vector objects on the heap each of which containing a pointer and private members.
+The memory addresses shown in the example above were elements of the vector, but the vector class contains a pointer to those elements along with other private members such as the capacity for vector management. So, if defined in a function, the vector object is created on the stack (see the output of `&v`) but the elements are allocated on the heap. Moreover, when we create a vector of n vectors, we create n vector objects on the heap each of which containing a pointer and private members.
 
 
 ## Boost::multiarray
