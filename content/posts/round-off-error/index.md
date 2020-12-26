@@ -1,16 +1,15 @@
 ---
 title: "A note on computer round-off error in physics"
-date: 2020-12-19T18:10:20+01:00
+date: 2020-12-26T18:10:20+01:00
 image: /images/error.jpg
 imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["C++", "C Sharp"]
 categories: "C++" 
 summary: "The way floating-point numbers are stored in the memory of a computer can lead to unwanted errors. Here we have an overview of the basics of storing numbers and how they affect the outcome of physics programs."
-draft: true
 katex: true
 ---
-
+ 
 ## Introduction
 
 {{< rawhtml >}}A \(16-bit\) floating-point number is stored roughly as below {{< /rawhtml >}}
