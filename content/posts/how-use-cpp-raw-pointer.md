@@ -133,6 +133,7 @@ q = nullptr;
 ```cpp
 if(p!=nullptr) {...}  // C++11 and later
 if(p!=NULL) {...} // C and older C++ compilers
+if (p) {...} // the same as above lines
 ```
 
 
