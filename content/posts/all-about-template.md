@@ -172,7 +172,7 @@ int main(){
     return 0;
 }
 ```
-Since *C++17* it not necessary to mention empty brackets:
+Since *C++17*, it is not necessary to mention empty brackets:
 ```cpp
 A a; // equals to A<int> a;
 ```
