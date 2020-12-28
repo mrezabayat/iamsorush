@@ -153,6 +153,31 @@ int main()
 }
 ```
 
+## Default types
+
+A template can have default types
+
+```cpp
+#include<iostream>
+using namespace std;
+
+template <typename T = int>
+struct A{
+    T x=10.5;
+};
+int main(){
+    A<> a; // T = int
+    cout<< a.x; // 10
+    
+    return 0;
+}
+```
+Since *C++17* it not necessary to mention empty brackets:
+```cpp
+A a; // equals to A<int> a;
+```
+
+
 ## Definition & declaration files
 
 It's a good practice to separate a class definition (implementation) file from its declaration file. However, the problem with a template class is that compiler creates  a specific class for a type only when it sees a template specialization or class instantiation of a template. 
