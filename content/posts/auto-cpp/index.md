@@ -213,7 +213,26 @@ Note that `f()` within `decltype(f())` is not called. In fact during compilation
 
 ## Test 
 
-A debugger is your best friend to assess the outcome of `auto`. However, you can check the types deduced with `typeid` as below
+A debugger is your best friend to assess the outcome of `auto`. However, you can check the types using functions in `<typpe_traits>` header:
+
+```cpp
+#include <type_traits>
+using namespace std;
+
+int main(){
+auto x = true;
+cout<<is_same<decltype(x), bool>::value;
+return 0;
+}
+```
+To ensure the type is correctly inferred, we can implement `static_assert`. It throws a compile-time
+error if the type is not correct:
+
+```cpp
+static_assert(std::is_same<decltype(x), bool>::value, "x must be bool");
+```
+
+Another solution to check types is to use `typeid` as below
 
 ```cpp
 #include <iostream>
@@ -226,16 +245,6 @@ int main()
 
     return 0;
 }
-```
-
-To ensure the type is correctly inferred, we can implement `static_assert`. It throws a compilation
-error if the type is not correct:
-
-```cpp
-#include <type_traits>
-
-auto x = true;
-static_assert(std::is_same<decltype(x), bool>::value, "x must be bool");
 ```
 
 ## Function
