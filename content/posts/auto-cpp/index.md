@@ -269,6 +269,30 @@ auto f(bool cond) -> double
 
 ```
 
+*C++20* lets us have `auto` function argument 
+
+```cpp
+#include<iostream>
+#include <type_traits>
+using namespace std;
+
+auto add(auto x, auto y){
+    return x+y;
+}
+
+int main(){
+    auto n = add(2.0f, 8);
+    auto m = add("Hi "s, "pal"s);
+    
+    cout<< n << endl; // 10
+    cout<< m << endl; // Hi pal
+    cout << is_same<decltype(n),float>::value << endl; // true
+    cout << is_same<decltype(m),string>::value << endl; // true
+    
+    return 0;
+}
+```
+
 ## Lambda
 
 `auto` is perfect for specifying the return type of lambda functions.
