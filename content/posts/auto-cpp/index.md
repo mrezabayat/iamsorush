@@ -122,7 +122,7 @@ A pointer type is also deduced:
 ```cpp
 int i;
 auto p = &i; // int*
-auto q = p; //int*
+auto q = p;  //int*
 auto r = new int[5]; // int*
 ```
 
