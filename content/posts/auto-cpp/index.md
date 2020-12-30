@@ -186,8 +186,8 @@ auto& j = f(2);// j is an alias of f(2)
 But sometimes, like a wrapper, we want the compiler to deduce the type exactly as it is:
 
 ```cpp
-decltype(auto) ScaleResult(double& scaledData){
-    return ComputeResult(data);
+decltype(auto) FindTaxReturn(double& data){
+    return Compute(data);
 }
 
 ```
