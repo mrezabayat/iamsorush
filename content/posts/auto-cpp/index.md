@@ -87,8 +87,10 @@ auto l = {1,2,3}; // l is std::initializer_list<int>
 Long name types can be easily replaced by `auto`:
 
 ```cpp
-std::map<std::string, std::string> m;
+std::map<std::string, std::string> m; 
 auto n = m;
+
+auto  p = std::make_unique<int>(); //unique pointer
 
 std::vector<double> vec(100);
 auto& r = vec;
