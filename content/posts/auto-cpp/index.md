@@ -278,25 +278,30 @@ auto f(bool cond) -> double
 
 ```
 
-*C++20* lets us have `auto` function argument 
+*C++20* lets us have `auto` function arguments. The function below adds containers that have `size()` method, `[]` operator, and `+` operator for their elements. The outcome type is automatically promoted, for example, `vector<int>` plus `vector<double>` is `vector<double>`. 
 
 ```cpp
 #include<iostream>
-#include <type_traits>
+#include<vector>
+#include<array>
 using namespace std;
 
-auto add(auto x, auto y){
-    return x+y;
+auto add (const auto& a1, const auto& a2)
+{
+    auto n =  a1.size();
+    vector<decltype(a1[0] + a2[0])> result(n);
+	for (decltype(n) i = 0; i < n; i++)
+		result[i] = a1[i] + a2[i];
+	return result;
 }
 
 int main(){
-    auto n = add(2.0f, 8);
-    auto m = add("Hi "s, "pal"s);
     
-    cout<< n << endl; // 10
-    cout<< m << endl; // Hi pal
-    cout << is_same<decltype(n),float>::value << endl; // true
-    cout << is_same<decltype(m),string>::value << endl; // true
+    array<int,3> a = {1,2,3};
+    vector<double> b = {3.1,2.1,1.1};
+    auto r = add(a,b);
+    for (auto& item:r)
+        cout<<item<<endl; // 4.1 4.1 4.1
     
     return 0;
 }
@@ -304,7 +309,7 @@ int main(){
 
 ## Lambda
 
-`auto` is perfect for specifying the return type of lambda functions.
+`auto` is perfect for specifying the type of lambda functions.
 
 ```cpp
 auto l = [](int i) { return i + 1; };
