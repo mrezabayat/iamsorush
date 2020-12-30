@@ -249,7 +249,7 @@ int main()
 
 ## Function
 
-At function definition, the return type of it can be inferred with the aid of 
+At function definition, the type can be inferred with the aid of 
 its trailing return type (C++14)
 
 ```cpp
