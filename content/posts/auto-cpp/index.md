@@ -213,7 +213,7 @@ Note that `f()` within `decltype(f())` is not called. In fact during compilation
 
 ## Test 
 
-A debugger is your best friend to assess the outcome of `auto`. However, you can check the types using functions in `<typpe_traits>` header:
+A debugger is your best friend to assess the outcome of `auto`. However, you can check the types using functions in `<type_traits>` header:
 
 ```cpp
 #include <type_traits>
@@ -265,7 +265,7 @@ auto subtract(int a, int b); // Error: cannot figure out return type
 auto multiply(int a, int b) -> int; // works fine 
 ```
 
-The compiler must be notified when the return type is ambiguous. In the example below, the compiler cannot deduce the type of `f`, that's why we mention it is `-> double`. 
+The compiler must be notified when the return type is ambiguous. In the example below, the compiler cannot deduce the type of `f`, that's why we mention it as `-> double`. 
 
 ```cpp
 auto f(bool cond) -> double
