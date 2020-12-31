@@ -90,7 +90,7 @@ Long name types can be easily replaced by `auto`:
 std::map<std::string, std::string> m; 
 auto n = m;
 
-auto  p = std::make_unique<int>(); //unique pointer
+auto p = std::make_unique<int>(); //unique pointer
 
 std::vector<double> vec(100);
 auto& r = vec;
@@ -130,9 +130,23 @@ We can emphasize pointer with `*` just for readability. The outcome of the examp
 
 ```cpp
 int i;
-auto *p = &i; // int*
-auto *q = p; // int*
+auto* p = &i; // int*
+auto* q = p; // int*
 ```
+
+Note both `const auto` and `auto const` are turned to a constant pointer with a mutable target. We still can customise the outcome pointer with `*`:
+
+```cpp
+const auto m = &i;  // int* const: constant pointer, mutable target
+auto const n = &i;  // int* const
+auto* const f = &i; // int* const
+    
+const auto* u = &i;// const int*: mutable pointer, constant target
+auto const* q = &i;// const int* or int const* 
+
+const auto* const w = &i; // const int* const: pointer & target constant
+```
+
 
 ## References
 
