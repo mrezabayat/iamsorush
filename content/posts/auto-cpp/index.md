@@ -137,14 +137,14 @@ auto* q = p; // int*
 Note both `const auto` and `auto const` are turned to a constant pointer with a mutable target. We still can customise the outcome pointer with `*`:
 
 ```cpp
-const auto r = &i;  // int* const: constant pointer, mutable target
-auto const s = &i;  // int* const
-auto* const t = &i; // int* const
+const auto r = &i; // int* const: constant pointer, mutable target
+auto const s = &i; // int* const
+auto* const t = &i;// int* const
     
 const auto* u = &i;// const int*: mutable pointer, constant target
 auto const* v = &i;// const int* or int const* 
 
-const auto* const w = &i; // const int* const: pointer & target constant
+const auto* const w = &i;// const int* const: pointer & target constant
 ```
 
 
