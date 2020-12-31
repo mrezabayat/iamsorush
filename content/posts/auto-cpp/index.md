@@ -126,7 +126,7 @@ auto q = p;  //int*
 auto r = new int[5]; // int*
 ```
 
-We can emphasize pointer with `*` just for readability. The outcome of the example below is the same as the previous one:
+We can emphasize pointer type with `*` for readability. The outcome of the example below is the same as the previous one:
 
 ```cpp
 int i;
@@ -137,12 +137,12 @@ auto* q = p; // int*
 Note both `const auto` and `auto const` are turned to a constant pointer with a mutable target. We still can customise the outcome pointer with `*`:
 
 ```cpp
-const auto m = &i;  // int* const: constant pointer, mutable target
-auto const n = &i;  // int* const
-auto* const f = &i; // int* const
+const auto r = &i;  // int* const: constant pointer, mutable target
+auto const s = &i;  // int* const
+auto* const t = &i; // int* const
     
 const auto* u = &i;// const int*: mutable pointer, constant target
-auto const* q = &i;// const int* or int const* 
+auto const* v = &i;// const int* or int const* 
 
 const auto* const w = &i; // const int* const: pointer & target constant
 ```
