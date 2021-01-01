@@ -50,7 +50,7 @@ auto& j = i; // const int&, alias for i
 
 
 
-## Primitive types
+## Literals
 
 `auto` figures out the below types: 
 

@@ -111,7 +111,7 @@ for (auto i=1;i<row;j++)
 
 ## std::array
 
-It is the C++11 adaptation of C-array. It is as fast as C-array, has the features of standard containers, and is not decayed to `T*`. The size of the array needs to be known at compilation. It will be allocated contiguously on the stack if defined within a function. The array's memory is managed by C++, it is destroyed automatically when it goes out of scope. 
+It is the C++11 adaptation of C-array. It is as fast as C-array, has the features of standard containers, and is not decayed to `T*`. The size of the array needs to be known at compile-time. It will be allocated contiguously on the stack if defined within a function. The array's memory is managed by C++, it is destroyed automatically when it goes out of scope. 
 
 ```cpp
 #include <iostream>
@@ -127,6 +127,8 @@ for (auto& item:x)
 return 0;
 }
 ```
+
+std::array is an aggregate, therefore it has no non-static private and protected members. 
 
 A multidimensional array is defined by setting  the array's object type as an array. A 2D array is defined as
 
