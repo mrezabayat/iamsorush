@@ -56,13 +56,15 @@ auto& j = i; // const int&, alias for i
 
 ```cpp
 auto i = 1; // int
+auto j= 7ul; // unsigned long
 auto x = 2.0; // double
 auto y = 2.0f; // float
 auto c = 'A'; // char
+auto s = "hi"; // char const*
 auto b = true; // bool
 ```
 
-From C++14, we can have string-literals, so the compiler deduces `std::string`:
+From C++14, we can have std::string literals:
 
 ```cpp
 using namespace std; // This is necessary
@@ -248,7 +250,7 @@ error if the type is not correct:
 static_assert(std::is_same<decltype(x), bool>::value, "x must be bool");
 ```
 
-Another solution to check types is to use `typeid` as below
+Another solution to check types is to use `typeid` as below. 
 
 ```cpp
 #include <iostream>
@@ -256,12 +258,19 @@ Another solution to check types is to use `typeid` as below
 
 int main()
 {
-    auto x=1.0;
+    auto x=1.0u;
     std::cout<<typeid(x).name()<<std::endl;
 
     return 0;
 }
 ```
+The printed output is compiler dependent. *GCC* on my machine produces strings like *i*, *m*, or very long texts. To interpret them, use command `c++filt -t` in the terminal. So for *j* output, we run
+
+```bash
+c++filt -t j
+```
+It produced `unsigned int` for me. `typeid` is not as reliable as `typetraits` functions, read [here](https://en.cppreference.com/w/cpp/types/type_info/name) to for more info.
+
 
 ## Function
 
