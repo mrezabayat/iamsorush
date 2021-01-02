@@ -239,6 +239,29 @@ template class Sample<int>;
 
 Now compiling *sample.cpp*, we get a *sample.obj* (*sample.o* on linux) containing `Sample<int>` class.
 
+To instantiate a function template, see example below:
+
+```cpp
+// abs.cpp
+#include<vector>
+using namespace std;
+
+template<class T>
+auto Abs (const T& a)
+{
+    size_t n =  a.size();
+    vector<decltype(a[0]+a[1])> result(n); // decltype of prvalue to remove const &
+	for (decltype(n) i = 0; i < n; i++)
+		result[i] = a[i]>0? a[i]: -a[i];
+	return result;
+}
+
+// This is the key for function instantiation 
+// in the object file
+template auto Abs(const vector<int>& a) ;
+
+```
+
 ## Type Constraints
 
 We can limit the types that a template can take using `static_assert`, `std::is_same`, and `std::is_base_of` :
