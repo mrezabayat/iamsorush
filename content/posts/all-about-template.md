@@ -331,8 +331,8 @@ See [here](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#owner-convention
 
 ## Metaprogramming
 
-Metaprogramming is to write a program targeting compile-time values and types. For values, 
-I recommend where possible, instead of templates, use `constexpr` of *C++11*  which is cleaner and easier to read. 
+Metaprogramming is to write a program targeting compile-time values and types. For concluding values, 
+I recommend before resorting to templates, have a look at `constexpr` of *C++11*  which is clean and easy to read. 
 
 We can assess and conclude types using templates, for example, `const` qualifier can be dropped by
 
@@ -358,7 +358,7 @@ int main(){
     return 0;
 }
 ```
-The function above is defined in the standard library as `std::remove_const`. In most cases, standard functions defined in  `<type_traits>` header such as `add_const`, `remove_pointer`, `add_pointer`, `is_same` along with `static_assert`  meet our metaprogramming needs. 
+The function above is defined in the standard library as `std::remove_const`. In most cases, structs  defined in  `<type_traits>` header such as `is_array`, `conditional`, `is_same` along with `if constexpr` and `static_assert`  meet our metaprogramming needs. 
 
 ## Practical Cases
 
@@ -424,8 +424,7 @@ class Point{
         }
         return distance;
     }
-    T& operator[] (size_t i)
-    {
+    T& operator[] (size_t i){
         return data[i];
     }
     void Print(){
