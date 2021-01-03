@@ -358,7 +358,7 @@ int main(){
     return 0;
 }
 ```
-The function above is defined in the standard library as `std::remove_const`. In most cases, structs  defined in  `<type_traits>` header such as `is_array`, `conditional`, `is_same` along with `if constexpr` and `static_assert`  meet our metaprogramming needs. 
+The function above is defined in the standard library as `std::remove_const`. In most cases, structs  defined in  `<type_traits>` header such as `is_array`, `conditional`, `is_same` along with `decltype`, `if constexpr` and `static_assert`  meet our metaprogramming needs. 
 
 ## Practical Cases
 
