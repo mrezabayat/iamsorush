@@ -20,13 +20,11 @@ template<class T>
 class Array{
     T* data;
     public:
-    Array(size_t size)
-    {
+    Array(size_t size){
         data = new T[size];
     }
     ~Array(){delete[] data;}
-    T& operator[] (size_t i)
-    {
+    T& operator[] (size_t i){
         return data[i];
     }
 };
@@ -45,6 +43,8 @@ int main()
   std::cout<< b[0]  << std::endl;
 }
 ```
+
+You can find more info about creating arrays in [this post](https://iamsorush.com/posts/create-arrays/).
 
 ## Function template
 
@@ -90,6 +90,8 @@ int main()
     std::cout<< x << y << std::endl; // Hello Hi
 }
 ```
+
+For more info about `auto` keyword in this example, see [this post](https://iamsorush.com/posts/auto-cpp/).
 
 ## Call function template explicitly
 
