@@ -61,7 +61,7 @@ If the array is defined within a function, the memory is allocated on the stack 
 
 For memory management, no action is required by a coder, C++ automatically gets rid of the array when goes out of scope.
 
-There are assignment situations that a C-style array decays to a pointer type (T*) so it loses the type and size information, see [this stackoverflow discussion](https://stackoverflow.com/questions/1461432/what-is-array-to-pointer-decay). 
+There are assignment situations that a C-style array decays to a pointer type, `T*`, so it loses the type and size information, see [this stackoverflow discussion](https://stackoverflow.com/questions/1461432/what-is-array-to-pointer-decay). 
 
 ## Pointer
 
