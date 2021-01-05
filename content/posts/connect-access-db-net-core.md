@@ -1,5 +1,5 @@
 ---
-title: "Connect to Microsoft Access with C# .Net core "
+title: "Connect to Microsoft Access database with C# .Net core "
 date: 2020-10-22T18:34:21+01:00
 image: /images/bridge.jpg
 thumbnail: /images/doorlock_tn.webp
@@ -10,7 +10,7 @@ summary: "I want to connect to an MS Access database with C# in .Net core. There
 
 ## Goal
 
-I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records.
+I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to write queries to create, read, update, and delete (CRUD) records.
 
 ## OS driver
 
