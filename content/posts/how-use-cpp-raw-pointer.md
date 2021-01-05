@@ -239,7 +239,7 @@ In the above example, three pointers target the same memory location, thus we ca
 
 ## Conventions
 
-If you start working with an existing project, look for pointer conventions in place. If you design a new code put some conventions in place for which object deletes a pointer, what happens to the ownership of a pointer when it is passed to or returned from a function/object.  
+If you start working with an existing project, look for pointer conventions in place. If you design a new code put some conventions in place for objects which delete pointers, and the ownership of pointers when they are passed to or returned from functions/objects.  
 
 For example, in the previous piece of code, we have to decide which object is the owner, i.e., which one 
 needs to outlive others. So we `delete` the pointer in that one and leave the rest as observers.
