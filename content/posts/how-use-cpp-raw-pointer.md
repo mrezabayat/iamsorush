@@ -237,10 +237,12 @@ CourseB* B= new CourseB(Jack);
 
 In the above example, three pointers target the same memory location, thus we cannot run `delete` for all of them as we face double-delete problems explained in the Delete section. 
 
-## Owner Convention
+## Conventions
 
-In the previous example, we have to decide which one is the owner or which one 
-needs to outlive others, so we run `delete` command on that one and leave the rest as observers.
+If you start working with an existing project, look for pointer conventions in place. If you design a new code put some conventions in place for which object deletes a pointer, what happens to the ownership of a pointer when it is passed to or returned from a function/object.  
+
+For example, in the previous piece of code, we have to decide which object is the owner, i.e., which one 
+needs to outlive others. So we `delete` the pointer in that one and leave the rest as observers.
 
 We can have `owner` as a type alias for `T`.
 
@@ -249,7 +251,7 @@ template<class T>
 using owner = T;
 ```
 
-Now we can have a convention for our code that pointers are defined by `owner` only when the class containing them is responsible for deleting them.
+Now we can have a pointer policy for our code that pointers are defined by `owner` only when the class containing them is responsible for deleting them.
 
 A simple example that owner acts as a raw pointer:
 
