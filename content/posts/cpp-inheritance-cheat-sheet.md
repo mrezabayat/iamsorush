@@ -140,6 +140,7 @@ struct Base{};
 struct derived: Base{};
 ```
 
+Besides inheritance, the members of `struct` are public by default in contrast to `class` members which are private. 
 
 ## Virtual Method
  Use `virtual` keyword to let the compiler know the method can be overridden in a future derived class. To complete overriding, use the keyword `override` in the derived class method:
