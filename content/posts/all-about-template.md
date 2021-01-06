@@ -44,6 +44,29 @@ int main()
 }
 ```
 
+Values, which are needed at compile time, can be injected into a template. If we want a C-style array as the storage for the data, its size is needed at compile time
+
+```cpp
+#include <iostream>
+
+template<class T, size_t size>
+class FixedArray{
+  T data[size];
+public:
+  T& operator[] (size_t i){
+    return data[i];
+  }
+};
+
+int main()
+{
+  FixedArray<int,5> a;
+  a[0] = 8;
+  std::cout<< a[0] << std::endl; // 8
+}
+```
+
+
 You can find more info about creating arrays in [this post](https://iamsorush.com/posts/create-arrays/).
 
 ## Function template
@@ -51,25 +74,8 @@ You can find more info about creating arrays in [this post](https://iamsorush.co
 A function can be dependent on a generic type
 
 ```cpp
-template<class T>
-T Min(T a, T b){
-  return a>=b?b:a;
-}
+#include<iostream>
 
-int main()
-{
-  int a=2;
-  int b=4;
-  char x = 'h';
-  char y = 'H';
-  std::cout<< Min(a,b) << std::endl;// 2
-  std::cout<< Min(x,y) << std::endl; // H has lower ASCII value 
-}
-```
-
-Another useful example is the swap function:
-
-```cpp
 template<class T>
 void Swap(T& a, T& b){
     auto tmp = a;
@@ -85,13 +91,38 @@ int main()
     std::cout<< a << b << std::endl; // 10
     
     std::string x ="Hi ";
-    std::string y ="Hello ";
+    std::string y ="Jack ";
     Swap(x,y);
-    std::cout<< x << y << std::endl; // Hello Hi
+    std::cout<< x << y << std::endl; // Jack Hi
 }
 ```
-
 For more info about `auto` keyword in this example, see [this post](https://iamsorush.com/posts/auto-cpp/).
+
+A function can also be dependent on a compile-time value
+
+```cpp
+#include<iostream>
+#include <array>
+using namespace std;
+
+template<class T, size_t n>
+T dot(array<T, n> a, array<T,n> b){
+  T sum = a[0]*b[0];
+  for (size_t i=1;i<n;i++){
+  sum += a[i]*b[i];
+  }
+  return sum;
+}
+
+int main()
+{
+  array<int,2> v1 = {3,2};
+  array<int,2> v2 = {2,3};
+  cout<< dot<int,2>(v1,v2) <<endl; // 12
+}
+
+```
+
 
 ## Call function template explicitly
 
