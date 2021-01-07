@@ -112,7 +112,7 @@ delete p; // error or undefined behaviour
 ## Null usage
 
 
-There is no way to know if a pointer is deleted or not associated, therefore, I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, we avoid undefined behavior.    
+There is no way to know if a pointer is deleted or not associated, therefore, I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, *undefined behavior* is avoided.    
 
 
 
