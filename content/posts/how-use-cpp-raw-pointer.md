@@ -369,6 +369,19 @@ However, a constant target must be pointed only by a constant-target pointer.
 A reference member of a class must be initialized in the constructor and it cannot be reassigned. However, a pointer member can be reassigned, freed, and null. 
 
 Use a reference member if an entity outside of the class controls the lifetime of the member and the entity outlives objects of this class. 
+```cpp
+struct A {
+    A(int& m_):m(m_){};
+    int& m;
+}
+int main(){
+    int*p = new int(50);
+    auto a = new A(*p);
+    std::cout<< a->m; // 50
+    delete a; 
+    delete p; // p must outlive a
+}
+```
 
 Use a pointer member if the member lifetime is controlled out of the class but the class handles a null pointer. Moreover, use a pointer if the class owns the member . 
 
