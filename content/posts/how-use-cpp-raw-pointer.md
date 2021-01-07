@@ -112,8 +112,7 @@ delete p; // error or undefined behaviour
 ## Null usage
 
 
-
-I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, we avoid undefined behavior.    
+There is no way to know if a pointer is deleted or not associated, therefore, I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, we avoid undefined behavior.    
 
 
 
@@ -367,7 +366,11 @@ However, a constant target must be pointed only by a constant-target pointer.
 ## Pointer vs reference member
 
 
-A reference member of a class must be initialised in the constructor and it cannot be reassigned. However, a pointer member can be reassigned, freed, and null. So, if not sure, a pointer is an easy choice as it is more flexible.    
+A reference member of a class must be initialized in the constructor and it cannot be reassigned. However, a pointer member can be reassigned, freed, and null. 
+
+Use a reference member if an entity outside of the class controls the lifetime of the member and the entity outlives objects of this class. 
+
+Use a pointer member if the member lifetime is controlled out of the class but the class handles a null pointer. Moreover, use a pointer if the class owns the member . 
 
 
 
