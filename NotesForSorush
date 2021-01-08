@@ -1,4 +1,110 @@
-- Add visual studio code to handy linux connection tools
-- Delete array pointer to raw pointer post
-- add missing links of raw pointer
-- change array of pointer in raw pointer article
+
+Which integer to choose for C++: int, int_fast, int_least
+
+int vs int_fast64_t vs
+=========
+how to create flexible compile-time structure, with unique interface
+
+#include <iostream>
+#include <cstdlib>
+#include <array>
+struct int_t{
+    typedef int mytype;    
+};
+struct double_t{
+    typedef double mytype;    
+};
+
+template<class T>
+struct V{
+    typename T::mytype a=1.5;
+};
+
+int main()
+{
+    V<int_t> v;
+    V<double_t> g;
+    std::cout <<v.a<<" "<<g.a<< std::endl;
+}
+=========
+
+generc mpi send/recv object of objects same template class
+#include <iostream>
+#include <cstdlib>
+#include <array>
+
+struct ParticleSpecs_2D{
+    static const size_t Dim=2;
+  //  static const size_t ParametersCount=0;
+};
+
+struct ParticleSpecs_Radius2D: ParticleSpecs_2D{
+ //   static const size_t Dim=2;
+    static const size_t RadiusIndex = 0;
+    static const size_t RadiusSize = 1;
+    static const size_t ParametersCount=RadiusSize;
+};
+
+struct ParticleSpecs_MassVelocity3D{
+    static const size_t Dim=3;
+    
+    static const size_t MassIndex = 0;
+    static const size_t MassSize = 1;
+    static const size_t VelocityIndex = 1;
+    static const size_t VelocitySize = 3;
+    static const size_t ParametersCount=VelocitySize+MassSize;
+};
+
+
+struct ParticleSpecs_2D_def{
+    typedef ParticleSpecs_2D specs_t;    
+};
+struct ParticleSpecs_Radius2D_def{
+    typedef ParticleSpecs_Radius2D specs_t;    
+};
+
+
+template<class T>
+struct Particle{
+    double position[T::Dim];
+    double data[T::ParametersCount];
+};
+
+template<>
+struct Particle<ParticleSpecs_2D>{
+    double position[ParticleSpecs_2D::Dim];
+};
+
+
+
+int main()
+{
+    Particle<ParticleSpecs_Radius2D> p1;
+    std::cout<< sizeof(p1.position)<<std::endl; //16
+    std::cout<< sizeof(p1.data)<<std::endl; // 8
+    
+    Particle<ParticleSpecs_2D> p2;
+    std::cout<< sizeof(p2.position)<<std::endl; //16
+  //  std::cout<< sizeof(p2.data)<<std::endl; // Error: no member 'data'
+    
+    typedef ParticleSpecs_MassVelocity3D U;
+    Particle<U> p3;
+    std::cout<< sizeof(p3.position)<<std::endl; // 24 = 3 double = (X,Y,Z)
+    std::cout<< sizeof(p3.data)<<std::endl; // 32 = 4 double = mass + (Vx Vy Vz)
+    
+    for (size_t i=0;i<U::Dim;i++)
+        p3.position[i] = i*10; // 0 10 20
+    
+    p3.data[U::MassIndex] = 30;
+    
+    auto v = &p3.data[U::VelocityIndex];
+    for (size_t i=0;i<U::VelocitySize;i++)
+        *(v+i) = i*10+40; // 50 60 70
+    
+    for (size_t i=0;i<U::Dim;i++)
+        std::cout<< p3.position[i]<<" ";//0 10 20
+    for (size_t i=0;i<U::ParametersCount;i++)
+        std::cout<< p3.data[i]<<" "; //30 40 50 6
+    
+}
+
