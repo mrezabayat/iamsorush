@@ -69,7 +69,7 @@ public void RunQuery(string query)
 The sample below can be used when multiple rows of a table are pulled from the MS Access database.
 
 ```c#
-public List<PersonHour> GetPeople(string query)
+public List<Person> GetPeople(string query)
 {
   var people = new List<Person>();
   OdbcCommand command = new OdbcCommand(query);
