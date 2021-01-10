@@ -323,7 +323,7 @@ struct Box{
 };
 ```
 
-And the implemntation is:
+And the implementation is:
 
 ```cpp
 int main(){
