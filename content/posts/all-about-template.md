@@ -343,7 +343,7 @@ int main(){
 
 
 
-Note that Storing template types in a class is easier to read than nested templates:
+Note that storing template types in a class is easier to read than nested templates:
 
 ```cpp
 template <typename U, template <typename> class T>
