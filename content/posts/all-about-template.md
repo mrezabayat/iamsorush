@@ -371,6 +371,49 @@ int main()
 	return 0;
 }
 ```
+
+From *C++20*, we have `concept` which systematically constrains a template
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <array>
+using namespace std;
+
+template<class T>
+concept IsVector = requires (T x) {
+    // below lines must be valid expressions
+    x.size(); // size() is defined.
+    x[0]+x[0]; // addable elements
+    x.push_back(0); // push_back is defined
+}; 
+ 
+template<class T> 
+requires IsVector<T> // imposing IsVector concept 
+T add(T a, T b) {
+    T c(a.size());
+    for (size_t i=0; i<a.size(); i++)
+        c[i]=a[i]+b[i];    
+    return c; 
+}
+
+int main(){
+    vector<int> x={1,2};
+    vector<int> y={2,1};
+    auto z = add(x,y);
+    cout<<z[0]<<" "<<z[1]; // 3, 3
+    
+    array<int,2> m={3,4};
+    array<int,2> n={4,3};
+    // auto k = add(m,n); // Error:: 'x.push_back(0)' is invalid
+    
+    // auto w = add(1,2); // Error 'x.size()' is invalid
+    
+return 0;
+}
+```
+
+
 ## Enforcing inheritance
 
 When inheriting from a template class, the compiler overlooks what is inherited.
