@@ -312,18 +312,16 @@ In another scope, we have access to this info
 
 template<class S>
 struct Particle{
-    typename S::Type Position[S::Dim];
-    using Specs = S; // store S to be used somewhere else
+    typename S::Type Position[S::Dim];// access S::Type & S::Dim
 };
 
 template<class S>
 struct Box{
     typename S::Type Extent[S::Dim]; // access S::Type & S::Dim
-    using Specs = S; // store S to be used somewhere else
 };
 ```
 
-Note that `typename` is necessary to let the compiler know `S::Type` is a type. We can also create an alias for the type:
+Note that `typename` is necessary to let the compiler know `S::Type` is a type. In `Particle` and `Box`, We can also create an alias for `Specs` type:
 
 ```cpp
 using Type = typename S::Type;
