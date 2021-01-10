@@ -108,25 +108,29 @@ int main()
 
 
 ==========
+
+
 #include <iostream>
 #include <memory>
 #include <vector>
 using namespace std;
 
-template<size_t dim>
+template<size_t dim, class T>
 struct Particle{
-    double Position[dim];
+    T Position[dim];
+    static const size_t Dim = dim;
+    using Type = T;
 };
 
-template<size_t dim>
-struct Particle_Radius: Particle<dim>{
-    double Radius;
+template<size_t dim, class T>
+struct Particle_Radius: Particle<dim, T>{
+    T Radius;
 };
 
-template<size_t dim>
-struct Particle_MassVelocity: Particle_Radius<dim>{
-    double Mass;
-    double Velocity[dim];
+template<size_t dim, class T>
+struct Particle_MassVelocity: Particle_Radius<dim, T>{
+    T Mass;
+    T Velocity[dim];
 };
 
 struct Dynamics{
@@ -137,22 +141,38 @@ template<class P>
 struct Block{
     vector<unique_ptr<Dynamics>> dynamics;
     vector<P> particles;
-    auto& Get(size_t i){return particles[i];}
-};
-
-template<class P>
-struct Doit{
-    Block<P> block;
+    Particle<P::Dim, typename P::Type>& Get(size_t i){return particles[i];}
+    
     void print(){
-        cout<<block.Get(0);
+        for (auto& p:particles)
+            cout<<p.Position[0]<<" "<<p.Position[1];
+        cout<<endl;
     }
 };
 
+template<class P>
+struct Block1{
+    using Type = typename P::Type;
+    vector<P> particles;
+    Type extent[P::Dim];
+};
+
+
 int main()
 {
-    Block<Particle<2>> b;
-    b.particles.resize(10);
-    auto& p = b.Get(0);
-    Doit<Particle<2>> d;
-    p.Position[0]=9;
-}
+    Particle_Radius<2, double> particle;
+    
+    particle.Position[0]=4.1; particle.Position[1]=5.1;
+    Block<decltype(particle)> block;  
+    block.particles.push_back(particle);
+    block.print();
+    
+    Particle_Radius<2,int> p2;
+    p2.Position[0]=4.1; p2.Position[1]=5.1;
+    Block<decltype(p2)> block1;  
+    block1.particles.push_back(p2);
+    block1.print();
+    
+    
+    
+   }

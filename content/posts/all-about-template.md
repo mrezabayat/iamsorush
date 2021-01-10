@@ -331,7 +331,6 @@ template <typename U, template <typename> class T>
 struct domain{...}
 ```
 
-
 ## Type Constraints
 
 We can limit the types that a template can take using `static_assert`, `std::is_same`, and `std::is_base_of` :
