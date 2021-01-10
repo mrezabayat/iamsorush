@@ -323,6 +323,13 @@ struct Box{
 };
 ```
 
+Note that `typename` is necessary to let the compiler know `P::Type` is a type. We can also create an alias for the type:
+
+```cpp
+using Type = typename S::Type;
+Type Position[S::Dim];
+```
+
 And the implementation is:
 
 ```cpp
@@ -334,12 +341,7 @@ int main(){
 }
 ```
 
-Note that `typename` is necessary to let the compiler know `P::Type` is a type. We can also create an alias for the type:
 
-```cpp
-using Type = typename S::Type;
-Type Position[S::Dim];
-```
 
 Storing template types in a class is easier to read than nested templates:
 
