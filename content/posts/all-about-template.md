@@ -294,6 +294,43 @@ auto Abs (const T& a)
 template auto Abs(const vector<int>& a) ;
 
 ```
+## Store types & parameters
+
+The types and parameters used in a template can be stored in the class by `using` and `static` variables:
+
+```cpp
+template<size_t dim, class T>
+struct Particle{
+    T Position[dim];
+    static const size_t Dim = dim; // stores dim
+    using Type = T; // stores T
+};
+```
+
+In another scope, we have access to this info
+
+```cpp
+template<class P>
+struct Block1{
+    vector<P> particles;
+    typename P::Type extent[P::Dim];
+};
+```
+
+Note that `typename` is necessary to let the compiler know `P::Type` is a type. If the type used more than once, an alias can be created:
+
+```cpp
+using Type = typename P::Type;
+Type extent[P::Dim];
+```
+
+Storing template types in a class is easier to read than nested templates:
+
+```
+template <typename U, template <typename> class T>
+struct domain{...}
+```
+
 
 ## Type Constraints
 
