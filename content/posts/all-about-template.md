@@ -323,7 +323,7 @@ struct Box{
 };
 ```
 
-Note that `typename` is necessary to let the compiler know `P::Type` is a type. We can also create an alias for the type:
+Note that `typename` is necessary to let the compiler know `S::Type` is a type. We can also create an alias for the type:
 
 ```cpp
 using Type = typename S::Type;
@@ -343,7 +343,7 @@ int main(){
 
 
 
-Storing template types in a class is easier to read than nested templates:
+Note that Storing template types in a class is easier to read than nested templates:
 
 ```cpp
 template <typename U, template <typename> class T>
