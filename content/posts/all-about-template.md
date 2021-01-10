@@ -300,33 +300,50 @@ The types and parameters used in a template can be stored in the class by `using
 
 ```cpp
 template<size_t dim, class T>
-struct Particle{
-    T Position[dim];
-    static const size_t Dim = dim; // stores dim
-    using Type = T; // stores T
+struct Specs{
+    static const size_t Dim = dim; // store dim
+    using Type = T; // store T
 };
 ```
 
 In another scope, we have access to this info
 
 ```cpp
-template<class P>
-struct Block1{
-    vector<P> particles;
-    typename P::Type extent[P::Dim];
+
+template<class S>
+struct Particle{
+    typename S::Type Position[S::Dim];
+    using Specs = S; // store S to be used somewhere else
+};
+
+template<class S>
+struct Box{
+    typename S::Type Extent[S::Dim]; // access S::Type & S::Dim
+    using Specs = S; // store S to be used somewhere else
 };
 ```
 
-Note that `typename` is necessary to let the compiler know `P::Type` is a type. If the type used more than once, an alias can be created:
+And the implemntation is:
 
 ```cpp
-using Type = typename P::Type;
-Type extent[P::Dim];
+int main(){
+    using specs = Specs<3,double>;
+    Particle<specs> p;
+    Box<specs> b;
+    cout<< sizeof(p)<<" "<<sizeof(b)<<endl; //24 24
+}
+```
+
+Note that `typename` is necessary to let the compiler know `P::Type` is a type. We can also create an alias for the type:
+
+```cpp
+using Type = typename S::Type;
+Type Position[S::Dim];
 ```
 
 Storing template types in a class is easier to read than nested templates:
 
-```
+```cpp
 template <typename U, template <typename> class T>
 struct domain{...}
 ```
