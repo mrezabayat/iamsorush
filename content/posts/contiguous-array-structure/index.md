@@ -16,6 +16,7 @@ The performance of a numerical program can be enhanced if the necessary data nee
 ## Goal
 
 - Create a contiguous array of  a class.
+- The class may have arbitrary-size array members.
 - The array can be created for derived classes too.
 - Polymorphism is available in these generic objects.
 
