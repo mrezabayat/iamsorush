@@ -17,23 +17,22 @@ to each other. This is a good example to measure the latency and bandwidth of a 
 ## The ball
 
 If we imagine the data transfer between two nodes is like a ping-pong game, the data is the ball.
-The ball can be an array of MPI types. Here for simplicity, is the integer:
+The ball can be a vector of an MPI type. Here for simplicity, is the integer:
 
 ```cpp
 struct Ball
 {
     Ball(int size){
-        Data = new int[size];
-        Data[0] = 0;
-        Size = size;
+        data.resize(size);
+        data[0] = 0;
     }
-    ~Ball() {delete[] Data;}
-    int* Data;
-    int Size;
+    auto Size(){return data.size();}
+    auto& operator[](size_t i){return data[i];}
+    private: vector<int> data;
 };
 ```
 
-In this example, I ignore what is in `Data` array except *0-th* element which counts the number of back-and-forths of the ball.
+In this example, I ignore what is in `data` array except *0-th* element which counts the number of back-and-forths of the ball.
 
 ## IPlayer
 
@@ -84,10 +83,10 @@ A player sends the ball and waits to receive it back. I used `MPI_Send` to send 
 
 ```cpp
     void SendBall(){
-        MPI_Send( ball.Data , ball.Size , MPI_INT , target , 0 , MPI_COMM_WORLD);
+        MPI_Send( &ball[0] , ball.Size() , MPI_INT , target , 0 , MPI_COMM_WORLD);
     }
     void RecvBall(){
-        MPI_Recv( ball.Data, ball.Size , MPI_INT, target, 0 , MPI_COMM_WORLD, &stat);
+        MPI_Recv( &ball[0], ball.Size() , MPI_INT, target, 0 , MPI_COMM_WORLD, &stat);
     }
 ```
 
@@ -98,9 +97,8 @@ I have to override `Play` of the interface. It basically calls `SendBall()` and 
     void Play() override{
         if (iAmGameStarter) SendBall();
         RecvBall();
-        ball.Data[0]++;
-        cout<< "Rank :" << rank <<" has the ball, No of throws: "
-            << ball.Data[0] <<endl;
+        ball[0]++;
+        cout<< "Rank :" << rank <<" has the ball, No of throws: "<<ball[0]<<endl;
         if (!iAmGameStarter) SendBall();
     }
 ```
@@ -109,23 +107,24 @@ I have to override `Play` of the interface. It basically calls `SendBall()` and 
 
 ## Code
 
-The whole code is here.
+The whole code is here. It is compiled with GCC 10.2, OpenMPI 4.0.
 
 ```cpp
 #include <mpi.h>
 #include <stdio.h>
+#include <memory>
+#include<vector>
 using namespace std;
 
 struct Ball
 {
     Ball(int size){
-        Data = new int[size];
-        Data[0] = 0;
-        Size = size;
+        data.resize(size);
+        data[0] = 0;
     }
-    ~Ball() {delete[] Data;}
-    int* Data;
-    int Size;
+    auto Size(){return data.size();}
+    auto& operator[](size_t i){return data[i];}
+    private: vector<int> data;
 };
 
 struct IPlayer
@@ -153,16 +152,16 @@ struct Player: IPlayer
     };
     
     void SendBall(){
-        MPI_Send( ball.Data , ball.Size , MPI_INT , target , 0 , MPI_COMM_WORLD);
+        MPI_Send( &ball[0] , ball.Size() , MPI_INT , target , 0 , MPI_COMM_WORLD);
     }
     void RecvBall(){
-        MPI_Recv( ball.Data, ball.Size , MPI_INT, target, 0 , MPI_COMM_WORLD, &stat);
+        MPI_Recv( &ball[0], ball.Size() , MPI_INT, target, 0 , MPI_COMM_WORLD, &stat);
     }
     void Play() override{
         if (iAmGameStarter) SendBall();
         RecvBall();
-        ball.Data[0]++;
-        cout<< "Rank :" << rank <<" has the ball, No of throws: "<<ball.Data[0]<<endl;
+        ball[0]++;
+        cout<< "Rank :" << rank <<" has the ball, No of throws: "<<ball[0]<<endl;
         if (!iAmGameStarter) SendBall();
     }
     
@@ -176,6 +175,19 @@ private:
     MPI_Status stat;
 };
 
+auto MakeUniquePlayer(Ball& ball,int rank){
+    // Only rank 0 and 1 play the game
+    if (rank==0){
+        // Rank 0 starts the game
+        return unique_ptr<IPlayer> (new Player(ball, true));
+    } else if (rank==1)
+    {
+        return unique_ptr<IPlayer> (new Player(ball, false));
+    } else
+    {
+        return unique_ptr<IPlayer> (new Idle());
+    }
+}
 
 int main() {
 
@@ -187,24 +199,12 @@ int main() {
     // Customize here
     int ballSize = 1000000;
     int warmupIterations = 0;
-    int mainIterations = 3;
+    int mainIterations = 30;
 
     Ball ball(ballSize);
 
-    IPlayer* player;
+    auto player = MakeUniquePlayer(ball,rank);
 
-    // Only rank 0 and 1 play the game
-    if (rank==0){
-        // Rank 0 starts the game
-        player = new Player(ball, true);
-    } else if (rank==1)
-    {
-        player = new Player(ball, false);
-    } else
-    {
-        player = new Idle();
-    }
-    
     // Warm up players before the game
     for (size_t i = 0; i < warmupIterations; i++)
     {
