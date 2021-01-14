@@ -159,12 +159,14 @@ namespace MyProject {
   };
 }
 // Particle.cpp
+#include <foo.h>
 namespace MyProject{
   void Particle::Move (){
     std::cout<<"Particle is moving...";
   };
 }
 ```
+Do not use `using` statement in headers. As they are added to different files, they inject their names which defeat the namespace purpose.
 
 2. If there are a few classes in a namespace, probably they don't need to be divided in new namespaces.
 
@@ -236,4 +238,6 @@ namespace MyProject::Particle3D{
 ```
 
 
+## References
 
+[Isocpp](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rs-using-directive)
