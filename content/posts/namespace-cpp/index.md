@@ -183,7 +183,23 @@ namespace MyProject::Box{
 }
 ```
 
-4. When the number of classes in a namespace hit 10 or 20, maybe that's the time for creating new sub-namespaces.
+4. The  namespaces hierarchy are the same as project directories. So the directories of previous examples are:
+
+```
+MyProject
+|
+|__Particle
+|       |_Base.h
+|       |_Base.cpp
+|       |_ ...
+|
+|__Box
+|   |_Base.h
+|   |_Base.cpp
+|   |_ ...
+```
+
+5. When the number of classes in a namespace hits 10 or 20, maybe that's the time for creating new sub-namespaces.
 
 ```cpp
 namespace MyProject{
@@ -200,7 +216,7 @@ namespace MyProject{
     class Particle3D_variableRadius{};
 }
 ```
-The above design is changed to below one:
+The above design is changed to the below one:
 
 ```cpp
 namespace MyProject::Particle2D{
