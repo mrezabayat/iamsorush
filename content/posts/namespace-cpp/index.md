@@ -159,7 +159,7 @@ namespace MyProject {
   };
 }
 // Particle.cpp
-#include <foo.h>
+#include "Particle.h"
 namespace MyProject{
   void Particle::Move (){
     std::cout<<"Particle is moving...";
