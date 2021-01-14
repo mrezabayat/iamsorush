@@ -1,6 +1,6 @@
 ---
 title: "How to use C++ namespace"
-date: 2021-01-14T22:10:20+01:00
+date: 2021-01-13T22:10:20+01:00
 image: /images/island.jpg
 imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
