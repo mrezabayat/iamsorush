@@ -33,19 +33,30 @@ namespace A{
 
 A::x = 5; // note :: operator
 ```
+## Reveal content
 
-We can reveal all the content with `using` statement:
+We can reveal all the content to a scope with `using` directive:
 
 ```cpp
-namespace A{
-    int x;
-    int y;
+namespace People{
+    class Employee{};
+    class Manager{};
+}
+namespace Building{
+    class Department{};
+    class Office{};
 } 
 
-using namespace A; // all names of A passed to the code below
+using namespace People; // all content of People are visible in the code below
+using Building::Department; // only Department is visible in the code below
+
 int main(){
-  x = 5; 
-  y = 7;
+  Employee e; // OK 
+  Manager m; // OK
+
+  Department d;
+  // Office o; //Error: directly not accessible.
+
   return 0;
 }
 ```
@@ -71,21 +82,44 @@ int main(){
 }
 ```
 
-A namespace can be **extended** with separated blocks
+## Namespace extension
+
+A namespace can be **extended** with separated blocks, even in different files:
 
 ```cpp
-namespace A{int x;} 
+// car.h
+namespace Shop{class Car{};}  // Car class added to Shop namespace
 
-// some other codes
+// client.h
+namespace Shop{class Client{};} // Client class also added to Shop namespace
 
-namespace A{int y;} // y also added to A, in addition to x
-
+// app.cpp
 int main(){
-    A::x = 10;
-    A::y = 20;
+    Shop::Car car;
+    Shop::Client client;
     return 0;
 }
 ```
+## The global namespace
+
+Any declaration outside of explicitly defined namespaces belong to the global namespace. To specifically access global namespace use `::SomeClass`. 
+
+```cpp
+namespace MyProject {
+  class Person{ double height;};
+}
+class Person{public:int age;};
+
+using namespace MyProject; 
+
+int main(){
+    ::Person p; // OK, global Person is used. 
+    p.age=30;
+  return 0;
+}
+```
+
+## Nested namepsaces
 
 We can have nested namespaces
 
@@ -109,7 +143,19 @@ A::U::y = 5; // Access nested parameter
 return 0;
 }
 ```
-## What can goes into namespace
+## Namespace aliases
+
+```cpp
+namespace Zoo::Animal::Birds{ class Penguin{};}
+
+namespace ZAB = Zoo::Animal::Birds;
+int main(){    
+  ZAB::Penguin p;
+  return 0 ;
+}
+```
+
+## What can goe into namespace
 
 Everything except the `main` function: 
 
@@ -241,3 +287,4 @@ namespace MyProject::Particle3D{
 ## References
 
 [Isocpp](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rs-using-directive)
+[microsoft docs](https://docs.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-160)
