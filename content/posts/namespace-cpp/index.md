@@ -1,5 +1,5 @@
 ---
-title: "How to use C++ namespace"
+title: "How to use C++ namespace for large projects"
 date: 2021-01-13T22:10:20+01:00
 image: /images/island.jpg
 imageQuality: "q65"
@@ -145,6 +145,8 @@ int main(){
 ```
 ## Namespace aliases
 
+We can create an alias for a long-name or nested namespace:
+
 ```cpp
 namespace Zoo::Animal::Birds{ class Penguin{};}
 
@@ -232,7 +234,7 @@ namespace MyProject::Box{
 }
 ```
 
-* The  namespaces hierarchy are the same as project directories. So the directories of previous examples are:
+* The  namespaces hierarchy is the same as project directories. So the directories of previous examples are:
 
 ```
 MyProject
