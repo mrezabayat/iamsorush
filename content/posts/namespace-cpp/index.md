@@ -19,19 +19,19 @@ A namespace block can be defined as
 
 ```cpp
 namespace A{
-    int x;
-    int y;
+    class X{};
+    class Y{};
 } 
 ```
-We can refer to `x` outside of namespace `A`:
+We can refer to `X` outside of namespace `A` with `::` operator
 
 ```cpp
 namespace A{
-    int x;
-    int y;
+    class X{};
+    class Y{};
 } 
 
-A::x = 5; // note :: operator
+A::X x; // Note :: operator
 ```
 ## Reveal content
 
@@ -44,7 +44,7 @@ namespace People{
 }
 namespace Building{
     class Department{};
-    class Office{};
+    class Room{};
 } 
 
 using namespace People; // all content of People are visible in the code below
@@ -55,7 +55,7 @@ int main(){
   Manager m; // OK
 
   Department d;
-  // Office o; //Error: directly not accessible.
+  // Room r; //Error: directly not accessible.
 
   return 0;
 }
@@ -65,18 +65,18 @@ int main(){
 Names can be categorized to avoid conflicts
 
 ```cpp
-namespace A{int x;} 
-namespace B{int x;} 
+namespace A{class Base{};} 
+namespace B{class Base{};} 
 
 int main(){
 
-  B::x=10; // OK
-  A::x=15; // OK
+  A::Base baseA; // OK
+  B::Base baseB; // OK
 
   // But they conflict if thrown out.
   using namespace A;
   using namespace B;
-  x=98;// Error: which one, A::x or B::x?
+  Base base;// Error: which one, A::Base or B::Base?
 
   return 0;
 }
@@ -106,9 +106,9 @@ Any declaration outside of explicitly defined namespaces belong to the global na
 
 ```cpp
 namespace MyProject {
-  class Person{ double height;};
+  class Person{public: double height;};
 }
-class Person{public:int age;};
+class Person{public: int age;};
 
 using namespace MyProject; 
 
@@ -119,28 +119,28 @@ int main(){
 }
 ```
 
-## Nested namepsaces
+## Nested namespaces
 
 We can have nested namespaces
 
 ```cpp
-namespace A{
-    namespace T{
-        int m;
+namespace App{
+    namespace Shape{
+        class Box{};
     }
 } 
 ```
 
-It is easier to write above code as:
+It is easier to write the above code as:
 
 ```cpp
-namespace A::T{
-    int m;
+namespace App::Shape{
+    class Box{};
 }
 
 int main(){
-A::U::y = 5; // Access nested parameter 
-return 0;
+    App::Shape::Box box; // Access nested parameter 
+    return 0;
 }
 ```
 ## Namespace aliases
@@ -151,13 +151,13 @@ namespace Zoo::Animal::Birds{ class Penguin{};}
 namespace ZAB = Zoo::Animal::Birds;
 int main(){    
   ZAB::Penguin p;
-  return 0 ;
+  return 0;
 }
 ```
 
-## What can goe into namespace
+## Namespace content
 
-Everything except the `main` function: 
+Everything, except the `main` function, can be declared/defined in a namespace: 
 
 ```cpp
 namespace A{
@@ -166,6 +166,7 @@ namespace A{
   class person{};
   struct data{};
   void func(){};
+  namespace B{/*more definitions*/};
 } 
 
 int main(){
@@ -181,12 +182,12 @@ int main(){
 
 ## How to use
 
-The concept of namespace is very similar to directories in operating system. In our computer we organize our files to photos, videos, documents and so on. So, we quickly find them and also avoid file name conflicts.
+The concept of the namespace is very similar to directories in the operating system. On our computer, we organize our files in folders: photos, videos, documents, and so forth. So, we quickly find them and also avoid file name collisions.
 
 So my conventions are:
 
 
-0. For a new project, create a namespace with the name of the project. Everything is written in this namespace (except `main()`). So our project become portable, it can be included in other projects without the fear of name conflicts.
+* For a new project, create a namespace with the name of the project. Everything is written in this namespace (except `main()`). So our project become portable, it can be included in other projects without the fear of name conflicts.
 
 ```cpp
 namespace MyProject{
@@ -195,7 +196,7 @@ namespace MyProject{
  class WriteOutput{};
 }
 ```
-1. Each class is saved into two files: the header and implementation. Each class is contained in a namespace.
+* Each class is saved into two files: the header and implementation. Each class is contained in a namespace.
 
 ```cpp
 // Particle.h
@@ -212,11 +213,11 @@ namespace MyProject{
   };
 }
 ```
-Do not use `using` statement in headers. As they are added to different files, they inject their names which defeat the namespace purpose.
+* Do not use `using` statement in headers, *.h* files. As they are added to different files, they inject their names which defeats the namespace purpose. But feel free to use them in *.cpp* files.
 
-2. If there are a few classes in a namespace, probably they don't need to be divided in new namespaces.
+* If there are a few classes in a namespace, probably they don't need to be divided in new namespaces.
 
-3. However, sometimes, the name of classes make us to separate their namespace from start.
+* However, sometimes, the name of classes make us to separate their namespace from start.
 
 ```cpp
 namespace MyProject::Particle{
@@ -231,7 +232,7 @@ namespace MyProject::Box{
 }
 ```
 
-4. The  namespaces hierarchy are the same as project directories. So the directories of previous examples are:
+* The  namespaces hierarchy are the same as project directories. So the directories of previous examples are:
 
 ```
 MyProject
@@ -247,7 +248,7 @@ MyProject
 |   |_ ...
 ```
 
-5. When the number of classes in a namespace hits 10 or 20, maybe that's the time for creating new sub-namespaces.
+* When the number of classes in a namespace hits 10 or 20, maybe that's the time for creating new sub-namespaces.
 
 ```cpp
 namespace MyProject{
