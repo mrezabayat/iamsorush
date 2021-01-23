@@ -332,6 +332,61 @@ int main(){
 }
 ```
 
+## Auto in header file
+
+A function with `auto` argument is acceptable in a header file (*C++20*). A function, which returns `auto`, must declare return type with `->` operator. The example below is on [GitHub](https://github.com/sorush-khajepor/CppExamples/tree/main/basic/example002).
+
+```cpp
+// a.h
+template<class T>
+struct A
+{
+    T x;
+    auto Add(auto a)->decltype(a+x);
+};
+```
+
+Note that the type of the function argument is relevant just to the function scope, but the type it returns affects the scope the function is called in. That's why the header must hint at the return type. 
+
+In the  *.cpp* file, all the necessary classes must be instantiated:
+
+```cpp
+// compiler GCC 10.3 flag -std=c++20
+// a.cpp
+#include "a.h"
+
+template<class T>
+auto A<T>::Add(auto a)->decltype(a+x){
+    return a+x;
+}
+
+// intantiate classes
+template
+auto A<double>::Add(double a)->decltype(a+x);
+
+template
+auto A<int>::Add(int a)->decltype(a+x);
+
+// main.cpp
+#include <iostream>
+#include "a.h"
+int main(){
+  A<double> a1{.x=10};
+  A<int> a2{.x=10};
+  A<int> a3{.x=10};
+  
+  auto b = a1.Add(1.0); // OK. From header, compiler knows b is double
+
+  std::cout<<a1.Add(20.0)<<std::endl; // OK
+  std::cout<<a2.Add(20)<<std::endl; //OK
+  std::cout<<a3.Add(20.0)<<std::endl; // Error: double A<int>::Add<double>(double) not found!
+
+  return 0;
+}
+
+
+```
+
 ## Lambda
 
 `auto` is perfect for specifying the type of lambda functions.
