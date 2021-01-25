@@ -18,7 +18,7 @@ A *C++ 20* concept is a named predicate that constrains templates. It improves t
 Concepts make a template code easy to read and help to find bugs. 
 
 In the example below, it is not clear what `T` is unless you read the whole function. The function works well with arrays. But let's, instead of an array, pass a wrong object to the function:
-
+ 
 ```cpp
 #include<iostream>
 
