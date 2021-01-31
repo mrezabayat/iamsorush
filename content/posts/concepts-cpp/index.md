@@ -175,7 +175,7 @@ template<class T>
 requires Arithmetic<T>
 void f(T a){/*function definition*/};
 ```
-or after function declaration
+or after the function declaration
 
 ```cpp
 #include<concepts>
@@ -237,7 +237,7 @@ The above concept impose two constraints:
 * `a+a` must be valid.
 * `decltype(a+a)` must be the same as `int`.
 
-Note that `same_as` is defined in the <concepts> header.
+Note that `same_as` is defined in the `<concepts>` header.
 
 We can have multiple expressions:
 

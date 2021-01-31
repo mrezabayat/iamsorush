@@ -39,3 +39,51 @@ Keep the re-declaration with the same signature
 
 
 ## Function overloadng
+
+==== example of class specialization
+#include<iostream>
+#include<concepts>
+#include<vector>
+using namespace std;
+
+
+template<typename T>
+concept Ari = is_arithmetic<T>::value;
+
+template<typename T> // use the concept
+struct Box{
+    void say(string str){cout<<str<<"generic Box."<<endl;}
+}; 
+
+template<Ari T>
+struct Box<T>{
+    virtual void say(string str){cout<<str<<"Arithmetic Box. "<<endl;}
+};
+
+template<Ari T>
+struct Box1: Box<T>{
+    virtual void say(string str) override{cout<<str<<"child of Arithmetic Box. "<<endl;}
+};
+template<typename T>
+void f(Box<T>& box, string str){
+
+    box.say("f->"+str);
+}
+ 
+int main() {
+    Box<int> a;
+    a.say("a: ");
+    
+    Box<string> b;
+    b.say("b: ");
+
+    Box<int>* c = new Box1<int>(); 
+    c->say("c: ");
+
+f(a, "a: ");
+f(b, "b: ");
+f(*c, "c: ");
+
+ //   Box<string>* d = new Box1<string>(); // Error : requires Ari
+    return 0;
+}

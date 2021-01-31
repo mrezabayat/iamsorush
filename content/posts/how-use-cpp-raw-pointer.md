@@ -14,13 +14,13 @@ summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory 
 
 *C/C++* is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. Here, I  mention the most useful characteristics of pointers with examples.   
 
-I call them here pointers but nowadays they are called raw pointers to separate them from smart pointers. I will write on smart pointers separately.    
+I call them here pointers but nowadays they are called raw pointers to separate them from smart pointers.   
 
 
 
 ## Definition
 
-A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target.    
+A pointer is an 8-byte type on a 64-bit machine that holds the memory address of a target object.    
 
 ```cpp
 int  x = 20;   //  variable declaration
@@ -32,7 +32,7 @@ cout<< *p <<endl; // 20
 
 
 
-In the above example, `p` at the beginning is declared but undefined (it points to somewhere we don't know); then pointed to `x`. The pointer holds the memory address of `x`.  Using `*` operator, the pointer can be dereferenced to get the value of its target.     
+In the above example, `p` at the beginning is declared but undefined (it points to somewhere we don't know); it then pointed to `x`. The pointer holds the memory address of `x`.  Using `*` operator, the pointer can be dereferenced to get the value of its target.     
 
 
 
@@ -61,22 +61,25 @@ int* q = new int[5];
 
 
 ```cpp
+int* p = new int;
 delete p; // new int memory now deleted
 ```
 To delete all elements of the array 
 
 ```cpp
+int* q = new int[5];
 delete[] q; // All elements of array deleted
 ```
 Note that they are not literally deleted, the memory is marked as free to be overwritten.    
 
 
-Note that `new` ends with `delete`, `new[]` ends with `delete[]`. The compiler knows the number of elements of the array created via `new[]`, so `delete[]` doesn't need the number of elements.
+Remember that `new` ends with `delete`, `new[]` ends with `delete[]`. The compiler knows the number of elements of the array created via `new[]`, so `delete[]` doesn't need the number of elements.
 
 
 Do not delete the dynamically created array using `delete`
 
 ```cpp
+int* q = new int[5];
 delete q; // Error: only one element is deleted
 ```
 
@@ -90,9 +93,11 @@ Do not delete a stack memory that a pointer points to
 
 
 ```cpp
-int x;
-int* p=&x;
-delete p; // Undefined Behaviour: deleting a memory on stack!
+void f(){
+  int x;
+  int* p=&x;
+  delete p; // Undefined Behaviour: deleting a memory on stack!
+}
 ```
 
 
@@ -112,7 +117,7 @@ delete p; // error or undefined behaviour
 ## Null usage
 
 
-There is no way to know if a pointer is deleted or not associated, therefore, I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, *undefined behavior* is avoided.    
+There is no way to know if a pointer is deleted or not associated, therefore, I prefer to point the pointer to `nullptr` (or `NULL` for *C* and older than *C++11* compilers) when there is nothing to point to: at declaration and deletion. In this way, some *undefined behaviours* like double-delete are avoided.    
 
 
 
@@ -155,7 +160,9 @@ int* p = new int;
 p = &x;  // re-pointed but "new int" not deleted
 ```
 
-In the above example, new int memory is an island in the sea of computer memory. We could only find it via `p` but, in the last line, `p` is pointed to another place, `x`. So we have a memory leak! We have to remember to delete allocated memory and then point the pointer to another variable/new allocated memory:   
+In the above example, new int memory is an island in the sea of computer memory. We could only find it via `p` but, in the last line, `p` is pointed to another place, `x`. So we have a memory leak! 
+
+We have to remember to delete the allocated memory and then point the pointer to another target:   
 
 
 
@@ -194,12 +201,29 @@ Again we have to remember to delete it ourself:
 }
 ```
 
+A pointer member of a class beeter be deleted in the destructor
+
+```cpp
+#include<iostream>
+using namespace std;
+
+struct A{
+    int* p;
+    A(){p = new int; cout<<"p is allocated memory.";}
+    ~A(){delete p; cout<<"p is deleted.";}
+};
+
+void f(){
+    A a; // p is allocated memory.
+} // a.p is deleted
+```
+
 There is another situation that memory leaks:   
 
 
 ```cpp
 int* p = new int;
-... an exception is thrown here..
+//... an exception is thrown here..
 delete p; // this is not reached.
 ```
 
@@ -207,7 +231,7 @@ delete p; // this is not reached.
 A raw pointer cannot handle this, you need to use smart pointers (see this [discussion](https://stackoverflow.com/questions/24150472/c-avoiding-memory-leak-with-exceptions) ).   
 
 
-For deleting a memory, the situation gets complicated fast when it is pointed by many different pointers:   
+For deleting a memory, the situation gets complicated fast when it is the target of different pointers:   
 
 
 
@@ -284,7 +308,7 @@ std::cout << p->name << endl;  // Jack
 
 
 
-## Pass by pointer
+## Pass by pointer vs pass by reference
 
 It is a good practice to pass objects especially the huge ones by a pointer. Instead of copying the whole data, only the pointer is passed:   
 
@@ -301,7 +325,7 @@ DoSomething(a);
 
 
 
-I mostly prefer pass by pointer than by reference, both methods have the same efficiency but a pointer can be null while a reference cannot. But you may want to use reference because you are not handling null in the function.    
+I mostly prefer pass by reference as it feels easier to read. However, there is a difference between pass by pointer and pass by reference. When you pass by refernce you gaurantee that an outer scope always passes valid data to the fucntion. But when you pass data by pointer you may mean the pointer can be null and the function handles it.    
 
 
 
@@ -310,18 +334,22 @@ When passing by pointer, the pointer itself passed by value
 
 
 ```cpp
+#include<iostream>
+using namespace std;
+
 void f(int* p)
 {
     *p = 100;   // the pointed memory changed
     p = nullptr;  // p is changed within function not externally
 }
-...
-int* q = new int(0);
-cout<< q << endl;
-f(q);
-cout<< *q << endl;  // 100
-cout<< q << endl;  // q is not changed
-...
+
+int main(){
+    int* q = new int(0);
+    cout<< q << endl; // 0x17d8b20
+    f(q);
+    cout<< *q << endl;  // 100
+    cout<< q << endl;  // 0x17d8b20: q is not changed
+}
 ```
 
 
@@ -330,7 +358,7 @@ cout<< q << endl;  // q is not changed
 
 
 
-A constant definition can be added to a pointer as below   
+A constant qualifier can be added to a pointer in different ways:  
 
 
 
@@ -342,7 +370,7 @@ const int* const p // both above constraints
 
 
 
-Too many options? Well, they are there to constrain the usage of a pointer, so, when other developers read your code they quickly understand the purpose of variables. For example, if the target must not be changed in specific scope then use a constant-target pointer and other developers do not mistakenly change them.    
+The different versions are to constrain a pointer, reduce mistakes, improve readability and help compiler to optimise the code and catch errors.     
 
 
 
@@ -370,10 +398,13 @@ A reference member of a class must be initialized in the constructor and it cann
 
 Use a reference member if an entity outside of the class controls the lifetime of the member and the entity outlives objects of this class. 
 ```cpp
+#include<iostream>
+
 struct A {
     A(int& m_):m(m_){};
     int& m;
-}
+};
+
 int main(){
     int*p = new int(50);
     auto a = new A(*p);
@@ -383,7 +414,7 @@ int main(){
 }
 ```
 
-Use a pointer member if the member lifetime is controlled out of the class but the class handles a null pointer. Moreover, use a pointer if the class owns the member . 
+Use a pointer member if the member lifetime is controlled out of the class but the class handles a null pointer. Moreover, use a pointer if the class owns the member and responsible for deleting it. 
 
 
 
@@ -391,15 +422,14 @@ Use a pointer member if the member lifetime is controlled out of the class but t
 
 
 
-In *C* language, it is common to define an array using a pointer   
-
+Pointers can be used to define arrays on the heap
 
 
 ```cpp
-int *p = new int[5]; // dynamically allocated array
+int* p = new int[5]; // dynamically allocated array
 cout<< p[2]; // prints 3rd element
 
-int *q[5]; // array of 5 integer pointers  
+int* q[5]; // array of 5 integer pointers  
 
 int arr[5];  // array of 5 integers
 int* r = arr;  // pointer points to first element of array
@@ -428,7 +458,7 @@ p[row][column]=3; //
 ```
 
 
-In *C++*, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array [see here](https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays).  So it's better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:   
+In *C++*, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array [see here](https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays).  Generally, it's better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:   
 
 ```cpp
 vector<int> *v = new vector<int>(10);
@@ -443,7 +473,7 @@ r[2]; // index reference
 
 ## Void pointer 
 
-All the pointers (int*, double*, string*, custom_class*) have the same datatype holding the memory address of different targets. So, `void*` pointer is a pointer the same as others pointing to some memory address but the datatype of the target is unknown. 
+All the pointers (int*, double*, string*, custom_class*) have the same datatype holding the memory address of different targets. So, `void*` pointer is a pointer the same as others pointing to some memory address but the data type of the target is unknown. 
 
 ```cpp
 void* p;
@@ -470,4 +500,4 @@ Reading pointers, we can understand how data are spread in the memory. We can al
 ```
 
 
-"0x" represents hex system. Focusing on the last numbers, {b0, b4, b8, bc, c0}, they increase by 4 units because an integer on the target machine was 4 bytes. Note, in hex system, b8+4=bc and b0+16=c0. Therefore, every 4 integers (or 2 doubles), one added to the second last digit (b0 → c0). 
+"0x" represents the hex system. Focusing on the last numbers, {b0, b4, b8, bc, c0}, they increase by 4 units because an integer on the target machine was 4 bytes. In the hex system, we have b8+4=bc and b0+16=c0. Therefore, every 4 integers (or 2 doubles), the second last digit is incremented (b0 → c0). 
