@@ -11,7 +11,12 @@ summary: "With examples, C++ concepts are used to constrain template classes and
 
 ## Introduction
 
-A *C++ 20* concept is a named predicate that constrains templates. It improves the readability of code and facilitates finding bugs. Concepts can also be used for function overloading. 
+A *C++ 20* concept is a named predicate (true/false expression) that constrains templates. It improves the readability of code and facilitates finding bugs. Concepts can also be used for function overloading and template specialization. 
+
+
+## Prerequisites
+
+This post assumes you are familiar with [templates](https://iamsorush.com/posts/all-about-template/) and [auto keyword](https://iamsorush.com/posts/auto-cpp/).
 
 ## Why Concepts?
 
@@ -110,7 +115,7 @@ int main(){
     std::cout<<sum(a);
 }
 ```
-Now let's check the errors, they diretly point out that `a` is no an array:
+Now let's check the errors, they diretly point out that `a` is not an array:
 
 ```bash
 : In function 'int main()':
@@ -136,13 +141,13 @@ Two constraints can create conjunction with `&&` operator where both must be tru
 
 ```cpp
 template<class T> 
-concept ConstInt = std::is_const<T>::value && std::is_integer<T>::value;
+concept ConstInt = std::is_const<T>::value && std::is_integral<T>::value;
 
 template<ConstInt T>
 void f(T a){};
 ```
 
-Note that If `is_const<T>::value` is false, `is_integer` term is ignored.
+Note that If `is_const<T>::value` is false, `is_integral` term is ignored.
 
 Disjunction can be created with `||` operator where either constraint can be true
 
@@ -162,7 +167,7 @@ Before defining your concepts, it is worth checking already defined concepts in 
 
 ## Requires clause
 
-Instead of imposing a concept in template brackets,
+Instead of imposing a concept inside the template brackets:
 ```cpp
 template<Arithmetic T> 
 void f(T a){/*function definition*/};
@@ -173,7 +178,8 @@ we can enforce it just after template declaration using `requires`:
 ```cpp
 template<class T> 
 requires Arithmetic<T>
-void f(T a){/*function definition*/};
+void f(T a)
+{/*function definition*/};
 ```
 or after the function declaration
 
@@ -190,18 +196,19 @@ If working with type traits is hard, we can explain what we expect from a type w
 
 ```cpp
 template<class T>
-concept Vector = requires (T a){ 
-    a.size(); // constraint #1
-    a.push_back(0); // constraint #2
+concept Vector = requires (T a) // a is an object of type T
+{ 
+    a.size(); // constraint #1: a.size() must be meaningful.
+    a.push_back(0); // constraint #2: a.push_back(0) must work.
 };
 
-template<Vector T> // use the concept
+template<Vector T>
 class Box{}; 
 ```
 So users get errors if a `Box` object is created that violates constraints #1 and #2.
 
 
-Constraints can be imposed on types too
+Constraints can be imposed on types too:
 
 ```cpp
 template<class T>
@@ -211,7 +218,7 @@ concept MyArray = requires (T a){
     typename T::Type; // T must contain a datatype, Type.
 };
 
-template<MyArray T>
+template<MyArray T> 
 void DisplayArray(T x){
     
     typename x::Type sample;
@@ -232,14 +239,14 @@ concept AddableInt = requires (T a){
     { a + a } -> std::same_as<int>;
 }
 ```
-The above concept impose two constraints:
+The above concept imposes two constraints:
 
 * `a+a` must be valid.
 * `decltype(a+a)` must be the same as `int`.
 
-Note that `same_as` is defined in the `<concepts>` header.
+Concept `same_as` is defined in the `<concepts>` header.
 
-We can have multiple expressions:
+We can also have multiple expressions:
 
 ```cpp
 template<class T>

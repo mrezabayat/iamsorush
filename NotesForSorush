@@ -2,30 +2,7 @@
 Which integer to choose for C++: int, int_fast, int_least
 
 int vs int_fast64_t vs
-=========
-how to create flexible compile-time structure, with unique interface
-contiguous - a unique reusable core base class 
-#include <iostream>
-#include <cstdlib>
-#include <array>
-struct int_t{
-    typedef int mytype;    
-};
-struct double_t{
-    typedef double mytype;    
-};
 
-template<class T>
-struct V{
-    typename T::mytype a=1.5;
-};
-
-int main()
-{
-    V<int_t> v;
-    V<double_t> g;
-    std::cout <<v.a<<" "<<g.a<< std::endl;
-}
 =========
 
 auto
@@ -87,3 +64,36 @@ f(*c, "c: ");
  //   Box<string>* d = new Box1<string>(); // Error : requires Ari
     return 0;
 }
+
+==== smart pointers
+
+# example
+- The first choice is the unique pointer. Unless you know, avoid shared pointers.
+- Where the ownership of a pointer is not important, pass it as a reference.
+
+```cpp
+#include<iostream>
+#include<memory>
+using namespace std;
+
+struct CsvWriter{
+    void Write(int data){cout<<"Writing CSV file:"<<data<<endl;};
+};
+struct Controller{ 
+  Controller(CsvWriter& writer_):writer(writer_){}
+  void Run(){
+      cout<< "Producing data ..."<<endl;
+      writer.Write(1000);
+  }
+  private:
+  CsvWriter& writer;
+};
+int main(){
+unique_ptr<CsvWriter> csvWriter(new CsvWriter);
+Controller controller(*csvWriter);
+controller.Run();
+}
+```
+
+- in the above situation, you can pass raw pointer in case the pointer may become null.
+
