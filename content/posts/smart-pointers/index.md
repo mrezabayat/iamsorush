@@ -12,7 +12,7 @@ are defined and their usage is shown with examples."
 
 ## Introduction
 
-Unique pointers are smart pointers which are created to avoid memory leak that raw pointers bring. They follow "Resource Acquisition Is Initialization" (RAII) rule. Smart pointers are in header `<memory>`.
+Unique pointers are smart pointers which are created to avoid memory leak that [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak) bring. They follow "Resource Acquisition Is Initialization" (RAII) rule. Smart pointers are in header `<memory>`.
 
 ## Unique pointer
 
@@ -58,11 +58,12 @@ unique_ptr<int> p(new int);
 // p <-------->  object
 ```
 
-`p` owns the object and the object has only one owner, `p`. So when programming we can think of them as one entity. But note that a pointer can be empty too
+`p` owns the object and the object has only one owner, `p`. So when programming we can think of them as one entity. Consequently, a unique pointer cannot be copied or passed by value. However, the ownership of its object can be transferred.  A unique pointer can be empty too
 
 ```cpp
 unique_ptr<int> p; // empty pointer, contains null pointer
 ```
+
 
 ## Operations
 

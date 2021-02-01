@@ -39,28 +39,32 @@ create a file, `rawhtml.html` with the content
 
 Now, in any post we can insert the desired HTML code using the below code:
 
-\{\{< rawhtml >\}\}    
-    \<!-\- html codes here-\->  
-\{\{< /rawhtml >\}\}
-
-
+```go
+{{</* rawhtml >}}    
+    <!-- html codes here-->  
+{{< /rawhtml */>}}
+```
 
 ## Add Video
 
-To embed a video, we use the `video` tag as 
+The video files are placed in the path `/your-website/static/videos`. 
+
+To embed a video, the `video` tag is used: 
 
 
-\{\{< rawhtml >\}\} 
+```go
+{{</* rawhtml >}} 
 
-`<video width=100% controls autoplay>`  
-`    <source src="/videos/table_of_contents.webm" type="video/webm">`   
-`    Your browser does not support the video tag.  `
-`</video>`  
+<video width=100% controls autoplay>
+    <source src="/videos/table_of_contents.webm" type="video/webm">
+    Your browser does not support the video tag.  
+</video>
 
-\{\{< /rawhtml >\}\}
+{{< /rawhtml */>}}
+```
 
-
-`controls` gives video *play*, *pause*, *full-screen* controls and `autoplay` plays the video automatically when page is loaded. 
+`controls` gives video *play*, *pause*, *full-screen* controls and `autoplay` plays the video automatically when the page is loaded. 
+The video type can be	`video/mp4`, `video/webm`, or `video/ogg` depending on the format of the file.
 
 
 ## References
