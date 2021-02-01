@@ -32,7 +32,7 @@ If the unique pointer is destructed, the allocated object on the heap  is destru
 ```
 Compare the above code with [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak) which are deleted explicitly by programmers.
 
-A unique pointer can aslo be created with `std::make_unique`
+A unique pointer can also be created with `std::make_unique`
 
 ```cpp
 #include <memory>
@@ -58,7 +58,9 @@ unique_ptr<int> p(new int);
 // p <-------->  object
 ```
 
-`p` owns the object and the object has only one owner, `p`. So when programming we can think of them as one entity. Consequently, a unique pointer cannot be copied or passed by value. However, the ownership of its object can be transferred.  A unique pointer can be empty too
+`p` owns the object and the object has only one owner, `p`. So when programming, we can think of them as one entity. Consequently, a unique pointer cannot be copied or passed by value. However, the ownership of its object can be transferred.  
+
+A unique pointer can be empty too
 
 ```cpp
 unique_ptr<int> p; // empty pointer, contains null pointer
@@ -83,7 +85,7 @@ There is a raw pointer inside a unique pointer which can be accessed:
 A* r = p.get(); // get the raw pointer
 ```
 
-Use above raw pointer only for calculations and do not delete it as it is managed by unique pointer p. 
+Use above raw pointer only for calculations and do not delete it as it is managed by a unique pointer. 
 
 
 The object allocated to the pointer can be changed but remember that it is automatically deleted:
@@ -133,7 +135,7 @@ swap(p,q); // p points to q's object and vice versa.
 ```
 
 
-A unique pointer can be checked if it is associated to a dynamic object
+A unique pointer can be checked if it is associated with an object
 
 ```cpp
 unique_ptr<int> a; // a created but is empty (null pointer)
@@ -256,12 +258,12 @@ If we design our program based on smart pointers, we can assume below rules for 
 
 * Unique pointer member: the class is the owner of the pointer's object.
 * Raw pointer member: the class is not responsible for deleting the pointer's object. The pointer can be null.
-* Reference member: it is gauranteed that the reference contains valid data while the class object is alive.
+* Reference member: it is guaranteed that the reference contains valid data while the class object is alive.
 
 
 ## Performance
 
-Accessing unique pointers is as fast as raw pointers. The class of the unique pointer contains only a raw pointer as the data member, so, the size of a unique pointer is the same as a raw pointer. All in all, unique pionters can safely replace raw pointers in high performance calculations.
+Accessing unique pointers is as fast as raw pointers. The class of the unique pointer contains only a raw pointer as the data member, so, the size of a unique pointer is the same as a raw pointer. All in all, unique pointers can safely replace raw pointers in high-performance calculations.
 
 
 ## Factory Example
