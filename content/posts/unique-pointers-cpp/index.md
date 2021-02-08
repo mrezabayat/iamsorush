@@ -1,5 +1,5 @@
 ---
-title: "What is a C++ unique pointer and how to use it? smart pointers part I"
+title: "What is a C++ unique pointer and how is it used? smart pointers part I"
 date: 2021-01-31T19:10:20+01:00
 image: /images/dolphin.jpg
 imageQuality: "q65"

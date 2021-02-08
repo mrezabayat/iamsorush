@@ -1,12 +1,12 @@
 ---
-title: "What is a C++ shared pointer and how to use it? smart pointers part II"
+title: "What is a C++ shared pointer and how is it used? smart pointers part II"
 date: 2021-02-07T18:19:00+01:00
 image: /images/pizza.jpg
 imageQuality: "q65"
 imageAnchor: "center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["Back-End Web", "C Sharp",".Net Core"]
 categories: "C++" 
-summary: "Shared pointers are smart pointers which ameliorate memory management. Here, I explain them with examples and dsicuss their usage and performance."
+summary: "Shared pointers are smart pointers which ameliorate memory management. Here, I explain them with examples and discuss their usage and performance."
 ---
 
 ## Introduction
