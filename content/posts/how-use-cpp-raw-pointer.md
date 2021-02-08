@@ -3,9 +3,9 @@ title: 'How to use C/C++ raw pointers properly?'
 date: 2020-02-22T20:05:39Z
 draft: false
 image: /images/pointer.jpg
-tags: ['C++']
+tags: ['C++', "Pointers"]
 categories: "C++"
-summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target. Here, I  mention the most useful characteristics of pointers with examples."
+summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory address of a target object. Here, I  mention the most useful characteristics of pointers with examples."
 ---
 
 
@@ -14,7 +14,7 @@ summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory 
 
 *C/C++* is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. Here, I  mention the most useful characteristics of pointers with examples.   
 
-I call them here pointers but nowadays they are called raw pointers to separate them from smart pointers.   
+I call them here pointers but nowadays they are called raw pointers to separate them from smart pointers: unique, shared and weak pointers. I wrote on unique pointers [here](https://iamsorush.com/posts/unique-pointers-cpp/). 
 
 
 
@@ -82,9 +82,6 @@ Do not delete the dynamically created array using `delete`
 int* q = new int[5];
 delete q; // Error: only one element is deleted
 ```
-
-
-
 
 
 

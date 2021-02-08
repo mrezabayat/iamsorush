@@ -1,5 +1,5 @@
 ---
-title: "C++ auto makes your life easier"
+title: "C++ auto keyword makes your life easier"
 date: 2020-12-03T18:10:20+01:00
 image: /images/gears.jpg
 imageQuality: "q65"
@@ -11,7 +11,7 @@ summary: "In C++, *auto* keyword can speed up coding and improve the maintainabi
 
 ## Introduction
 
-Since *C++11*, a compiler can deduce the type of a variable being declared from its initializer using `auto` keyword. 
+Since *C++11*, a compiler can deduce the type of a variable being declared from its initializer using `auto` keyword. It is also called placeholder type specifier.
 
 
 ## General Behavior
@@ -231,16 +231,16 @@ Note that `f()` within `decltype(f())` is not called. In fact during compilation
 
 ## Test 
 
-A debugger is your best friend to assess the outcome of `auto`. However, you can check the types using functions in `<type_traits>` header:
+A good IDE like VS Code is your best friend to assess the outcome of `auto`. However, you can check the types using functions in `<type_traits>` header:
 
 ```cpp
 #include <type_traits>
 using namespace std;
 
 int main(){
-auto x = true;
-cout<<is_same<decltype(x), bool>::value;
-return 0;
+  auto x = true;
+  cout<<is_same<decltype(x), bool>::value;
+  return 0;
 }
 ```
 To ensure the type is correctly inferred, we can implement `static_assert`. It throws a compile-time

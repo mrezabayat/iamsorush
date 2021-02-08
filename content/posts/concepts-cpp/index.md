@@ -1,5 +1,5 @@
 ---
-title: "C++ Concepts and constraints clear up templates"
+title: "What are C++20 concepts and constraints? How to use them?"
 date: 2021-01-24T18:10:20+01:00
 image: /images/fence.jpg
 imageQuality: "q65"
@@ -16,7 +16,7 @@ A *C++ 20* concept is a named predicate (true/false expression) that constrains 
 
 ## Prerequisites
 
-This post assumes you are familiar with [templates](https://iamsorush.com/posts/all-about-template/) and [auto keyword](https://iamsorush.com/posts/auto-cpp/).
+This post assumes you are familiar with [templates](https://iamsorush.com/posts/all-about-template/) and [auto keyword](https://iamsorush.com/posts/auto-cpp/). The codes here are compiled with GCC v10.2.
 
 ## Why Concepts?
 
@@ -93,7 +93,7 @@ Here, `Array` concept is defined to tell the user of this code that `T` should b
 template<class U>
 concept Array = std::is_array<U>::value;
 
-template<Array T> // Note Array concept
+template<Array T> // Apply Array concept
 double sum(T& items){
     double sum=0;
     for (auto& item:items)

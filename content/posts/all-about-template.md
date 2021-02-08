@@ -4,45 +4,78 @@ date: 2020-10-30T19:34:31+01:00
 image: /images/hive.jpg
 tags: ["C++", "Template"]
 categories: "C++"
-summary: "Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples."
+summary: "Using templates in C++, you can create functions or classes having similar behaviours for different types. Here, all the useful features of templates are explained with examples."
 ---
 
 ## Template
 
-Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples.
+Using templates in C++, we can create a function or class template having a generic behaviour for different types. Therefore, we write and maintain less code. 
+
+At compile time, the compiler assesses the code and can turn a class (or function) template to multiple classes (or functions). Afterwards, at run-time, the classes create objects.
 
 ## Class Template
 
-A class can use a generic type which can be any of `int`, `double`, `string`, and so on.
+Instead of hard-coding two similar classes, Point2dInt,
 
 ```cpp
-template<class T>
-class Array{
-    T* data;
+class Point2dInt{
+    
+    int data[2];
+    
     public:
-    Array(size_t size){
-        data = new T[size];
+    int& operator[] (size_t i){
+        return data[i];
     }
-    ~Array(){delete[] data;}
+};
+```
+
+and Point2dString,
+
+```cpp
+class Point2dString{
+    
+    string data[2];
+    
+    public:
+    string& operator[] (size_t i){
+        return data[i];
+    }
+};
+```
+
+we can have one class template with a generic type which can be `int`, `string`, and so on.
+
+```cpp
+#include <iostream>
+template<class T>
+class Point2D{
+    
+    T data[2];
+    
+    public:
     T& operator[] (size_t i){
         return data[i];
     }
 };
 ```
-`Array` can be used as an integer or string class:
+If the compiler only sees the above code, it doesn't instantiate any Point2D class. 
 
 ```cpp
+using namespace std;
 int main()
 {
-  Array<int> a(5);
-  a[0] = 1;
-  std::cout<< a[0] << std::endl;
-  
-  Array<std::string> b(5);
-  b[0] = "Hello";
-  std::cout<< b[0]  << std::endl;
+  Point2D<int> a; // T = int
+  a[0] = 1; a[1]=2;
+  cout<< a[0] << a[1] << endl; //12
+
+  Point2D<string> b; // T = string
+  b[0] = "X"; b[1] = "Y";
+  cout<< b[0] << b[1] << endl; //XY
 }
 ```
+
+However, when the compiler sees the above code, it instantiates two classes `Point2D<int>` and `Point2D<string>` which are similar to `point2dInt` and `point2dString`. 
+
 
 Values, which are needed at compile time, can be injected into a template. If we want a C-style array as the storage for the data, its size is needed at compile time
 
@@ -71,7 +104,7 @@ You can find more info about creating arrays in [this post](https://iamsorush.co
 
 ## Function template
 
-A function can be dependent on a generic type
+A function template can also be created which is dependent on a generic type
 
 ```cpp
 #include<iostream>
@@ -98,18 +131,19 @@ int main()
 ```
 For more info about `auto` keyword in this example, see [this post](https://iamsorush.com/posts/auto-cpp/).
 
-A function can also be dependent on a compile-time value
+A function template can also be dependent on a compile-time value
 
 ```cpp
 #include<iostream>
 #include <array>
 using namespace std;
 
-template<class T, size_t n>
+template<class T, size_t n> // n is a compile-time value
 T dot(array<T, n> a, array<T,n> b){
+  
   T sum = a[0]*b[0];
   for (size_t i=1;i<n;i++){
-  sum += a[i]*b[i];
+    sum += a[i]*b[i];
   }
   return sum;
 }
@@ -129,17 +163,18 @@ int main()
 In the previous examples, compiler figures type `T` out. But it gets confused for this case:
 
 ```cpp
+using namespace std;
 int main()
 {
   int a=2;
   double b=4;
-  std::cout<< Min(a,b) << std::endl; // Error: T is int or double?
+  cout<< Min(a,b) << endl; // Error: T is int or double?
 }
 ```
 To solve this, template type needs to be mentioned explicitly:
 
 ```cpp
-std::cout<< Min<int>(a,b) << std::endl;
+cout<< Min<int>(a,b) << endl;
 ```
 
 Another example that the compiler cannot figure out the type is:
@@ -188,7 +223,7 @@ int main()
 
 ## Default types
 
-A template can have default types
+A template parameter can have a default type
 
 ```cpp
 #include<iostream>
@@ -213,7 +248,7 @@ A a; // equals to A<int> a;
 
 ## Definition & declaration files
 
-It's a good practice to separate a class definition (implementation) file from its declaration file. However, the problem with a template class is that compiler creates  a specific class for a type only when it sees a template specialization or class instantiation of a template. 
+It's a good practice to separate a class definition (implementation) file from its declaration file. However, a problem is that the compiler creates a class out of a template only when it sees a template specialization or a class instantiation. 
 
 ```cpp
 
@@ -247,7 +282,7 @@ int main()
 
 ```
 
-*sample.cpp* successfully compiles to sample.obj, but it doesn't have a clue that in *main.cpp* special template of `Sample<int>` used, so the compiler does not create that special class to be instantiated. Therefore, when *main.cpp* is compiled with *sample.obj* we get a linking error. 
+*sample.cpp* is successfully compiled to sample.o, but it doesn't have a clue that, in *main.cpp*, `Sample<int>` is used, so the compiler does not create that special class. Therefore, when *main.cpp* is compiled with *sample.o* we get a linking error. 
 
 
 The easiest solution is to put both declaration and definition in the same file, *sample.h*. But it increases the size of the executable file and surpasses capabilities that separation of declaration and definition brings like solving circular dependencies. 
@@ -270,7 +305,7 @@ template class Sample<int>;
 
 ```
 
-Now compiling *sample.cpp*, we get a *sample.obj* (*sample.o* on linux) containing `Sample<int>` class.
+Now compiling *sample.cpp*, we get a *sample.o* containing `Sample<int>` class.
 
 To instantiate a function template, see example below:
 
@@ -460,8 +495,8 @@ See [here](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#owner-convention
 
 ## Metaprogramming
 
-Metaprogramming is to write a program targeting compile-time values and types. For concluding values, 
-I recommend before resorting to templates, have a look at `constexpr` of *C++11*  which is clean and easy to read. 
+Metaprogramming is to write a program that writes another program. Here in C++, we use metaprogramming to create desired classes and functions at compile time. Moreover, we can target compile-time values and types. For concluding values, 
+I recommend before resorting to templates, have a look at `constexpr` which is clean and easy to read. 
 
 We can assess and conclude types using templates, for example, `const` qualifier can be dropped by
 
@@ -487,13 +522,13 @@ int main(){
     return 0;
 }
 ```
-The function above is defined in the standard library as `std::remove_const`. In most cases, structs  defined in  `<type_traits>` header such as `is_array`, `conditional`, `is_same` along with `decltype`, `if constexpr` and `static_assert`  meet our metaprogramming needs. 
+The metafunction above is defined in the standard library as `std::remove_const`. In most cases, metafunctions  defined in  `<type_traits>` header such as `true_type`, `false_type`, `conditional`, `is_same` along with `decltype`, `if constexpr` and `static_assert`  meet our metaprogramming needs. 
 
 ## Practical Cases
 
 ### Customize STL Containers
 
-Templates are mostly used for creating custom containers. In the below example,  a vector is created that can print its items on the screen.
+Templates are mostly used for creating custom containers. In the below example,  a vector is created that can print its items on the screen. The type of items can be any that supports `cout<<` command.
 
 ```cpp
 #include <iostream>
@@ -577,7 +612,7 @@ return 0;
 ```
 ### Interface
 
-When we know the general behavior of a class and we want that behavior to be implemented, an interface can be useful. The interface becomes more flexible if it uses a template. 
+When we know the general behaviour of a class and we want that behaviour to be implemented, an interface can be useful. The interface becomes more flexible if it uses a template. 
 
 A rough example is shown below. We have a set of solver classes that inherit from `ISolver` interface. They are always run with that interface. The outcome of these solvers needs to be visualized with `Visualizer` class. However, their outcomes are different from each other: string, double, vector<int>, and so on. 
 

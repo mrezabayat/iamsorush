@@ -395,6 +395,11 @@ time {
     margin-bottom: 1em;
 }
 
+.my-4 {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
 .mb-1 {
     margin-bottom: 0.5em;
 }

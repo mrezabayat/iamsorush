@@ -8,7 +8,7 @@
 		{{ end }}
 
 		{{ range .Paginator.Pages }}
-			{{ .Render "summary" }}
+			{{ partial "summary" . }}
 		{{ end }}
 		{{ partial "pagination.html" . }}
 	</main>

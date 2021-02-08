@@ -1,10 +1,10 @@
 ---
-title: "What are unique pointers and how to use them? smart pointers part I"
+title: "What is a C++ unique pointer and how to use it? smart pointers part I"
 date: 2021-01-31T19:10:20+01:00
 image: /images/dolphin.jpg
 imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
-tags: ["C++", "Smart Pointers"]
+tags: ["C++", "Pointers"]
 categories: "C++" 
 summary: "Unique pointers are smart pointers which manage a pointer's allocated memory and avoid memory leak. Here, they
 are defined and their usage is shown with examples."
@@ -13,6 +13,13 @@ are defined and their usage is shown with examples."
 ## Introduction
 
 Unique pointers are smart pointers which are created to avoid memory leak that [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak) bring. They follow "Resource Acquisition Is Initialization" (RAII) rule. Smart pointers are in header `<memory>`.
+
+
+## Prerequisite
+
+This post assumes you are familiar with [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/) and [auto keyword](https://iamsorush.com/posts/auto-cpp/). 
+
+All the examples are compiled with GCC 10.2 with flag `-std=c++20`.
 
 ## Unique pointer
 
@@ -82,7 +89,7 @@ p->m = 11; // access class members
 There is a raw pointer inside a unique pointer which can be accessed:
 
 ```cpp
-A* r = p.get(); // get the raw pointer
+auto r = p.get(); // get the raw pointer
 ```
 
 Use above raw pointer only for calculations and do not delete it as it is managed by a unique pointer. 
@@ -96,9 +103,11 @@ The object allocated to the pointer can be changed but remember that it is autom
 using namespace std;
 
 int main(){
+
     auto q = make_unique<int>();
     cout<< q <<'\n'; // points to 0xb1feb0
-    q = make_unique<int>(); // the data in 0xb1feb0 deleted
+
+    q = make_unique<int>(); // The data in 0xb1feb0 deleted.
     cout<<q; //points to new object in 0xb20ee0
 
     return 0;
@@ -109,7 +118,7 @@ The pointer can be reset to a new object
 
 ```cpp
 auto q = make_unique<int>(); // q created with an int object on the heap
-q.reset(new int()); // the previouse object deleted, a new one is created.
+q.reset(new int()); // The previouse object deleted, a new one is created.
 ```
 
 Only one unique pointer owns the object on the heap:
@@ -257,7 +266,8 @@ int main(){
 If we design our program based on smart pointers, we can assume below rules for a class member:
 
 * Unique pointer member: the class is the owner of the pointer's object.
-* Raw pointer member: the class is not responsible for deleting the pointer's object. The pointer can be null.
+* Raw pointer member: the class is an observer and not responsible for deleting the pointer's object. It is deleted by
+a smart pointer outside of this class. The pointer can be null.
 * Reference member: it is guaranteed that the reference contains valid data while the class object is alive.
 
 

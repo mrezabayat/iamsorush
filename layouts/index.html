@@ -16,11 +16,11 @@
 	  </div>
 	  <div class="container">
       <div class="home__card-grid">
-        {{ range (.Paginator 9).Pages }}
-    			{{ .Render "summary" }}
-    		{{ end }}
+        {{ range (.Paginator 100).Pages }}
+    			{{ partial "summary" . }}
+    	{{ end }}
 	  </div>
-    {{ partial "pagination.html" . }}
+    {{/* partial "pagination.html" . */}}
 	</div>
     </main>
 {{ end }}
