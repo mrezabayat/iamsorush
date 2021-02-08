@@ -6,7 +6,7 @@ imageQuality: "q65"
 imageAnchor: "center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["Back-End Web", "C Sharp",".Net Core"]
 categories: "C++" 
-summary: "Shared pointers are smart pointers which ameliorate memory management. Here, I explained them with examples and dsicuss their usage and performance."
+summary: "Shared pointers are smart pointers which ameliorate memory management. Here, I explain them with examples and dsicuss their usage and performance."
 ---
 
 ## Introduction
