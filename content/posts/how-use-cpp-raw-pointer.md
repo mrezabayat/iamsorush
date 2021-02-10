@@ -12,9 +12,9 @@ summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory 
 ## Introduction
 
 
-*C/C++* is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. Here, I  mention the most useful characteristics of pointers with examples.   
+*C/C++* is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. In this post, I  mention the most useful characteristics of raw pointers with examples.  
 
-I call them here pointers but nowadays they are called raw pointers to separate them from smart pointers: unique, shared and weak pointers. I wrote on unique pointers [here](https://iamsorush.com/posts/unique-pointers-cpp/). 
+Here I focus only on raw pointers and assume the code we are working with doesn't allow smart pointers ([unique](https://iamsorush.com/posts/unique-pointers-cpp/), [shared](https://iamsorush.com/posts/shared-pointer-cpp/) and weak pointers). 
 
 
 
@@ -27,12 +27,18 @@ int  x = 20;   //  variable declaration
 int* p; // pointer declaration
 p = &x;  // pointer stores address of x
 cout<< p <<endl; //0x7ffc52a21a84
-cout<< *p <<endl; // 20
+cout<< *p <<endl; // 20 : dereferencing with * operator
 ```
 
+In the above example, `p` at the beginning is declared but undefined (it points to somewhere we don't know); it then pointed to `x`. Roughly, the code is equivalent to the picture below
 
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/rawpointer1.png" style="max-width:100%;" />
+</div>
+{{< /rawhtml >}}
 
-In the above example, `p` at the beginning is declared but undefined (it points to somewhere we don't know); it then pointed to `x`. The pointer holds the memory address of `x`.  Using `*` operator, the pointer can be dereferenced to get the value of its target.     
+The pointer holds the memory address of `x`.  Using `*` operator, the pointer can be dereferenced to get the value of its target.     
 
 
 
@@ -47,6 +53,12 @@ A pointer is usually pointed to dynamically allocated memory on the heap, a scal
 ```cpp
 int* p = new int;
 ```
+
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/rawpointer2.png" style="max-width:100%;" />
+</div>
+{{< /rawhtml >}}
 
 or an array 
 
@@ -64,6 +76,13 @@ int* q = new int[5];
 int* p = new int;
 delete p; // new int memory now deleted
 ```
+
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/rawpointer3.png" style="max-width:100%;" />
+</div>
+{{< /rawhtml >}}
+
 To delete all elements of the array 
 
 ```cpp
@@ -159,6 +178,12 @@ p = &x;  // re-pointed but "new int" not deleted
 
 In the above example, new int memory is an island in the sea of computer memory. We could only find it via `p` but, in the last line, `p` is pointed to another place, `x`. So we have a memory leak! 
 
+{{< rawhtml >}}
+<div style="text-align:center;">
+<img src="/images/rawpointer4.png" style="max-width:100%;" />
+</div>
+{{< /rawhtml >}}
+
 We have to remember to delete the allocated memory and then point the pointer to another target:   
 
 
@@ -198,7 +223,7 @@ Again we have to remember to delete it ourself:
 }
 ```
 
-A pointer member of a class beeter be deleted in the destructor
+A pointer member of a class better be deleted in the destructor
 
 ```cpp
 #include<iostream>
@@ -322,7 +347,7 @@ DoSomething(a);
 
 
 
-I mostly prefer pass by reference as it feels easier to read. However, there is a difference between pass by pointer and pass by reference. When you pass by refernce you gaurantee that an outer scope always passes valid data to the fucntion. But when you pass data by pointer you may mean the pointer can be null and the function handles it.    
+I mostly prefer pass by reference as it feels easier to read. However, there is a difference between pass by pointer and pass by reference. When you pass by reference you guarantee that an outer scope always passes valid data to the fucntion. But when you pass data by pointer you may mean the pointer can be null and the function handles it.    
 
 
 
@@ -439,10 +464,10 @@ A dynamic 2D array can be created with a pointer-to-pointer type
 int **p;
 // dynamic array of pointers
 // each pointer is a row
-p = new int*[5]; 
+p = new int*[3]; 
 
 // loop over rows
-for (int i = 0; i < 5; ++i) {
+for (int i = 0; i < 3; ++i) {
   p[i] = new int[6]; // each row has 6 columns
   // p[i] points to dynamic array of int values
 }

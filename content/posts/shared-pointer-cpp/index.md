@@ -18,7 +18,7 @@ Shared pointers are smart pointers which ameliorate working with dynamically all
 
 This post assumes you are familiar with [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/), [unique pointers](https://iamsorush.com/posts/unique-pointers-cpp/) and [auto keyword](https://iamsorush.com/posts/auto-cpp/). 
 
-All the examples are compiled with GCC 10.2 with flag `-std=c++20`.
+All the examples are compiled with GCC 10.2 with the flag `-std=c++20`.
 
 For brevity, some examples miss the headers and main function:
 
@@ -80,7 +80,7 @@ auto sp3 = sp1;
 ```
 
 
-A shared pionter can be empty
+A shared pointer can be empty
 
 ```cpp
 shared_ptr<A> sp4; // has no managed object.
@@ -111,7 +111,7 @@ A shared pointer supports usual pointer dereferencing
 sp1-> M = 2; // same as above
 ```
 
-Shared pointer is in fact a class which has a raw pointer pointing to the managed object. This pointer is called **stored pointer**. We can access it
+The shared pointer is, in fact, a class which has a raw pointer pointing to the managed object. This pointer is called **stored pointer**. We can access it
 
 ```cpp
 auto p  = sp1.get();
@@ -122,10 +122,10 @@ cout<< p <<endl; // 0x2070ec0 : memory address of the managed object
 Use the stored pointer for accessing and working with the managed object not for modifying its ownership.
 
 
-A shared pointer, in addition to the stored pointer has a second pointer which points to a **control block**. 
+A shared pointer, in addition to the stored pointer, has a second pointer which points to a **control block**. 
 The control block has a reference counter that memorizes the number of shared pointers pointing to the same object.
 
-At any scope we can check how many shared pointers point to a managed object
+At any scope, we can check how many shared pointers point to a managed object
 
 ```cpp
 auto sp1 = make_shared<A>(5);
@@ -188,7 +188,7 @@ cout<< sp1.use_count()<<endl; // 1
 
 ## Pass to function
 
-If the function wants an ownership of a shared pointer, we can pass it by value as:
+If the function wants ownership of a shared pointer, we can pass it by value as:
 
 ```cpp
 void f(shared_ptr<int> sp){
@@ -266,40 +266,41 @@ int main(){
     
 }
 ```
-In the example above, `Jack` is shared among three pointers. Shared pointers takes the memory management out of the way of programmers.
-We don't need to think about deleting a pionter, we don't need to care which object dies first, or which object outlives others. 
+In the example above, `Jack` is shared among three pointers. Shared pointers take the memory management out of the way of programmers.
+We don't need to think about deleting a pointer, we don't need to care which object dies first, or which object outlives others. 
 
 
 
 ## Observer function/class
 
-If a function wants just to access the managed object and it doesn't not care about deleting or extending the lifetime of it,
-we can pass the shared pointer as a raw pointer. A class with similiar characterstics, can have a raw pointer member.
+If a function wants just to access the managed object and it doesn't care about deleting or extending the lifetime of it,
+we can pass the shared pointer as a raw pointer. A class with similar characteristics can have a raw pointer member.
 
 
 
 ## Performance
 
-Derefrencing a shared pointer have the same performance as a raw pointer (depending on the compiler). 
+Dereferencing a shared pointer has the same performance as a raw pointer (depending on the compiler). 
 
-A shared pionter needs two raw pointers. 
+A shared pointer needs two raw pointers. 
 A set of shared pointers which have the same managed
-object need a control unit. Therefore, the memory that a shared pointer takes is more than a raw pointer and a unique pointer. So, if a vector of million pointers should be created, probably unique pointers are better choice.
+object need a control unit. Therefore, the memory that a shared pointer takes is more than a raw pointer and a unique pointer. So, if a vector of a million pointers should be created, probably unique pointers are a better choice.
 
-Creating/deleting/resetting a shared pointer involves some logics: incrementing or decrementing the reference counter, check if it is the first/last pointer and so on. Therefore, we get better performance to avoid these actions within loops which iterate numerous times (like million times). 
+Creating/deleting/resetting a shared pointer involves some logics: updating the reference counter, checking if it is the first/last pointer and so on. Therefore, we get the better performance to avoid these actions within loops which iterate numerous times (like million times). 
 
 ## Shared pointer, unique pointer or raw pointer
 
 If the program is designed based on smart pointers, then raw pointers are used only to access the managed objects of smart pointers. We must not delete a raw pointer at all.
 
-If an object needs only one owner pointer through the program, and we can imagine the object and the pointer as one entity, then unique pointer is the way to go. For high performance section of the code, unique pointers are better than shared pointer (see previous section).
+If an object needs only one owner through the program, and we can imagine the object and the pointer as one entity, then the unique pointer is the way to go. For the high-performance section of the code, unique pointers are better than shared pointers (see the previous section).
 
 
-Shared pointers can help coding faster in sections of the code involving higher level programming where we don't need to think about performance, ownership and lifetime of objects.
+Shared pointers can help to code faster in sections of the code that involve high-level programming where we don't need to think about performance, ownership and lifetime of objects.
 
+## References
 
-
-
+[cppreference](https://en.cppreference.com/w/cpp/memory/shared_ptr)
+[isocpp](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#r-resource-management)
 
 
 

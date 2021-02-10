@@ -79,7 +79,10 @@ unique_ptr<int> p; // empty pointer, contains null pointer
 A unique pointer supports operations below
 
 ```cpp
-struct A{ int m;};
+struct A{ 
+       int M;
+       A(int m):M(m){}
+};
 
 auto p = make_unique<A>(8); // create unique pointer
 auto B = *p; // dereference pointer
@@ -311,3 +314,4 @@ int main(){
 
 [unique pointer from cppreference](https://en.cppreference.com/w/cpp/memory/unique_ptr)
 
+[isocpp](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#r-resource-management)
