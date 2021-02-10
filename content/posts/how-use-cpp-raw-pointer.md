@@ -1,5 +1,5 @@
 ---
-title: 'How to use C/C++ raw pointers properly?'
+title: 'How to use C++ raw pointers properly?'
 date: 2020-02-22T20:05:39Z
 draft: false
 image: /images/pointer.jpg
@@ -12,7 +12,7 @@ summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory 
 ## Introduction
 
 
-*C/C++* is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. In this post, I  mention the most useful characteristics of raw pointers with examples.  
+*C++* is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. In this post, I  mention the most useful characteristics of raw pointers with examples.  
 
 Here I focus only on raw pointers and assume the code we are working with doesn't allow smart pointers ([unique](https://iamsorush.com/posts/unique-pointers-cpp/), [shared](https://iamsorush.com/posts/shared-pointer-cpp/) and weak pointers). 
 
