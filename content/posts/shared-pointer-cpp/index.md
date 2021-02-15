@@ -4,7 +4,7 @@ date: 2021-02-07T18:19:00+01:00
 image: /images/pizza.jpg
 imageQuality: "q65"
 imageAnchor: "center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
-tags: ["Back-End Web", "C Sharp",".Net Core"]
+tags: ["Pointers","C++"]
 categories: "C++" 
 summary: "Shared pointers are smart pointers which ameliorate memory management. Here, I explain them with examples and discuss their usage and performance."
 ---
@@ -14,7 +14,7 @@ summary: "Shared pointers are smart pointers which ameliorate memory management.
 Shared pointers are smart pointers which ameliorate working with dynamically allocated objects. They are invented to avoid memory leaks that raw pointers may bring (see [here](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak)).
 
 
-## Prerequisite
+## Prerequisites
 
 This post assumes you are familiar with [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/), [unique pointers](https://iamsorush.com/posts/unique-pointers-cpp/) and [auto keyword](https://iamsorush.com/posts/auto-cpp/). 
 
@@ -64,20 +64,28 @@ auto sp1 = make_shared<A>(5);
 where the new object, `new A{}`, is created on the heap and `sp1` points to it. The object is called the **managed object**.
 `sp1` owns the object.
 
+{{< img "*definition*" "pointer definition" >}}
+
+
 
 `sp1` can share its object with another one
 
 ```cpp
 shared_ptr<A> sp2 = sp1; 
 ```
-So the managed object is not re-created or copied, it is pointed by another pointer
+
+{{< img "*shared2*" "pointer assignment" >}}
 
 
-Actually, we can share the object with as many shared pointers as we like
+So the managed object is not re-created or copied, it is pointed by another pointer.
+
+
+We can share the object with as many shared pointers as we like
 
 ```cpp
 auto sp3 = sp1;
 ```
+{{< img "*shared3*" "more pointer assignment" >}}
 
 
 A shared pointer can be empty
@@ -125,6 +133,9 @@ Use the stored pointer for accessing and working with the managed object not for
 A shared pointer, in addition to the stored pointer, has a second pointer which points to a **control block**. 
 The control block has a reference counter that memorizes the number of shared pointers pointing to the same object.
 
+{{< img "*structure*" "shared pointer structure" >}}
+
+
 At any scope, we can check how many shared pointers point to a managed object
 
 ```cpp
@@ -168,6 +179,9 @@ The managed object will be deleted when the last shared pointer is deleted:
 }
 // sp1 is destructed so is the managed object.
 ```
+
+{{< img "*destruction*" "shared pointer destruction" >}}
+
 
 The counter is decremented also if a pointer is detached
 

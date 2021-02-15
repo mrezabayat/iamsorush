@@ -4,7 +4,7 @@ date: 2021-01-24T18:10:20+01:00
 image: /images/fence.jpg
 imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
-tags: ["Back-End Web", "C Sharp",".Net Core"]
+tags: ["C++"]
 categories: "C++" 
 summary: "With examples, C++ concepts are used to constrain template classes and functions. It is shown that concepts improve the readability of code and facilitate finding bugs."
 ---

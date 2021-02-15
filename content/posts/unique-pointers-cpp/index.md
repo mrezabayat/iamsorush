@@ -12,7 +12,7 @@ are defined and their usage is shown with examples."
 
 ## Introduction
 
-Unique pointers are smart pointers which are created to avoid memory leak that [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak) bring. They follow "Resource Acquisition Is Initialization" (RAII) rule. Smart pointers are in header `<memory>`.
+Unique pointers are smart pointers which are created to avoid memory leak that [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak) bring. They follow "Resource Acquisition Is Initialization" (RAII) rule. 
 
 
 ## Prerequisite
@@ -21,6 +21,24 @@ This post assumes you are familiar with [raw pointers](https://iamsorush.com/pos
 
 All the examples are compiled with GCC 10.2 with flag `-std=c++20`.
 
+For brevity, some examples miss the headers and main function:
+
+```cpp
+#include <iostream> // For std::cout
+#include <memory> // For std::unique_ptr, std::make_unique
+
+using namespace std; // dropping std::
+
+// class definitions
+
+int main(){
+
+    // implementations
+
+    return 0;
+}
+```
+
 ## Unique pointer
 
 A unique pointer is defined as
@@ -28,6 +46,9 @@ A unique pointer is defined as
 ```cpp
 std::unique_ptr<int> p(new int); // p is allocated a new int on the heap
 ```
+
+{{< img "*definition*" "pointer allocation" >}}
+
 If the unique pointer is destructed, the allocated object on the heap  is destructed too
 
 ```cpp
@@ -37,6 +58,9 @@ If the unique pointer is destructed, the allocated object on the heap  is destru
 
 } // p is destructed, so the int object is destructed.
 ```
+{{< img "*delete*" "pointer allocation" >}}
+
+
 Compare the above code with [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak) which are deleted explicitly by programmers.
 
 A unique pointer can also be created with `std::make_unique`
@@ -65,7 +89,16 @@ unique_ptr<int> p(new int);
 // p <-------->  object
 ```
 
-`p` owns the object and the object has only one owner, `p`. So when programming, we can think of them as one entity. Consequently, a unique pointer cannot be copied or passed by value. However, the ownership of its object can be transferred.  
+`p` owns the object and the object has only one owner, `p`. So when programming, we can think of them as one entity. 
+
+
+{{< img "*entity*" "pointer allocation" >}}
+
+
+
+A unique pointer cannot be copied or passed by value. However, the ownership of its object can be transferred.  
+
+
 
 A unique pointer can be empty too
 
@@ -137,6 +170,9 @@ However, the ownership of the object can be transfered via `std::move()`:
 auto q = make_unique<int>(); // q created with an int object on the heap
 auto p = move(q); // p owns the q's object, q lost it (null pointer).
 ```
+
+{{< img "*move*" "pointer allocation" >}}
+
 
 `std::swap` works with unique pointers
 
