@@ -115,7 +115,7 @@ int main(){
 }
 ```
 
-an object of shared pointers has a **control block**, which counts the number of weak and shared pointers. When the shared counter 
+An object of shared pointers has a **control block**, which counts the number of weak and shared pointers. When the shared counter 
 reaches zero
 the object is deleted, but the control block is alive until the weak counter reaches zero as well.
 The code can be sketched as the image below
