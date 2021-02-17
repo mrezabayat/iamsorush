@@ -105,6 +105,43 @@ P + V^2 = c_2
 So we code the equation with \(P\) and \(V\) which are close to \(1\) rather than absolute pressure and velocity which can be of different orders, for example, \(5 \times 10^5\) pa and \(5\) m/s respectively. Note that by normalization, we do not increase the accuracy but facilitate analyzing accuracy. 
 {{< /rawhtml >}}
 
+## A trick to improve the precision
+
+{{< rawhtml >}}
+There are situations that during the simulation runtime the correction to a property is much smaller than its initial value. For example, see the equation below
+
+
+\[
+p_{new} = p_{old} + \Delta p
+\]
+
+\(p\) is the pressure of a system, and \(\Delta p\) is the correction to pressure. This line might happen \(1000\) times in a simulation. If the pressure is \(1000,000\) pa but the corrections are in the order of \(1\) pa, the numbers which are stored in a single-precision variable look like below
+
+\[
+1000,001.2 \\
+1000,123.4 \\
+\]
+
+and we cannot store
+\[
+1000,123.456
+\]
+
+We are losing ~ 4 digits precision. Because during the \(1000\) steps of the simulation the first 4 digits are never changed. In this case, we can work with an alternative variable in the code
+
+\[
+\bar{p} = p - 1000,000
+\]
+
+So we code the program based on \(\bar{p}\) which stores below numbers
+\[
+1.2345678 \\
+123.45678
+\]
+And when presenting the results, we convert them back to \(p\).
+
+{{< /rawhtml >}}
+
 
 ## Round-off error accumulation
 

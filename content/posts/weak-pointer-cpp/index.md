@@ -24,7 +24,7 @@ For brevity, some examples miss the headers and main function:
 
 ```cpp
 #include <iostream> // For std::cout
-#include <memory> // For std::weak_ptr
+#include <memory> // For std::weak_ptr, std::shared_ptr, std::make_shared
 
 using namespace std; // dropping std::
 
@@ -64,6 +64,9 @@ auto teacher = make_shared<Person>("Jack");
 wp = teacher; // wp watches the managed object of teacher
 ```
 
+{{< img "*weak1*" "pointer allocation" >}}
+
+
 Somewhere else that we are not sure if the object is still there or not:
 
 ``` cpp
@@ -78,36 +81,47 @@ if (auto tempSharedPointer = wp.lock()){ // if sp empty
 In the above example `lock()` returns a temporary shared pointer pointing to the managed object.
 
 
-## Change of object
+## Under the hood
 
-Note that a weak pointer watches the managed object not shared pointers. Let's assume a weak pointer starts observing the object of a shared pointer. Sometime later, the shared pointer changes its object to a new one. The weak pointer is still observing the old object.
+Let's work out weak pointers with an example. Let's see the code
+
+
+See the code:
 
 ```cpp
-
 struct Person{
     string Name;
     Person(string n):Name(n){}
 };
 
-
 int main(){
 
-std::weak_ptr<Person> wp;
-
-  
+    // initial state
     auto teacher = make_shared<Person>("Jack");
-    wp = teacher;
+    auto coach = teacher;
+    weak_ptr<Person> wp = teacher;
 
     if (auto temp = wp.lock())
         cout<< temp-> Name; //  Jack
+    
+    // coach is reset
+    coach.reset();
 
+    // teacher is reset to Rose
     teacher.reset(new Person("Rose"));
 
     if (wp.expired()) // true
         cout<< "The old teacher is not there."; 
-
 }
 ```
+
+an object of shared pointers has a **control block**, which counts the number of weak and shared pointers. When the shared counter 
+reaches zero
+the object is deleted, but the control block is alive until the weak counter reaches zero as well.
+The code can be sketched as the image below
+
+{{< img "*weak2*" "pointer allocation" >}}
+
 
 ## Why we need shared pointers?
 

@@ -14,7 +14,7 @@ summary: "A pointer is an 8-byte type on a 64-bit machine that holds the memory 
 
 *C++* is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. In this post, I  mention the most useful characteristics of raw pointers with examples.  
 
-Here I focus only on raw pointers and assume the code we are working with doesn't allow smart pointers ([unique](https://iamsorush.com/posts/unique-pointers-cpp/), [shared](https://iamsorush.com/posts/shared-pointer-cpp/) and weak pointers). 
+Here I focus only on raw pointers and assume the code we are working with doesn't allow smart pointers ([unique](https://iamsorush.com/posts/unique-pointers-cpp/), [shared](https://iamsorush.com/posts/shared-pointer-cpp/) and [weak pointers](https://iamsorush.com/posts/weak-pointer-cpp/)). 
 
 
 
@@ -245,8 +245,10 @@ There is another situation that memory leaks:
 
 ```cpp
 int* p = new int;
-//... an exception is thrown here..
-delete p; // this is not reached.
+
+// An exception is thrown by some code here!
+
+delete p; // this line is not reached.
 ```
 
 

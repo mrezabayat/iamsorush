@@ -212,7 +212,7 @@ decltype(auto) FindTaxReturn(double& data){
 
 ## auto vs decltype
 
-`auto` deduce the type of a variable when declared with the help of  its initializer
+`auto` deduces the type of a variable when declared with the help of  its initializer
 
 ```cpp
 auto i = 1; // int
@@ -231,7 +231,7 @@ Note that `f()` within `decltype(f())` is not called. In fact during compilation
 
 ## Test 
 
-A good IDE like VS Code is your best friend to assess the outcome of `auto`. However, you can check the types using functions in `<type_traits>` header:
+A good IDE like VS Code is your best friend to assess the outcome of `auto`. However, you can check the types using metafunctions in `<type_traits>` header:
 
 ```cpp
 #include <type_traits>
