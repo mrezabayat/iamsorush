@@ -1,15 +1,12 @@
 
-Which integer to choose for C++: int, int_fast, int_least
-
+int, int_fast, int_least
 int vs int_fast64_t vs
-
-shared weak pointer
 list_initializer
-optional: 
+optional, any
 https://www.boost.org/doc/libs/1_72_0/libs/optional/doc/html/boost_optional/tutorial/performance_considerations.html
 tuple, reverse range loop
 static polymorphism, expression template
-
+test units
 
 =========
 

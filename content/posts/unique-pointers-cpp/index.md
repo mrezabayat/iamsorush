@@ -6,22 +6,22 @@ imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["C++", "Pointers"]
 categories: "C++" 
-summary: "Unique pointers are smart pointers which manage a pointer's allocated memory and avoid memory leak. Here, they
-are defined and their usage is shown with examples."
+summary: "Unique pointers (unique_ptr) manage a pointer's allocated memory. Here, I
+define them and explain the operations, passing to / returning from a function, and performance. A factory example is also demonstrated."
 ---
 
 ## Introduction
 
-Unique pointers are smart pointers which are created to avoid memory leak that [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak) bring. They follow "Resource Acquisition Is Initialization" (RAII) rule. 
+Unique pointers are smart pointers that help us in memory management. Unique pointers guarantee they delete their object if they are destructed, therefore, one less hassle for programmers. They follow "Resource Acquisition Is Initialization" (RAII) rule.
 
 
-## Prerequisite
+## Prerequisites
 
-This post assumes you are familiar with [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/) and [auto keyword](https://iamsorush.com/posts/auto-cpp/). 
+Here, I assume you are aware of [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/) and [auto keyword](https://iamsorush.com/posts/auto-cpp/). 
 
-All the examples are compiled with GCC 10.2 with flag `-std=c++20`.
+I compiled the examples using GCC 10.2 with flag `-std=c++20`.
 
-For brevity, some examples miss the headers and main function:
+To be focused, the headers and `main()` are omitted in some examples:
 
 ```cpp
 #include <iostream> // For std::cout

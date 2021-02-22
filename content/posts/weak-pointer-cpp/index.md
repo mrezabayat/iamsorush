@@ -3,24 +3,24 @@ title: "What is a C++ weak pointer and where is it used? smart pointers part III
 date: 2021-02-14T22:10:20+01:00
 image: /images/binocular.jpg
 imageQuality: "q65"
-imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+imageAnchor: "Center" 
 tags: ["C++", "Pointers"]
 categories: "C++" 
-summary: "Weak pointers are smart pointers that break the circular dependency of shared pointers. Here, I explain them with examples."
+summary: "Weak pointers (weak_ptr) are smart pointers that observe other objects but don't take ownership of them. Here, I explain how they are implemented and why we need them with examples."
 ---
 
 ## Introduction
 
-Weak pointers are smart pointers that, in contrast to unique and shared pointers, do not take ownership of an object but act as an observer. 
+A weak pointer is a smart pointer that does not take ownership of an object but act as an observer. In other words, it does not participate in reference counting to delete an object or extend its lifetime. Weak pointers are mainly used to break the circular dependency that shared pointers create.
 
 
 ## Prerequisites
 
-This post assumes you are familiar with [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/), [unique pointers](https://iamsorush.com/posts/unique-pointers-cpp/), [shared pointers](https://iamsorush.com/posts/shared-pointer-cpp/), and [auto keyword](https://iamsorush.com/posts/auto-cpp/). 
+Here, I imagine you have some knowledge of [raw pointers](https://iamsorush.com/posts/how-use-cpp-raw-pointer/), [unique pointers](https://iamsorush.com/posts/unique-pointers-cpp/), [shared pointers](https://iamsorush.com/posts/shared-pointer-cpp/), and [auto keyword](https://iamsorush.com/posts/auto-cpp/). 
 
-All the examples are compiled with GCC 10.2 with the flag `-std=c++20`.
+My compiler is GCC 10.2 with the flag `-std=c++20`.
 
-For brevity, some examples miss the headers and main function:
+To enhance readability, in some examples headers and the main function are dropped:
 
 ```cpp
 #include <iostream> // For std::cout

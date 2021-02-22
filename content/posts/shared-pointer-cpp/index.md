@@ -6,12 +6,12 @@ imageQuality: "q65"
 imageAnchor: "center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["Pointers","C++"]
 categories: "C++" 
-summary: "Shared pointers are smart pointers which ameliorate memory management. Here, I explain them with examples and discuss their usage and performance."
+summary: "Shared pointers (shared_ptr) are smart pointers which ameliorate memory management. Here, I explain them with examples and discuss their usage and performance."
 ---
 
 ## Introduction
 
-Shared pointers are smart pointers which ameliorate working with dynamically allocated objects. They are invented to avoid memory leaks that raw pointers may bring (see [here](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak)).
+Shared pointers are smart pointers that ameliorate working with dynamically allocated objects. They are invented to avoid memory leaks that raw pointers may bring (see [here](https://iamsorush.com/posts/how-use-cpp-raw-pointer/#memory-leak)).
 
 
 ## Prerequisites

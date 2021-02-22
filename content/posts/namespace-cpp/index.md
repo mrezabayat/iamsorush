@@ -11,7 +11,7 @@ summary: "I exaplain how namespaces can organize a large project and prevent nam
 
 ## Introduction
 
-With `namespace`, blocks of codes can be isolated in big projects, therefore name conflicts can be avoided.
+When reading C++ tutorials and training examples, one important feature is mostly overlooked: namespaces. This is because namespaces are used in real life libraries and applications With `namespace`, blocks of codes can be isolated in big projects, therefore name conflicts can be avoided.
 
 ## Basics
 
@@ -102,7 +102,7 @@ int main(){
 ```
 ## The global namespace
 
-Any declaration outside of explicitly defined namespaces belong to the global namespace. To specifically access global namespace use `::SomeClass`. 
+Any declaration outside of explicitly defined namespaces belongs to the global namespace. To specifically access the global namespace use `::SomeClass`. 
 
 ```cpp
 namespace MyProject {
@@ -217,9 +217,9 @@ namespace MyProject{
 ```
 * Do not use `using` statement in headers, *.h* files. As they are added to different files, they inject their names which defeats the namespace purpose. But feel free to use them in *.cpp* files.
 
-* If there are a few classes in a namespace, probably they don't need to be divided in new namespaces.
+* If there are a few classes in a namespace, probably they don't need to be divided into new namespaces.
 
-* However, sometimes, the name of classes make us to separate their namespace from start.
+* However, sometimes, the name of classes make us separate their namespace from start.
 
 ```cpp
 namespace MyProject::Particle{
@@ -234,7 +234,7 @@ namespace MyProject::Box{
 }
 ```
 
-* The  namespaces hierarchy is the same as project directories. So the directories of previous examples are:
+* The namespaces hierarchy is the same as project directories. So the directories of previous examples are:
 
 ```
 MyProject
