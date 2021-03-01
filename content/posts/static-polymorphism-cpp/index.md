@@ -23,7 +23,7 @@ In OOP, dynamic polymorphism or polymorphism is to seclude a behaviour in a syst
 
 ```cpp
 struct Shape{
-    virtual double CalculateArea()=0
+    virtual double CalculateArea()=0;
 };
 ```
 
@@ -31,19 +31,20 @@ Then we can branch the behaviour
 
 ```cpp
 struct Circle: Shape{
-    private: double radius;
+    double radius;
     Circle(double r):radius(r){}
     double CalculateArea() override {
-        return 3.14*radius*radius
+        return 3.14*radius*radius;
     }
 };
 
 struct Square: Shape{
-    private: double side;
+    double side;
     Square(double s):side(s){}
     double CalculateArea() override {
-        return sdie*side
+        return side*side;
     }
+    
 };
 ```
 
@@ -77,8 +78,8 @@ while(true){
     
     // Change shape
     int option = 0 ;
-    cout << "Choose Part: (1) cylinder (2) Box"<<endl;
-    cout << "(0) Exit program." 
+    cout << "Choose Part: (1) cylinder (2) Box (0) Exit program"<<endl;
+
     cin >> option;
 
     if (option==1)
@@ -144,18 +145,18 @@ struct Shape{
 };
 
 struct Circle: Shape<Circle>{
-    private: double radius;
+    double radius;
     Circle(double r):radius(r){}
     double CalculateArea() {
-        return 3.14*radius*radius
+        return 3.14*radius*radius;
     }
 };
 
 struct Square: Shape<Square>{
-    private: double side;
+    double side;
     Square(double s):side(s){}
     double CalculateArea() {
-        return sdie*side
+        return side*side;
     }
 };
 
@@ -188,8 +189,9 @@ Part<Square> partS{10.0};
 partS.shape = &square;
 
 while(true){
-    cout << "Choose Part: (1) cylinder (2) Box"<<endl;
-    cout << "(0) Exit program." 
+
+    uint option=0;
+    cout << "Choose Part: (1) cylinder (2) Box (0) Exit program"<<endl;
     cin >> option;
 
     if (option==0)
@@ -201,9 +203,9 @@ while(true){
     cout<< "Part Volume is:";
 
     if (option==1)
-            partC.CalculateVolume()<<endl;
+            cout<<partC.CalculateVolume()<<endl;
     else if (option==2)
-            partS.CalculateVolume()<<endl; 
+            cout<<partS.CalculateVolume()<<endl; 
     
 }
 return 0;
@@ -227,11 +229,11 @@ int main(){
 // initialization
 Square square{1.0};
 Part<Square> partS{10.0};
+partS.shape = &square;
     
 // Actions on part
-cout<< "Part Volume is:";
-
-partS.CalculateVolume()<<endl; 
+cout<< "Part Volume is:"
+    << partS.CalculateVolume() <<endl; 
     
 return 0;
 }
@@ -247,14 +249,6 @@ So if the static polymorphism is limiting like that why do we bother using it wh
 
 To use static polymorphism, it should be somehow proven to developers that the above points are the bottleneck of speed for a high-performance program.
 Even then, we have to ask ourselves is worth it dumping sweet flexibility and easy maintenance of a dynamic polymorphism code.
-
-
-
-
-
-
-
-
 
 
 

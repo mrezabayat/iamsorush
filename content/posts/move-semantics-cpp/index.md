@@ -181,7 +181,7 @@ struct Team{
 };
 ```
 
-The first constructor is the default one. The second one constructs the object with an lvalue reference which reads the argument, `t`. But third one steals the 
+The first constructor is the default one. The second one constructs the object with an lvalue reference which reads the argument, `t`. But the third one steals the 
 `goalKeeper` object of `t`.  We are allowed to do that because the object is an rvalue, when the constructor finishes its job, `t` will be destructed. The third constructor is called **move constructor**. Similar behaviour can be defined for the assignment which is called move assignment.
 
 
@@ -302,13 +302,13 @@ int j = A{}.i; // A{}.i is xvalue
 
 ## Where to use move semantics?
 
-The best place to take advantage of move semantics is to move constructors and assignments for classes
+The best place to take advantage of move semantics is move constructors and assignments for classes
 that have movable data. In this way, we avoid the deep copy of rvalues.
 
 However, I wouldn't employ them in every class because the speed gain would be in assignment and constructor calls. The improvement in those actions is hardly visible if we are not moving massive objects many times. On my laptop,
 the deep-copy of a vector of 1 million doubles takes only 1 millisecond. Moreover, adding move constructors/assignments and `std::move`, `st::forward` and related commands makes the code harder to read and maintain. Furthermore, there are cases that a compiler itself reduces the number of objects created ([Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision)).  So, if the performance gain is negligible move semantics are better to be avoided.
 
-There are, of course, other scenarios. For example, if we write a generic library that is supposed to be used in other projects. It will be more likable to others if the API of library supports the move semantics.
+There are, of course, other scenarios. For example, if we write a generic library that is supposed to be used in other projects. It will be more likeable to others if the API of the library supports the move semantics.
 
 
 
