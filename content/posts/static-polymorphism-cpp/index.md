@@ -188,7 +188,6 @@ Part<Square> partS{10.0};
 partS.shape = &square;
 
 while(true){
-    confines
     cout << "Choose Part: (1) cylinder (2) Box"<<endl;
     cout << "(0) Exit program." 
     cin >> option;
