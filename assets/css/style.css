@@ -365,6 +365,31 @@ time {
     color: purple;
 }
 
+.btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .btn_white {
+    background-color: white;
+    color: purple;
+    border: 2px solid #555555;
+  }
+  
+  .btn_white:hover {
+    background-color: #555555;
+    color: white;
+  }
+  
 .shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

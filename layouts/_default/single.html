@@ -36,6 +36,11 @@
 			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
 			border-radius: 5px;">
 			{{ partial "sidebar.html" . }}
+			<h2 id="Comments">Comments</h2>
+			<div id="disqus_thread"></div>
+  				<button
+				   class="btn btn_white" id="disqus_trigger" onclick="load_disqus('iamsorush-com')">Show Comment ⌄</button>
+			</div>
 		</article>
 		<nav class="hide-on-mobile section-nav">
 			<h3 class="ml-1">Table of contents</h3>
@@ -43,6 +48,27 @@
 		</nav>		
 	</div>
 </main>
+
+<script>
+	function load_disqus( disqus_shortname ) {
+	  // Prepare the trigger and target
+	  var disqus_trigger = document.getElementById('disqus_trigger'),
+		  disqus_target = document.getElementById('disqus_thread'),
+		  disqus_embed  = document.createElement('script'),
+		  disqus_hook   = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+		  
+	  // Load script asynchronously only when the trigger and target exist
+	  if( disqus_target && disqus_trigger ) {
+		console.log('iam in');
+		disqus_embed.type = 'text/javascript';
+		disqus_embed.async = true;
+		disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		disqus_hook.appendChild(disqus_embed);
+		disqus_trigger.remove();
+		console.log('Disqus loaded.');
+	  }
+	}
+	</script>
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {

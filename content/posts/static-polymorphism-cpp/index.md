@@ -78,7 +78,8 @@ while(true){
     
     // Change shape
     int option = 0 ;
-    cout << "Choose Part: (1) cylinder (2) Box (0) Exit program"<<endl;
+    cout << "Choose Part: (1) cylinder (2) Box 
+             (0) Exit program"<<endl;
 
     cin >> option;
 
@@ -182,7 +183,6 @@ int main(){
 Square square{1.0};
 Circle circle{1.0};
 
-// We have to inject Circle
 Part<Circle> partC{10.0};
 partC.shape = &circle;
 Part<Square> partS{10.0};
@@ -191,7 +191,8 @@ partS.shape = &square;
 while(true){
 
     uint option=0;
-    cout << "Choose Part: (1) cylinder (2) Box (0) Exit program"<<endl;
+    cout << "Choose Part: (1) cylinder (2) Box 
+             (0) Exit program"<<endl;
     cin >> option;
 
     if (option==0)
