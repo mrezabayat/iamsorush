@@ -28,7 +28,7 @@ In modern C++, things got a bit more complex, nowadays we have lvalue, **prvalue
 
 ## lvalue
 
-Generally, a value that programmers have access to its memory address is lvalue. So we can have it on the LHS of an assignment:
+Generally, a named variable that we can have it on the LHS of an assignment:
 
 ```cpp
 int y = 10;  // y is lvalue
@@ -79,7 +79,7 @@ In the above example, `x+y`, `-x`, `x+1`, and `(double)c` are calculated first w
 The objects are then passed to the copy assignments. **The rvalue objects are destructed after assignment** i.e. 
 when we reach `;` the rvalues are destructed.
 
-A function returning by value is prvalue:
+The result of a function returning by value is prvalue:
 
 ```cpp
 int f(int i){ return i;}
@@ -128,7 +128,7 @@ cout<< is_same<int&&, decltype(y)>::value; // true
 In the previous section, I mentioned rvalues are destructed when we hit `;`, but we have an exception here.
 The lifetime of rvalue `5` is extended to the lifetime of `y` due to the binding.
 
-Note that we wrote `y=7`, interestingly, **an rvalue reference is lvalue**.
+Note that we wrote `y=7`, therefore, **a named rvalue reference is lvalue**.
 
 We can overload a function based on the value type: lvalue reference or rvalue reference:
 
@@ -266,10 +266,9 @@ In the above example, `temp` is going out of the scope to be destructed. Before 
 ## xvalue
 
 Graduating `std::move`, now we can define xvalue. An expiring value or xvalue is a value that is about to die so we can steal its resources.
-The result of `std::move()` is an xvalue
+The result of a function like `std::move()` which returns an unnamed rvalue reference, `T&&`, is an xvalue:
 
 ```cpp
-
 void f(int& i){
     cout<< "lvalue reference called";
 }
@@ -300,6 +299,21 @@ struct A{ int i=5;};
 int j = A{}.i; // A{}.i is xvalue
 
 ```
+
+## Where to use move semantics?
+
+The best place to take advantage of move semantics is to move constructors and assignments for classes
+that have movable data. In this way, we avoid the deep copy of rvalues.
+
+However, I wouldn't employ them in every class because the speed gain would be in assignment and constructor calls. The improvement in those actions is hardly visible if we are not moving massive objects many times. On my laptop,
+the deep-copy of a vector of 1 million doubles takes only 1 millisecond. Moreover, adding move constructors/assignments and `std::move`, `st::forward` and related commands makes the code harder to read and maintain. Furthermore, there are cases that a compiler itself reduces the number of objects created ([Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision)).  So, if the performance gain is negligible move semantics are better to be avoided.
+
+There are, of course, other scenarios. For example, if we write a generic library that is supposed to be used in other projects. It will be more likable to others if the API of library supports the move semantics.
+
+
+
+
+
 
 
 
