@@ -14,11 +14,6 @@
 	<div class="article-nav" id="article-nav-id">
 		<article class="overlay-top">
 			{{ .Content }}
-			{{ with .Site.DisqusShortname }}
-			<div>
-				{{ template "_internal/disqus.html" . }}
-			</div>
-			{{ end }}
 			<script>
 				window.onscroll = function () {
 					myFunction();
@@ -37,7 +32,7 @@
 			border-radius: 5px;">
 			{{ partial "sidebar.html" . }}
 			<h2 id="Comments">Comments</h2>
-			<div id="disqus_thread"></div>
+			<div id="disqus_thread">
   				<button
 				   class="btn btn_white" id="disqus_trigger" onclick="load_disqus('iamsorush-com')">Show Comment ⌄</button>
 			</div>
