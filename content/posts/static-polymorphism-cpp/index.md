@@ -218,9 +218,9 @@ As you see, we can write `Part` with different behaviours` Part<Circle>`, `Part<
 Now we have to have two `Part` objects everywhere, or we have to destruct one and create another at the user's request. Moreover, the if-conditions are penetrated
 into actions of `part`. 
 
-## Proper Usage
+## Proper usage
 
-The static polymorphism should be used where there is no change of behaviour after compile-time. So, if a code an app that is compiled once and given to end-users to just run it then it is quite challenging to find a good place for static polymorphism. But if the app complies with every run, there are more possibilities for applying the idea.
+The static polymorphism should be used where there is no change of behaviour after compile-time. Therefore, if the code is an app that is compiled once and given to end-users to just run it, then, it is quite challenging to find a good place for static polymorphism. But if the app complies with every run, there are more possibilities for applying the idea.
 
 So in the shape example, if the end-user at the beginning knows they need `Part<Square>` for the whole calculations, they compile the simple code below and run it once:
 
@@ -248,7 +248,7 @@ So if the static polymorphism is limiting like that why do we bother using it wh
 
 * The details of polymorphic functions are hidden from the compiler, so it cannot optimise the caller context with regard to the function.
 
-To use static polymorphism, it should be somehow proven to developers that the above points are the bottleneck of speed for a high-performance program.
+To use static polymorphism, it should be somehow proven to developers that the above points are the bottleneck for a high-performance program.
 Even then, we have to ask ourselves is worth it dumping sweet flexibility and easy maintenance of a dynamic polymorphism code.
 
 
