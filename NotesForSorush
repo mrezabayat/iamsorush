@@ -21,35 +21,7 @@ Keep the re-declaration with the same signature
 
 perfect forwarding  Function
 
-#include <iostream>
 
-using namespace std;
-
-
-
-void Display(int& i){
-    cout<< i<<" int&"<<endl;
-}
-
-void Display(int&& i){
-    cout<< i<<" int&& called"<<endl;
-}
-
-template<class T>
-void DisplayWrapper(T&& t){
-    Display(forward<T>(t));
-
-}
-
-int main(){
-
-    int x=5;
-    
-    DisplayWrapper(5);
-
-
-    return 0;
-}
 =================
 
 

@@ -130,7 +130,7 @@ The lifetime of rvalue `5` is extended to the lifetime of `y` due to the binding
 
 Note that we wrote `y=7`, therefore, **a named rvalue reference is lvalue**.
 
-We can overload a function based on the value type: lvalue reference or rvalue reference:
+We can overload a function based on a parameter being lvalue or rvalue:
 
 ```cpp
 void f(int& i){
@@ -142,12 +142,15 @@ void f(int&& i){
 }
 
 int x = 10;
+int&& y =7;
 
-f(x);//lvalue reference called.
+f(x); //lvalue reference called.
 f(5); //rvalue reference called.
+f(y); // lvalue reference called
 ```
 
-The second function is called when we pass an rvalue.
+So `x` and `y` are lvalues, the first function is called, `5` is an rvalue so the second function is called.
+
 
 
 ## move constructor: steal rvalue resource
