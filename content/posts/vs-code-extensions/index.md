@@ -20,7 +20,7 @@ This is a beautiful ligature font that can turn multiple characters into one sym
 
 {{< img "*fira*" "pointer allocation" >}}
 
-The instraction for adding Fira Code can be found [here](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions). At some point in the instruction, you have to change a line in `settings.json` of VS Code from
+The instruction for adding Fira Code can be found [here](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions). At some point in the instruction, you have to change a line in `settings.json` of VS Code from
 
 ```json    
 "editor.fontLigatures": null,
