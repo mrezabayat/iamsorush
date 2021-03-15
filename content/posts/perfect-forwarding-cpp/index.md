@@ -6,12 +6,12 @@ imageQuality: "q65"
 imageAnchor: "Center" 
 tags: ["C++"]
 categories: "C++" 
-summary: "With a simple example, it is demonstrated that how perfect forwarding can keep rvalueness of a function's parameters. The universal reference is also discussed."
+summary: "With a simple example, it is demonstrated that how perfect forwarding can keep rvalueness of function's parameters. The universal reference is also discussed."
 ---
 
 ## Intro
 
-Perfect forwarding is when a wrapper function passes lvalueness/ravlueness of its arguments to a wrapped function. To do so `std::forward` is used:
+Perfect forwarding is when a wrapper function template passes lvalueness/ravlueness of its arguments to a wrapped function. To do so `std::forward` is used:
 
 ```cpp
 #include <iostream>
