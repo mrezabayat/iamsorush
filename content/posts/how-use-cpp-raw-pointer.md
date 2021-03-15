@@ -1,7 +1,7 @@
 ---
 title: 'How to use C++ raw pointers properly?'
 date: 2020-02-22T20:05:39Z
-draft: false
+lastmod: 2021-03-15T14:10:21+01:00
 image: /images/pointer.jpg
 tags: ['C++', "Pointers"]
 categories: "C++"
@@ -451,6 +451,7 @@ Pointers can be used to define arrays on the heap
 
 ```cpp
 int* p = new int[5]; // dynamically allocated array
+int* m = new int[3]{3,1,5}; // C++11: initialize in place 
 cout<< p[2]; // prints 3rd element
 
 int* q[5]; // array of 5 integer pointers  

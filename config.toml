@@ -17,3 +17,9 @@ pygmentsstyle = "monokai"
     tag = "tags"
 [markup.goldmark.renderer]
   unsafe= true
+
+[frontmatter]
+date = ["date", "publishDate", "lastmod"]
+lastmod = [":git", "lastmod", "date", "publishDate"]
+publishDate = ["publishDate", "date"]
+expiryDate = ["expiryDate"]
