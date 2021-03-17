@@ -353,6 +353,7 @@ article {
 
 .card-title {
     color: black;
+    text-shadow:  1px 1px 10px darkgray;
     text-decoration: none;
     border-bottom: none;
 }
@@ -729,6 +730,7 @@ nav>li {
   .cat-card-title{
     color: black;
     text-decoration: none;
+    text-shadow:  1px 1px 10px darkgray;
     border-bottom: none;
     margin:0;
     margin-bottom: 1rem;
