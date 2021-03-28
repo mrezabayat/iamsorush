@@ -5,7 +5,6 @@ list_initializer
 optional, any
 https://www.boost.org/doc/libs/1_72_0/libs/optional/doc/html/boost_optional/tutorial/performance_considerations.html
 tuple, reverse range loop
-static polymorphism, expression template
 test units
 std::span
 =========
@@ -17,9 +16,6 @@ concepts cannot be constrained
 
 Keep the re-declaration with the same signature
 
-=================
-
-perfect forwarding  Function
 
 
 =================
