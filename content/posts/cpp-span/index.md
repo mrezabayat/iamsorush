@@ -19,7 +19,7 @@ struct span<T>{
     size_t size; // size of sequence
 }
 ```
-with many useful functions to access and modify data
+with many useful functions to access and modify data.
 
 ## Compiler
 To compile examples here, I use *GCC 10.2* with flag `-std=c++20`.
@@ -75,37 +75,7 @@ std::vector<int> a = {1,1};
 std::span s = a; // span<int>
 ```
 
-## Parameter
 
-It's very common to pass a vector or array to a function, and the function only wants to read/write elements but doesn't add/delete elements or deallocate the memory; that's when span comes in handy.
-
-See this example:
-```cpp
-int sum(std::span<int> items){
-    int s = 0;
-    for (auto& item:items)
-        s+=item;
-    return s;
-}
-```
-`sum` reads the items but doesn't delete any item i.e. it **doesn't own** the memory. The outer scope is responsible to pass valid memory to `sum`.
-
-Now we can pass various contiguous sequences to `sum`:
-
-```cpp
-int main(){
-    
-    std::vector<int> v = {1,1,1};
-    std::array<int,4> a = {1,1,1,1};
-    int b[5]{1,1,1,1,1};
-
-    std::cout<< sum(v)<<'\n'; // 3
-    std::cout<< sum(a)<<'\n'; // 4
-    std::cout<< sum(b)<<'\n'; // 5
-
-    return 0;
-}
-```
 
 ## Functions
 
@@ -162,7 +132,7 @@ we can get a span for the first 3 items:
 auto s1 = s.first(3); // {1, 2, 3}
 ```
 
-last 2 elements:
+last 2 items:
 
 ```cpp
 auto s2 = s.last(2); // {5,6}
@@ -171,7 +141,7 @@ auto s2 = s.last(2); // {5,6}
 or an arbitrary span:
 
 ```cpp
-//          subspan(offset, count)
+// subspan(offset, count)
 auto s3 = s.subspan(2, 3); // {3,4,5}
 ```
 
@@ -182,4 +152,131 @@ auto s4 = s.subspan(2); // {3,4,5,6}
 ```
 
 
+## Don'ts
+
+Do not change the memory of a sequence, while working with a span pointing to it. 
+
+In the example below, a vector is assigned to a span, the vector's memory location changed, then the span reused. This causes undefined behavior:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <span>
+int main(){
+
+std::vector<int> v = {1,2,3,4};
+std::cout<< v.capacity() <<'\n'; // 4
+
+// span defined
+std::span s = v;
+
+// target memory changed
+v.push_back(5);
+
+// undefined behaviour
+std::cout<< s[0] <<'\n';
+
+return 0;}
+```
+
+Note that when we `push_back(5)`, the vector memory is deleted and a new memory in a different location is allocated to fit in the new item, 5. But span, `s`, is still pointing to the old memory of the vector.
+
+For the same reason, don't do this either:
+
+```cpp
+#include <iostream>
+#include <span>
+int main(){
+
+int* a = new int[4] {1,2,3,4};
+
+// span defined
+std::span s {a, 4};
+
+// memory gone
+delete a;
+
+// undefined behaviour
+std::cout<< s[0]<<'\n';
+
+return 0;
+}
+```
+
+
+## Function parameter
+
+It's very common to pass a vector or array to a function, and the function only wants to read/write elements but doesn't add/delete elements or deallocate the memory; that's when span comes in handy.
+
+See this example:
+```cpp
+int sum(std::span<int> items){
+    int s = 0;
+    for (auto& item:items)
+        s+=item;
+    return s;
+}
+```
+`sum` reads the items but doesn't delete any item i.e. it **doesn't own** the memory. The outer scope is responsible to pass valid memory to `sum`.
+
+Now we can pass various contiguous sequences to `sum`:
+
+```cpp
+int main(){
+    
+    std::vector<int> v = {1,1,1};
+    std::array<int,4> a = {1,1,1,1};
+    int b[5]{1,1,1,1,1};
+
+    std::cout<< sum(v)<<'\n'; // 3
+    std::cout<< sum(a)<<'\n'; // 4
+    std::cout<< sum(b)<<'\n'; // 5
+
+    return 0;
+}
+```
+
+## Class member
+
+A span can be a class member. It is an observer of a sequence of objects. The class is not responsible for managing the memory of the sequence.  It can read/write the objects, but cannot delete them. The user of the class is responsible for providing a valid sequence memory.
+
+## Static span
+
+We can specify the size of a span to be fixed at runtime:
+
+```cpp
+std::span<Type, Size>
+```
+
+We can assign the span directly to a std::array but not to a std::vector, see the example below:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <array>
+#include <span>
+
+int main(){
+
+int a[4] {1,2,3,4};
+std::vector<int> v = {1,2,3,4};
+std::array<int,4> arr = {1,2,3,4};
+
+// static span
+std::span<int,4> s = a;
+
+// reassign
+s = arr; // OK
+
+// Error: assign span<int,4> to vector<int>
+s = v;
+
+for (auto& item:s)
+    std::cout<< item<<'\n';
+
+return 0;
+}
+```
+
+As it is shown before, if we don't specify the size of a span, it will be dynamic during runtime.
 
