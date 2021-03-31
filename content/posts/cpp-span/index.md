@@ -40,7 +40,7 @@ std::cout<< s[0] <<s[1];// 4 3
 
 return 0;}
 ```
-to a dynmic pointer array:
+to a dynamic pointer array:
 
 ```cpp
 int* a = new int[2]{8, 8};
@@ -148,6 +148,7 @@ auto s3 = s.subspan(2, 3); // {3,4,5}
 If the count is not given, subspan will be from offset to the end:
 
 ```cpp
+// subspan(offset)
 auto s4 = s.subspan(2); // {3,4,5,6}
 ```
 
@@ -238,7 +239,7 @@ int main(){
 
 ## Class member
 
-A span can be a class member. It is an observer of a sequence of objects. The class is not responsible for managing the memory of the sequence.  It can read/write the objects, but cannot delete them. The user of the class is responsible for providing a valid sequence memory.
+A span can be a class member. It is an observer of a sequence of objects. The class is not responsible for managing the memory of the sequence.  It can read/write the objects, but cannot delete them. The user of the class is responsible for providing a valid contiguous memory.
 
 ## Static span
 
@@ -248,7 +249,7 @@ We can specify the size of a span to be fixed at runtime:
 std::span<Type, Size>
 ```
 
-We can assign the span directly to a std::array but not to a std::vector, see the example below:
+We can directly assign a `std::array` but **not** a `std::vector` to a fixed span, see the example below:
 
 ```cpp
 #include <iostream>
