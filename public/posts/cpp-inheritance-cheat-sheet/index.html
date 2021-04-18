@@ -14,6 +14,8 @@
         gtag('config', 'UA-179561110-1');
     </script>
     
+   
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
@@ -47,7 +49,7 @@
 	<div class="home__header-grid"> 
 		<div class="display-flex flex-column left-horizontal">
 			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
-			<span class="text-shadow-1">Numerical programming and app development</span>
+			<span class="text-shadow-1">Researcher & Developer</span>
 		</div>
 		<div class="center justify-md-end">	
 			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
@@ -120,7 +122,52 @@ d.doSomething();
 </code></pre></div><p>In the above example, <code>Derived</code> inherits <code>i</code> and <code>doSomething</code> from base class;</p>
 <h2 id="public-protected-and-private-inheritance">Public, protected and private inheritance</h2>
 <p>These specifiers modify the accessibility of inherited members as below</p>
-<!-- raw HTML omitted -->
+<table style="width:100%">
+  <tr style="background-color:black; color:white">
+    <th>Base member specifier</th>
+    <th>Inheritance modifier</th>
+    <th>Inherited member specifier</th>
+  </tr>
+  <tr style="background-color:#00C4CB">
+    <td>public</td>
+    <td rowspan=3>public</td>
+    <td>public</td>
+  </tr>
+  <tr style="background-color:#00C4CB">
+    <td>protected</td>
+    <td>protected</td>
+  </tr>
+  <tr style="background-color:#00C4CB">
+    <td>private</td>    
+    <td>no access</td>
+  </tr>
+  <tr style="background-color:#FFFDD0">
+    <td >public</td>
+    <td rowspan=3>protected</td>
+    <td>protected</td>
+  </tr>
+  <tr style="background-color:#FFFDD0">
+    <td>protected</td>
+    <td>protected</td>
+  </tr>
+  <tr style="background-color:#FFFDD0">
+    <td>private</td>    
+    <td>no access</td>
+  </tr>
+  <tr style="background-color:#486A47">
+    <td>public</td>
+    <td rowspan=3>private</td>
+    <td>private</td>
+  </tr>
+  <tr style="background-color:#486A47">
+    <td>protected</td>
+    <td>private</td>
+  </tr>
+  <tr style="background-color:#486A47">
+    <td>private</td>    
+    <td>no access</td>
+  </tr>
+</table>
 <p><strong>Example</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span>{
 <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
@@ -172,7 +219,8 @@ b.DoSomething(); <span style="color:#75715e">// Error, not accessible
 </code></pre></div><p>is similar to</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Base</span>{};
 <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">derived</span><span style="color:#f92672">:</span> Base{};
-</code></pre></div><h2 id="virtual-method">Virtual Method</h2>
+</code></pre></div><p>Besides inheritance, the members of <code>struct</code> are public by default in contrast to <code>class</code> members which are private.</p>
+<h2 id="virtual-method">Virtual Method</h2>
 <p>Use <code>virtual</code> keyword to let the compiler know the method can be overridden in a future derived class. To complete overriding, use the keyword <code>override</code> in the derived class method:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Base</span>
 {
@@ -526,7 +574,6 @@ t.i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <
 </span><span style="color:#75715e"></span>    o.f(x); <span style="color:#75715e">//double function called.
 </span><span style="color:#75715e"></span>}
 </code></pre></div>
-			
 			<script>
 				window.onscroll = function () {
 					myFunction();
@@ -561,15 +608,15 @@ t.i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <
 <div>
 	<ul>
 		
-		<li><a href="/posts/mpi-traffic/">MPI Traffic Program with C&#43;&#43;</a></li>
+		<li><a href="/posts/ssh-port-forwarding/">SSH port forwarding to download files</a></li>
 		
-		<li><a href="/posts/debug-mpi-vs-code/">Debug MPI program with Visual Studio Code</a></li>
+		<li><a href="/posts/cpp-span/">Span is a new norm in C&#43;&#43; codes</a></li>
 		
-		<li><a href="/posts/auto-cpp/">C&#43;&#43; auto makes your life easier</a></li>
+		<li><a href="/posts/vs-code-extensions/">Essential VS Code font and extensions for C&#43;&#43;</a></li>
 		
-		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		<li><a href="/posts/perfect-forwarding-cpp/">An overview of C&#43;&#43; perfect forwarding</a></li>
 		
-		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		<li><a href="/posts/static-polymorphism-cpp/">Is C&#43;&#43; static polymorphism useful?</a></li>
 		
 	</ul>
 </div>
@@ -595,6 +642,7 @@ t.i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <
 		</nav>		
 	</div>
 </main>
+
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
@@ -634,7 +682,7 @@ t.i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <
 	</form>
 </div>
 <div class="my-1 display-flex justify-start justify-md-end align-center">
-	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+	<p>Copyright &copy; 2021 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
 </div>
 </div>
 </footer>

@@ -14,11 +14,13 @@
         gtag('config', 'UA-179561110-1');
     </script>
     
+   
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
     <link rel="icon" href="/images/me.gif" type="image/gif">
-    <title>Connect to Microsoft Access with C# .Net core </title>
+    <title>Connect to Microsoft Access database with C# .Net core </title>
     
     <meta name="description" content="I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records."> 
     
@@ -47,7 +49,7 @@
 	<div class="home__header-grid"> 
 		<div class="display-flex flex-column left-horizontal">
 			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
-			<span class="text-shadow-1">Numerical programming and app development</span>
+			<span class="text-shadow-1">Researcher & Developer</span>
 		</div>
 		<div class="center justify-md-end">	
 			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
@@ -72,7 +74,7 @@
 
 <main>
 	<article>
-		<h1>Connect to Microsoft Access with C# .Net core </h1>
+		<h1>Connect to Microsoft Access database with C# .Net core </h1>
 		<time>22 Oct 2020</time>
 	</article>
 	
@@ -106,7 +108,7 @@
 	<div class="article-nav" id="article-nav-id">
 		<article class="overlay-top">
 			<h2 id="goal">Goal</h2>
-<p>I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to create, read, update, and delete (CRUD) records.</p>
+<p>I want to connect to an MS Access database with C# in .Net core. Therefore, I will be able to write queries to create, read, update, and delete (CRUD) records.</p>
 <h2 id="os-driver">OS driver</h2>
 <p>From experience, I would recommend run the web app on Windows rather than Linux. On Windows, the only driver needed to be installed is <a href="https://www.microsoft.com/en-gb/download/details.aspx?id=13255">MS Access Database Engine 2010</a> or <a href="https://www.microsoft.com/en-us/download/details.aspx?id=54920">MS Access Database Engine 2016</a>. But for Linux, I couldn&rsquo;t find a free driver.</p>
 <h2 id="install-odbc-connection">Install Odbc connection</h2>
@@ -140,7 +142,7 @@ edit the variables in C# like:</p>
 }
 </code></pre></div><h2 id="data-return-query">Data return query</h2>
 <p>The sample below can be used when multiple rows of a table are pulled from the MS Access database.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> List&lt;PersonHour&gt; GetPeople(<span style="color:#66d9ef">string</span> query)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> List&lt;Person&gt; GetPeople(<span style="color:#66d9ef">string</span> query)
 {
   <span style="color:#66d9ef">var</span> people = <span style="color:#66d9ef">new</span> List&lt;Person&gt;();
   OdbcCommand command = <span style="color:#66d9ef">new</span> OdbcCommand(query);
@@ -201,7 +203,6 @@ edit the variables in C# like:</p>
   }
 }
 </code></pre></div>
-			
 			<script>
 				window.onscroll = function () {
 					myFunction();
@@ -221,7 +222,7 @@ edit the variables in C# like:</p>
   <h3>Related Tags</h3>
     <div id="tags">
         
-        <span><a href="/tags/.net-core">.Net Core</a> </span>
+        <span><a href="/tags/net-core">⋅Net Core</a> </span>
         
         <span><a href="/tags/c-sharp">C Sharp</a> </span>
         
@@ -240,15 +241,15 @@ edit the variables in C# like:</p>
 <div>
 	<ul>
 		
-		<li><a href="/posts/mpi-traffic/">MPI Traffic Program with C&#43;&#43;</a></li>
+		<li><a href="/posts/ssh-port-forwarding/">SSH port forwarding to download files</a></li>
 		
-		<li><a href="/posts/debug-mpi-vs-code/">Debug MPI program with Visual Studio Code</a></li>
+		<li><a href="/posts/cpp-span/">Span is a new norm in C&#43;&#43; codes</a></li>
 		
-		<li><a href="/posts/auto-cpp/">C&#43;&#43; auto makes your life easier</a></li>
+		<li><a href="/posts/vs-code-extensions/">Essential VS Code font and extensions for C&#43;&#43;</a></li>
 		
-		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		<li><a href="/posts/perfect-forwarding-cpp/">An overview of C&#43;&#43; perfect forwarding</a></li>
 		
-		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		<li><a href="/posts/static-polymorphism-cpp/">Is C&#43;&#43; static polymorphism useful?</a></li>
 		
 	</ul>
 </div>
@@ -271,6 +272,7 @@ edit the variables in C# like:</p>
 		</nav>		
 	</div>
 </main>
+
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
@@ -310,7 +312,7 @@ edit the variables in C# like:</p>
 	</form>
 </div>
 <div class="my-1 display-flex justify-start justify-md-end align-center">
-	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+	<p>Copyright &copy; 2021 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
 </div>
 </div>
 </footer>

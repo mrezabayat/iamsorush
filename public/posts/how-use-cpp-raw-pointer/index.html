@@ -14,13 +14,15 @@
         gtag('config', 'UA-179561110-1');
     </script>
     
+   
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
     <link rel="icon" href="/images/me.gif" type="image/gif">
-    <title>How to use C/C&#43;&#43; raw pointers properly?</title>
+    <title>How to use C&#43;&#43; raw pointers properly?</title>
     
-    <meta name="description" content="A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target. Here, I  mention the most useful characteristics of pointers with examples."> 
+    <meta name="description" content="A pointer is an 8-byte type on a 64-bit machine that holds the memory address of a target object. Here, I  mention the most useful characteristics of pointers with examples."> 
     
     <meta name="author" content="map[name:Sorush Khajepor]">
     
@@ -47,7 +49,7 @@
 	<div class="home__header-grid"> 
 		<div class="display-flex flex-column left-horizontal">
 			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
-			<span class="text-shadow-1">Numerical programming and app development</span>
+			<span class="text-shadow-1">Researcher & Developer</span>
 		</div>
 		<div class="center justify-md-end">	
 			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
@@ -72,7 +74,7 @@
 
 <main>
 	<article>
-		<h1>How to use C/C&#43;&#43; raw pointers properly?</h1>
+		<h1>How to use C&#43;&#43; raw pointers properly?</h1>
 		<time>22 Feb 2020</time>
 	</article>
 	
@@ -106,40 +108,64 @@
 	<div class="article-nav" id="article-nav-id">
 		<article class="overlay-top">
 			<h2 id="introduction">Introduction</h2>
-<p><em>C/C++</em> is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. Here, I  mention the most useful characteristics of pointers with examples.</p>
-<p>I call them here pointers but nowadays they are called raw pointers to separate them from smart pointers. I will write on smart pointers separately.</p>
+<p><em>C++</em> is used widely for high-performance computing. Mastering pointers is an important step in writing efficient code. In this post, I  mention the most useful characteristics of raw pointers with examples.</p>
+<p>Here I focus only on raw pointers and assume the code we are working with doesn&rsquo;t allow smart pointers (<a href="https://iamsorush.com/posts/unique-pointers-cpp/">unique</a>, <a href="https://iamsorush.com/posts/shared-pointer-cpp/">shared</a> and <a href="https://iamsorush.com/posts/weak-pointer-cpp/">weak pointers</a>).</p>
 <h2 id="definition">Definition</h2>
-<p>A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target.</p>
+<p>A pointer is an 8-byte type on a 64-bit machine that holds the memory address of a target object.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span>  x <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;   <span style="color:#75715e">//  variable declaration
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p; <span style="color:#75715e">// pointer declaration
 </span><span style="color:#75715e"></span>p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>x;  <span style="color:#75715e">// pointer stores address of x
 </span><span style="color:#75715e"></span>cout<span style="color:#f92672">&lt;&lt;</span> p <span style="color:#f92672">&lt;&lt;</span>endl; <span style="color:#75715e">//0x7ffc52a21a84
-</span><span style="color:#75715e"></span>cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">&lt;&lt;</span>endl; <span style="color:#75715e">// 20
-</span></code></pre></div><p>In the above example, <code>p</code> at the beginning is declared but undefined (it points to somewhere we don&rsquo;t know); then pointed to <code>x</code>. The pointer holds the memory address of <code>x</code>.  Using <code>*</code> operator, the pointer can be dereferenced to get the value of its target.</p>
+</span><span style="color:#75715e"></span>cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">&lt;&lt;</span>endl; <span style="color:#75715e">// 20 : dereferencing with * operator
+</span></code></pre></div><p>In the above example, <code>p</code> at the beginning is declared but undefined (it points to somewhere we don&rsquo;t know); it then pointed to <code>x</code>. Roughly, the code is equivalent to the picture below</p>
+
+
+<div style="text-align:center;">
+<img src="/images/rawpointer1.png" style="max-width:100%;" />
+</div>
+
+<p>The pointer holds the memory address of <code>x</code>.  Using <code>*</code> operator, the pointer can be dereferenced to get the value of its target.</p>
 <h2 id="memory-allocation">Memory Allocation</h2>
 <p>A pointer is usually pointed to dynamically allocated memory on the heap, a scalar</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>;
-</code></pre></div><p>or an array</p>
+</code></pre></div>
+
+<div style="text-align:center;">
+<img src="/images/rawpointer2.png" style="max-width:100%;" />
+</div>
+
+<p>or an array</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> q <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">5</span>];
 </code></pre></div><h2 id="delete">Delete</h2>
 <p>The allocated memory can be deleted (not the pointer itself)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// new int memory now deleted
-</span></code></pre></div><p>To delete all elements of the array</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">delete</span>[] q; <span style="color:#75715e">// All elements of array deleted
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>;
+<span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// new int memory now deleted
+</span></code></pre></div>
+
+<div style="text-align:center;">
+<img src="/images/rawpointer3.png" style="max-width:100%;" />
+</div>
+
+<p>To delete all elements of the array</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> q <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">5</span>];
+<span style="color:#66d9ef">delete</span>[] q; <span style="color:#75715e">// All elements of array deleted
 </span></code></pre></div><p>Note that they are not literally deleted, the memory is marked as free to be overwritten.</p>
-<p>Note that <code>new</code> ends with <code>delete</code>, <code>new[]</code> ends with <code>delete[]</code>. The compiler knows the number of elements of the array created via <code>new[]</code>, so <code>delete[]</code> doesn&rsquo;t need the number of elements.</p>
+<p>Remember that <code>new</code> ends with <code>delete</code>, <code>new[]</code> ends with <code>delete[]</code>. The compiler knows the number of elements of the array created via <code>new[]</code>, so <code>delete[]</code> doesn&rsquo;t need the number of elements.</p>
 <p>Do not delete the dynamically created array using <code>delete</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">delete</span> q; <span style="color:#75715e">// Error: only one element is deleted
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> q <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">5</span>];
+<span style="color:#66d9ef">delete</span> q; <span style="color:#75715e">// Error: only one element is deleted
 </span></code></pre></div><p>Do not delete a stack memory that a pointer points to</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> x;
-<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p<span style="color:#f92672">=&amp;</span>x;
-<span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// Undefined Behaviour: deleting a memory on stack!
-</span></code></pre></div><p>Do not double delete</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(){
+  <span style="color:#66d9ef">int</span> x;
+  <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p<span style="color:#f92672">=&amp;</span>x;
+  <span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// Undefined Behaviour: deleting a memory on stack!
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Do not double delete</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>;
 <span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// target memory deleted
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// error or undefined behaviour
 </span></code></pre></div><h2 id="null-usage">Null usage</h2>
-<p>I prefer to point the pointer to <code>nullptr</code> (or <code>NULL</code> for <em>C</em> and older than <em>C++11</em> compilers) when there is nothing to point to: at declaration and deletion. In this way, we avoid undefined behavior.</p>
+<p>There is no way to know if a pointer is deleted or not associated, therefore, I prefer to point the pointer to <code>nullptr</code> (or <code>NULL</code> for <em>C</em> and older than <em>C++11</em> compilers) when there is nothing to point to: at declaration and deletion. In this way, some <em>undefined behaviours</em> like double-delete are avoided.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>  <span style="color:#75715e">// declaration with null
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> q <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>; <span style="color:#75715e">// memory allocation
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span> q; <span style="color:#75715e">// removing allocated memory
@@ -147,13 +173,21 @@
 </code></pre></div><p><code>nullptr</code> is type-safe in comparison with <code>NULL</code>. In some <a href="https://stackoverflow.com/questions/20509734/null-vs-nullptr-why-was-it-replaced">cases</a>, compilers confuse the type of <code>NULL</code> with <code>int</code>. We can check if a pointer is null like below</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">if</span>(p<span style="color:#f92672">!=</span><span style="color:#66d9ef">nullptr</span>) {...}  <span style="color:#75715e">// C++11 and later
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span>(p<span style="color:#f92672">!=</span>NULL) {...} <span style="color:#75715e">// C and older C++ compilers
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (p) {...} <span style="color:#75715e">// the same as above lines
 </span></code></pre></div><p>It should be noted that making a pointer null after delete hides the double-delete problem explained in the previous section. And it does not affect other pointers pointing to the same deleted memory. Some people don&rsquo;t like this convention read <a href="https://stackoverflow.com/questions/4190703/is-it-safe-to-delete-a-null-pointer">here</a>.</p>
 <h2 id="memory-leak">Memory leak</h2>
 <p>There is no memory management system for raw pointers. Therefore, not deleting the allocated memory of pointer explicitly causes memory leak:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> x;
 <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>;
 p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>x;  <span style="color:#75715e">// re-pointed but &#34;new int&#34; not deleted
-</span></code></pre></div><p>In the above example, new int memory is an island in the sea of computer memory. We could only find it via <code>p</code> but, in the last line, <code>p</code> is pointed to another place, <code>x</code>. So we have a memory leak! We have to remember to delete allocated memory and then point the pointer to another variable/new allocated memory:</p>
+</span></code></pre></div><p>In the above example, new int memory is an island in the sea of computer memory. We could only find it via <code>p</code> but, in the last line, <code>p</code> is pointed to another place, <code>x</code>. So we have a memory leak!</p>
+
+
+<div style="text-align:center;">
+<img src="/images/rawpointer4.png" style="max-width:100%;" />
+</div>
+
+<p>We have to remember to delete the allocated memory and then point the pointer to another target:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> x;
 <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>;
 <span style="color:#66d9ef">delete</span> p;
@@ -171,12 +205,27 @@ p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>x
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// do some stuff with p
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">delete</span> p;  <span style="color:#75715e">// the new int is deleted.
 </span><span style="color:#75715e"></span>}
-</code></pre></div><p>There is another situation that memory leaks:</p>
+</code></pre></div><p>A pointer member of a class better be deleted in the destructor</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>{
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p;
+    A(){p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>; cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;p is allocated memory.&#34;</span>;}
+    <span style="color:#f92672">~</span>A(){<span style="color:#66d9ef">delete</span> p; cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;p is deleted.&#34;</span>;}
+};
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(){
+    A a; <span style="color:#75715e">// p is allocated memory.
+</span><span style="color:#75715e"></span>} <span style="color:#75715e">// a.p is deleted
+</span></code></pre></div><p>There is another situation that memory leaks:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>;
-... an exception is thrown here..
-<span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// this is not reached.
+
+<span style="color:#75715e">// An exception is thrown by some code here!
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// this line is not reached.
 </span></code></pre></div><p>A raw pointer cannot handle this, you need to use smart pointers (see this <a href="https://stackoverflow.com/questions/24150472/c-avoiding-memory-leak-with-exceptions">discussion</a> ).</p>
-<p>For deleting a memory, the situation gets complicated fast when it is pointed by many different pointers:</p>
+<p>For deleting a memory, the situation gets complicated fast when it is the target of different pointers:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Class Student{...}
 Class CourseA{
   <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
@@ -198,13 +247,14 @@ CourseB<span style="color:#f92672">*</span> B<span style="color:#f92672">=</span
 <span style="color:#75715e">// delete Jack here, in CourseA or in CourseB destructor?
 </span><span style="color:#75715e"></span>}
 </code></pre></div><p>In the above example, three pointers target the same memory location, thus we cannot run <code>delete</code> for all of them as we face double-delete problems explained in the Delete section.</p>
-<h2 id="owner-convention">Owner Convention</h2>
-<p>In the previous example, we have to decide which one is the owner or which one
-needs to outlive others, so we run <code>delete</code> command on that one and leave the rest as observers.</p>
+<h2 id="conventions">Conventions</h2>
+<p>If you start working with an existing project, look for pointer conventions in place. If you design a new code put some conventions in place for objects which delete pointers, and the ownership of pointers when they are passed to or returned from functions/objects.</p>
+<p>For example, in the previous piece of code, we have to decide which object is the owner, i.e., which one
+needs to outlive others. So we <code>delete</code> the pointer in that one and leave the rest as observers.</p>
 <p>We can have <code>owner</code> as a type alias for <code>T</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">using</span> owner <span style="color:#f92672">=</span> T;
-</code></pre></div><p>Now we can have a convention for our code that pointers are defined by <code>owner</code> only when the class containing them is responsible for deleting them.</p>
+</code></pre></div><p>Now we can have a pointer policy for our code that pointers are defined by <code>owner</code> only when the class containing them is responsible for deleting them.</p>
 <p>A simple example that owner acts as a raw pointer:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>{
     owner<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">*&gt;</span> p;
@@ -219,7 +269,7 @@ needs to outlive others, so we run <code>delete</code> command on that one and l
 }
 Person<span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person();
 std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> p<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">&lt;&lt;</span> endl;  <span style="color:#75715e">// Jack
-</span></code></pre></div><h2 id="pass-by-pointer">Pass by pointer</h2>
+</span></code></pre></div><h2 id="pass-by-pointer-vs-pass-by-reference">Pass by pointer vs pass by reference</h2>
 <p>It is a good practice to pass objects especially the huge ones by a pointer. Instead of copying the whole data, only the pointer is passed:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DoSomething</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;*</span> v){
  <span style="color:#75715e">/* do something with v */</span>
@@ -227,26 +277,30 @@ std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt
 ...
 <span style="color:#66d9ef">auto</span> a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">10000</span>);
 DoSomething(a);
-</code></pre></div><p>I mostly prefer pass by pointer than by reference, both methods have the same efficiency but a pointer can be null while a reference cannot. But you may want to use reference because you are not handling null in the function.</p>
+</code></pre></div><p>I mostly prefer pass by reference as it feels easier to read. However, there is a difference between pass by pointer and pass by reference. When you pass by reference you guarantee that an outer scope always passes valid data to the fucntion. But when you pass data by pointer you may mean the pointer can be null and the function handles it.</p>
 <p>When passing by pointer, the pointer itself passed by value</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p)
 {
     <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;   <span style="color:#75715e">// the pointed memory changed
 </span><span style="color:#75715e"></span>    p <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;  <span style="color:#75715e">// p is changed within function not externally
 </span><span style="color:#75715e"></span>}
-...
-<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> q <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">0</span>);
-cout<span style="color:#f92672">&lt;&lt;</span> q <span style="color:#f92672">&lt;&lt;</span> endl;
-f(q);
-cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>q <span style="color:#f92672">&lt;&lt;</span> endl;  <span style="color:#75715e">// 100
-</span><span style="color:#75715e"></span>cout<span style="color:#f92672">&lt;&lt;</span> q <span style="color:#f92672">&lt;&lt;</span> endl;  <span style="color:#75715e">// q is not changed
-</span><span style="color:#75715e"></span>...
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> q <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">0</span>);
+    cout<span style="color:#f92672">&lt;&lt;</span> q <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// 0x17d8b20
+</span><span style="color:#75715e"></span>    f(q);
+    cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>q <span style="color:#f92672">&lt;&lt;</span> endl;  <span style="color:#75715e">// 100
+</span><span style="color:#75715e"></span>    cout<span style="color:#f92672">&lt;&lt;</span> q <span style="color:#f92672">&lt;&lt;</span> endl;  <span style="color:#75715e">// 0x17d8b20: q is not changed
+</span><span style="color:#75715e"></span>}
 </code></pre></div><h2 id="constant">Constant</h2>
-<p>A constant definition can be added to a pointer as below</p>
+<p>A constant qualifier can be added to a pointer in different ways:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#75715e">// constant or read-only target, pointer can be reassigned
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> p <span style="color:#75715e">// constant pointer cannot be reassigned
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> p <span style="color:#75715e">// both above constraints
-</span></code></pre></div><p>Too many options? Well, they are there to constrain the usage of a pointer, so, when other developers read your code they quickly understand the purpose of variables. For example, if the target must not be changed in specific scope then use a constant-target pointer and other developers do not mistakenly change them.</p>
+</span></code></pre></div><p>The different versions are to constrain a pointer, reduce mistakes, improve readability and help compiler to optimise the code and catch errors.</p>
 <p>The target of a constant-target pointer is not necessarily constant:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>;
 <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>a; <span style="color:#75715e">// ok: read-only pointer
@@ -254,13 +308,30 @@ cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</s
 </span><span style="color:#75715e"></span><span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>; <span style="color:#75715e">// Error:: against &#34;read-only&#34; contract
 </span></code></pre></div><p>However, a constant target must be pointed only by a constant-target pointer.</p>
 <h2 id="pointer-vs-reference-member">Pointer vs reference member</h2>
-<p>A reference member of a class must be initialised in the constructor and it cannot be reassigned. However, a pointer member can be reassigned, freed, and null. So, if not sure, a pointer is an easy choice as it is more flexible.</p>
+<p>A reference member of a class must be initialized in the constructor and it cannot be reassigned. However, a pointer member can be reassigned, freed, and null.</p>
+<p>Use a reference member if an entity outside of the class controls the lifetime of the member and the entity outlives objects of this class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> {
+    A(<span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> m_)<span style="color:#f92672">:</span>m(m_){};
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> m;
+};
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>(<span style="color:#ae81ff">50</span>);
+    <span style="color:#66d9ef">auto</span> a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> A(<span style="color:#f92672">*</span>p);
+    std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> a<span style="color:#f92672">-&gt;</span>m; <span style="color:#75715e">// 50
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">delete</span> a; 
+    <span style="color:#66d9ef">delete</span> p; <span style="color:#75715e">// p must outlive a
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Use a pointer member if the member lifetime is controlled out of the class but the class handles a null pointer. Moreover, use a pointer if the class owns the member and responsible for deleting it.</p>
 <h2 id="arrays-and-vectors">Arrays and vectors</h2>
-<p>In <em>C</em> language, it is common to define an array using a pointer</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// dynamically allocated array
+<p>Pointers can be used to define arrays on the heap</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// dynamically allocated array
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> m <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">3</span>]{<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>}; <span style="color:#75715e">// C++11: initialize in place 
 </span><span style="color:#75715e"></span>cout<span style="color:#f92672">&lt;&lt;</span> p[<span style="color:#ae81ff">2</span>]; <span style="color:#75715e">// prints 3rd element
 </span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>q[<span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// array of 5 integer pointers  
+<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> q[<span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// array of 5 integer pointers  
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">int</span> arr[<span style="color:#ae81ff">5</span>];  <span style="color:#75715e">// array of 5 integers
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> r <span style="color:#f92672">=</span> arr;  <span style="color:#75715e">// pointer points to first element of array
@@ -269,17 +340,17 @@ cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</s
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#f92672">**</span>p;
 <span style="color:#75715e">// dynamic array of pointers
 </span><span style="color:#75715e">// each pointer is a row
-</span><span style="color:#75715e"></span>p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span>[<span style="color:#ae81ff">5</span>]; 
+</span><span style="color:#75715e"></span>p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span>[<span style="color:#ae81ff">3</span>]; 
 
 <span style="color:#75715e">// loop over rows
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; <span style="color:#f92672">++</span>i) {
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
   p[i] <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">6</span>]; <span style="color:#75715e">// each row has 6 columns
 </span><span style="color:#75715e"></span>  <span style="color:#75715e">// p[i] points to dynamic array of int values
 </span><span style="color:#75715e"></span>}
 </code></pre></div><p>The elements can be accessed via <code>[]</code> operators</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> row<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, column<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
 p[row][column]<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>; <span style="color:#75715e">// 
-</span></code></pre></div><p>In <em>C++</em>, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array <a href="https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays">see here</a>.  So it&rsquo;s better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:</p>
+</span></code></pre></div><p>In <em>C++</em>, we have the vector class which has many features and in terms of read-and-write is as fast as a raw array <a href="https://stackoverflow.com/questions/3664272/is-stdvector-so-much-slower-than-plain-arrays">see here</a>.  Generally, it&rsquo;s better to use a vector than a pointer to create an array.  But how to dereference a pointer to a vector? many ways:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span>v <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">10</span>);
 
 v<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">operator</span>[](<span style="color:#ae81ff">2</span>); <span style="color:#75715e">// using operator
@@ -289,7 +360,7 @@ v<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">operator</s
 </span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>r <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>v; <span style="color:#75715e">// create alias using a reference
 </span><span style="color:#75715e"></span>r[<span style="color:#ae81ff">2</span>]; <span style="color:#75715e">// index reference
 </span></code></pre></div><h2 id="void-pointer">Void pointer</h2>
-<p>All the pointers (int*, double*, string*, custom_class*) have the same datatype holding the memory address of different targets. So, <code>void*</code> pointer is a pointer the same as others pointing to some memory address but the datatype of the target is unknown.</p>
+<p>All the pointers (int*, double*, string*, custom_class*) have the same datatype holding the memory address of different targets. So, <code>void*</code> pointer is a pointer the same as others pointing to some memory address but the data type of the target is unknown.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> p;
 <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>;
 <span style="color:#66d9ef">double</span> d<span style="color:#f92672">=</span><span style="color:#ae81ff">1.5</span>;
@@ -305,9 +376,8 @@ cout<span style="color:#f92672">&lt;&lt;*</span>(<span style="color:#66d9ef">dou
 </span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> p<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// 0x55b3ec05beb8
 </span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> p<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// 0x55b3ec05bebc
 </span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> p<span style="color:#f92672">+</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// 0x55b3ec05bec0
-</span></code></pre></div><p>&ldquo;0x&rdquo; represents hex system. Focusing on the last numbers, {b0, b4, b8, bc, c0}, they increase by 4 units because an integer on the target machine was 4 bytes. Note, in hex system, b8+4=bc and b0+16=c0. Therefore, every 4 integers (or 2 doubles), one added to the second last digit (b0 → c0).</p>
+</span></code></pre></div><p>&ldquo;0x&rdquo; represents the hex system. Focusing on the last numbers, {b0, b4, b8, bc, c0}, they increase by 4 units because an integer on the target machine was 4 bytes. In the hex system, we have b8+4=bc and b0+16=c0. Therefore, every 4 integers (or 2 doubles), the second last digit is incremented (b0 → c0).</p>
 
-			
 			<script>
 				window.onscroll = function () {
 					myFunction();
@@ -329,6 +399,8 @@ cout<span style="color:#f92672">&lt;&lt;*</span>(<span style="color:#66d9ef">dou
         
         <span><a href="/tags/c&#43;&#43;">C&#43;&#43;</a> </span>
         
+        <span><a href="/tags/pointers">Pointers</a> </span>
+        
     </div>
 
 
@@ -342,15 +414,15 @@ cout<span style="color:#f92672">&lt;&lt;*</span>(<span style="color:#66d9ef">dou
 <div>
 	<ul>
 		
-		<li><a href="/posts/mpi-traffic/">MPI Traffic Program with C&#43;&#43;</a></li>
+		<li><a href="/posts/ssh-port-forwarding/">SSH port forwarding to download files</a></li>
 		
-		<li><a href="/posts/debug-mpi-vs-code/">Debug MPI program with Visual Studio Code</a></li>
+		<li><a href="/posts/cpp-span/">Span is a new norm in C&#43;&#43; codes</a></li>
 		
-		<li><a href="/posts/auto-cpp/">C&#43;&#43; auto makes your life easier</a></li>
+		<li><a href="/posts/vs-code-extensions/">Essential VS Code font and extensions for C&#43;&#43;</a></li>
 		
-		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		<li><a href="/posts/perfect-forwarding-cpp/">An overview of C&#43;&#43; perfect forwarding</a></li>
 		
-		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		<li><a href="/posts/static-polymorphism-cpp/">Is C&#43;&#43; static polymorphism useful?</a></li>
 		
 	</ul>
 </div>
@@ -366,9 +438,9 @@ cout<span style="color:#f92672">&lt;&lt;*</span>(<span style="color:#66d9ef">dou
     <li><a href="#delete">Delete</a></li>
     <li><a href="#null-usage">Null usage</a></li>
     <li><a href="#memory-leak">Memory leak</a></li>
-    <li><a href="#owner-convention">Owner Convention</a></li>
+    <li><a href="#conventions">Conventions</a></li>
     <li><a href="#dereference-class-members">Dereference class members</a></li>
-    <li><a href="#pass-by-pointer">Pass by pointer</a></li>
+    <li><a href="#pass-by-pointer-vs-pass-by-reference">Pass by pointer vs pass by reference</a></li>
     <li><a href="#constant">Constant</a></li>
     <li><a href="#pointer-vs-reference-member">Pointer vs reference member</a></li>
     <li><a href="#arrays-and-vectors">Arrays and vectors</a></li>
@@ -379,6 +451,7 @@ cout<span style="color:#f92672">&lt;&lt;*</span>(<span style="color:#66d9ef">dou
 		</nav>		
 	</div>
 </main>
+
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
@@ -418,7 +491,7 @@ cout<span style="color:#f92672">&lt;&lt;*</span>(<span style="color:#66d9ef">dou
 	</form>
 </div>
 <div class="my-1 display-flex justify-start justify-md-end align-center">
-	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+	<p>Copyright &copy; 2021 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
 </div>
 </div>
 </footer>

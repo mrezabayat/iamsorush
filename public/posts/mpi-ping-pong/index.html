@@ -14,6 +14,8 @@
         gtag('config', 'UA-179561110-1');
     </script>
     
+   
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
@@ -47,7 +49,7 @@
 	<div class="home__header-grid"> 
 		<div class="display-flex flex-column left-horizontal">
 			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
-			<span class="text-shadow-1">Numerical programming and app development</span>
+			<span class="text-shadow-1">Researcher & Developer</span>
 		</div>
 		<div class="center justify-md-end">	
 			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
@@ -114,19 +116,18 @@
 to each other. This is a good example to measure the latency and bandwidth of a cluster machine. Since, currently, the MPI for C is developing stronger than C++ (see <a href="#references">References</a>), I am wrapping MPI-C commands in C++ classes here.</p>
 <h2 id="the-ball">The ball</h2>
 <p>If we imagine the data transfer between two nodes is like a ping-pong game, the data is the ball.
-The ball can be an array of MPI types. Here for simplicity, is the integer:</p>
+The ball can be a vector of an MPI type. Here for simplicity, is the integer:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Ball</span>
 {
     Ball(<span style="color:#66d9ef">int</span> size){
-        Data <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[size];
-        Data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        Size <span style="color:#f92672">=</span> size;
+        data.resize(size);
+        data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     }
-    <span style="color:#f92672">~</span>Ball() {<span style="color:#66d9ef">delete</span>[] Data;}
-    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> Data;
-    <span style="color:#66d9ef">int</span> Size;
+    <span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">Size</span>(){<span style="color:#66d9ef">return</span> data.size();}
+    <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[](size_t i){<span style="color:#66d9ef">return</span> data[i];}
+    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> data;
 };
-</code></pre></div><p>In this example, I ignore what is in <code>Data</code> array except <em>0-th</em> element which counts the number of back-and-forths of the ball.</p>
+</code></pre></div><p>In this example, I ignore what is in <code>data</code> array except <em>0-th</em> element which counts the number of back-and-forths of the ball.</p>
 <h2 id="iplayer">IPlayer</h2>
 <p>As I am still thinking in the world of ping pong, I call each process a player. We have different players, rank 0 and 1 which play the game and the other ranks which are idle. So to avoid nested if-conditions, I created <code>IPlayer</code> interface:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">IPlayer</span>
@@ -158,37 +159,37 @@ The ball can be an array of MPI types. Here for simplicity, is the integer:</p>
 </span><span style="color:#75715e"></span>}
 </code></pre></div><p>A player sends the ball and waits to receive it back. I used <code>MPI_Send</code> to send the ball in a blocking way. It will receive the ball using <code>MPI_Recv</code> which blocks the process until the ball buffer is reusable. Both block the buffer, the ball, to make sure there is not a race condition to read and write there. For more information, read more on <a href="https://iamsorush.com/posts/mpi-race-condition/">the MPI race condition here</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SendBall</span>(){
-        MPI_Send( ball.Data , ball.Size , MPI_INT , target , <span style="color:#ae81ff">0</span> , MPI_COMM_WORLD);
+        MPI_Send( <span style="color:#f92672">&amp;</span>ball[<span style="color:#ae81ff">0</span>] , ball.Size() , MPI_INT , target , <span style="color:#ae81ff">0</span> , MPI_COMM_WORLD);
     }
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">RecvBall</span>(){
-        MPI_Recv( ball.Data, ball.Size , MPI_INT, target, <span style="color:#ae81ff">0</span> , MPI_COMM_WORLD, <span style="color:#f92672">&amp;</span>stat);
+        MPI_Recv( <span style="color:#f92672">&amp;</span>ball[<span style="color:#ae81ff">0</span>], ball.Size() , MPI_INT, target, <span style="color:#ae81ff">0</span> , MPI_COMM_WORLD, <span style="color:#f92672">&amp;</span>stat);
     }
 </code></pre></div><p>I have to override <code>Play</code> of the interface. It basically calls <code>SendBall()</code> and <code>RecvBall()</code> in the order depending on who&rsquo;s started the game. After each player receives the ball, they increment <code>Data[0]</code> by one, firstly to count communications and secondly to show the program works fine.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Play</span>() <span style="color:#66d9ef">override</span>{
         <span style="color:#66d9ef">if</span> (iAmGameStarter) SendBall();
         RecvBall();
-        ball.Data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">++</span>;
-        cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Rank :&#34;</span> <span style="color:#f92672">&lt;&lt;</span> rank <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; has the ball, No of throws: &#34;</span>
-            <span style="color:#f92672">&lt;&lt;</span> ball.Data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;&lt;</span>endl;
+        ball[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">++</span>;
+        cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Rank :&#34;</span> <span style="color:#f92672">&lt;&lt;</span> rank <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; has the ball, No of throws: &#34;</span><span style="color:#f92672">&lt;&lt;</span>ball[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
         <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>iAmGameStarter) SendBall();
     }
 </code></pre></div><h2 id="code">Code</h2>
-<p>The whole code is here.</p>
+<p>The whole code is here. It is compiled with GCC 10.2, OpenMPI 4.0.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;mpi.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;memory&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 
 <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Ball</span>
 {
     Ball(<span style="color:#66d9ef">int</span> size){
-        Data <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[size];
-        Data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        Size <span style="color:#f92672">=</span> size;
+        data.resize(size);
+        data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     }
-    <span style="color:#f92672">~</span>Ball() {<span style="color:#66d9ef">delete</span>[] Data;}
-    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> Data;
-    <span style="color:#66d9ef">int</span> Size;
+    <span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">Size</span>(){<span style="color:#66d9ef">return</span> data.size();}
+    <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[](size_t i){<span style="color:#66d9ef">return</span> data[i];}
+    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> data;
 };
 
 <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">IPlayer</span>
@@ -216,16 +217,16 @@ The ball can be an array of MPI types. Here for simplicity, is the integer:</p>
     };
     
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SendBall</span>(){
-        MPI_Send( ball.Data , ball.Size , MPI_INT , target , <span style="color:#ae81ff">0</span> , MPI_COMM_WORLD);
+        MPI_Send( <span style="color:#f92672">&amp;</span>ball[<span style="color:#ae81ff">0</span>] , ball.Size() , MPI_INT , target , <span style="color:#ae81ff">0</span> , MPI_COMM_WORLD);
     }
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">RecvBall</span>(){
-        MPI_Recv( ball.Data, ball.Size , MPI_INT, target, <span style="color:#ae81ff">0</span> , MPI_COMM_WORLD, <span style="color:#f92672">&amp;</span>stat);
+        MPI_Recv( <span style="color:#f92672">&amp;</span>ball[<span style="color:#ae81ff">0</span>], ball.Size() , MPI_INT, target, <span style="color:#ae81ff">0</span> , MPI_COMM_WORLD, <span style="color:#f92672">&amp;</span>stat);
     }
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Play</span>() <span style="color:#66d9ef">override</span>{
         <span style="color:#66d9ef">if</span> (iAmGameStarter) SendBall();
         RecvBall();
-        ball.Data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">++</span>;
-        cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Rank :&#34;</span> <span style="color:#f92672">&lt;&lt;</span> rank <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; has the ball, No of throws: &#34;</span><span style="color:#f92672">&lt;&lt;</span>ball.Data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
+        ball[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">++</span>;
+        cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Rank :&#34;</span> <span style="color:#f92672">&lt;&lt;</span> rank <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; has the ball, No of throws: &#34;</span><span style="color:#f92672">&lt;&lt;</span>ball[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
         <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>iAmGameStarter) SendBall();
     }
     
@@ -239,6 +240,19 @@ The ball can be an array of MPI types. Here for simplicity, is the integer:</p>
     MPI_Status stat;
 };
 
+<span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">MakeUniquePlayer</span>(Ball<span style="color:#f92672">&amp;</span> ball,<span style="color:#66d9ef">int</span> rank){
+    <span style="color:#75715e">// Only rank 0 and 1 play the game
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (rank<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
+        <span style="color:#75715e">// Rank 0 starts the game
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> unique_ptr<span style="color:#f92672">&lt;</span>IPlayer<span style="color:#f92672">&gt;</span> (<span style="color:#66d9ef">new</span> Player(ball, true));
+    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (rank<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
+    {
+        <span style="color:#66d9ef">return</span> unique_ptr<span style="color:#f92672">&lt;</span>IPlayer<span style="color:#f92672">&gt;</span> (<span style="color:#66d9ef">new</span> Player(ball, false));
+    } <span style="color:#66d9ef">else</span>
+    {
+        <span style="color:#66d9ef">return</span> unique_ptr<span style="color:#f92672">&lt;</span>IPlayer<span style="color:#f92672">&gt;</span> (<span style="color:#66d9ef">new</span> Idle());
+    }
+}
 
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
 
@@ -250,24 +264,12 @@ The ball can be an array of MPI types. Here for simplicity, is the integer:</p>
     <span style="color:#75715e">// Customize here
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ballSize <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
     <span style="color:#66d9ef">int</span> warmupIterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">int</span> mainIterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">int</span> mainIterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
 
     Ball ball(ballSize);
 
-    IPlayer<span style="color:#f92672">*</span> player;
+    <span style="color:#66d9ef">auto</span> player <span style="color:#f92672">=</span> MakeUniquePlayer(ball,rank);
 
-    <span style="color:#75715e">// Only rank 0 and 1 play the game
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (rank<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
-        <span style="color:#75715e">// Rank 0 starts the game
-</span><span style="color:#75715e"></span>        player <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Player(ball, true);
-    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (rank<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
-    {
-        player <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Player(ball, false);
-    } <span style="color:#66d9ef">else</span>
-    {
-        player <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Idle();
-    }
-    
     <span style="color:#75715e">// Warm up players before the game
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> warmupIterations; i<span style="color:#f92672">++</span>)
     {
@@ -325,7 +327,6 @@ Bandwidth (GB<span style="color:#f92672">/</span>s)<span style="color:#f92672">:
 <a href="https://www.boost.org/doc/libs/1_74_0/doc/html/mpi.html#mpi.introduction">Boost MPI</a>
 <a href="https://github.com/mpi-forum/mpi-forum-historic/issues/150">MPI Deprecated the C++ bindings</a></p>
 
-			
 			<script>
 				window.onscroll = function () {
 					myFunction();
@@ -362,15 +363,15 @@ Bandwidth (GB<span style="color:#f92672">/</span>s)<span style="color:#f92672">:
 <div>
 	<ul>
 		
-		<li><a href="/posts/mpi-traffic/">MPI Traffic Program with C&#43;&#43;</a></li>
+		<li><a href="/posts/ssh-port-forwarding/">SSH port forwarding to download files</a></li>
 		
-		<li><a href="/posts/debug-mpi-vs-code/">Debug MPI program with Visual Studio Code</a></li>
+		<li><a href="/posts/cpp-span/">Span is a new norm in C&#43;&#43; codes</a></li>
 		
-		<li><a href="/posts/auto-cpp/">C&#43;&#43; auto makes your life easier</a></li>
+		<li><a href="/posts/vs-code-extensions/">Essential VS Code font and extensions for C&#43;&#43;</a></li>
 		
-		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		<li><a href="/posts/perfect-forwarding-cpp/">An overview of C&#43;&#43; perfect forwarding</a></li>
 		
-		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		<li><a href="/posts/static-polymorphism-cpp/">Is C&#43;&#43; static polymorphism useful?</a></li>
 		
 	</ul>
 </div>
@@ -394,6 +395,7 @@ Bandwidth (GB<span style="color:#f92672">/</span>s)<span style="color:#f92672">:
 		</nav>		
 	</div>
 </main>
+
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
@@ -433,7 +435,7 @@ Bandwidth (GB<span style="color:#f92672">/</span>s)<span style="color:#f92672">:
 	</form>
 </div>
 <div class="my-1 display-flex justify-start justify-md-end align-center">
-	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+	<p>Copyright &copy; 2021 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
 </div>
 </div>
 </footer>

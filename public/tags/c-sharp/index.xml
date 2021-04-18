@@ -6,9 +6,18 @@
     <description>Recent content in C Sharp on Sorush Khajepor - Numerical programming and app development</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 22 Oct 2020 18:34:21 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/c-sharp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Dec 2020 18:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/c-sharp/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Connect to Microsoft Access with C# .Net core </title>
+      <title>A note on computer round-off error in physics</title>
+      <link>https://iamsorush.com/posts/round-off-error/</link>
+      <pubDate>Sat, 26 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/round-off-error/</guid>
+      <description>The way floating-point numbers are stored in the memory of a computer can lead to unwanted errors. Here we have an overview of the basics of storing numbers and how they affect the outcome of physics programs.</description>
+    </item>
+    
+    <item>
+      <title>Connect to Microsoft Access database with C# .Net core </title>
       <link>https://iamsorush.com/posts/connect-access-db-net-core/</link>
       <pubDate>Thu, 22 Oct 2020 18:34:21 +0100</pubDate>
       

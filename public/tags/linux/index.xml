@@ -6,7 +6,16 @@
     <description>Recent content in Linux on Sorush Khajepor - Numerical programming and app development</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Nov 2020 21:30:30 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Apr 2021 14:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSH port forwarding to download files</title>
+      <link>https://iamsorush.com/posts/ssh-port-forwarding/</link>
+      <pubDate>Sun, 18 Apr 2021 14:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/ssh-port-forwarding/</guid>
+      <description>Intro I want to download files from a remote computer (destination) into my laptop (client). The remote computer is not accessible directly. I first have to SSH to a server then from that server SSH to the destination computer.</description>
+    </item>
+    
     <item>
       <title>Handy cross-platform packages to connect to a remote Linux server</title>
       <link>https://iamsorush.com/posts/linux-connection-packages/</link>

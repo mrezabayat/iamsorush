@@ -14,13 +14,15 @@
         gtag('config', 'UA-179561110-1');
     </script>
     
+   
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
     <link rel="icon" href="/images/me.gif" type="image/gif">
     <title>How and where to use C&#43;&#43; templates</title>
     
-    <meta name="description" content="Using templates in C&#43;&#43;, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples."> 
+    <meta name="description" content="Using templates in C&#43;&#43;, you can create functions or classes having similar behaviours for different types. Here, all the useful features of templates are explained with examples."> 
     
     <meta name="author" content="map[name:Sorush Khajepor]">
     
@@ -47,7 +49,7 @@
 	<div class="home__header-grid"> 
 		<div class="display-flex flex-column left-horizontal">
 			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
-			<span class="text-shadow-1">Numerical programming and app development</span>
+			<span class="text-shadow-1">Researcher & Developer</span>
 		</div>
 		<div class="center justify-md-end">	
 			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
@@ -106,52 +108,78 @@
 	<div class="article-nav" id="article-nav-id">
 		<article class="overlay-top">
 			<h2 id="template">Template</h2>
-<p>Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples.</p>
+<p>Using templates in C++, we can create a function or class template having a generic behaviour for different types. Therefore, we write and maintain less code.</p>
+<p>At compile time, the compiler assesses the code and can turn a class (or function) template to multiple classes (or functions). Afterwards, at run-time, the classes create objects.</p>
 <h2 id="class-template">Class Template</h2>
-<p>A class can use a generic type which can be any of <code>int</code>, <code>double</code>, <code>string</code>, and so on.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Array</span>{
-    T<span style="color:#f92672">*</span> data;
+<p>Instead of hard-coding two similar classes, Point2dInt,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point2dInt</span>{
+    
+    <span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">2</span>];
+    
     <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    Array(size_t size)
-    {
-        data <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> T[size];
-    }
-    <span style="color:#f92672">~</span>Array(){<span style="color:#66d9ef">delete</span>[] data;}
-    T<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[] (size_t i)
-    {
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[] (size_t i){
         <span style="color:#66d9ef">return</span> data[i];
     }
 };
-</code></pre></div><p><code>Array</code> can be used as an integer or string class:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</code></pre></div><p>and Point2dString,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point2dString</span>{
+    
+    string data[<span style="color:#ae81ff">2</span>];
+    
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    string<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[] (size_t i){
+        <span style="color:#66d9ef">return</span> data[i];
+    }
+};
+</code></pre></div><p>we can have one class template with a generic type which can be <code>int</code>, <code>string</code>, and so on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point2D</span>{
+    
+    T data[<span style="color:#ae81ff">2</span>];
+    
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    T<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[] (size_t i){
+        <span style="color:#66d9ef">return</span> data[i];
+    }
+};
+</code></pre></div><p>If the compiler only sees the above code, it doesn&rsquo;t instantiate any Point2D class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  Array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> a(<span style="color:#ae81ff">5</span>);
-  a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-  
-  Array<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string<span style="color:#f92672">&gt;</span> b(<span style="color:#ae81ff">5</span>);
-  b[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello&#34;</span>;
-  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> b[<span style="color:#ae81ff">0</span>]  <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-}
-</code></pre></div><h2 id="function-template">Function template</h2>
-<p>A function can be dependent on a generic type</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
-T Min(T a, T b){
-  <span style="color:#66d9ef">return</span> a<span style="color:#f92672">&gt;=</span>b<span style="color:#f92672">?</span>b:a;
-}
+  Point2D<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> a; <span style="color:#75715e">// T = int
+</span><span style="color:#75715e"></span>  a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; a[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
+  cout<span style="color:#f92672">&lt;&lt;</span> a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;&lt;</span> a[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">//12
+</span><span style="color:#75715e"></span>
+  Point2D<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> b; <span style="color:#75715e">// T = string
+</span><span style="color:#75715e"></span>  b[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;X&#34;</span>; b[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Y&#34;</span>;
+  cout<span style="color:#f92672">&lt;&lt;</span> b[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;&lt;</span> b[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">//XY
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>However, when the compiler sees the above code, it instantiates two classes <code>Point2D&lt;int&gt;</code> and <code>Point2D&lt;string&gt;</code> which are similar to <code>point2dInt</code> and <code>point2dString</code>.</p>
+<p>Values, which are needed at compile time, can be injected into a template. If we want a C-style array as the storage for the data, its size is needed at compile time</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span>, size_t size<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FixedArray</span>{
+  T data[size];
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+  T<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[] (size_t i){
+    <span style="color:#66d9ef">return</span> data[i];
+  }
+};
 
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-  <span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
-  <span style="color:#66d9ef">int</span> b<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>;
-  <span style="color:#66d9ef">char</span> x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;h&#39;</span>;
-  <span style="color:#66d9ef">char</span> y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;H&#39;</span>;
-  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> Min(a,b) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;<span style="color:#75715e">// 2
-</span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> Min(x,y) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// H has lower ASCII value 
+  FixedArray<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">5</span><span style="color:#f92672">&gt;</span> a;
+  a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;
+  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// 8
 </span><span style="color:#75715e"></span>}
-</code></pre></div><p>Another useful example is the swap function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+</code></pre></div><p>You can find more info about creating arrays in <a href="https://iamsorush.com/posts/create-arrays/">this post</a>.</p>
+<h2 id="function-template">Function template</h2>
+<p>A function template can also be created which is dependent on a generic type</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">void</span> Swap(T<span style="color:#f92672">&amp;</span> a, T<span style="color:#f92672">&amp;</span> b){
     <span style="color:#66d9ef">auto</span> tmp <span style="color:#f92672">=</span> a;
     a <span style="color:#f92672">=</span> b;
@@ -166,20 +194,44 @@ T Min(T a, T b){
     std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> a <span style="color:#f92672">&lt;&lt;</span> b <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// 10
 </span><span style="color:#75715e"></span>    
     std<span style="color:#f92672">::</span>string x <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hi &#34;</span>;
-    std<span style="color:#f92672">::</span>string y <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello &#34;</span>;
+    std<span style="color:#f92672">::</span>string y <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Jack &#34;</span>;
     Swap(x,y);
-    std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> x <span style="color:#f92672">&lt;&lt;</span> y <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Hello Hi
+    std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> x <span style="color:#f92672">&lt;&lt;</span> y <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Jack Hi
 </span><span style="color:#75715e"></span>}
+</code></pre></div><p>For more info about <code>auto</code> keyword in this example, see <a href="https://iamsorush.com/posts/auto-cpp/">this post</a>.</p>
+<p>A function template can also be dependent on a compile-time value</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;array&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span>, size_t n<span style="color:#f92672">&gt;</span> <span style="color:#75715e">// n is a compile-time value
+</span><span style="color:#75715e"></span>T dot(array<span style="color:#f92672">&lt;</span>T, n<span style="color:#f92672">&gt;</span> a, array<span style="color:#f92672">&lt;</span>T,n<span style="color:#f92672">&gt;</span> b){
+  
+  T sum <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span>b[<span style="color:#ae81ff">0</span>];
+  <span style="color:#66d9ef">for</span> (size_t i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>){
+    sum <span style="color:#f92672">+=</span> a[i]<span style="color:#f92672">*</span>b[i];
+  }
+  <span style="color:#66d9ef">return</span> sum;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+  array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> v1 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>};
+  array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> v2 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>};
+  cout<span style="color:#f92672">&lt;&lt;</span> dot<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span>(v1,v2) <span style="color:#f92672">&lt;&lt;</span>endl; <span style="color:#75715e">// 12
+</span><span style="color:#75715e"></span>}
+
 </code></pre></div><h2 id="call-function-template-explicitly">Call function template explicitly</h2>
 <p>In the previous examples, compiler figures type <code>T</code> out. But it gets confused for this case:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
   <span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
   <span style="color:#66d9ef">double</span> b<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>;
-  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> Min(a,b) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Error: T is int or double?
+  cout<span style="color:#f92672">&lt;&lt;</span> Min(a,b) <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// Error: T is int or double?
 </span><span style="color:#75715e"></span>}
 </code></pre></div><p>To solve this, template type needs to be mentioned explicitly:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> Min<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(a,b) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">cout<span style="color:#f92672">&lt;&lt;</span> Min<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(a,b) <span style="color:#f92672">&lt;&lt;</span> endl;
 </code></pre></div><p>Another example that the compiler cannot figure out the type is:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">void</span> MyCast(<span style="color:#66d9ef">double</span> d){
@@ -215,8 +267,25 @@ string Min<span style="color:#f92672">&lt;</span>string<span style="color:#f9267
   std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> Min(a,b) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;<span style="color:#75715e">// 2
 </span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span> Min(x,y) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Hi
 </span><span style="color:#75715e"></span>}
-</code></pre></div><h2 id="definition--declaration-files">Definition &amp; declaration files</h2>
-<p>It&rsquo;s a good practice to separate a class definition (implementation) file from its declaration file. However, the problem with a template class is that compiler creates  a specific class for a type only when it sees a template specialization or class instantiation of a template.</p>
+</code></pre></div><h2 id="default-types">Default types</h2>
+<p>A template parameter can have a default type</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>{
+    T x<span style="color:#f92672">=</span><span style="color:#ae81ff">10.5</span>;
+};
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+    A<span style="color:#f92672">&lt;&gt;</span> a; <span style="color:#75715e">// T = int
+</span><span style="color:#75715e"></span>    cout<span style="color:#f92672">&lt;&lt;</span> a.x; <span style="color:#75715e">// 10
+</span><span style="color:#75715e"></span>    
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>Since <em>C++17</em>, it is not necessary to mention empty brackets:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">A a; <span style="color:#75715e">// equals to A&lt;int&gt; a;
+</span></code></pre></div><h2 id="definition--declaration-files">Definition &amp; declaration files</h2>
+<p>It&rsquo;s a good practice to separate a class definition (implementation) file from its declaration file. However, a problem is that the compiler creates a class out of a template only when it sees a template specialization or a class instantiation.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">
 <span style="color:#75715e">//file sample.h
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
@@ -246,7 +315,7 @@ T Sample<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;
 	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 
-</code></pre></div><p><em>sample.cpp</em> successfully compiles to sample.obj, but it doesn&rsquo;t have a clue that in <em>main.cpp</em> special template of <code>Sample&lt;int&gt;</code> used, so the compiler does not create that special class to be instantiated. Therefore, when <em>main.cpp</em> is compiled with <em>sample.obj</em> we get a linking error.</p>
+</code></pre></div><p><em>sample.cpp</em> is successfully compiled to sample.o, but it doesn&rsquo;t have a clue that, in <em>main.cpp</em>, <code>Sample&lt;int&gt;</code> is used, so the compiler does not create that special class. Therefore, when <em>main.cpp</em> is compiled with <em>sample.o</em> we get a linking error.</p>
 <p>The easiest solution is to put both declaration and definition in the same file, <em>sample.h</em>. But it increases the size of the executable file and surpasses capabilities that separation of declaration and definition brings like solving circular dependencies.</p>
 <p>The second solution is to inform the compiler that we need that special class</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// file sample.cpp
@@ -262,8 +331,58 @@ T Sample<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;
 <span style="color:#75715e">// This line is the key!
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sample</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>;
 
-</code></pre></div><p>Now compiling <em>sample.cpp</em>, we get a <em>sample.obj</em> (<em>sample.o</em> on linux) containing <code>Sample&lt;int&gt;</code> class.</p>
-<h2 id="type-constraints">Type Constraints</h2>
+</code></pre></div><p>Now compiling <em>sample.cpp</em>, we get a <em>sample.o</em> containing <code>Sample&lt;int&gt;</code> class.</p>
+<p>To instantiate a function template, see example below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// abs.cpp
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">auto</span> Abs (<span style="color:#66d9ef">const</span> T<span style="color:#f92672">&amp;</span> a)
+{
+    size_t n <span style="color:#f92672">=</span>  a.size();
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decltype</span>(a[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>a[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">&gt;</span> result(n); <span style="color:#75715e">// decltype of prvalue to remove const &amp;
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">decltype</span>(n) i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+		result[i] <span style="color:#f92672">=</span> a[i]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">?</span> a[i]<span style="color:#f92672">:</span> <span style="color:#f92672">-</span>a[i];
+	<span style="color:#66d9ef">return</span> result;
+}
+
+<span style="color:#75715e">// This is the key for function instantiation 
+</span><span style="color:#75715e">// in the object file
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span> <span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">Abs</span>(<span style="color:#66d9ef">const</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> a) ;
+
+</code></pre></div><h2 id="store-types--parameters">Store types &amp; parameters</h2>
+<p>The types and parameters used in a template can be stored in the class by <code>using</code> and <code>static</code> variables:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span>size_t dim, <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Specs</span>{
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> size_t Dim <span style="color:#f92672">=</span> dim; <span style="color:#75715e">// store dim
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">using</span> Type <span style="color:#f92672">=</span> T; <span style="color:#75715e">// store T
+</span><span style="color:#75715e"></span>};
+</code></pre></div><p>In another scope, we have access to this info</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">S</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Particle</span>{
+    <span style="color:#66d9ef">typename</span> S<span style="color:#f92672">::</span>Type Position[S<span style="color:#f92672">::</span>Dim];<span style="color:#75715e">// access S::Type &amp; S::Dim
+</span><span style="color:#75715e"></span>};
+
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">S</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Box</span>{
+    <span style="color:#66d9ef">typename</span> S<span style="color:#f92672">::</span>Type Extent[S<span style="color:#f92672">::</span>Dim]; <span style="color:#75715e">// access S::Type &amp; S::Dim
+</span><span style="color:#75715e"></span>};
+</code></pre></div><p>Note that <code>typename</code> is necessary to let the compiler know <code>S::Type</code> is a type. In <code>Particle</code> and <code>Box</code>, We can also create an alias for <code>Specs</code> type:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> Type <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> S<span style="color:#f92672">::</span>Type;
+Type Position[S<span style="color:#f92672">::</span>Dim];
+</code></pre></div><p>And the implementation is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+    <span style="color:#66d9ef">using</span> specs <span style="color:#f92672">=</span> Specs<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>,<span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span>;
+    Particle<span style="color:#f92672">&lt;</span>specs<span style="color:#f92672">&gt;</span> p;
+    Box<span style="color:#f92672">&lt;</span>specs<span style="color:#f92672">&gt;</span> b;
+    cout<span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span>(p)<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">sizeof</span>(b)<span style="color:#f92672">&lt;&lt;</span>endl; <span style="color:#75715e">//24 24
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Note that storing template types in a class is easier to read than nested templates:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> U, <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">domain</span>{...}
+</code></pre></div><h2 id="type-constraints">Type Constraints</h2>
 <p>We can limit the types that a template can take using <code>static_assert</code>, <code>std::is_same</code>, and <code>std::is_base_of</code> :</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;type_traits&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
@@ -281,6 +400,43 @@ T Sample<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;
 </span><span style="color:#75715e"></span>  Foo<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> b; <span style="color:#75715e">// Error: T must be int
 </span><span style="color:#75715e"></span>
 	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>From <em>C++20</em>, we have <code>concept</code> which systematically constrains a template</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;array&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">concept</span> IsVector <span style="color:#f92672">=</span> <span style="color:#66d9ef">requires</span> (T x) {
+    <span style="color:#75715e">// below lines must be valid expressions
+</span><span style="color:#75715e"></span>    x.size(); <span style="color:#75715e">// size() is defined.
+</span><span style="color:#75715e"></span>    x[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>x[<span style="color:#ae81ff">0</span>]; <span style="color:#75715e">// addable elements
+</span><span style="color:#75715e"></span>    x.push_back(<span style="color:#ae81ff">0</span>); <span style="color:#75715e">// push_back is defined
+</span><span style="color:#75715e"></span>}; 
+ 
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span> 
+<span style="color:#66d9ef">requires</span> IsVector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#75715e">// imposing IsVector concept 
+</span><span style="color:#75715e"></span>T add(T a, T b) {
+    T <span style="color:#a6e22e">c</span>(a.size());
+    <span style="color:#66d9ef">for</span> (size_t i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>a.size(); i<span style="color:#f92672">++</span>)
+        c[i]<span style="color:#f92672">=</span>a[i]<span style="color:#f92672">+</span>b[i];    
+    <span style="color:#66d9ef">return</span> c; 
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> x<span style="color:#f92672">=</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>};
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> y<span style="color:#f92672">=</span>{<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>};
+    <span style="color:#66d9ef">auto</span> z <span style="color:#f92672">=</span> add(x,y);
+    cout<span style="color:#f92672">&lt;&lt;</span>z[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">&lt;&lt;</span>z[<span style="color:#ae81ff">1</span>]; <span style="color:#75715e">// 3, 3
+</span><span style="color:#75715e"></span>    
+    array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> m<span style="color:#f92672">=</span>{<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>};
+    array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> n<span style="color:#f92672">=</span>{<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>};
+    <span style="color:#75715e">// auto k = add(m,n); // Error:: &#39;x.push_back(0)&#39; is invalid
+</span><span style="color:#75715e"></span>    
+    <span style="color:#75715e">// auto w = add(1,2); // Error &#39;x.size()&#39; is invalid
+</span><span style="color:#75715e"></span>    
+<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><h2 id="enforcing-inheritance">Enforcing inheritance</h2>
 <p>When inheriting from a template class, the compiler overlooks what is inherited.</p>
@@ -305,15 +461,18 @@ dependent on <code>T</code>. Therefore, it has no idea of <code>Move()</code> co
 <span style="color:#75715e">// rest...
 </span><span style="color:#75715e"></span>}
 </code></pre></div><h2 id="type-alias">Type Alias</h2>
-<p>Since <em>C++11</em>, we can define a type alias for  and hard to read names</p>
+<p>Since <em>C++11</em>, we can define a type alias for hard to read names</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">using</span> VecPoint <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span>Point<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span>
 </code></pre></div><p>See <a href="https://iamsorush.com/posts/how-use-cpp-raw-pointer/#owner-convention">here</a>, I created an alias for pointers to have an ownership convention.</p>
-<h2 id="meta-programming">Meta-Programming</h2>
-<p>Metaprogramming is to write a program targeting compile-time values and types. For values,
-I recommend where possible, instead of templates, use <code>constexpr</code> of <em>C++11</em>  which is cleaner and easier to read.</p>
+<h2 id="metaprogramming">Metaprogramming</h2>
+<p>Metaprogramming is to write a program that writes another program. Here in C++, we use metaprogramming to create desired classes and functions at compile time. Moreover, we can target compile-time values and types. For concluding values,
+I recommend before resorting to templates, have a look at <code>constexpr</code> which is clean and easy to read.</p>
 <p>We can assess and conclude types using templates, for example, <code>const</code> qualifier can be dropped by</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// General type
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;type_traits&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// generic type
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span> 
 <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">RemoveConst</span>{ 
     <span style="color:#66d9ef">typedef</span> T type;             
@@ -326,13 +485,14 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
 };
 
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){    
-    std<span style="color:#f92672">::</span>is_same<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, removeConst<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&gt;::</span>value; <span style="color:#75715e">// true
-</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>is_same<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, removeConst<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&gt;::</span>value;  <span style="color:#75715e">// true
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>The function above is defined in the standard library as <code>std::remove_const</code>. In most cases, standard functions defined in  <code>&lt;type_traits&gt;</code> header such as <code>add_const</code>, <code>remove_pointer</code>, <code>add_pointer</code>, <code>is_same</code> along with <code>static_assert</code>  meet our needs.</p>
+    std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span>std<span style="color:#f92672">::</span>is_same<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, RemoveConst<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&gt;::</span>value; <span style="color:#75715e">// true
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span>std<span style="color:#f92672">::</span>is_same<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, RemoveConst<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&gt;::</span>value;  <span style="color:#75715e">// true
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>The metafunction above is defined in the standard library as <code>std::remove_const</code>. In most cases, metafunctions  defined in  <code>&lt;type_traits&gt;</code> header such as <code>true_type</code>, <code>false_type</code>, <code>conditional</code>, <code>is_same</code> along with <code>decltype</code>, <code>if constexpr</code> and <code>static_assert</code>  meet our metaprogramming needs.</p>
 <h2 id="practical-cases">Practical Cases</h2>
 <h3 id="customize-stl-containers">Customize STL Containers</h3>
-<p>Templates are mostly used for creating custom containers. In the below example,  a vector is created that can print its items on the screen.</p>
+<p>Templates are mostly used for creating custom containers. In the below example,  a vector is created that can print its items on the screen. The type of items can be any that supports <code>cout&lt;&lt;</code> command.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
@@ -341,8 +501,7 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrintableVector</span>{
     vector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> data;
     <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    PrintableVector(std<span style="color:#f92672">::</span>initializer_list<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list)
-    {
+    PrintableVector(std<span style="color:#f92672">::</span>initializer_list<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list){
         data.assign(list);
     }
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Print</span>(){
@@ -353,7 +512,7 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
    PrintableVector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> a({<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>});
    a.Print(); <span style="color:#75715e">// 1 3 5 7
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><p>A more intricate example can be found <a href="https://github.com/sorush-khajepor/Sarray">on GitHub</a>, where I created a generic array that supports: +, -, *, /, dot product and so on.</p>
 <h3 id="multidimensional-space">Multidimensional space</h3>
@@ -378,20 +537,20 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
             <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">&gt;=</span>size) <span style="color:#66d9ef">break</span>;
         }
     }
-    Point<span style="color:#f92672">&lt;</span>T,size<span style="color:#f92672">&gt;</span> GetDistanceTo(Point<span style="color:#f92672">&lt;</span>T,size<span style="color:#f92672">&gt;&amp;</span> point){
-        Point<span style="color:#f92672">&lt;</span>T,size<span style="color:#f92672">&gt;</span> distance;
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>size;i<span style="color:#f92672">++</span>){
+    Point <span style="color:#a6e22e">GetDistanceTo</span>(Point<span style="color:#f92672">&amp;</span> point){
+        Point distance;
+        <span style="color:#66d9ef">for</span> (size_t i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>size;i<span style="color:#f92672">++</span>){
             distance[i] <span style="color:#f92672">=</span> data[i] <span style="color:#f92672">-</span> point[i];
         }
         <span style="color:#66d9ef">return</span> distance;
     }
-    T<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[] (size_t i)
-    {
+    T<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span>[] (size_t i){
         <span style="color:#66d9ef">return</span> data[i];
     }
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Print</span>(){
       <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> item: data)
         cout<span style="color:#f92672">&lt;&lt;</span> item<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span>;
+      cout<span style="color:#f92672">&lt;&lt;</span>endl;
     }
 };
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
@@ -407,7 +566,8 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><h3 id="interface">Interface</h3>
-<p>Sometimes, we know the general behavior of a class and we want that behavior to be implemented. A rough example is shown below. We have a set of solver classes that inherit from <code>ISolver</code> interface. They are always run with that interface. The outcome of these solvers needs to be visualized with <code>Visualizer</code> class. However, their outcomes are different from each other: string, double, vector<!-- raw HTML omitted -->, and so on.</p>
+<p>When we know the general behaviour of a class and we want that behaviour to be implemented, an interface can be useful. The interface becomes more flexible if it uses a template.</p>
+<p>A rough example is shown below. We have a set of solver classes that inherit from <code>ISolver</code> interface. They are always run with that interface. The outcome of these solvers needs to be visualized with <code>Visualizer</code> class. However, their outcomes are different from each other: string, double, vector<int>, and so on.</p>
 <p>To connect visualizers and solvers, we define <code>Message</code> template class that represents the outcome of solvers. <code>Visualizer</code> class template is also created which is specialized concerning message types. Finally, the execution and visualization of different types are handled within a simple and generic function, <code>RunAndDisplay()</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
@@ -471,9 +631,9 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
 }
 
 </code></pre></div><h2 id="references">References</h2>
-<p><a href="https://isocpp.org/wiki/faq/templates#fn-templates">isocpp.org</a></p>
+<p><a href="https://isocpp.org/wiki/faq/templates#fn-templates">isocpp.org</a>
+<a href="https://en.cppreference.com/w/cpp/language/templates">cppreference.com</a></p>
 
-			
 			<script>
 				window.onscroll = function () {
 					myFunction();
@@ -510,15 +670,15 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
 <div>
 	<ul>
 		
-		<li><a href="/posts/mpi-traffic/">MPI Traffic Program with C&#43;&#43;</a></li>
+		<li><a href="/posts/ssh-port-forwarding/">SSH port forwarding to download files</a></li>
 		
-		<li><a href="/posts/debug-mpi-vs-code/">Debug MPI program with Visual Studio Code</a></li>
+		<li><a href="/posts/cpp-span/">Span is a new norm in C&#43;&#43; codes</a></li>
 		
-		<li><a href="/posts/auto-cpp/">C&#43;&#43; auto makes your life easier</a></li>
+		<li><a href="/posts/vs-code-extensions/">Essential VS Code font and extensions for C&#43;&#43;</a></li>
 		
-		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		<li><a href="/posts/perfect-forwarding-cpp/">An overview of C&#43;&#43; perfect forwarding</a></li>
 		
-		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		<li><a href="/posts/static-polymorphism-cpp/">Is C&#43;&#43; static polymorphism useful?</a></li>
 		
 	</ul>
 </div>
@@ -533,11 +693,13 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
     <li><a href="#function-template">Function template</a></li>
     <li><a href="#call-function-template-explicitly">Call function template explicitly</a></li>
     <li><a href="#template-specialization">Template specialization</a></li>
+    <li><a href="#default-types">Default types</a></li>
     <li><a href="#definition--declaration-files">Definition &amp; declaration files</a></li>
+    <li><a href="#store-types--parameters">Store types &amp; parameters</a></li>
     <li><a href="#type-constraints">Type Constraints</a></li>
     <li><a href="#enforcing-inheritance">Enforcing inheritance</a></li>
     <li><a href="#type-alias">Type Alias</a></li>
-    <li><a href="#meta-programming">Meta-Programming</a></li>
+    <li><a href="#metaprogramming">Metaprogramming</a></li>
     <li><a href="#practical-cases">Practical Cases</a>
       <ul>
         <li><a href="#customize-stl-containers">Customize STL Containers</a></li>
@@ -551,6 +713,7 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
 		</nav>		
 	</div>
 </main>
+
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
@@ -590,7 +753,7 @@ I recommend where possible, instead of templates, use <code>constexpr</code> of 
 	</form>
 </div>
 <div class="my-1 display-flex justify-start justify-md-end align-center">
-	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+	<p>Copyright &copy; 2021 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
 </div>
 </div>
 </footer>

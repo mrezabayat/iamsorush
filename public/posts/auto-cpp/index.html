@@ -14,11 +14,13 @@
         gtag('config', 'UA-179561110-1');
     </script>
     
+   
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
     <link rel="icon" href="/images/me.gif" type="image/gif">
-    <title>C&#43;&#43; auto makes your life easier</title>
+    <title>C&#43;&#43; auto keyword makes your life easier</title>
     
     <meta name="description" content="In C&#43;&#43;, *auto* keyword can speed up coding and improve the maintainability of code. Here, I show cases that *auto* can make a difference."> 
     
@@ -47,7 +49,7 @@
 	<div class="home__header-grid"> 
 		<div class="display-flex flex-column left-horizontal">
 			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
-			<span class="text-shadow-1">Numerical programming and app development</span>
+			<span class="text-shadow-1">Researcher & Developer</span>
 		</div>
 		<div class="center justify-md-end">	
 			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
@@ -72,7 +74,7 @@
 
 <main>
 	<article>
-		<h1>C&#43;&#43; auto makes your life easier</h1>
+		<h1>C&#43;&#43; auto keyword makes your life easier</h1>
 		<time>03 Dec 2020</time>
 	</article>
 	
@@ -110,7 +112,7 @@
 	<div class="article-nav" id="article-nav-id">
 		<article class="overlay-top">
 			<h2 id="introduction">Introduction</h2>
-<p>Since <em>C++11</em>, a compiler can deduce the type of a variable being declared from its initializer using <code>auto</code> keyword.</p>
+<p>Since <em>C++11</em>, a compiler can deduce the type of a variable being declared from its initializer using <code>auto</code> keyword. It is also called placeholder type specifier.</p>
 <h2 id="general-behavior">General Behavior</h2>
 <p><code>auto</code> infers the type of a variable from its initializer. The variable gets a copy of the initializer</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> i;
@@ -129,14 +131,16 @@
 </span></code></pre></div><p><code>auto&amp;</code> infers <code>const</code> qualifier</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
 <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> j <span style="color:#f92672">=</span> i; <span style="color:#75715e">// const int&amp;, alias for i
-</span></code></pre></div><h2 id="primitive-types">Primitive types</h2>
+</span></code></pre></div><h2 id="literals">Literals</h2>
 <p><code>auto</code> figures out the below types:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// int
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> j<span style="color:#f92672">=</span> <span style="color:#ae81ff">7ul</span>; <span style="color:#75715e">// unsigned long
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.0</span>; <span style="color:#75715e">// double
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> y <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.0f</span>; <span style="color:#75715e">// float
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>; <span style="color:#75715e">// char
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hi&#34;</span>; <span style="color:#75715e">// char const*
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> b <span style="color:#f92672">=</span> true; <span style="color:#75715e">// bool
-</span></code></pre></div><p>From C++14, we can have string-literals, so the compiler deduces <code>std::string</code>:</p>
+</span></code></pre></div><p>From C++14, we can have std::string literals:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std; <span style="color:#75715e">// This is necessary
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hellow&#34;</span>s <span style="color:#75715e">// std::string, note the s operator. 
 </span></code></pre></div><h2 id="classes">Classes</h2>
@@ -146,9 +150,11 @@
 </span></code></pre></div><p>List initializer:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> l <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>}; <span style="color:#75715e">// l is std::initializer_list&lt;int&gt;
 </span></code></pre></div><p>Long name types can be easily replaced by <code>auto</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, std<span style="color:#f92672">::</span>string<span style="color:#f92672">&gt;</span> m;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, std<span style="color:#f92672">::</span>string<span style="color:#f92672">&gt;</span> m; 
 <span style="color:#66d9ef">auto</span> n <span style="color:#f92672">=</span> m;
 
+<span style="color:#66d9ef">auto</span> p <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>make_unique<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(); <span style="color:#75715e">//unique pointer
+</span><span style="color:#75715e"></span>
 std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> vec(<span style="color:#ae81ff">100</span>);
 <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> r <span style="color:#f92672">=</span> vec;
 </code></pre></div><p>A vector iterator type can be hidden with auto</p>
@@ -165,12 +171,21 @@ std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</
 <p>A pointer type is also deduced:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> i;
 <span style="color:#66d9ef">auto</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i; <span style="color:#75715e">// int*
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> q <span style="color:#f92672">=</span> p; <span style="color:#75715e">//int*
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> q <span style="color:#f92672">=</span> p;  <span style="color:#75715e">//int*
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> r <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// int*
-</span></code></pre></div><p>We can emphasize pointer with <code>*</code> just for readability. The outcome of the example below is the same as the previous one:</p>
+</span></code></pre></div><p>We can emphasize pointer type with <code>*</code> for readability. The outcome of the example below is the same as the previous one:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> i;
-<span style="color:#66d9ef">auto</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i; <span style="color:#75715e">// int*
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> <span style="color:#f92672">*</span>q <span style="color:#f92672">=</span> p; <span style="color:#75715e">// int*
+<span style="color:#66d9ef">auto</span><span style="color:#f92672">*</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i; <span style="color:#75715e">// int*
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span><span style="color:#f92672">*</span> q <span style="color:#f92672">=</span> p; <span style="color:#75715e">// int*
+</span></code></pre></div><p>Note both <code>const auto</code> and <code>auto const</code> are turned to a constant pointer with a mutable target. We still can customise the outcome pointer with <code>*</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> r <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i; <span style="color:#75715e">// int* const: constant pointer, mutable target
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> <span style="color:#66d9ef">const</span> s <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i; <span style="color:#75715e">// int* const
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> t <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i;<span style="color:#75715e">// int* const
+</span><span style="color:#75715e"></span>    
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span><span style="color:#f92672">*</span> u <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i;<span style="color:#75715e">// const int*: mutable pointer, constant target
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> <span style="color:#66d9ef">const</span><span style="color:#f92672">*</span> v <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i;<span style="color:#75715e">// const int* or int const* 
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> w <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i;<span style="color:#75715e">// const int* const: pointer &amp; target constant
 </span></code></pre></div><h2 id="references">References</h2>
 <p>By default, <code>auto</code> deduces reference as the value type</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> y;
@@ -200,12 +215,12 @@ std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</
 <span style="color:#66d9ef">auto</span> i <span style="color:#f92672">=</span> f(<span style="color:#ae81ff">2</span>);<span style="color:#75715e">// i gets a copy of f(2)
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> j <span style="color:#f92672">=</span> f(<span style="color:#ae81ff">2</span>);<span style="color:#75715e">// j is an alias of f(2)
 </span></code></pre></div><p>But sometimes, like a wrapper, we want the compiler to deduce the type exactly as it is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">decltype</span>(<span style="color:#66d9ef">auto</span>) ScaleResult(<span style="color:#66d9ef">double</span><span style="color:#f92672">&amp;</span> scaledData){
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ComputeResult</span>(data);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">decltype</span>(<span style="color:#66d9ef">auto</span>) FindTaxReturn(<span style="color:#66d9ef">double</span><span style="color:#f92672">&amp;</span> data){
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Compute</span>(data);
 }
 
 </code></pre></div><h2 id="auto-vs-decltype">auto vs decltype</h2>
-<p><code>auto</code> deduce the type of a variable when declared with the help of  its initializer</p>
+<p><code>auto</code> deduces the type of a variable when declared with the help of  its initializer</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// int
 </span></code></pre></div><p><code>decltype</code> infers the type of expression which can be used for variable declaration or injection into
 a template</p>
@@ -214,25 +229,34 @@ a template</p>
 </span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decltype</span>(f())<span style="color:#f92672">&gt;</span> v; <span style="color:#75715e">// vector&lt;int&gt;, cannot be done with auto
 </span></code></pre></div><p>Note that <code>f()</code> within <code>decltype(f())</code> is not called. In fact during compilation and before the program is run, the declarations are concluded to be <code>int i</code>, <code>vector&lt;int&gt; v</code>.</p>
 <h2 id="test">Test</h2>
-<p>A debugger is your best friend to assess the outcome of <code>auto</code>. However, you can check the types deduced with <code>typeid</code> as below</p>
+<p>A good IDE like VS Code is your best friend to assess the outcome of <code>auto</code>. However, you can check the types using metafunctions in <code>&lt;type_traits&gt;</code> header:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;type_traits&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+  <span style="color:#66d9ef">auto</span> x <span style="color:#f92672">=</span> true;
+  cout<span style="color:#f92672">&lt;&lt;</span>is_same<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decltype</span>(x), <span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;::</span>value;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>To ensure the type is correctly inferred, we can implement <code>static_assert</code>. It throws a compile-time
+error if the type is not correct:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">static_assert</span>(std<span style="color:#f92672">::</span>is_same<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decltype</span>(x), <span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;::</span>value, <span style="color:#e6db74">&#34;x must be bool&#34;</span>);
+</code></pre></div><p>Another solution to check types is to use <code>typeid</code> as below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;typeinfo&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 {
-    <span style="color:#66d9ef">auto</span> x<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>;
+    <span style="color:#66d9ef">auto</span> x<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>u;
     std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">typeid</span>(x).name()<span style="color:#f92672">&lt;&lt;</span>std<span style="color:#f92672">::</span>endl;
 
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><p>To ensure the type is correctly inferred, we can implement <code>static_assert</code>. It throws a compilation
-error if the type is not correct:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;type_traits&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">auto</span> x <span style="color:#f92672">=</span> true;
-<span style="color:#66d9ef">static_assert</span>(std<span style="color:#f92672">::</span>is_same<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decltype</span>(x), <span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;::</span>value, <span style="color:#e6db74">&#34;x must be bool&#34;</span>);
-</code></pre></div><h2 id="function">Function</h2>
-<p>At function definition, the return type of it can be inferred with the aid of
+</code></pre></div><p>The printed output is compiler dependent. <em>GCC</em> on my machine produces strings like <em>i</em>, <em>m</em>, or very long texts. To interpret them, use command <code>c++filt -t</code> in the terminal. So for <em>j</em> output, we run</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">c++filt -t j
+</code></pre></div><p>It produced <code>unsigned int</code> for me. <code>typeid</code> is not as reliable as <code>typetraits</code> functions, read <a href="https://en.cppreference.com/w/cpp/types/type_info/name">here</a> to for more info.</p>
+<h2 id="function">Function</h2>
+<p>At function definition, the type can be inferred with the aid of
 its trailing return type (C++14)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b){
     <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b; <span style="color:#75715e">// return type is int
@@ -240,7 +264,7 @@ its trailing return type (C++14)</p>
 </code></pre></div><p>Therefore, we have to guide the compiler if a function is only declared but not defined</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">subtract</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b); <span style="color:#75715e">// Error: cannot figure out return type
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">int</span>; <span style="color:#75715e">// works fine 
-</span></code></pre></div><p>The compiler must be notified when the return type is ambiguous. In the example below, the compiler cannot deduce the type of <code>f</code>, that&rsquo;s why we mention it is <code>-&gt; double</code>.</p>
+</span></code></pre></div><p>The compiler must be notified when the return type is ambiguous. In the example below, the compiler cannot deduce the type of <code>f</code>, that&rsquo;s why we mention it as <code>-&gt; double</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">bool</span> cond) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">double</span>
 {
     <span style="color:#66d9ef">if</span> (cond)
@@ -249,8 +273,78 @@ its trailing return type (C++14)</p>
         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2.5</span>; <span style="color:#75715e">// returns double
 </span><span style="color:#75715e"></span>}
 
+</code></pre></div><p><em>C++20</em> lets us have <code>auto</code> function arguments. The function below adds containers that have <code>size()</code> method, <code>[]</code> operator, and <code>+</code> operator for their elements. The outcome type is automatically promoted, for example, <code>vector&lt;int&gt;</code> plus <code>vector&lt;double&gt;</code> is <code>vector&lt;double&gt;</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;array&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">add</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> a1, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> a2)
+{
+    <span style="color:#66d9ef">auto</span> n <span style="color:#f92672">=</span>  a1.size();
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decltype</span>(a1[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> a2[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">&gt;</span> result(n);
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">decltype</span>(n) i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+		result[i] <span style="color:#f92672">=</span> a1[i] <span style="color:#f92672">+</span> a2[i];
+	<span style="color:#66d9ef">return</span> result;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+    
+    array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">&gt;</span> a <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>};
+    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> b <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3.1</span>,<span style="color:#ae81ff">2.1</span>,<span style="color:#ae81ff">1.1</span>};
+    <span style="color:#66d9ef">auto</span> r <span style="color:#f92672">=</span> add(a,b);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> item:r)
+        cout<span style="color:#f92672">&lt;&lt;</span>item<span style="color:#f92672">&lt;&lt;</span>endl; <span style="color:#75715e">// 4.1 4.1 4.1
+</span><span style="color:#75715e"></span>    
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h2 id="auto-in-header-file">Auto in header file</h2>
+<p>A function with <code>auto</code> argument is acceptable in a header file (<em>C++20</em>). A function, which returns <code>auto</code>, must declare return type with <code>-&gt;</code> operator. The example below is on <a href="https://github.com/sorush-khajepor/CppExamples/tree/main/basic/example002">GitHub</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// a.h
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>
+{
+    T x;
+    <span style="color:#66d9ef">auto</span> <span style="color:#a6e22e">Add</span>(<span style="color:#66d9ef">auto</span> a)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">decltype</span>(a<span style="color:#f92672">+</span>x);
+};
+</code></pre></div><p>Note that the type of the function argument is relevant just to the function scope, but the type it returns affects the scope the function is called in. That&rsquo;s why the header must hint at the return type.</p>
+<p>In the  <em>.cpp</em> file, all the necessary classes must be instantiated:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// compiler GCC 10.3 flag -std=c++20
+</span><span style="color:#75715e">// a.cpp
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;a.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">auto</span> A<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>Add(<span style="color:#66d9ef">auto</span> a)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">decltype</span>(a<span style="color:#f92672">+</span>x){
+    <span style="color:#66d9ef">return</span> a<span style="color:#f92672">+</span>x;
+}
+
+<span style="color:#75715e">// intantiate classes
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span>
+<span style="color:#66d9ef">auto</span> A<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;::</span>Add(<span style="color:#66d9ef">double</span> a)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">decltype</span>(a<span style="color:#f92672">+</span>x);
+
+<span style="color:#66d9ef">template</span>
+<span style="color:#66d9ef">auto</span> A<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>Add(<span style="color:#66d9ef">int</span> a)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">decltype</span>(a<span style="color:#f92672">+</span>x);
+
+<span style="color:#75715e">// main.cpp
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;a.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+  A<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> a1{.x<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>};
+  A<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> a2{.x<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>};
+  A<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> a3{.x<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>};
+  
+  <span style="color:#66d9ef">auto</span> b <span style="color:#f92672">=</span> a1.Add(<span style="color:#ae81ff">1.0</span>); <span style="color:#75715e">// OK. From header, compiler knows b is double
+</span><span style="color:#75715e"></span>
+  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span>a1.Add(<span style="color:#ae81ff">20.0</span>)<span style="color:#f92672">&lt;&lt;</span>std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// OK
+</span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span>a2.Add(<span style="color:#ae81ff">20</span>)<span style="color:#f92672">&lt;&lt;</span>std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">//OK
+</span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>cout<span style="color:#f92672">&lt;&lt;</span>a3.Add(<span style="color:#ae81ff">20.0</span>)<span style="color:#f92672">&lt;&lt;</span>std<span style="color:#f92672">::</span>endl; <span style="color:#75715e">// Error: double A&lt;int&gt;::Add&lt;double&gt;(double) not found!
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+
+
 </code></pre></div><h2 id="lambda">Lambda</h2>
-<p><code>auto</code> is perfect for specifying the return type of lambda functions.</p>
+<p><code>auto</code> is perfect for specifying the type of lambda functions.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">auto</span> l <span style="color:#f92672">=</span> [](<span style="color:#66d9ef">int</span> i) { <span style="color:#66d9ef">return</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; };
 </code></pre></div><h2 id="templates">Templates</h2>
 <p><code>auto</code> can infer the return type of a templated function (C++14).</p>
@@ -267,7 +361,6 @@ its trailing return type (C++14)</p>
     <span style="color:#66d9ef">return</span> u<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
 };
 </code></pre></div>
-			
 			<script>
 				window.onscroll = function () {
 					myFunction();
@@ -302,15 +395,15 @@ its trailing return type (C++14)</p>
 <div>
 	<ul>
 		
-		<li><a href="/posts/mpi-traffic/">MPI Traffic Program with C&#43;&#43;</a></li>
+		<li><a href="/posts/ssh-port-forwarding/">SSH port forwarding to download files</a></li>
 		
-		<li><a href="/posts/debug-mpi-vs-code/">Debug MPI program with Visual Studio Code</a></li>
+		<li><a href="/posts/cpp-span/">Span is a new norm in C&#43;&#43; codes</a></li>
 		
-		<li><a href="/posts/auto-cpp/">C&#43;&#43; auto makes your life easier</a></li>
+		<li><a href="/posts/vs-code-extensions/">Essential VS Code font and extensions for C&#43;&#43;</a></li>
 		
-		<li><a href="/posts/mpi-race-condition/">MPI race condition</a></li>
+		<li><a href="/posts/perfect-forwarding-cpp/">An overview of C&#43;&#43; perfect forwarding</a></li>
 		
-		<li><a href="/posts/mpi-ping-pong/">MPI ping pong program using C&#43;&#43;</a></li>
+		<li><a href="/posts/static-polymorphism-cpp/">Is C&#43;&#43; static polymorphism useful?</a></li>
 		
 	</ul>
 </div>
@@ -322,7 +415,7 @@ its trailing return type (C++14)</p>
   <ul>
     <li><a href="#introduction">Introduction</a></li>
     <li><a href="#general-behavior">General Behavior</a></li>
-    <li><a href="#primitive-types">Primitive types</a></li>
+    <li><a href="#literals">Literals</a></li>
     <li><a href="#classes">Classes</a></li>
     <li><a href="#pointers">Pointers</a></li>
     <li><a href="#references">References</a></li>
@@ -331,6 +424,7 @@ its trailing return type (C++14)</p>
     <li><a href="#auto-vs-decltype">auto vs decltype</a></li>
     <li><a href="#test">Test</a></li>
     <li><a href="#function">Function</a></li>
+    <li><a href="#auto-in-header-file">Auto in header file</a></li>
     <li><a href="#lambda">Lambda</a></li>
     <li><a href="#templates">Templates</a></li>
   </ul>
@@ -338,6 +432,7 @@ its trailing return type (C++14)</p>
 		</nav>		
 	</div>
 </main>
+
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
 		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
@@ -377,7 +472,7 @@ its trailing return type (C++14)</p>
 	</form>
 </div>
 <div class="my-1 display-flex justify-start justify-md-end align-center">
-	<p>Copyright &copy; 2020 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+	<p>Copyright &copy; 2021 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
 </div>
 </div>
 </footer>

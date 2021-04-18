@@ -6,13 +6,67 @@
     <description>Recent content in Tags on Sorush Khajepor - Numerical programming and app development</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Dec 2020 23:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Apr 2021 14:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://iamsorush.com/tags/linux/</link>
+      <pubDate>Sun, 18 Apr 2021 14:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>C&#43;&#43;</title>
       <link>https://iamsorush.com/tags/c&#43;&#43;/</link>
-      <pubDate>Mon, 14 Dec 2020 23:10:20 +0100</pubDate>
+      <pubDate>Sat, 27 Mar 2021 18:10:20 +0100</pubDate>
       
       <guid>https://iamsorush.com/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VS Code</title>
+      <link>https://iamsorush.com/tags/vs-code/</link>
+      <pubDate>Sun, 14 Mar 2021 14:10:21 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/tags/vs-code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OOP</title>
+      <link>https://iamsorush.com/tags/oop/</link>
+      <pubDate>Sun, 28 Feb 2021 17:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/tags/oop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pointers</title>
+      <link>https://iamsorush.com/tags/pointers/</link>
+      <pubDate>Sun, 14 Feb 2021 22:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/tags/pointers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CI</title>
+      <link>https://iamsorush.com/tags/ci/</link>
+      <pubDate>Sun, 17 Jan 2021 18:00:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C Sharp</title>
+      <link>https://iamsorush.com/tags/c-sharp/</link>
+      <pubDate>Sat, 26 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/tags/c-sharp/</guid>
       <description></description>
     </item>
     
@@ -22,15 +76,6 @@
       <pubDate>Mon, 14 Dec 2020 23:10:20 +0100</pubDate>
       
       <guid>https://iamsorush.com/tags/mpi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://iamsorush.com/tags/linux/</link>
-      <pubDate>Wed, 11 Nov 2020 21:30:30 +0100</pubDate>
-      
-      <guid>https://iamsorush.com/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -62,29 +107,20 @@
     </item>
     
     <item>
-      <title>.Net Core</title>
-      <link>https://iamsorush.com/tags/.net-core/</link>
-      <pubDate>Thu, 22 Oct 2020 18:34:21 +0100</pubDate>
-      
-      <guid>https://iamsorush.com/tags/.net-core/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C Sharp</title>
-      <link>https://iamsorush.com/tags/c-sharp/</link>
-      <pubDate>Thu, 22 Oct 2020 18:34:21 +0100</pubDate>
-      
-      <guid>https://iamsorush.com/tags/c-sharp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Database</title>
       <link>https://iamsorush.com/tags/database/</link>
       <pubDate>Thu, 22 Oct 2020 18:34:21 +0100</pubDate>
       
       <guid>https://iamsorush.com/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>⋅Net Core</title>
+      <link>https://iamsorush.com/tags/net-core/</link>
+      <pubDate>Thu, 22 Oct 2020 18:34:21 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/tags/net-core/</guid>
       <description></description>
     </item>
     

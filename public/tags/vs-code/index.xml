@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VS Code on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/vs-code/</link>
+    <description>Recent content in VS Code on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Mar 2021 14:10:21 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/vs-code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Essential VS Code font and extensions for C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/vs-code-extensions/</link>
+      <pubDate>Sun, 14 Mar 2021 14:10:21 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/vs-code-extensions/</guid>
+      <description>I briefly enumerate the primary font and extensions that I install on my Visual Studio (VS) Code to develop a C++ code: Fira Code font, CMake tools, bookmarks, snippets, and so on.</description>
+    </item>
+    
+  </channel>
+</rss>

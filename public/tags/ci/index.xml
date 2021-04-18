@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI on Sorush Khajepor - Numerical programming and app development</title>
+    <link>https://iamsorush.com/tags/ci/</link>
+    <description>Recent content in CI on Sorush Khajepor - Numerical programming and app development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Jan 2021 18:00:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a C&#43;&#43; project with Travis continuous integration (CI)</title>
+      <link>https://iamsorush.com/posts/travis-ci-cpp/</link>
+      <pubDate>Sun, 17 Jan 2021 18:00:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/travis-ci-cpp/</guid>
+      <description>I explain with an example that how a C++ project is automatically built by Travis CI with the push of a commit.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,133 @@
     <description>Recent content in C&#43;&#43; on Sorush Khajepor - Numerical programming and app development</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Dec 2020 23:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Mar 2021 18:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Span is a new norm in C&#43;&#43; codes</title>
+      <link>https://iamsorush.com/posts/cpp-span/</link>
+      <pubDate>Sat, 27 Mar 2021 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/cpp-span/</guid>
+      <description>Span is a new feature of C++20 for reading and writing a sequence of objects. Here, I mention how to use std::span and its functions including subspan.</description>
+    </item>
+    
+    <item>
+      <title>Essential VS Code font and extensions for C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/vs-code-extensions/</link>
+      <pubDate>Sun, 14 Mar 2021 14:10:21 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/vs-code-extensions/</guid>
+      <description>I briefly enumerate the primary font and extensions that I install on my Visual Studio (VS) Code to develop a C++ code: Fira Code font, CMake tools, bookmarks, snippets, and so on.</description>
+    </item>
+    
+    <item>
+      <title>An overview of C&#43;&#43; perfect forwarding</title>
+      <link>https://iamsorush.com/posts/perfect-forwarding-cpp/</link>
+      <pubDate>Sun, 07 Mar 2021 19:07:21 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/perfect-forwarding-cpp/</guid>
+      <description>With a simple example, it is demonstrated that how perfect forwarding can keep rvalueness of function&amp;rsquo;s parameters. The universal reference is also discussed.</description>
+    </item>
+    
+    <item>
+      <title>Is C&#43;&#43; static polymorphism useful?</title>
+      <link>https://iamsorush.com/posts/static-polymorphism-cpp/</link>
+      <pubDate>Sun, 28 Feb 2021 17:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/static-polymorphism-cpp/</guid>
+      <description>With examples, I explain static vs dynamic polymorphism. I show that static one limits the flexibility of the program at runtime. However, it can improve the performance of the code whose behaviour can be resolved at compile-time.</description>
+    </item>
+    
+    <item>
+      <title>From lvalue, prvalue, and xvalue to move semantics in C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/move-semantics-cpp/</link>
+      <pubDate>Sun, 21 Feb 2021 20:12:10 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/move-semantics-cpp/</guid>
+      <description>With examples, I explain the difference between lvalue, rvalue, prvalue, and xvalue. The rvalue references are defined. Consequently, I describe std::move and its application in creating move constructors and assignments.</description>
+    </item>
+    
+    <item>
+      <title>What is a C&#43;&#43; weak pointer and where is it used? smart pointers part III</title>
+      <link>https://iamsorush.com/posts/weak-pointer-cpp/</link>
+      <pubDate>Sun, 14 Feb 2021 22:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/weak-pointer-cpp/</guid>
+      <description>Weak pointers (weak_ptr) are smart pointers that observe other objects but don&amp;rsquo;t take ownership of them. Here, I explain how they are implemented and why we need them with examples.</description>
+    </item>
+    
+    <item>
+      <title>What is a C&#43;&#43; shared pointer and how is it used? smart pointers part II</title>
+      <link>https://iamsorush.com/posts/shared-pointer-cpp/</link>
+      <pubDate>Sun, 07 Feb 2021 18:19:00 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/shared-pointer-cpp/</guid>
+      <description>Shared pointers (shared_ptr) are smart pointers which ameliorate memory management. Here, I explain them with examples and discuss their usage and performance.</description>
+    </item>
+    
+    <item>
+      <title>What is a C&#43;&#43; unique pointer and how is it used? smart pointers part I</title>
+      <link>https://iamsorush.com/posts/unique-pointers-cpp/</link>
+      <pubDate>Sun, 31 Jan 2021 19:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/unique-pointers-cpp/</guid>
+      <description>Unique pointers (unique_ptr) manage a pointer&amp;rsquo;s allocated memory. Here, I define them and explain the operations, passing to / returning from a function, and performance. A factory example is also demonstrated.</description>
+    </item>
+    
+    <item>
+      <title>What are C&#43;&#43;20 concepts and constraints? How to use them?</title>
+      <link>https://iamsorush.com/posts/concepts-cpp/</link>
+      <pubDate>Sun, 24 Jan 2021 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/concepts-cpp/</guid>
+      <description>With examples, C++ concepts are used to constrain template classes and functions. It is shown that concepts improve the readability of code and facilitate finding bugs.</description>
+    </item>
+    
+    <item>
+      <title>Building a C&#43;&#43; project with Travis continuous integration (CI)</title>
+      <link>https://iamsorush.com/posts/travis-ci-cpp/</link>
+      <pubDate>Sun, 17 Jan 2021 18:00:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/travis-ci-cpp/</guid>
+      <description>I explain with an example that how a C++ project is automatically built by Travis CI with the push of a commit.</description>
+    </item>
+    
+    <item>
+      <title>How to use C&#43;&#43; namespace for large projects</title>
+      <link>https://iamsorush.com/posts/namespace-cpp/</link>
+      <pubDate>Wed, 13 Jan 2021 22:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/namespace-cpp/</guid>
+      <description>I exaplain how namespaces can organize a large project and prevent name conflicts.</description>
+    </item>
+    
+    <item>
+      <title>Create a contiguous array of a generic class in C&#43;&#43; </title>
+      <link>https://iamsorush.com/posts/contiguous-array-structure/</link>
+      <pubDate>Sun, 10 Jan 2021 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/contiguous-array-structure/</guid>
+      <description>I want to create a contiguous array of a class and its derived ones. I make sure the polymorphism behavior is captured too.</description>
+    </item>
+    
+    <item>
+      <title>A note on computer round-off error in physics</title>
+      <link>https://iamsorush.com/posts/round-off-error/</link>
+      <pubDate>Sat, 26 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/round-off-error/</guid>
+      <description>The way floating-point numbers are stored in the memory of a computer can lead to unwanted errors. Here we have an overview of the basics of storing numbers and how they affect the outcome of physics programs.</description>
+    </item>
+    
+    <item>
+      <title>Various ways to create arrays and vectors and their differences in C&#43;&#43;</title>
+      <link>https://iamsorush.com/posts/create-arrays/</link>
+      <pubDate>Sun, 20 Dec 2020 18:10:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/create-arrays/</guid>
+      <description>Different methods to create arrays in C++ are overviewed: c-style array, pointer array, std::vector, std::array, and Boost multiarray. How the memory is managed by each style and also their practical usage is discussed.</description>
+    </item>
+    
     <item>
       <title>MPI Traffic Program with C&#43;&#43;</title>
       <link>https://iamsorush.com/posts/mpi-traffic/</link>
@@ -26,7 +152,7 @@
     </item>
     
     <item>
-      <title>C&#43;&#43; auto makes your life easier</title>
+      <title>C&#43;&#43; auto keyword makes your life easier</title>
       <link>https://iamsorush.com/posts/auto-cpp/</link>
       <pubDate>Thu, 03 Dec 2020 18:10:20 +0100</pubDate>
       
@@ -58,7 +184,7 @@
       <pubDate>Fri, 30 Oct 2020 19:34:31 +0100</pubDate>
       
       <guid>https://iamsorush.com/posts/all-about-template/</guid>
-      <description>Using templates in C++, you can create functions or classes having similar behaviors for different types. Here, all the useful features of templates are explained with examples.</description>
+      <description>Using templates in C++, you can create functions or classes having similar behaviours for different types. Here, all the useful features of templates are explained with examples.</description>
     </item>
     
     <item>
@@ -89,12 +215,12 @@
     </item>
     
     <item>
-      <title>How to use C/C&#43;&#43; raw pointers properly?</title>
+      <title>How to use C&#43;&#43; raw pointers properly?</title>
       <link>https://iamsorush.com/posts/how-use-cpp-raw-pointer/</link>
       <pubDate>Sat, 22 Feb 2020 20:05:39 +0000</pubDate>
       
       <guid>https://iamsorush.com/posts/how-use-cpp-raw-pointer/</guid>
-      <description>A pointer is an 8-byte type on a 64-bit machine that holds the memory address of an object, target. Here, I  mention the most useful characteristics of pointers with examples.</description>
+      <description>A pointer is an 8-byte type on a 64-bit machine that holds the memory address of a target object. Here, I  mention the most useful characteristics of pointers with examples.</description>
     </item>
     
   </channel>

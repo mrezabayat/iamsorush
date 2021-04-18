@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179561110-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-179561110-1');
+    </script>
+    
+   
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
+    <link rel="icon" href="/images/me.gif" type="image/gif">
+    <title>Essential VS Code font and extensions for C&#43;&#43;</title>
+    
+    <meta name="description" content="I briefly enumerate the primary font and extensions that I install on my Visual Studio (VS) Code to develop a C&#43;&#43; code: Fira Code font, CMake tools, bookmarks, snippets, and so on."> 
+    
+    <meta name="author" content="map[name:Sorush Khajepor]">
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://iamsorush.com/css/style.min.css">
+    
+    
+    
+    <style>.icon{width:32px}.mr-1{margin-right:.5em}.mb-1{margin-bottom:.5em}.single-image{display:block;background-repeat:no-repeat;background-position:50%;margin-left:auto;margin-right:auto}.banner{width:100%;min-height:180px;background-image:url(/images/banner_430.jpg);padding:1em 0 2em 0}@media(min-width:430px){.banner{background-image:url(/images/banner.jpg)}}</style>
+    
+
+</head>
+
+<body>
+    
+<div class="read-progress-container">
+	<div class="progress-bar" id="myBar"></div>
+</div>
+<header class="header-black">
+	<div class="container">
+
+	<div class="home__header-grid"> 
+		<div class="display-flex flex-column left-horizontal">
+			<a class="scale-left-sm" href="https://iamsorush.com/">Sorush Khajepor</a>
+			<span class="text-shadow-1">Researcher & Developer</span>
+		</div>
+		<div class="center justify-md-end">	
+			<a href="https://github.com/sorush-khajepor" class="mr-1 icon" aria-label="Github">
+				<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M512 0C229.25 0 0 229.25 0 512c0 226.25 146.688 418.125 350.156 485.812 25.594 4.688 34.938-11.125 34.938-24.625 0-12.188-0.469-52.562-0.719-95.312C242 908.812 211.906 817.5 211.906 817.5c-23.312-59.125-56.844-74.875-56.844-74.875-46.531-31.75 3.53-31.125 3.53-31.125 51.406 3.562 78.47 52.75 78.47 52.75 45.688 78.25 119.875 55.625 149 42.5 4.654-33 17.904-55.625 32.5-68.375C304.906 725.438 185.344 681.5 185.344 485.312c0-55.938 19.969-101.562 52.656-137.406-5.219-13-22.844-65.094 5.062-135.562 0 0 42.938-13.75 140.812 52.5 40.812-11.406 84.594-17.031 128.125-17.219 43.5 0.188 87.312 5.875 128.188 17.281 97.688-66.312 140.688-52.5 140.688-52.5 28 70.531 10.375 122.562 5.125 135.5 32.812 35.844 52.625 81.469 52.625 137.406 0 196.688-119.75 240-233.812 252.688 18.438 15.875 34.75 47 34.75 94.75 0 68.438-0.688 123.625-0.688 140.5 0 13.625 9.312 29.562 35.25 24.562C877.438 930 1024 738.125 1024 512 1024 229.25 794.75 0 512 0z"/></svg>
+			</a>
+			<a href="https://twitter.com/KhSorush" class="mr-1 icon" aria-label="Twitter">
+				<svg id="Logo_FIXED" data-name="Logo â€” FIXED" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><title>Twitter_Logo_Blue</title><rect class="cls-1" width="400" height="400"/><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>
+			</a>
+			<a href="https://scholar.google.co.uk/citations?user=16Y7-NsAAAAJ&hl=en" class="mr-1 icon" aria-label="Google Scholar">
+				<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2" id="Layer_2"><polygon fill="white" points="0.54 9 5 10.98 7 11.87 12 14.09 17 11.87 19 10.98 20 10.54 20 16 22 16 22 9.65 23.46 9 12 3.91 0.54 9"/><path fill="white" d="M18.45,18.89l.55-.27V13.17l-7,3.11L5,13.17v5.45l.55.27a14.45,14.45,0,0,0,12.9,0Z"/></g></svg>
+			</a>
+			<a href="https://stackoverflow.com/users/2543510/sorush" class="mr-1 icon" aria-label="Stackoverflow">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><style>.st0{fill:#bcbbbb}.st1{fill:#f48023}</style><path class="st0" d="M84.4 93.8V70.6h7.7v30.9H22.6V70.6h7.7v23.2z"/><path class="st1" d="M38.8 68.4l37.8 7.9 1.6-7.6-37.8-7.9-1.6 7.6zm5-18l35 16.3 3.2-7-35-16.4-3.2 7.1zm9.7-17.2l29.7 24.7 4.9-5.9-29.7-24.7-4.9 5.9zm19.2-18.3l-6.2 4.6 23 31 6.2-4.6-23-31zM38 86h38.6v-7.7H38V86z"/></svg>
+			</a>
+			<a href="https://www.linkedin.com/in/sorushkh/" class="mr-1 icon" aria-label="Linkedin">
+				<svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.0" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M32,30c0,1.104-0.896,2-2,2H2c-1.104,0-2-0.896-2-2V2c0-1.104,0.896-2,2-2h28c1.104,0,2,0.896,2,2V30z" fill="#007BB5"/><g><rect fill="#FFFFFF" height="14" width="4" x="7" y="11"/><path d="M20.499,11c-2.791,0-3.271,1.018-3.499,2v-2h-4v14h4v-8c0-1.297,0.703-2,2-2c1.266,0,2,0.688,2,2v8h4v-7    C25,14,24.479,11,20.499,11z" fill="#FFFFFF"/><circle cx="9" cy="8" fill="#FFFFFF" r="2"/></g></g><g/><g/><g/><g/><g/><g/></svg>
+			</a>
+		</div>
+    </div>
+	</div>
+</header>
+
+<main>
+	<article>
+		<h1>Essential VS Code font and extensions for C&#43;&#43;</h1>
+		<time>14 Mar 2021</time>
+	</article>
+	
+
+
+
+
+
+    	
+
+
+
+    
+
+
+
+
+
+
+
+
+<style>
+    .post__hero{
+        background-image: url('https://iamsorush.com/images/tools2_hu3d03a01dcc18bc5be0e67db3d8d209a6_192546_430x250_fill_q65_box_center.jpg');
+        height: 250px;
+    }
+    @media (min-width: 430px) {
+        .post__hero{
+        background-image: url('https://iamsorush.com/images/tools2_hu3d03a01dcc18bc5be0e67db3d8d209a6_192546_1280x400_fill_q65_box_center.jpg');
+        height: 400px;
+        }
+    }   
+</style>
+<div class="single-image post__hero"></div>
+	<div class="article-nav" id="article-nav-id">
+		<article class="overlay-top">
+			<h2 id="intro">Intro</h2>
+<p>I briefly enumerate the primary font and extensions that I install on my Visual Studio (VS) Code to develop a C++ code. The first mention is a font, the rest are extensions which can be found by searching their names in the extensions panel of VS Code.</p>
+<h2 id="fira-code-font">Fira Code Font</h2>
+<p>This is a beautiful ligature font that can turn multiple characters into one symbol. <em>C++</em> operators are shown much nicer, for example, <code>&gt;=</code> will be shown as <code>≥</code> and <code>&lt;=</code> is seen as  <code>≤</code>. The picture below from <a href="https://github.com/tonsky/FiraCode">Fira Code GitHub</a>, shows the transformations</p>
+
+<div style="text-align:center;">
+	<img src="/posts/vs-code-extensions/fira.png" alt="(.Get 1)" style="max-width:100%;" />
+	
+</div>
+
+
+
+<p>The instruction for adding Fira Code can be found <a href="https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions">here</a>. At some point in the instruction, you have to change a line in <code>settings.json</code> of VS Code from</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;editor.fontLigatures&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">null</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><p>to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;editor.fontLigatures&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><p>so, the transformations happen.
+I recommend applying the stylistic sets explained in the instruction to make the code look better.</p>
+<h2 id="cc-by-microsoft">C/C++ by Microsoft</h2>
+<p>This extension brings IntelliSense to your code. While typing, it suggests relevant classes, their members, and functions. Moreover, it shows errors in the code without compilation. It supports GCC, Clang and MSVC.</p>
+<p>When you search C/C++, besides this extension, you may see <em>C/C++ Extension Pack</em>. Have a look at the pack too, it contains all the extensions recommended by Microsoft.</p>
+<h2 id="cmake-tools-by-microsoft">CMake Tools by Microsoft</h2>
+<p>CMake is currently the most popular build system. By installing this extension, configuring, building, and debugging a CMake project become a breeze.</p>
+<p>You get handy buttons at the bottom of VS Code, and a panel listing all the targets. By right-clicking on each target you can build/debug that target.</p>
+
+<div style="text-align:center;">
+	<img src="/posts/vs-code-extensions/cmake.png" alt="(.Get 1)" style="max-width:100%;" />
+	
+</div>
+
+
+
+<h2 id="cmake-by-twxs">CMake by twxs</h2>
+<p>This one brings language support to CMake files. While you type, it suggests CMake commands.</p>
+
+<div style="text-align:center;">
+	<img src="/posts/vs-code-extensions/cmakelang.png" alt="(.Get 1)" style="max-width:100%;" />
+	
+</div>
+
+
+
+<h2 id="bookmarks-by-alessandro-fragnani">Bookmarks by Alessandro Fragnani</h2>
+<p>This adds bookmarks capabilities to your code. It is very useful in projects with many/big files. A line can be bookmarked with <code>alt+ctrl+k</code> and you navigate to the next bookmark with <code>alt+ctrl+l</code> or the previous one with <code>alt+ctrl+j</code>. Note that these shortcuts can be overwritten by other extensions. By pressing <code>ctrl+shift+p</code>, and typing <em>bookmarks</em>, all the commands and keyboard shortcuts can be seen.</p>
+
+<div style="text-align:center;">
+	<img src="/posts/vs-code-extensions/bookmark.png" alt="(.Get 1)" style="max-width:100%;" />
+	
+</div>
+
+
+
+<h2 id="bracket-pair-colorizer-2-by-coenraads">Bracket Pair Colorizer 2 by CoenraadS</h2>
+<p>I don&rsquo;t know how I lived before without this. It gives different colours to different matching brackets.
+It hugely improves code readability. The colours also can be customised in <code>settings.json</code> of a project.</p>
+<p>The extension also draws colourful lines to group codes in between brackets. See the colourful brackets and the yellow line highlighting the function block.</p>
+
+<div style="text-align:center;">
+	<img src="/posts/vs-code-extensions/bracketpair.png" alt="(.Get 1)" style="max-width:100%;" />
+	
+</div>
+
+
+
+<h2 id="cc-snippets-by-harsh">C/C++ Snippets by Harsh</h2>
+<p>This one saves a lot of time for writing blocks of <em>if condition</em>, <em>for loop</em>, and so on.
+You write a few first characters of the snippet, for example, <code>for</code> and the desired snippet
+appears top in the autocomplete suggestions, press <code>Tab</code> key and the block is pasted in the code.</p>
+
+<div style="text-align:center;">
+	<img src="/posts/vs-code-extensions/snippet.png" alt="(.Get 1)" style="max-width:100%;" />
+	
+</div>
+
+
+
+
+			<script>
+				window.onscroll = function () {
+					myFunction();
+				};
+				function myFunction() {
+					var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+					var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+					var scrolled = (winScroll / height) * 100;
+					document.getElementById("myBar").style.width = scrolled + "%";
+				}
+			</script>
+			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
+			border-radius: 5px;">
+			
+
+
+  <h3>Related Tags</h3>
+    <div id="tags">
+        
+        <span><a href="/tags/c&#43;&#43;">C&#43;&#43;</a> </span>
+        
+        <span><a href="/tags/vs-code">VS Code</a> </span>
+        
+    </div>
+
+
+
+			<hr style="width:5%;text-align:left;margin-left:0;margin-top: 3em;border-top: 3px solid rgb(87, 86, 86);
+			border-radius: 5px;">
+			
+<div>
+	<h3>Latest Posts</h3>
+</div>
+<div>
+	<ul>
+		
+		<li><a href="/posts/ssh-port-forwarding/">SSH port forwarding to download files</a></li>
+		
+		<li><a href="/posts/cpp-span/">Span is a new norm in C&#43;&#43; codes</a></li>
+		
+		<li><a href="/posts/vs-code-extensions/">Essential VS Code font and extensions for C&#43;&#43;</a></li>
+		
+		<li><a href="/posts/perfect-forwarding-cpp/">An overview of C&#43;&#43; perfect forwarding</a></li>
+		
+		<li><a href="/posts/static-polymorphism-cpp/">Is C&#43;&#43; static polymorphism useful?</a></li>
+		
+	</ul>
+</div>
+	
+		</article>
+		<nav class="hide-on-mobile section-nav">
+			<h3 class="ml-1">Table of contents</h3>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#intro">Intro</a></li>
+    <li><a href="#fira-code-font">Fira Code Font</a></li>
+    <li><a href="#cc-by-microsoft">C/C++ by Microsoft</a></li>
+    <li><a href="#cmake-tools-by-microsoft">CMake Tools by Microsoft</a></li>
+    <li><a href="#cmake-by-twxs">CMake by twxs</a></li>
+    <li><a href="#bookmarks-by-alessandro-fragnani">Bookmarks by Alessandro Fragnani</a></li>
+    <li><a href="#bracket-pair-colorizer-2-by-coenraads">Bracket Pair Colorizer 2 by CoenraadS</a></li>
+    <li><a href="#cc-snippets-by-harsh">C/C++ Snippets by Harsh</a></li>
+  </ul>
+</nav>
+		</nav>		
+	</div>
+</main>
+
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {					
+					clearActiveStatesInTableOfContents();				
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+</script>
+ <footer>
+    <div class="container home__footer-grid">
+	<div class=" my-2">
+	<form name="Subscription" method="POST" data-netlify="true" netlify-honeypot="ahani" action="/pages/sub-success">
+		<p class="nedia">
+		  <label> Name <input name="ahani" /></label>
+		</p>
+		<p><label for="emailinput">Subscribe so I notify you of new posts</label></p>
+		<p class="display-flex">
+		  <input id="emailinput" style="width: 18em;" class="mr-1" type="email" name="email" placeholder=" Email"/>
+		  <button type="submit">Subscribe</button>
+		</p>
+	</form>
+</div>
+<div class="my-1 display-flex justify-start justify-md-end align-center">
+	<p>Copyright &copy; 2021 <a href="https://iamsorush.com/">Sorush Khajepor</a></p>
+</div>
+</div>
+</footer>
+
+
+
+  
+</body>
+
+</html>
