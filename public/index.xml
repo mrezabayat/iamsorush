@@ -8,12 +8,21 @@
     <language>en-us</language>
     <lastBuildDate>Fri, 28 Feb 2020 20:05:39 +0000</lastBuildDate><atom:link href="https://iamsorush.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Build GCC 11 from source in Ubuntu</title>
+      <link>https://iamsorush.com/posts/build-gcc11/</link>
+      <pubDate>Thu, 29 Apr 2021 18:05:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/build-gcc11/</guid>
+      <description>Here I am building the latest GCC,  11.1, in Ubuntu 21.04 from source. The procedure is exaplined step by step.</description>
+    </item>
+    
+    <item>
       <title>SSH port forwarding to download files</title>
       <link>https://iamsorush.com/posts/ssh-port-forwarding/</link>
       <pubDate>Sun, 18 Apr 2021 14:10:20 +0100</pubDate>
       
       <guid>https://iamsorush.com/posts/ssh-port-forwarding/</guid>
-      <description>Intro I want to download files from a remote computer (destination) into my laptop (client). The remote computer is not accessible directly. I first have to SSH to a server then from that server SSH to the destination computer.</description>
+      <description>I want to download files from a destination computer connected to a public SSH server. The destination is accessible only via the server by SSH tunnel.</description>
     </item>
     
     <item>

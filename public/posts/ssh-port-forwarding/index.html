@@ -21,7 +21,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"> 
     <link rel="icon" href="/images/me.gif" type="image/gif">
     <title>SSH port forwarding to download files</title>
-     
+    
+    <meta name="description" content="I want to download files from a destination computer connected to a public SSH server. The destination is accessible only via the server by SSH tunnel."> 
     
     <meta name="author" content="map[name:Sorush Khajepor]">
     
@@ -97,12 +98,12 @@
 
 <style>
     .post__hero{
-        background-image: url('https://iamsorush.com/images/pingpong_hu3d03a01dcc18bc5be0e67db3d8d209a6_97529_430x250_fill_q65_box_center.jpg');
+        background-image: url('https://iamsorush.com/images/port_hu3d03a01dcc18bc5be0e67db3d8d209a6_224010_430x250_fill_q65_box_bottom.jpg');
         height: 250px;
     }
     @media (min-width: 430px) {
         .post__hero{
-        background-image: url('https://iamsorush.com/images/pingpong_hu3d03a01dcc18bc5be0e67db3d8d209a6_97529_1280x400_fill_q65_box_center.jpg');
+        background-image: url('https://iamsorush.com/images/port_hu3d03a01dcc18bc5be0e67db3d8d209a6_224010_1280x400_fill_q65_box_bottom.jpg');
         height: 400px;
         }
     }   
@@ -111,26 +112,34 @@
 	<div class="article-nav" id="article-nav-id">
 		<article class="overlay-top">
 			<h2 id="intro">Intro</h2>
-<p>I want to download files from a remote computer (destination) into my laptop (client). The remote computer is not accessible directly. I first have to SSH to a server then from that server SSH to the destination computer.</p>
+<p>I want to download files from a remote computer (<strong>destination</strong>), into my laptop (<strong>client</strong>). The remote computer is not accessible directly. I first have to SSH to a <strong>server</strong> then, from that server, SSH to the destination computer.</p>
+
+<div style="text-align:center;">
+	<img src="/posts/ssh-port-forwarding/ssh.png" alt="(.Get 1)" style="max-width:100%;" />
+	
+</div>
+
+
+
 <p>So my usual procedure to connect to the destination is to open a Linux terminal and write</p>
-<pre><code>ssh myUserName@serverAddress
-</code></pre><p>Inserting the password, I am in the server terminal. I run</p>
-<pre><code>ssh destinationAddress
-</code></pre><p>and I am in the destination terminal. I can do whatever I want there.</p>
-<p>Note the server and destination addressses are in the form of either IPs or names. Server address is public accessible from anywhere, but destination address is local to the server network.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh myUserName@serverAddress
+</code></pre></div><p>Inserting the password, I am in the server terminal. I run</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh destinationAddress
+</code></pre></div><p>and I am in the destination terminal. I can do whatever I want there.</p>
+<p>Note the server and destination addresses are in the form of either IPs or names. The server address is public and accessible from anywhere, but the destination address is local to the server network.</p>
 <p>Now how can I download files from the destination to my laptop? read the next section.</p>
-<h1 id="portforwarding">Portforwarding</h1>
+<h2 id="portforwarding">Portforwarding</h2>
 <p>The idea is to set a port on my laptop to point to a port on the destination computer. The SSH command is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -L aFreeLaptopPort:destinationAddress:destinationPort myUsername@serverAddress
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -L aLaptopPort:destinationAddress:destinationPort myUsername@serverAddress
 </code></pre></div><p>Because we are going to download files through ssh, I forward <code>port 22</code> of the destination.</p>
 <p>To find listening ports on my laptop, I run the below command in the terminal:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo netstat -tulpn | grep LISTEN
 </code></pre></div><p>So I choose a port that is not on the list. I usually use port 5901.</p>
 <p>So the port forwarding command becomes like</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -L 5901:destinationAddress:22 myUsername@serverAddress
-</code></pre></div><p>After inserting your password, you should be in the server terminal. Now port <code>5901</code> of my laptop points to port <code>22</code> of the destination. I leave the terminal open but we do not work with it.</p>
+</code></pre></div><p>After inserting the password, you should be in the server terminal. Now port <code>5901</code> of my laptop points to port <code>22</code> of the destination. I leave the terminal open but we do not work with it.</p>
 <p>To check the port is forwarded, in another terminal on my laptop I can run the <code>netstat</code> command above.</p>
-<h1 id="download-files">Download files</h1>
+<h2 id="download-files">Download files</h2>
 <p>To download files I use <a href="https://filezilla-project.org/download.php?type=client">FileZilla</a>. Go to File-&gt;Site Manager. Push <em>New site</em> button. In the <em>General</em> tab, fill the fields like the picture below:</p>
 
 <div style="text-align:center;">
@@ -149,7 +158,11 @@
 
 
 
-<p>The rest is easy, dragging files from the right window (destiantion) and dropping them in the left window (my laptop).</p>
+<p>The rest is easy, dragging files from the right window (destination) and dropping them in the left window (my laptop).</p>
+<h2 id="more">More</h2>
+<p>Here I use Linux Ubuntu but you can do the same on Windows with <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a> or PowerShell.</p>
+<p>The technique explained here can be used to connect to a remote printer, desktop and so on.</p>
+<p>If you like this article, you may like this article too: <a href="https://iamsorush.com/posts/linux-connection-packages/">Handy cross-platform packages to connect to a remote Linux server</a>.</p>
 
 			<script>
 				window.onscroll = function () {
@@ -185,6 +198,8 @@
 <div>
 	<ul>
 		
+		<li><a href="/posts/build-gcc11/">Build GCC 11 from source in Ubuntu</a></li>
+		
 		<li><a href="/posts/ssh-port-forwarding/">SSH port forwarding to download files</a></li>
 		
 		<li><a href="/posts/cpp-span/">Span is a new norm in C&#43;&#43; codes</a></li>
@@ -192,8 +207,6 @@
 		<li><a href="/posts/vs-code-extensions/">Essential VS Code font and extensions for C&#43;&#43;</a></li>
 		
 		<li><a href="/posts/perfect-forwarding-cpp/">An overview of C&#43;&#43; perfect forwarding</a></li>
-		
-		<li><a href="/posts/static-polymorphism-cpp/">Is C&#43;&#43; static polymorphism useful?</a></li>
 		
 	</ul>
 </div>
@@ -204,6 +217,9 @@
 			<nav id="TableOfContents">
   <ul>
     <li><a href="#intro">Intro</a></li>
+    <li><a href="#portforwarding">Portforwarding</a></li>
+    <li><a href="#download-files">Download files</a></li>
+    <li><a href="#more">More</a></li>
   </ul>
 </nav>
 		</nav>		

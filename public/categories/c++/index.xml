@@ -6,7 +6,16 @@
     <description>Recent content in C&#43;&#43; on Sorush Khajepor - Numerical programming and app development</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Mar 2021 18:10:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Apr 2021 18:05:20 +0100</lastBuildDate><atom:link href="https://iamsorush.com/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build GCC 11 from source in Ubuntu</title>
+      <link>https://iamsorush.com/posts/build-gcc11/</link>
+      <pubDate>Thu, 29 Apr 2021 18:05:20 +0100</pubDate>
+      
+      <guid>https://iamsorush.com/posts/build-gcc11/</guid>
+      <description>Here I am building the latest GCC,  11.1, in Ubuntu 21.04 from source. The procedure is exaplined step by step.</description>
+    </item>
+    
     <item>
       <title>Span is a new norm in C&#43;&#43; codes</title>
       <link>https://iamsorush.com/posts/cpp-span/</link>
