@@ -57,7 +57,7 @@ Build GCC:
 make -j 16
 ```
 
-My laptop has 16 processing threads (8 logical cores), because of that, I put 16. 
+My laptop has 16 processing threads (8 logical cores), because of that, I put 16. For me, it took about 10 min to finish.
 
 During the `make` process, you might get errors, read, google and fix them. Then run the `make` command again.
 
