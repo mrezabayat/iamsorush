@@ -1,11 +1,10 @@
 import matplotlib.pyplot as plt
 import matplotlib.cbook as cbook
-
 import numpy as np
 from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
-
 import os
 
+# current working directory
 cwd = os.getcwd()
 
 # Read data sets
@@ -28,21 +27,18 @@ print(ab.size)
 print(cd.size)
 
 # Font setup
-# install latex for Ubuntu
-# sudo apt-get install texlive-latex-extra texlive-fonts-recommended dvipng cm-super
-# tex sample without latex   r'$a + \frac{\theta} {s}$'
-plt.rc('text', usetex = True)
-plt.rcParams["font.family"] = "monospace" # serif, sans-serif, monospace, cursive, fantasy
+plt.rc('text', usetex = True) # True: system, False: matplotlib LaTex
+plt.rcParams["font.family"] = "serif" # serif, sans-serif, monospace, cursive, fantasy
 small_font = 10
 medium_font = 12
 big_font = 14
 
-plt.rc('font', size=small_font)          # controls default text sizes
-plt.rc('axes', titlesize=small_font)     # fontsize of the axes title
-plt.rc('axes', labelsize=medium_font)    # fontsize of the x and y labels
-plt.rc('xtick', labelsize=small_font)    # fontsize of the tick labels
-plt.rc('ytick', labelsize=small_font)    # fontsize of the tick labels
-plt.rc('legend', fontsize=small_font)    # legend fontsize
+plt.rc('font', size=small_font)       # controls default text sizes
+plt.rc('axes', titlesize=small_font)  # fontsize of the axes title
+plt.rc('axes', labelsize=medium_font) # fontsize of the x and y labels
+plt.rc('xtick', labelsize=small_font) # fontsize of the tick labels
+plt.rc('ytick', labelsize=small_font) # fontsize of the tick labels
+plt.rc('legend', fontsize=small_font) # legend fontsize
 plt.rc('figure', titlesize=big_font)  # fontsize of the figure title
 
 # Plot
