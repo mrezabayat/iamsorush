@@ -6,14 +6,14 @@ imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["Python"]
 categories: "Diverse" 
-summary: "I write a python script that, using Matplotlib, creates high-quality x-y charts. *LaTeX* is supported. The chart details such as font, line and marker styles and ticks are modifiable."
+summary: "I write a python script that, using Matplotlib, creates high-quality x-y charts from a CSV file. LaTeX is supported. The chart details such as font, line and marker styles and ticks are modifiable."
 ---
 
 ## Goal
 
 The goal is to create a high-quality chart that can be used for scientific journals. A Python script is written that:
 
-* Reads different columns with different rows,
+* Reads different columns with different rows from a CSV file,
 * The arrays can be scaled,
 * Create an x-y chart with the data,
 * The charts labels can be *LaTeX* equations,
