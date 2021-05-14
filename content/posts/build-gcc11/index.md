@@ -73,12 +73,20 @@ Libraries have been installed in:
    /usr/local/gcc-11.1.0/lib/../lib64
 ```
 
+## Usage
+
 There are several options to use the new GCC, the simplest is to add the lines below to `~/.bashrc`:
 
 ```bash
-export export PATH=/usr/local/gcc-11.1.0/bin:$PATH
+export PATH=/usr/local/gcc-11.1.0/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/gcc-11.1.0/lib64:$LD_LIBRARY_PATH
+
+# To let CMake know
+export CC=/usr/local/gcc-11.1.0/bin/gcc-11.1
+export CXX=/usr/local/gcc-11.1.0/bin/g++-11.1
+export FC=/usr/local/gcc-11.1.0/bin/gfortran-11.1
 ```
+Nowadays, most *Fortran/C/C++* projects are build by CMake. To guide CMake to use the new compiler, I defined `CC`, `CXX` and `FC` environment variables.
 
 Afterwards, open a new terminal and run
 ```bash
@@ -86,14 +94,16 @@ gcc-11.1 --version
 ```
 You should see the one newly installed.
 
-
-Instead of editing `~/.bashrc` file, another option is to create a file like `~/load_gcc11.1.sh` and paste the above `export` lines in it. Then whenever you need to load this GCC in a terminal, you run
+Instead of editing `~/.bashrc`, another option is to create a file like `~/load_gcc11.1.sh` and paste the above `export` lines in it. Then whenever you need to load this GCC in a terminal, you run
 
 ```bash
 source ~/load_gcc11.1.sh
 ```
+In this way, you can have multiple versions, and load the one that suits your project.
 
-You can check all available GCC compilers with:
+## Compilers
+
+You can check all available GCC commands with:
 
 ```bash
 ls /usr/local/gcc-11.1.0/bin/
@@ -106,6 +116,9 @@ g++-11.1
 gcc-11.1
 gfortran-11.1
 ```
+
+## Delete garbage
+
 If all good, we don't need the source and build folders anymore, delete them
 
 ```bash
@@ -113,9 +126,11 @@ rm ~/build -rf
 rm ~/gcc-releases-gcc-11.1.0 -rf
 ```
 
+
+
 ## More details 
 
-The default installation of GCC on Ubuntu is accessbile with commands without the version extension:
+The default installation of GCC on Ubuntu is accessible with commands without the version extension:
 
 ```bash
 c++
