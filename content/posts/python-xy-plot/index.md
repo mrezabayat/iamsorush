@@ -3,7 +3,7 @@ title: "Journal quality x-y chart with Matplotlib"
 date: 2021-05-09T18:10:20+01:00
 image: /images/chart.jpg
 imageQuality: "q65"
-imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+imageAnchor: "Center"
 tags: ["Python"]
 categories: "Diverse" 
 summary: "I write a python script that, using Matplotlib, creates high-quality x-y charts from a CSV file. LaTeX is supported. The chart details such as font, line and marker styles and ticks are modifiable."
@@ -38,7 +38,7 @@ sudo apt-get install texlive-latex-extra texlive-fonts-recommended dvipng cm-sup
 
 ## Install Matplotlib
 
-In a Linux terminal run below code:
+In a Linux terminal run the below code:
 
 ```bash
 python3 -m pip install matplotlib
