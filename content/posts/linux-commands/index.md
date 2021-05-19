@@ -396,7 +396,7 @@ In some terminals, you can press `ctrl+l` to do the same.
 
 ## Stop a process
 
-If the process is running in the current terminal, takes too long and you want to break it press `ctrl+c` a few times till the terminal is receptive of a new command. For example,
+If a process, which is running in the current terminal, takes too long and you want to break it press `ctrl+c` a few times. For example,
 
 ```Bash
 # takes 5 seconds to finish
