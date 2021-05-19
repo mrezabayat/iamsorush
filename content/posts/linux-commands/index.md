@@ -5,7 +5,7 @@ image: /images/dog.jpg
 imageQuality: "q65"
 imageAnchor: "Center" 
 tags: ["Linux"]
-categories: "C++" 
+categories: "Diverse" 
 summary: "Here, I picked essential Linux commands, you need to know to use a Bash terminal: navigation, copy, delete, variables, aliases, and so on."
 ---
 
