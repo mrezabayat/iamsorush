@@ -423,7 +423,7 @@ kill idOfApplication
 
 ## zsh
 
-If you have z-shell installed you can access it via
+If you have Z-shell installed you can access it via
 
 ```Bash
 zsh
