@@ -6,7 +6,7 @@ imageQuality: "q65"
 imageAnchor: "bottom" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["C++", "Python"]
 categories: "C++" 
-summary: "I want to use pybind11 to compile an OpenMP parallel code and load and run it in Python. The code is in C++. "
+summary: "I want to use pybind11 to compile an OpenMP parallel code. Then, I load the created module in Python and run it. The code is in C++. "
 ---
 
 ## Goal
