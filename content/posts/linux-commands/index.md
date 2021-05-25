@@ -303,7 +303,7 @@ We can see all the environment variables defined, with the command
 env
 ```
 
-A good place to define environment variables is `~/.bashrc`.
+A good place to define environment variables is `~/.bashrc` in Ubuntu or `~/.zshrc` for Z-shell.
 
 To have an executable available in every working directory, add its folder to `PATH` 
 
@@ -328,6 +328,7 @@ alias lgrep="ls | grep"
 alias current='cd "/home/sorush/test program"'
 alias brc="vim ~/.bashrc"
 alias zrc="vim ~/.zshrc"
+alias unicomputer="ssh sorush@xxxx.xxx.xx"
 ```
 
 So we can do this:
@@ -336,7 +337,7 @@ So we can do this:
 hgrep ssh
 # equals to history | grep ssh
 ```
-A good place for aliases is `~/.bashrc`.
+A good place for aliases is `~/.bashrc` in Ubuntu.
 We can see all the aliases defined in a terminal by running 
 ```Bash
 alias
@@ -345,7 +346,7 @@ alias
 
 ## System info
 
-Get the list of disks and their free space with disk free command
+Get the list of disks and their free space with **disk free** command
 
 ```Bash
 df -h
@@ -396,25 +397,25 @@ In some terminals, you can press `ctrl+l` to do the same.
 
 ## Stop a process
 
-If a process, which is running in the current terminal, takes too long and you want to break it press `ctrl+c` a few times. For example,
+Press `ctrl+c` to kill a process running in the current terminal:
 
 ```Bash
 # takes 5 seconds to finish
 sleep 5 
 # press ctrl+c before it finishes
 ```
-To stop an application (or process) that is running in the background or in another terminal: 
+To stop an application (or process) that is running in the background or another terminal: 
 
 ```Bash
 killall nameOfapplication
 ```
 
-Another way is to get the ID of the application:
+Another way is to first get the ID of the application:
 
 ```Bash
 pidof nameOfapplication
 ```
-You can use `top` or `htop` too. Then stop it using its ID
+You can also use `top` or `htop`. Then stop it using its ID
 
 ```Bash
 kill idOfApplication
@@ -423,7 +424,7 @@ kill idOfApplication
 
 ## zsh
 
-If you have Z-shell installed you can access it via
+If you have Z-shell installed, you can access it via
 
 ```Bash
 zsh
@@ -473,13 +474,20 @@ chmod 777 nameOfTheFile
 Sometimes you want to run a command that takes a lot of time like copying huge files and in the meantime, you want to do other stuff. You can run the time-consuming task in the background of the terminal by adding `&` to it: 
 
 ```Bash
-# A CPU sleeps 5 seconds
-sleep 5 &
+# A CPU sleeps 20 seconds
+sleep 20 &
 ```
 
-You can see the list of all process in the background via 
+You can see the list of all processes in the background via 
 ```Bash
 jobs
+# [1]  + running    sleep 20
+```
+You can kill the process with its job id
+
+```bash
+# Note the % sign
+kill %1
 ```
 
 
@@ -506,8 +514,6 @@ wget urlOfFile
 Before jumping to google to understand a Linux command, try the `man` command. It may explain them better:
 
 ```Bash
-man aLinuxCommand
-# For example
 man ls
 man cp
 man history
@@ -517,7 +523,7 @@ man history
 ## Find executables
 
 Some executables are in system path. You run them without you know where they reside.
-To know where is the binary, source and manual of a command run:
+To know where the binary, source and manual of a command are, run:
 
 ```bash
 whereis ls
@@ -525,7 +531,7 @@ whereis history
 whereis gcc
 ```
 
-If you just want to know the address of the binary of a command use
+If you just want to know the address of the binary of a command, use
 
 ```bash
 which cp
@@ -534,7 +540,7 @@ which gcc
 ```
 ## symlink
 
-A symbolic link or symlink is a file that refers to another file or folder. It similar to a shortcut in Windows.
+A symbolic link or symlink is a file that refers to another file or folder. It is similar to a shortcut in Windows.
 
 To create a link file from an existing file, run 
 ```Bash
