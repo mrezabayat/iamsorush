@@ -124,6 +124,26 @@ du -sh ~/myFolder
 
 `-h` means human-readable like MegaByte (M), GigaByte (G), `-s` is to hide subdirectories.
 
+
+## Print to file
+
+To write the output of a command into a file instead of terminal, use `>` followed by the name of the file:
+
+```bash
+ls > myFile.txt
+```
+
+
+## Read live logs
+
+To see the live updates to a log file that is being written by a program, run
+
+```bash
+tail -f logFile
+```
+If you drop, `-f`, you see just the last 10 lines of the file at the moment you press Enter. 
+
+
 ## Copy
 
 A file in the current folder can be copied into another folder
@@ -439,7 +459,7 @@ tar -xvf myFile.tar.gz
 ```
 The letters are for extract (x) Verbosely (v) file(f). The same works for `.tar.bz2` files. 
 
-## Copy-paste text
+## Clipboard Copy-paste 
 
 Sometimes you want to copy a text from the terminal into the Linux clipboard, and then paste it somewhere else, for example in a Word document. This is what I do in Ubuntu: 
 
@@ -447,6 +467,21 @@ Sometimes you want to copy a text from the terminal into the Linux clipboard, an
 * **Paste**: paste the clipboard content into a terminal with `ctrl+shift+v`. 
 
 You can also do both of the above with right-click on a terminal.
+
+## Terminal cut-paste
+
+Write a line in a terminal and move the cursor to the center:
+
+* ctrl+k: cut everything after the cursor (I say Knock)
+* ctrl+u: cut everything before the cursor (I say Up)
+* ctrl+y: paste what cut before (Yank)
+
+## Jump cursor
+
+Jump cursor:
+
+* ctrl+a: to the begining of the line (Arch)
+* ctrl+e: to the end of the the line (End)
 
 
 ## Permissions
@@ -522,8 +557,8 @@ man history
 
 ## Find executables
 
-Some executables are in system path. You run them without you know where they reside.
-To know where the binary, source and manual of a command are, run:
+Some executables are in the system path. You run them without you know where they reside.
+To know where the binary, source and manual of command are, run:
 
 ```bash
 whereis ls
