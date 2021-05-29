@@ -9,7 +9,6 @@ categories: "Diverse"
 summary: "Here, I picked essential Linux commands, you need to know to use a Bash terminal: navigation, copy, delete, variables, aliases, and so on."
 ---
 
-## Intro
 
 Here, I gather useful Linux commands that you need know to work with a Bash terminal.
 
@@ -91,6 +90,18 @@ more myFile.txt
 
 `vim` and `nano` are two popular text editors in Bash which can also be used for viewing the content of files.
 
+## Read live logs
+
+To see the live updates to a log file that is being written by a program, run
+
+```bash
+tail -f logFile
+```
+
+* `-f`: follow updates
+
+If `-f` is dropped, you see only the last 10 lines of the file at the moment you press Enter. 
+
 
 ## Directory
 
@@ -104,7 +115,12 @@ Get content of a directory with the list command
 ```Bash
 ls -al /home
 ```
-If you drop the destination folder, it shows the content of the current directory. `-a` means show everything, `-l` means show details. You can drop `-al` to see the difference.
+
+* `-a`: show everything 
+* `-l`: show details. 
+
+You can drop `-al` to see the difference. If you drop the destination folder, it shows the content of the current directory. 
+
 
 
 To show a tree-like list of content:
@@ -113,7 +129,10 @@ To show a tree-like list of content:
 tree -d -L 2
 ```
 
-`-d` to show only directories, `-L 2` to show only 2 layers of subdirectories. On some Linux distros `tree` is not available by default, you have to install it.
+* `-d`: show only directories
+* `-L 2`: show only 2 layers of subdirectories
+
+On some Linux distros `tree` is not available by default, you have to install it.
 
 
 Get the size of a directory (I read it "dush"):
@@ -122,29 +141,20 @@ Get the size of a directory (I read it "dush"):
 du -sh ~/myFolder
 ```
 
-`-h` means human-readable like MegaByte (M), GigaByte (G), `-s` is to hide subdirectories.
+* `-h`: human-readable like MegaByte (M), GigaByte (G)
+* `-s`: to hide subdirectories.
 
 
 ## Print to file
 
-To write the output of a command into a file instead of terminal, use `>` followed by the name of the file:
+To write the output of a command into a file, use `>` followed by the name of the file:
 
 ```bash
 ls > myFile.txt
 ```
+Nothing will be shown in the terminal.
 
-
-## Read live logs
-
-To see the live updates to a log file that is being written by a program, run
-
-```bash
-tail -f logFile
-```
-If you drop, `-f`, you see just the last 10 lines of the file at the moment you press Enter. 
-
-
-## Copy
+## Copy file
 
 A file in the current folder can be copied into another folder
 
@@ -156,11 +166,11 @@ A folder can be copied into another place:
 ```bash
 cp -r ~/myfolder ~/anotherFolder 
 ```
-`-r` (short for recursive) is necessary, it means copy the folder and everything inside. 
+* `-r`: copy the folder and everything inside (Recursive) 
 
 Note `cp` command overwrites existing files without any question.
 
-## Move
+## Move file
 
 Move command is to copy a file/folder to another place and delete the original file/folder. It is equivalent to cut-paste in Windows and copy-move in Mac.
 
@@ -175,7 +185,7 @@ A folder can be moved into another folder:
 mv ~/myfolder ~/anotherFolder 
 ```
 
-## Rename
+## Rename file
 
 The move command is used for renaming a file
 
@@ -190,7 +200,7 @@ mv ~/myfolder ~/Simulation01
 
 So when using `mv` command, if the destination folder exists, cut-paste happens, otherwise, the current folder is renamed to the destination folder.
 
-## Remove
+## Remove file
 
 To remove a file or directory 
 
@@ -219,7 +229,9 @@ You can find a file in the current directory and its subdirectories via
 find . -name "*.txt"
 ```
 
-Here, I use wildcard `*`, for any `txt` file. But you can put the exact name there.
+* `*`: wildcard for any `txt` file. 
+
+You can also put the exact name there.
 
 
 
@@ -238,10 +250,16 @@ the result is two columns, the first column is the ID of command and the second 
   319  pwd
 ```
 
-To run a command again, use `!`+ID of the command:
+To run command again, use `!`+ID of the command:
 ```bash
 !319
 # will run pwd
+```
+
+To run the last command, use `!!`. Here I run the last command with `sudo`:
+
+```bash
+sudo !!
 ```
 
 ## Grep via pipes
@@ -348,6 +366,7 @@ alias lgrep="ls | grep"
 alias current='cd "/home/sorush/test program"'
 alias brc="vim ~/.bashrc"
 alias zrc="vim ~/.zshrc"
+alias dirsize="du -sh"
 alias unicomputer="ssh sorush@xxxx.xxx.xx"
 ```
 
@@ -359,6 +378,7 @@ hgrep ssh
 ```
 A good place for aliases is `~/.bashrc` in Ubuntu.
 We can see all the aliases defined in a terminal by running 
+
 ```Bash
 alias
 ```
@@ -372,7 +392,7 @@ Get the list of disks and their free space with **disk free** command
 df -h
 ```
 
-`-h` means human-readable.
+* `-h`: human-readable.
 
 Get memory usage by
 
@@ -380,7 +400,8 @@ Get memory usage by
 free -h
 ```
 
-Get list (ls) of CPUs (cpu) and their info with
+Get the list (ls) of CPUs (cpu) and their info with
+
 ```Bash
 lscpu
 ```
@@ -400,20 +421,21 @@ htop
 But usually `htop` is not available, and you have to install it by yourself.
 
 
-## Exit
+## Clear & Exit
 
-You can close the terminal you are working in simply by running
-```Bash
-exit
-```
-
-## Clear
 You can clear the terminal with
 
 ```Bash
 clear
 ```
-In some terminals, you can press `ctrl+l` to do the same.
+You can press `ctrl+l` to do the same.
+
+You can exit a terminal by:
+
+```Bash
+exit
+```
+
 
 ## Stop a process
 
@@ -442,14 +464,6 @@ kill idOfApplication
 ```
 
 
-## zsh
-
-If you have Z-shell installed, you can access it via
-
-```Bash
-zsh
-```
-
 ## Extract tar.gz
 
 `tar.gz` is a very popular format for compressed files in Linux. You can extract them via:
@@ -457,7 +471,11 @@ zsh
 ```Bash
 tar -xvf myFile.tar.gz
 ```
-The letters are for extract (x) Verbosely (v) file(f). The same works for `.tar.bz2` files. 
+* `-x`: extract 
+* `-v`: verbosely
+* `-f`: file 
+
+The same works for `.tar.bz2` files. 
 
 ## Clipboard Copy-paste 
 
