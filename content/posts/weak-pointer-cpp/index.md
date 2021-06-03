@@ -123,7 +123,7 @@ The code can be sketched as the image below
 {{< img "*weak2*" "pointer allocation" >}}
 
 
-## Why we need shared pointers?
+## Why we need weak pointers?
 
 
 In previous examples, I showed how to use a weak pointer but we don't need them there. They can be replaced by shared pointers. The main reason weak pointers are invented is to **break circular dependency** of shared pointers. Otherwise, they cannot delete their objects:
