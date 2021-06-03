@@ -118,17 +118,17 @@ struct A{
 };
 
 auto p = make_unique<A>(8); // create unique pointer
-auto B = *p; // dereference pointer
-p->m = 11; // access class members
+auto b = *p; // dereference pointer
+p->M = 11; // access class members
 ```
 
-There is a raw pointer inside a unique pointer which can be accessed:
+There is a raw pointer inside a unique pointer that can be accessed:
 
 ```cpp
 auto r = p.get(); // get the raw pointer
 ```
 
-Use above raw pointer only for calculations and do not delete it as it is managed by a unique pointer. 
+Use the above raw pointer only for calculations and do not delete it as it is managed by a unique pointer. 
 
 
 The object allocated to the pointer can be changed but remember that it is automatically deleted:
@@ -280,7 +280,7 @@ int main(){
 }
 ```
 
-If we are sure db definitely has an object, we can pass it by reference
+If we are sure `db` has an object, we can pass it by reference
 
 ```cpp
 void ShowSalaryDifference(double salary, Database& db)
@@ -302,7 +302,7 @@ int main(){
 
 ## Class member: unique pointer vs raw pointer vs reference
 
-If we design our program based on smart pointers, we can assume below rules for a class member:
+If we design our program based on smart pointers, we can assume the below rules for a class member:
 
 * Unique pointer member: the class is the owner of the pointer's object.
 * Raw pointer member: the class is an observer and not responsible for deleting the pointer's object. It is deleted by
