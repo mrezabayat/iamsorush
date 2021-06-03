@@ -67,15 +67,17 @@ A unique pointer can also be created with `std::make_unique`
 
 ```cpp
 #include <memory>
+#include <iostream>
 using namespace std;
 
-struct A{
-  A(int a):m(a){}
-  int m;
+struct Person{
+  Person(string n):Name(n){}
+  ~Person(){cout<<"Deleted!";}
+  string Name;
 };
 
 int main(){
-    auto p = make_unique<A>(8); // A constructor is called.
+    auto p = make_unique<Person>("Jack"); // Person constructor is called.
     return 0;
 }
 ```
@@ -112,14 +114,14 @@ unique_ptr<int> p; // empty pointer, contains null pointer
 A unique pointer supports operations below
 
 ```cpp
-struct A{ 
-       int M;
-       A(int m):M(m){}
+struct Person{
+  Person(string n):Name(n){}
+  string Name;
 };
 
-auto p = make_unique<A>(8); // create unique pointer
+auto p = make_unique<Person>("Rose"); // create unique pointer
 auto b = *p; // dereference pointer
-p->M = 11; // access class members
+p->Name = "Jack"; // access class members
 ```
 
 There is a raw pointer inside a unique pointer that can be accessed:
