@@ -1,17 +1,17 @@
 ---
-title: "Python for file management instead of Bash"
+title: "Python for file management"
 date: 2021-06-05T09:10:20+01:00
 image: /images/python.jpg
 imageQuality: "q65"
 imageAnchor: "Center" # Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 tags: ["Linux", "Python"]
 categories: "Diverse" 
-summary: "I show how Bash file management can be replaced with Python. Therefore, if you are familiar with Python you won't need Bash programming for automating complex tasks."
+summary: "I show how Python functions can be used for file management: create, delete, copy, and move files. Therefore, you can automating complex tasks with Python programming."
 ---
 
 ## Intro
 
-I show how Bash file management can be replaced with Python. Therefore, if you are familiar with Python you won't need Bash programming for automating complex tasks.
+I show how file management can be carried out with Python. Therefore, if you are familiar with Python you won't need Bash programming for automating complex tasks. Here I compare the Python functions with Bash commands on Ubuntu. These functions probably work in Windows and Mac OS too.
 
 
 ## Assumptions
